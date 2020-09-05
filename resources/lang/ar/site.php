@@ -60,7 +60,7 @@ return [
   'door_number'                 => 'رقم الدور',
   'shaka_number'                => 'رقم الشقة',
   'company_name'                => 'اسم الشركة',
-  'facebook_page'               => 'اسم صفحة الفيس',
+  'facebook_page'               => 'لينك صفحة الفيس',
   'role_name'                   => 'اسم المجموعة',
   'role_name_placeholder'       => 'مثال : كافة الصلاحيات',
 

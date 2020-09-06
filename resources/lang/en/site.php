@@ -63,8 +63,8 @@ return [
   'facebook_page'               => 'Link Facebook page',
   'role_name'                   => 'Group Name',
   'role_name_placeholder'       => 'Example: All Permissions',
-  'contract_type'               => 'نوع التعاقد',
-  'daily'                       => 'يومى',
-  'monthly'                     => 'شهرى',
-  'activity'                     => 'النشاط',
+  'contract_type'               => 'Contract system',
+  'daily'                       => 'Daily',
+  'monthly'                     => 'Monthly',
+  'activity'                     => 'Activity',
 ];

@@ -5,9 +5,9 @@
  */
 return [
     'admin' => [
-        'user_name'                   => 'اسم المستخدم',
-        'password'                    => 'كلمة المرور',
-        'password_confirmation'       => 'تاكيد كلمة المرور',
+        'user_name'                   => 'Username',
+        'password'                    => 'Password',
+        'password_confirmation'       => 'confirm password',
         'fullname'                    => 'الأسم بالكامل',
         'email'                       => 'البريد الالكترونى',
         'phone'                       => 'رقم التليفون',

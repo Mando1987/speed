@@ -8,7 +8,7 @@ return [
         'user_name'                   => 'Username',
         'password'                    => 'Password',
         'password_confirmation'       => 'confirm password',
-        'fullname'                    => 'full Name',
+        'fullname'                    => 'Full Name',
         'email'                       => 'E-mail',
         'phone'                       => 'phone Number',
         'other_phone'                 => 'Another phone Number',

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'admin'      => [
+    'admin' => [
         'user_name'                   => 'اسم المستخدم',
         'password'                    => 'كلمة المرور',
         'password_confirmation'       => 'تاكيد كلمة المرور',

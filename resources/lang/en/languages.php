@@ -3,9 +3,9 @@
 
 return [
     'ar' => [
-        'name' => 'اللغة العربية', 
+        'name' => 'Arabic', 
     ],
     'en' => [
-        'name' => 'اللغة الانجليزية', 
+        'name' => 'English', 
     ],
 ];

@@ -34,12 +34,13 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
+            $table->string('fullname', 50);
             $table->string('user_name', 50)->unique();
             $table->string('phone', 11)->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->tinyInteger('is_active')->size(1)->default(0);
+            $table->enum('type',['manager','customer','mandoob']);
             $table->timestamps();
         });
     }

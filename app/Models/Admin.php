@@ -15,43 +15,42 @@ class Admin extends Authenticatable
 
     protected $hidden = ['password' , 'remember_token' , 'email_verified_at' , 'updated_at' , 'pivot'];
 
-
-    public function parent()
-    {
-       return $this->belongsTo(self::class,'parent_id');
-    }
-
     public function role()
     {
        return $this->belongsTo(Role::class)->select(['id','name']);
     }
 
-
-    public function profile()
+    public function customer()
     {
-       return $this->morphOne(Profile::class , 'profilable')->withDefault(function($profile){
-
-          $profile->email   = 'not found';
-          $profile->address = 'not found';
-          $profile->phone   = 'not found';
-       });
+        return $this->hasOne(Customer::class);
     }
 
-    public function logs()
-    {
-        return $this->hasMany(Log::class);
-    }
-    
-    public function getActive()
-    {
-       return $this->is_active ? trans('site.active') : trans('site.notactive');
-    }
+
+   //  public function profile()
+   //  {
+   //     return $this->morphOne(Profile::class , 'profilable')->withDefault(function($profile){
+
+   //        $profile->email   = 'not found';
+   //        $profile->address = 'not found';
+   //        $profile->phone   = 'not found';
+   //     });
+   //  }
+
+   //  public function logs()
+   //  {
+   //      return $this->hasMany(Log::class);
+   //  }
+
+   //  public function getActive()
+   //  {
+   //     return $this->is_active ? trans('site.active') : trans('site.notactive');
+   //  }
 
 
     /**
      *  check where admin has permission like this admin_create , role_update
-     * if admin has permission to create this will have to access store permission 
-     * if admin has permission to edit this will have to access update permission 
+     * if admin has permission to create this will have to access store permission
+     * if admin has permission to edit this will have to access update permission
      */
     public function hasPermission($abilitiy)
     {
@@ -67,20 +66,20 @@ class Admin extends Authenticatable
 
       //      $abilitiy = Str::before($abilitiy, 'update') . 'edit';
       //   }
-      //   // admin can edit ?? ok he can change admin active 
+      //   // admin can edit ?? ok he can change admin active
       //   if($abilitiyChangeActive){
 
       //      $abilitiy = Str::before($abilitiy, 'changeActive') . 'edit';
       //   }
-       
+
       // return $this->role->permissions->pluck('name')->unique()->contains($abilitiy);
 
       return true;
-        
+
     }
 
 
-  
+
 
 
 

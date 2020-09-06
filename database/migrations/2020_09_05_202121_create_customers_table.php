@@ -23,6 +23,9 @@ class CreateCustomersTable extends Migration
             $table->string('facebook_page')->nullable();
             $table->string('notes')->nullable();
             $table->string('image')->default('default.png');
+            $table->enum('contract_type',['daily' , 'monthly']);
+
+
 
             $table->foreign('governorate_id')->references('id')->on('governorates');
             $table->foreign('city_id')->references('id')->on('cities');
@@ -35,11 +38,12 @@ class CreateCustomersTable extends Migration
         Schema::create('customer_infos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->string('street', 100);
-            $table->string('special_marque', 100); //علامة مميزة
-            $table->string('house_number', 10); //رقم البيت
-            $table->string('door_number', 10); //رقم الدور
-            $table->string('shaka_number', 10); // رقم الشقة
+            $table->string('address');
+            $table->string('special_marque', 100);
+            $table->string('house_number', 10);
+            $table->string('door_number', 10);
+            $table->string('shaka_number', 10);
+            $table->string('activity', 100);
 
             $table->foreign('customer_id')
                 ->references('id')

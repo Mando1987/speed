@@ -45,7 +45,7 @@ return [
   'old_password'                => 'Current Password',
   'password_confirmation'       => 'confirm password',
   'change_password'             => 'change Password',
-  'fullname'                    => 'full Name',
+  'fullname'                    => 'Full Name',
   'email'                       => 'E-mail',
   'phone'                       => 'phone number',
   'other_phone'                 => 'Another phone Number',

@@ -52,6 +52,11 @@ return [
   'address'                      => 'العنوان',
   'status'                      => 'الحالة',
   'active'                      => 'متاح',
+  'contract_type'               => 'نوع التعاقد',
+  'daily'                       => 'يومى',
+  'monthly'                     => 'شهرى',
+  'activity'                     => 'النشاط',
+
   'role_id'                     => 'الصلاحيات',
   'image'                       => 'صورة الملف الشخصى',
   'choose_image'                => 'إختر صورة',

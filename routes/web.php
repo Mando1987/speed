@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 
 //  Auth::routes();
 
-Route::get('/home', function () {
-    return dd('23456');
+Route::get('/', function () {
+    return view('front.index');
 })->name('site.index');
 
 Route::get('/city', function () {

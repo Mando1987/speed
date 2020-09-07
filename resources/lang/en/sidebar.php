@@ -3,17 +3,17 @@
 
 return [
 
-     'dashbord.index'  => 'dashbord',
-     'admin.index'     => 'admins',
-     'admin.create'    => 'create new admin',
-     'auth.login'      => 'تسجيل الدخول',
-     'admin.all'       => 'كافة المديرين',
-     'admin.show'      => 'الملف الشخصى',
-     'customer.index'   => 'كل العملاء' ,
-     'customer.create'  => 'اضافة عميل جديد' ,
-     'customer.all'     => 'كافة العملاء',
-     'role.index'     => 'الصلاحيات',
-     'role.create'    => 'اضافة مجموعة جديدة',
-     'role.all'       => 'كافة الصلاحيات',
+     'dashbord.index'  => 'Dashbord',
+     'admin.index'     => 'Admins',
+     'admin.create'    => 'create New Admin',
+     'auth.login'      => 'Login',
+     'admin.all'       => 'All Managers',
+     'admin.show'      => 'Profile',
+     'customer.index'   => 'All customers' ,
+     'customer.create'  => 'Add New Customer' ,
+     'customer.all'     => 'All clients',
+     'role.index'     => 'Permissions',
+     'role.create'    => 'Add New Group',
+     'role.all'       => 'All Permissions',
 
 ];

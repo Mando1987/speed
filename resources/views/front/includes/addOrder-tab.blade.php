@@ -16,8 +16,7 @@
                 <tbody>
                     <tr>
                         <td>رقم الطلب </td>
-                        <td><input type="text" name="order_number"
-                                value="ExpC-45FB54" /></td>
+                        <td><input type="text" name="order_number" value="ExpC-45FB54" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -26,19 +25,17 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th> معلومات المرسل </th>
+                        <th>معلومات المرسل</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>الاسم <i>* </i></td>
-                        <td><input name="name_from" type="text" required="required"
-                                placeholder="الاسم" /></td>
+                        <td><input name="name_from" type="text" required="required" placeholder="الاسم" /></td>
                     </tr>
                     <tr>
                         <td>اسم الشركة </td>
-                        <td><input name="company_from" type="text"
-                                placeholder="اسم الشركة" /></td>
+                        <td><input name="company_from" type="text" placeholder="اسم الشركة" /></td>
                     </tr>
                     <tr>
                         <td>المحافظه <i>*</i></td>
@@ -76,28 +73,23 @@
                     </tr>
                     <tr>
                         <td>المدينة <i>*</i></td>
-                        <td><input name="city_from" type="text"
-                                placeholder="اكتب اسم مدينتك" /></td>
+                        <td><input name="city_from" type="text" placeholder="اكتب اسم مدينتك" /></td>
                     </tr>
                     <tr>
                         <td>العنوان <i>* </i></td>
-                        <td><input name="address_from" type="text"
-                                placeholder="العنوان" /></td>
+                        <td><input name="address_from" type="text" placeholder="العنوان" /></td>
                     </tr>
                     <tr>
                         <td>رقم الموبيل <i>* </i></td>
-                        <td><input name="mobile_from" type="text"
-                                placeholder="اكتب رقم الموبيل" /></td>
+                        <td><input name="mobile_from" type="text" placeholder="اكتب رقم الموبيل" /></td>
                     </tr>
                     <tr>
                         <td>نوع الشحنة <i>* </i></td>
-                        <td><input name="order_type" type="text"
-                                placeholder="ماهو نوع شحنتك" /></td>
+                        <td><input name="order_type" type="text" placeholder="ماهو نوع شحنتك" /></td>
                     </tr>
                     <tr>
                         <td>وزن الشحنة <i>* </i></td>
-                        <td><input name="order_value" type="text"
-                                placeholder="وزن الشحنة" /></td>
+                        <td><input name="order_value" type="text" placeholder="وزن الشحنة" /></td>
                     </tr>
                     <tr>
                         <td>نوع الشحن <i>* </i></td>
@@ -117,13 +109,11 @@
                     </tr>
                     <tr>
                         <td>مبلغ التحصيل <i>* </i></td>
-                        <td><input name="collection_amount" type="text"
-                                placeholder="مبلغ التحصيل " /></td>
+                        <td><input name="collection_amount" type="text" placeholder="مبلغ التحصيل " /></td>
                     </tr>
                     <tr>
                         <td>الرمز البريدى </td>
-                        <td><input name="zip_code_from" type="text"
-                                placeholder="الرمز البريدى" /></td>
+                        <td><input name="zip_code_from" type="text" placeholder="الرمز البريدى" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -137,15 +127,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>الاسم <i>* </i>
+                        <td>الأسم <i>* </i>
                         </td>
-                        <td><input name="name_to" type="text" placeholder="الاسم" />
+                        <td><input name="name_to" type="text" placeholder="الأسم" />
                         </td>
                     </tr>
                     <tr>
                         <td>اسم الشركة</td>
-                        <td><input name="company_to" type="text"
-                                placeholder="اسم الشركة" /></td>
+                        <td><input name="company_to" type="text" placeholder="اسم الشركة" /></td>
                     </tr>
                     <tr>
                         <td>المحافظه <i>*</i></td>
@@ -183,31 +172,26 @@
                     </tr>
                     <tr>
                         <td>المدينة <i>*</i></td>
-                        <td><input name="city_to" type="text"
-                                placeholder="اكتب اسم مديينتك" /></td>
+                        <td><input name="city_to" type="text" placeholder="اكتب اسم مديينتك" /></td>
                     </tr>
                     <tr>
                         <td>العنوان <i>* </i></td>
-                        <td><input name="address_to" type="text"
-                                placeholder="العنوان" /></td>
+                        <td><input name="address_to" type="text" placeholder="العنوان" /></td>
                     </tr>
                     <tr>
                         <td>رقم الموبيل <i>* </i></td>
-                        <td><input name="mobile_to" type="text"
-                                placeholder="اكتب رقم الموبيل" /></td>
+                        <td><input name="mobile_to" type="text" placeholder="اكتب رقم الموبيل" /></td>
                     </tr>
                     <tr>
                         <td>الرمز البريدى </td>
-                        <td><input name="zip_code_to" type="text"
-                                placeholder="الرمز البريدى" /></td>
+                        <td><input name="zip_code_to" type="text" placeholder="الرمز البريدى" /></td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="col-xs-12 button-s my-2 text-center">
-            <button type="submit" class="btn-success btn btn-lg">تاكيد الطلب
-            </button>
+            <button type="submit" class="btn-success btn btn-lg">تاكيد الطلب</button>
         </div>
     </form>
 </div>

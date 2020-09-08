@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
-                <h2>خدماتنا </h2>
+                <h2>خدماتنا</h2>
                 <div class="border-color"></div>
             </div>
 
@@ -12,9 +12,8 @@
                         alt="services" />
                     <div class="text-s">
                         <h3>توصيل نفس اليوم</h3>
-                        <p>عندما يكون الغدا بعيدا... عندما تكون في سباق مع الزمن ، اختر خدمة التوصيل فى
-                            نفس اليوم ، أسرع خدمة تسليم</p>
-                        <button type="button" class=" btn btn-success btn-sm">عرض المزيد </button>
+                        <p>عندما يكون الغدا بعيداً... عندما تكون في سباق مع الزمن ، اختر خدمة التوصيل فى نفس اليوم ، أسرع خدمة تسليم</p>
+                        <button type="button" class=" btn btn-success btn-sm">عرض المزيد</button>
                     </div>
                 </a>
             </div>
@@ -24,9 +23,8 @@
                         alt="services" />
                     <div class="text-s">
                         <h3> تحصيل الاموال </h3>
-                        <p>هذه الخدمة توفر لك الجمع بين اثنين من المزايا في واحده: توصيل سريع للمنتجات
-                            لعملائك مع طريقة الدفع المريحة والموثوق فيها</p>
-                        <button type="button" class=" btn btn-success btn-sm">عرض المزيد </button>
+                        <p>هذه الخدمة توفر لك الجمع بين اثنين من المزايا في واحده: توصيل سريع للمنتجات لعملائك مع طريقة الدفع المريحة والموثوق فيها</p>
+                        <button type="button" class=" btn btn-success btn-sm">عرض المزيد</button>
                     </div>
                 </a>
             </div>
@@ -36,9 +34,8 @@
                         alt="services" />
                     <div class="text-s">
                         <h3>شحن داخلي</h3>
-                        <p>بنبعت المندوب إلي بيت العميل بياخد منه الشحنه والتوصيل يكون الي باب بيت
-                            المستلم كذلك</p>
-                        <button type="button" class=" btn btn-success btn-sm">عرض المزيد </button>
+                        <p>بنبعت المندوب إلي بيت العميل بياخد منه الشحنه والتوصيل يكون الي باب بيت المستلم كذلك</p>
+                        <button type="button" class=" btn btn-success btn-sm">عرض المزيد</button>
                     </div>
                 </a>
             </div>
@@ -48,7 +45,7 @@
                     <div class="text-s">
                         <h3>توصيل المستندات</h3>
                         <p>عندما يكون لديك جدول أعمال مزدحم ، بنقدم لك هذه الخدمة المريحة</p>
-                        <button type="button" class=" btn btn-success btn-sm">عرض المزيد </button>
+                        <button type="button" class=" btn btn-success btn-sm">عرض المزيد</button>
                     </div>
                 </a>
             </div>

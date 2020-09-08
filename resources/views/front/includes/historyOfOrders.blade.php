@@ -6,8 +6,7 @@
           <div class="col-xs-12">
               <ul class="list-progress">
                   <li class="list-progress__item"><i class="icon fa fa-folder-open"></i>
-                      <div class="list-progress__info"><span data-percent="12985" class="chart"><span
-                                  class="percent"></span></span>
+                      <div class="list-progress__info"><span data-percent="12985" class="chart"><span class="percent"></span></span>
                       </div>
                       <div class="clearfix"></div>
                       <span class="list-progress__label">@lang('front.historyOfOrders_requestsmade')</span>

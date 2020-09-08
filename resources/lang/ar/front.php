@@ -61,5 +61,16 @@ return [
     'header_about'               => 'من نحن',
     'header_join'                => 'انضم لفريق العمل',
     'header_contact'             => 'اتصل بنا',
+    
+    
+    
+    
+    
+    
+    'historyOfOrders_requestsmade'               => 'الطلبات التى قمنا بها',
+    'historyOfOrders_ourcustomers'               => 'عملائنا',
+    'historyOfOrders_ourbranches'                => 'فروعنا',
+    'historyOfOrders_requestsite'                => 'الطلبات من خلال الموقع',
+    'historyOfOrders_requestmonth'               => 'طلبات هذا الشهر',
 
 ];

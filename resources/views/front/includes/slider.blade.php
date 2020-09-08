@@ -7,12 +7,9 @@
         </div>
         <div class="item-wrap">
             <div class="container">
-                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">
-                    توصيل نفس اليوم</div>
-                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">لاننا
-                    بنسابق الزمن عشانك</p>
-                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن
-                    الان</a>
+                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">توصيل نفس اليوم</div>
+                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">لاننا بنسابق الزمن عشانك</p>
+                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن الأن</a>
             </div>
         </div>
     </div>
@@ -21,12 +18,9 @@
         </div>
         <div class="item-wrap">
             <div class="container">
-                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">شحن
-                    داخلي</div>
-                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">نقدم
-                    خدمات الشحن من الباب الى الباب</p>
-                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن
-                    الان</a>
+                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">شحن داخلي</div>
+                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">نقدم خدمات الشحن من الباب الى الباب</p>
+                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن الأن</a>
             </div>
         </div>
     </div>
@@ -35,13 +29,9 @@
         </div>
         <div class="item-wrap">
             <div class="container">
-                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">خدمة
-                    توصيل المستندات</div>
-                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">عندك
-                    مستندات عاوز تبعتها لحد وخايف عليها ؟ ماتشغلش بالك سبيد حلتهالك مع خدمة توصيل
-                    المستندات</p>
-                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن
-                    الان</a>
+                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">خدمة توصيل المستندات</div>
+                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">عندك مستندات عاوز تبعتها لحد وخايف عليها ؟ ماتشغلش بالك سبيد حلتهالك مع خدمة توصيل المستندات</p>
+                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن الأن</a>
             </div>
         </div>
     </div>
@@ -50,13 +40,10 @@
         </div>
         <div class="item-wrap">
             <div class="container">
-                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">خدمة
-                    المراسلين</div>
-                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">إذا
-                    كان لديك عدد كبير من المراسلات اليومية بين المركز الرئيسي الخاص بك والعديد من الفروع
+                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">خدمةالمراسلين</div>
+                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">إذا كان لديك عدد كبير من المراسلات اليومية بين المركز الرئيسي الخاص بك والعديد من الفروع
                 </p>
-                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن
-                    الان</a>
+                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن الأن</a>
             </div>
         </div>
     </div>
@@ -65,12 +52,9 @@
         </div>
         <div class="item-wrap">
             <div class="container">
-                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">
-                    بنحافظ على منتجاتك</div>
-                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">بنحافظ
-                    علي تعقيم وتغليف منتجاتك بصورة جيدة</p>
-                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن
-                    الان</a>
+                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated"> بنحافظ على منتجاتك</div>
+                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">بنحافظ علي تعقيم وتغليف منتجاتك بصورة جيدة</p>
+                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن الأن</a>
             </div>
         </div>
     </div>
@@ -79,12 +63,9 @@
         </div>
         <div class="item-wrap">
             <div class="container">
-                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">طمن
-                    عميلك</div>
-                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">فهمه
-                    انه هيقدر يعاين الأوردر معانا قبل الأستلام براحته</p>
-                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن
-                    الان</a>
+                <div style="visibility: hidden;" class="slide-title main-slider_slideInUp animated">طمن عميلك</div>
+                <p style="visibility: hidden;" class="slide-text main-slider_fadeInLeft animated">فهمه انه هيقدر يعاين الأوردر معانا قبل الأستلام براحته</p>
+                <a href="makeorders.html" style="visibility: hidden;" class="btn main-slider_zoomIn animated">اشحن الأن</a>
             </div>
         </div>
     </div>

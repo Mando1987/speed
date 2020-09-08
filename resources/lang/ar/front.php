@@ -42,4 +42,24 @@ return [
     'footer_documentSendService' => 'خدمة توصيل المستندات',
     'footer_copyright'           => 'جميع الحقوق محفوظة لشركة سبيد للشحن السريع © 2020',
     'footer_title'               => 'ليه تشحن مع سبيد لأننا الأفضل .. الأسرع .. والأسهل',
+
+    
+    
+    'header_home'                => 'الرئيسيه',
+    'header_prices'              => 'الأسعار',
+    'header_services'            => 'خدماتنا',
+    'header_samedaydeliveryn'    => 'توصيل نفس اليوم',
+    'header_moneycollection'     => 'تحصيل الاموال',
+    'header_internalshipping'    => 'شحن داخلي',
+    'header_international'       => 'الشحن الدولي',
+    'header_fbs'                 => 'تشحن وتغلف من قبل سبيد',
+    'header_posta'               => 'خدمة المراسلين',
+    'header_speedApp'            => 'Speed App',
+    'header_mailing'             => 'توزيع المراسلات الكمية',
+    'header_documents'           => 'خدمة توصيل المستندات',
+    'header_makeorders'          => 'طلب شحن',
+    'header_about'               => 'من نحن',
+    'header_join'                => 'انضم لفريق العمل',
+    'header_contact'             => 'اتصل بنا',
+
 ];

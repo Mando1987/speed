@@ -40,26 +40,26 @@
                         </div>
                         <nav id="navbar-collapse-1" class="navbar-collapse collapse">
                             <ul class="nav">
-                                <li class=""><a href="index.html">الرئيسية</a></li>
-                                <li class=""><a href="prices.html">الأسعار</a></li>
-                                <li class="dropdown"><a href="services.html">خدماتنا </a>
+                                <li class=""><a href="index.html">@lang('front.header_home')</a></li>
+                                <li class=""><a href="prices.html">@lang('front.header_prices')</a></li>
+                                <li class="dropdown"><a href="services.html">@lang('front.header_services') </a>
                                     <ul role="menu" class="dropdown-menu">
-                                        <li><a href="services/Same-day-deliveryn.html">توصيل نفس اليوم</a></li>
-                                        <li><a href="services/money-collection.html">تحصيل الاموال</a></li>
-                                        <li><a href="services/internal-shipping.html">شحن داخلي</a></li>
-                                        <li><a href="services/international.html">الشحن الدولي</a></li>
-                                        <li><a href="services/fbs.html">تشحن وتغلف من قبل سبيد</a></li>
-                                        <li><a href="services/posta.html">خدمة المراسلين</a></li>
-                                        <li><a href="services/speed-app.html">Speed App</a></li>
-                                        <li><a href="services/mailing.html">توزيع المراسلات الكمية</a></li>
-                                        <li><a href="services/documents.html">خدمة توصيل المستندات</a>
+                                        <li><a href="services/Same-day-deliveryn.html">@lang('front.header_samedaydeliveryn')</a></li>
+                                        <li><a href="services/money-collection.html">@lang('front.header_moneycollection')</a></li>
+                                        <li><a href="services/internal-shipping.html">@lang('front.header_internalshipping')</a></li>
+                                        <li><a href="services/international.html">@lang('front.header_international')</a></li>
+                                        <li><a href="services/fbs.html">@lang('front.header_fbs')</a></li>
+                                        <li><a href="services/posta.html">@lang('front.header_posta')</a></li>
+                                        <li><a href="services/speed-app.html">@lang('front.header_speedApp')</a></li>
+                                        <li><a href="services/mailing.html">@lang('front.header_mailing')</a></li>
+                                        <li><a href="services/documents.html">@lang('front.header_documents')</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li class=""><a href="makeorders.html">طلب شحن</a></li>
-                                <li class=""><a href="about.html">من نحن</a></li>
-                                <li class=""><a href="join.html">انضم لفريق العمل</a></li>
-                                <li class=""><a href="contact.html">اتصل بنا</a></li>
+                                <li class=""><a href="makeorders.html">@lang('front.header_makeorders.html')</a></li>
+                                <li class=""><a href="about.html">@lang('front.header_about')</a></li>
+                                <li class=""><a href="join.html">@lang('front.header_join')</a></li>
+                                <li class=""><a href="contact.html">@lang('front.header_contact')</a></li>
                             </ul>
                         </nav>
                     </div>

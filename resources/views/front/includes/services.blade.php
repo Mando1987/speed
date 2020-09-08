@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 text-center">
-                <h2>خدماتنا </h2>
+                <h2>خدماتنا</h2>
                 <div class="border-color"></div>
             </div>
 

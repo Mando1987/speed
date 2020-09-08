@@ -42,6 +42,47 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item has-treeview">
+                        <a href="{{ route('place.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                @lang('sidebar.place.index')
+
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right">6</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="{{ route('place.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.place.all')</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('place.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.place.create')</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.place.prices')</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                            <a href="{{ route('price.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.place.prices_add')</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
                     {{-- ############# Start Manager Pane ########################################################### --}}
                 @else
 

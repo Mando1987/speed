@@ -15,4 +15,9 @@ return [
      'role.index'     => 'الصلاحيات',
      'role.create'    => 'اضافة مجموعة جديدة',
      'role.all'       => 'كافة الصلاحيات',
+     'place.index'    => 'المناطق',
+     'place.all'    => 'كافة المناطق',
+     'place.create'    => 'اضافة منطقة جديدة',
+     'place.prices'    => 'مصاريف الشحن',
+     'place.prices_add'    => 'اضافة سعر لمنطقة',
 ];

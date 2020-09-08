@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerStoreFormRequest;
+use App\Http\Traits\GovernorateTrait;
 use App\Models\City;
 use App\Models\Customer;
 use App\Models\Governorate;
@@ -12,11 +13,8 @@ use App\Services\CustomerStoreService;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    use GovernorateTrait;
+
     public function index()
     {
         //
@@ -24,9 +22,8 @@ class CustomerController extends Controller
 
     public function create()
     {
-        $governorates = Governorate::all();
-        $firstGovernoratesCities = $governorates->first()->cities;
-        return view('customer.create' , ['governorates' => $governorates , 'cities' => $firstGovernoratesCities]);
+
+        return view('customer.create' , $this->getAllGovernoratesAndCities() );
     }
 
     public function store(CustomerStoreFormRequest $request)
@@ -55,9 +52,4 @@ class CustomerController extends Controller
         //
     }
 
-    public function getCities()
-    {
-        return $governorateCities = Governorate::findOrFail(request('governorate_id'))->cities()->get();
-        return response()->json($governorateCities);
-    }
 }

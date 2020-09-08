@@ -1,24 +1,28 @@
 <?php
 
 
+use App\Models\Customer;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PlaceController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Models\Customer;
+use App\Http\Controllers\Admin\PlacePricesController;
 
 // // ############################################################################
 
 Route::get('admin/{id}/change-active', [AdminController::class, 'changeActive'])->name('admin.changeActive');
 Route::post('admin/{id}/change-passowrd', [AdminController::class, 'changePassword'])->name('admin.change_password');
 
-Route::get('/get-cities',[CustomerController::class, 'getCities'] );
+Route::get('/get-cities',[PlaceController::class, 'getCities'] );
 
 Route::resources([
-    'admin' => AdminController::class,
-    'role' => RoleController::class,
-    'dashboard' => DashboardController::class,
-    'customer' => CustomerController::class,
+    'admin'        => AdminController::class,
+    'role'         => RoleController::class,
+    'dashboard'    => DashboardController::class,
+    'customer'     => CustomerController::class,
+    'place'        => PlaceController::class,
+    'price'       => PlacePricesController::class,
 ]);
 
 Route::fallback(function () {

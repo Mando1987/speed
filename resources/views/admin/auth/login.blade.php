@@ -15,10 +15,10 @@
                     <form action="{{ route('admin.login') }}" method="post">
                         @csrf
                         <div class="form-group mb-3">
-                            <input type="text" name="name" value="{{ old('name') }}"
-                                class="form-control @error('name') is-invalid @enderror" id="name"
-                                placeholder="@lang('site.admin_name')">
-                            @error('name')
+                            <input type="text" name="user_name" value="{{ old('user_name') }}"
+                                class="form-control @error('user_name') is-invalid @enderror" id="user_name"
+                                placeholder="@lang('site.admin_user_name')">
+                            @error('user_name')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>
@@ -26,7 +26,7 @@
                             <input type="password" name="password" value="{{ old('password') }}"
                                 class="form-control @error('password') is-invalid @enderror" id="password"
                                 placeholder="@lang('site.admin_password')">
-                                
+
                             @error('password')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
@@ -52,7 +52,7 @@
                         <a
                             href="{{ route('admin.password.request') }}">@lang('site.forget_password')</a>
                     </p>
-                    
+
                 </div>
                 <!-- /.login-card-body -->
             </div>

@@ -22,4 +22,11 @@ return [
     'role' => [
         'name'            => 'اسم المجموعة'
     ],
+    'prices'=>[
+        'send_weight'           => 'حتى وزن',
+        'send_price'            => 'سعر التوصيل',
+        'weight_addtion'        => 'الوزن الاضافى',
+        'price_addtion'         => 'السعر الاضافى',
+    ],
+
 ];

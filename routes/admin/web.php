@@ -22,7 +22,7 @@ Route::resources([
     'dashboard'    => DashboardController::class,
     'customer'     => CustomerController::class,
     'place'        => PlaceController::class,
-    'price'       => PlacePricesController::class,
+    'price'        => PlacePricesController::class,
 ]);
 
 Route::fallback(function () {

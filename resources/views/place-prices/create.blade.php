@@ -12,7 +12,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" id="quickForm" action="{{ route('customer.store') }}" method="POST"
+                <form role="form" id="quickForm" action="{{ route('price.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('POST')
@@ -96,7 +96,7 @@
                                         </span>
                                     </div>
                                     <select class="custom-select" name="weight_addtion" id="weight_addtion">
-                                        <option value=".5">@lang('site.price_send_weight_.5k')</option>
+                                        <option value="0.5">@lang('site.price_send_weight_.5k')</option>
                                         <option value="1">@lang('site.price_send_weight_1k')</option>
                                         <option value="2">@lang('site.price_send_weight_2k')</option>
                                         <option value="3">@lang('site.price_send_weight_3k')</option>

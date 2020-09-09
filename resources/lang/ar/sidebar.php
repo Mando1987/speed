@@ -20,4 +20,10 @@ return [
      'place.create'    => 'اضافة منطقة جديدة',
      'place.prices'    => 'مصاريف الشحن',
      'place.prices_add'    => 'اضافة سعر لمنطقة',
+     'price.index' => 'مصاريف الشحن',
+     'price.create'    => 'اضافة سعر لمنطقة',
+      'price.edit' => 'تعديل مصاريف شحن ',
+     // 'price.index' => '',
+     // 'price.index' => '',
+     // 'price.index' => '',
 ];

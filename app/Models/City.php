@@ -9,10 +9,24 @@ class City extends Model
     protected $guarded = [];
     protected $appends = ['name'];
     protected $hidden  = ['city_name', 'city_name_en'];
+
     public function governorate()
     {
-        return $this->hasOne(Governorate::class);
+        return $this->belongsTo(Governorate::class);
     }
+    public function placePrices()
+    {
+        return $this->hasOne(PlacePrice::class)->withDefault(
+            [
+                'governorate_id'  => $this->governorate_id,
+                'send_weight'     => '0',
+                'send_price'      => '0',
+                'weight_addtion'  => '0',
+                'price_addtion'   => '0',
+            ]
+        );
+    }
+
     public function getNameAttribute()
     {
         return (app()->getLocale() == 'ar') ? $this->city_name :  $this->city_name_en;

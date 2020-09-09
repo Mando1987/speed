@@ -17,12 +17,11 @@ class CreatePlacePricesTable extends Migration
 
             $table->id();
             $table->unsignedBigInteger('governorate_id');
-            $table->unsignedBigInteger('city_id');
-            $table->string('send_weight',6);
-            $table->decimal('send_price',6,2);
-            $table->string('weight_addtion',6);
-            $table->decimal('price_addtion',6,2);
-
+            $table->unsignedBigInteger('city_id')->unique();
+            $table->string('send_weight',6)->default(0);
+            $table->decimal('send_price',6,2)->default(0);
+            $table->string('weight_addtion',6)->default(0);
+            $table->decimal('price_addtion',6,2)->default(0);
             $table->foreign('governorate_id')->references('id')->on('governorates');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });

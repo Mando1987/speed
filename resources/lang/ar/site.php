@@ -67,6 +67,8 @@ return [
   'daily'                       => 'يومى',
   'monthly'                     => 'شهرى',
   'activity'                    => 'النشاط',
+  'price_weight'            => 'كيلو',
+  'price_bound'            => 'جنيه',
   'price_send_weight'            => 'حتى وزن',
   'price_send_weight_.5k'         => 'نصف كيلو',
   'price_send_weight_1k'         => 'واحد كيلو',

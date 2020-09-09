@@ -14,6 +14,11 @@ $(document).ready(function () {
          } , 'json');
       });
    });
+
+    $('#getCitiesPriceSelect').change(function(){
+       $('#getCitiesPrice').submit();
+   });
+
 });
 
 

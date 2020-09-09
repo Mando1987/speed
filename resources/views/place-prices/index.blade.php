@@ -2,37 +2,64 @@
 @extends('layouts.dataTable')
 
 @section('button')
-  <x-add-button route="admin.create" />
+<div class="row">
+    <div class="form-group">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <x-add-button route="price.create" />
+            </div>
+            <div style=width:20px></div>
+            <div class="input-group-prepend">
+                <span class="badge bg-secondary pt-3">
+                    @lang('site.governorate')
+                </span>
+            </div>
+            <form role="form" id="getCitiesPrice" action="{{ route('price.index') }}" method="GET" >
+                <select class="custom-select" name="governorate_id" id="getCitiesPriceSelect">
+                    @foreach($governorates as $governorate)
+                    <option value="{{ $governorate->id }}" @if($governorate->id == $selectedGovId) selected @endif>{{ $governorate->name }}</option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
+    </div>
+
+</div>
 @endsection
-@if($admins->count())
+@if($governorateCitiesPrice->count())
 
 @section('thead')
 <tr>
     <th> # </th>
-    <th> @lang('site.admin_fullname') </th>
-    <th> @lang('site.admin_parent')   </th>
-    <th> @lang('site.admin_role_id')  </th>
-    <th> @lang('site.admin_status')   </th>
-    <th> @lang('site.actions')        </th>
+    <th> @lang('site.city')</th>
+    <th> @lang('site.price_send_weight')</th>
+    <th> @lang('site.price_send_price')</th>
+    <th> @lang('site.price_weight_addtion')</th>
+    <th> @lang('site.price_price_addtion')</th>
+    <th> @lang('site.actions') </th>
 </tr>
 @endsection
 
 @section('tbody')
-@foreach($admins as $index => $admin)
+@foreach($governorateCitiesPrice as $index => $city)
 <tr>
-    <td class="sorting_1" tabindex="0">{{ $admins->firstItem()+$index }}</td>
-    <td> {{ $admin->fullname }} </td>
-    <td> {{ optional($admin->parent)->fullname }} </td>
-    <td> {{ $admin->role->name }} </td>
-    <td>
-    <x-enable-button  route="admin.changeActive" id="{{ $admin->id }}" isActive="{{ $admin->is_active }}"  />
-        
-    </td>
+    <td class="sorting_1" tabindex="0">{{ $governorateCitiesPrice->firstItem()+$index }}</td>
+    <td> {{ $city->name }} </td>
+    <td> {{ $city->placePrices->send_weight    }} @lang('site.price_weight')</td>
+    <td> {{ $city->placePrices->send_price     }} @lang('site.price_bound') </td>
+    <td> {{ $city->placePrices->weight_addtion }} @lang('site.price_weight') </td>
+    <td> {{ $city->placePrices->price_addtion  }} @lang('site.price_bound') </td>
     <td>
         <div class="btn-group btn-group-sm">
-            <x-show-button   ability="admin_show"    route="admin.show"    id="{{ $admin->id }}" />
-            <x-edit-button   ability="admin_edit"    route="admin.edit"    id="{{ $admin->id }}" />
-            <x-delete-button ability="admin_destroy" route="admin.destroy" id="{{ $admin->id }}" />
+            @if($city->placePrices->send_weight > 0)
+
+            <x-edit-button ability="price_edit" route="price.edit" id="{{ $city->id }}" />
+            <x-delete-button ability="price_destroy" route="price.destroy" id="{{ $city->placePrices->id }}" />
+            @else
+            <x-price_edit-button ability="price_edit" route="price.edit" id="{{ $city->id }}" />
+
+            @endif
+
         </div>
     </td>
 </tr>
@@ -41,20 +68,11 @@
 @endsection
 
 @section('paginate')
-{{  $admins->links() }}
+{{  $governorateCitiesPrice->links() }}
 @endsection
 
-{{-- extend in all pages --}}
-@push('datatable')
-<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/dist/js/dataTablesScripts.js') }}"></script>
-@include('includes.scripts.delete')
-@endpush
 @else
 @section('empty')
-    <x-empty-records-button-add route="admin.create"/>
+<x-empty-records-button-add route="price.create" />
 @endsection
 @endif

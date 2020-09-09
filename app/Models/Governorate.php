@@ -14,6 +14,10 @@ class Governorate extends Model
     {
         return $this->hasMany(City::class);
     }
+    public function placePrices()
+    {
+        return $this->hasMany(PlacePrice::class);
+    }
 
     public function getNameAttribute()
     {

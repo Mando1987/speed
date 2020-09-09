@@ -61,7 +61,7 @@
                                             @lang('site.price_send_weight')
                                         </span>
                                     </div>
-                                    <select class="custom-select" name="city_id" id="city_id">
+                                    <select class="custom-select" name="send_weight" id="send_weight">
                                         <option value="1">@lang('site.price_send_weight_1k')</option>
                                         <option value="2">@lang('site.price_send_weight_2k')</option>
                                         <option value="3">@lang('site.price_send_weight_3k')</option>
@@ -95,7 +95,7 @@
                                             @lang('site.price_weight_addtion')
                                         </span>
                                     </div>
-                                    <select class="custom-select" name="city_id" id="city_id">
+                                    <select class="custom-select" name="weight_addtion" id="weight_addtion">
                                         <option value=".5">@lang('site.price_send_weight_.5k')</option>
                                         <option value="1">@lang('site.price_send_weight_1k')</option>
                                         <option value="2">@lang('site.price_send_weight_2k')</option>

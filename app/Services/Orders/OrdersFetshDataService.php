@@ -27,6 +27,8 @@ class OrdersFetshDataService extends BaseService
 
     public function createNewOrder()
     {
+
+        // return session('sender');
         $page = (request('page')) ? request('page') : 1;
 
         if ($page == 2 && !session('sender')) {
@@ -42,7 +44,7 @@ class OrdersFetshDataService extends BaseService
         $data['sender']  = session('sender') ? session('sender') : $this->getSenderOrReciverArray();
         $data['reciver'] = session('reciver') ? session('reciver') : $this->getSenderOrReciverArray();
         $data['page']    = $page;
-        // return session('sender');
+        //  return $data;
         return view('order.create', array_merge($this->getAllGovernoratesAndCities(), $data));
     }
 

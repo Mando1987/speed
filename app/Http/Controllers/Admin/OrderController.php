@@ -11,39 +11,39 @@ class OrderController extends Controller
 
     public function index()
     {
-
     }
 
     public function create()
     {
-       return app(OrdersFetshDataService::class)->createNewOrder();
+        return app(OrdersFetshDataService::class)->createNewOrder();
     }
 
     public function store(OrderStoreFormRequest $request)
     {
 
-        // return $request->validated();
-       if(session('page') == 1){
+        if (session('page') == 1) {
 
-        session(['page' =>  2]);
-        return redirect()->route('order.create' , ['page' => 2]);
+            session(['page' =>  2]);
+            session($request->validated());
+            return redirect()->route('order.create', ['page' => 2]);
+        }
 
-       }
+        if (session('page') == 2 && session('sender')) {
 
-       if(session('page') == 2 && session('sender') ){
+            session(['page' =>  3]);
+            session($request->validated());
+            return redirect()->route('order.create', ['page' => 3]);
+        }
+        if (session('page') == 3 && session('sender') && session('reciver')) {
 
-        session(['page' =>  3]);
-        return redirect()->route('order.create' , ['page' => 3]);
+            $data['order']   = $request->validated()['order'];
+            $data['sender']  = session('sender');
+            $data['reciver'] = session('reciver');
+            session()->forget(['sender', 'reciver', 'page']);
 
-      }
-       if(session('page') == 3 && session('sender') && session('reciver') ){
+            return $data;
+            // return redirect()->route('order.index');
 
-        $data = array_merge($request->validated() , session('sender') ,session('reciver') );
-        session()->forget(['sender' , 'reciver' , 'page']);
-
-        return $data;
-        // return redirect()->route('order.index');
-
-      }
+        }
     }
 }

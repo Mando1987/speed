@@ -129,6 +129,20 @@
                 @enderror
             </div>
         </div>
+        <div class="form-group col-md">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="badge bg-info pt-3">
+                        @lang('site.order_charge')
+                    </span>
+                </div>
+                <select class="custom-select" name="order[order_charge_on]">
+                    <option value="order_charge_sender">@lang('site.order_charge_sender')</option>
+                    <option value="order_charge_reciver">@lang('site.order_charge_reciver')</option>
+                </select>
+            </div>
+        </div>
+
 
     </div>
 </div>

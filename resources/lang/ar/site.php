@@ -92,4 +92,7 @@ return [
   'order_charge_price' => 'تكاليف الشحن',
   'order_total_price' => 'اجمالى الشحنة',
   'order_serial' => 'رقم البوليصة',
+  'order_charge' => 'الشحن ذهاب وعودة',
+  'order_charge_sender' => 'يتحمل التكاليف الراسل',
+  'order_charge_reciver' => 'يتحمل التكاليف المرسل اليه',
 ];

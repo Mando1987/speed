@@ -15,12 +15,10 @@ class OrderStoreFormRequest extends FormRequest
     {
         if (session('page') == 1) {
 
-            session(['sender' => $this->sender]);
             return $this->validateSenderInputs();
 
         } elseif (session('page') == 2) {
 
-            session(['reciver' =>$this->reciver]);
             return $this->validateReciverInputs();
         } else {
 

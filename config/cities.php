@@ -1840,25 +1840,21 @@ return
             'city_name_en' => 'Edfu'
         ],
         [
-
             'governorate_id' => 15,
             'city_name' => 'الرديسية',
             'city_name_en' => 'Al-Radisiyah'
         ],
         [
-
             'governorate_id' => 15,
             'city_name' => 'البصيلية',
             'city_name_en' => 'Al Basilia'
         ],
         [
-
             'governorate_id' => 15,
             'city_name' => 'السباعية',
             'city_name_en' => 'Al Sibaeia'
         ],
         [
-
             'governorate_id' => 15,
             'city_name' => 'ابوسمبل السياحية',
             'city_name_en' => 'Abo Simbl Al Siyahia'

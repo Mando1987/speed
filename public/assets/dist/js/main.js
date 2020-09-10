@@ -12,6 +12,12 @@ $(document).ready(function () {
 
            $('#city_id').append($('<option></option>').val(city.id).html(city.name));
          } , 'json');
+
+      if($('#city_id').attr('data')){
+
+        $('#city_id').val($('#city_id').attr('data'));
+      }
+       $('#city_id').removeAttr('data');
       });
    });
 

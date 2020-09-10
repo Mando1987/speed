@@ -28,5 +28,31 @@ return [
         'weight_addtion'        => 'الوزن الاضافى',
         'price_addtion'         => 'السعر الاضافى',
     ],
+    'order' =>  [
+        'sender.fullname'                    => 'اسم العميل',
+        'sender.phone'                       => 'رقم التليفون',
+        'sender.other_phone'                 => 'رقم تليفون إضافى',
+        'sender.address'                     => 'العنوان',
+        'sender.special_marque'              => 'علامة مميزة',
+        'sender.house_number'                => 'رقم البيت او العقار',
+        'sender.door_number'                 => 'رقم الدور',
+        'sender.shaka_number'                => 'رقم الشقة',
+
+        'reciver.fullname'                    => 'اسم المرسل اليه',
+        'reciver.phone'                       => 'رقم التليفون',
+        'reciver.other_phone'                 => 'رقم تليفون إضافى',
+        'reciver.address'                     => 'العنوان',
+        'reciver.special_marque'              => 'علامة مميزة',
+        'reciver.house_number'                => 'رقم البيت او العقار',
+        'reciver.door_number'                 => 'رقم الدور',
+        'reciver.shaka_number'                => 'رقم الشقة',
+
+        'order.order_info'         => 'وصف الشحنة',
+        'order.order_weight'       => 'وزن الشحنة',
+        'order.order_quantity'     => 'عدد المنتجات',
+        'order.order_price'        => 'قيمة الشحنة',
+        'order.order_charge_price' => 'تكاليف الشحن',
+        'order.order_total_price'  => 'اجمالى الشحنة',
+    ],
 
 ];

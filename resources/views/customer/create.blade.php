@@ -57,7 +57,6 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md">
-                                {{-- <label for="other_phone">@lang('site.other_phone')</label> --}}
                                 <input type="text" name="other_phone" value="{{old('other_phone')}}"
                                     class="form-control @error('other_phone') is-invalid @enderror" id="other_phone"
                                     placeholder="@lang('site.other_phone')">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PlaceController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PlacePricesController;
 
 // // ############################################################################
@@ -23,6 +24,7 @@ Route::resources([
     'customer'     => CustomerController::class,
     'place'        => PlaceController::class,
     'price'        => PlacePricesController::class,
+    'order'        => OrderController::class,
 ]);
 
 Route::fallback(function () {

@@ -68,7 +68,7 @@
 @endsection
 
 @section('paginate')
-{{  $governorateCitiesPrice->links() }}
+{{  $governorateCitiesPrice->appends(['governorate_id' =>$selectedGovId ])->links() }}
 @endsection
 
 @else

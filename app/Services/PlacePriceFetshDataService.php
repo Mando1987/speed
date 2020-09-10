@@ -11,7 +11,7 @@ class PlacePriceFetshDataService extends BaseService
 
     //const IMAGE_PATH = 'customers/';
 
-    private $city, $governorate, $route = 'price.index';
+    public $city, $governorate, $route = 'price.index';
 
     public function __construct(City $city, Governorate $governorate)
     {
@@ -51,12 +51,12 @@ class PlacePriceFetshDataService extends BaseService
 
 
 
-    private function getAllGovernorates()
+    public function getAllGovernorates()
     {
         return $this->governorate::all();
 
     }
-    private function getAllGovernoratesAndCities()
+    public function getAllGovernoratesAndCities()
     {
 
         $firstGovernoratesCities = $this->getAllGovernorates()->first()->cities;

@@ -9,9 +9,11 @@ return [
      'admin.all'       => 'كافة المديرين',
      'admin.create'    => 'اضافة مدير جديد',
      'admin.show'      => 'الملف الشخصى',
-     'customer.index'   => 'كل العملاء' ,
-     'customer.create'  => 'اضافة عميل جديد' ,
+
+     'customer.index'   => 'كل العملاء',
+     'customer.create'  => 'اضافة عميل جديد',
      'customer.all'     => 'كافة العملاء',
+
      'role.index'     => 'الصلاحيات',
      'role.create'    => 'اضافة مجموعة جديدة',
      'role.all'       => 'كافة الصلاحيات',
@@ -22,8 +24,10 @@ return [
      'place.prices_add'    => 'اضافة سعر لمنطقة',
      'price.index' => 'مصاريف الشحن',
      'price.create'    => 'اضافة سعر لمنطقة',
-      'price.edit' => 'تعديل مصاريف شحن ',
-     // 'price.index' => '',
-     // 'price.index' => '',
-     // 'price.index' => '',
+     'price.edit' => 'تعديل مصاريف شحن ',
+
+     'order.index'   => 'ادارة الطلبات',
+     'order.create'  => 'اضافة طلب جديد',
+     'order.all'     => 'كافة الطلبات',
+
 ];

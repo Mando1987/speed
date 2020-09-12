@@ -15,16 +15,16 @@ return [
     Shipping services cover more than one area within Cairo and Giza, and we are striving to expand
     And to cover the rest of the entire governorates of Egypt in the near future, God willing.
 
-    إن رؤية الشركة قائمة على تقديم أعلى مستويات الخدمة للعملاء كما
-    نسعى جاهدين لابتكار وتنويع معايير خدماتنا، وذلك من أجل تلبية
-    متطلبات عملائنا وترك انطباع جيد لديهم. وسوف نحصل على ثقة عملائنا
-    من خلال الحفاظ على جودة الخدمات، والتسليم في الوقت المحدد. فرضى
-    العملاء وتقييمهم لأعمالنا ومشاريعنا السابقة، هي مفتاح نجاحنا.
-    حيث الخبرة المطلقه بمجال الشحن على مدى سنوات طويله اعطى لنا خبرة
-    طويله بمجالات الشحن ونتميز بسرعة الاستجابة لطلبات العملاء ، سبيد
-    للشحن السريع ستجد معها مايرضيك من أسعار وخدمات حيث نتميز بافضلية
-    أسعارنا وسرعة التنفيذ ، والالتزام بمواعيد التسليم وذلك لاكتساب
-    اكبر عدد من العملاء .',
+    The company\'s vision is based on providing the highest levels of service to customers
+    We strive to innovate and diversify our service standards, in order to meet
+    The requirements of our customers and leave a good impression on them. We will obtain the trust of our customers
+    By maintaining quality services, delivery on time. Premise
+    Clients and their evaluation of our previous work and projects are the key to our success.
+    Where the absolute experience in the shipping field over many years gave us experience
+    Long in the fields of shipping and excel in responding quickly to customer requests, speed
+    For express shipping, you will find what you are satisfied with in terms of prices and services, where we are distinguished
+    Our prices, speed of implementation, and adherence to delivery dates in order to acquire
+    The largest number of clients.',
 
     'footer_home'                => 'Home',
     'footer_prices'              => 'Prices',

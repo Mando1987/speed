@@ -1,17 +1,17 @@
 <?php 
 
 return [
-     'dashboard_index'=>'عرض صفحة الاحصائيات',
-     'admin_index'   => 'عرض كافة المديرين' ,
-     'admin_create'  => 'اضافة مدير' ,
-     'admin_edit'    => 'تعديل مدير' ,
-     'admin_show'    => 'عرض بيانات مدير' ,
-     'admin_destroy' => 'حذف مدير' ,
+     'dashboard_index'   =>'Showing page Statistics',
+     'admin_index'       => 'View all Admins' ,
+     'admin_create'      => 'Add Admins' ,
+     'admin_edit'        => 'Edite Admins' ,
+     'admin_show'        => 'View Admins Data' ,
+     'admin_destroy'     => 'Delete a Admins' ,
 
      
-     'role_index'   => 'عرض كافة الصلاحيات' ,
-     'role_create'  => 'اضافة' ,
-     'role_edit'    => 'تعديل' ,
-     'role_show'    => 'عرض بيانات' ,
-     'role_destroy' => 'حذف ' ,
+     'role_index'        => 'Show all permissions' ,
+     'role_create'       => 'Add' ,
+     'role_edit'         => 'Edite' ,
+     'role_show'         => 'View Data' ,
+     'role_destroy'      => 'Delete ' ,
 ];

@@ -23,7 +23,7 @@ return [
         'facebook_page'               => 'Link Facebook page',
     ],
     'role' => [
-        'name'            => 'Group Name'
+        'name'                        => 'Group Name'
     ],
     ,
     'prices'=>[

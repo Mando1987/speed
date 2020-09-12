@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'about-tab_title' => 'مرحباً بكم فى سبيد للشحن السريع',
-    'about-tab_content' => 'الشحن الداخلى فى مصر بيعانى من مشكلات كتير بسبب وجود شركات شحن
-    كتير سيئة وأسعار عاليه وجوده أقل ووجود طلب على الشحن الداخلى
-    كتير وده أدى الى عدم وجود ثقة بين التاجر وشركات الشحن
+    'about-tab_title' => 'Welcome to Speed For fast shipping',
+    'about-tab_content' => 'Domestic shipping in Egypt suffers from many problems due to the presence of shipping companies
+    Too bad, high prices, lower quality, and a demand for domestic shipping
+    This resulted in a lack of trust between the merchant and the shipping companies
 
-    من هنا بدءت فكرتنا لأنشاء شركة شحن تعيد الثقه من جديد بين التاجر
-    وشركات الشحن وبالفعل قمنا بأنشاء شركة سبيد للشحن السريع
+    From here our idea of ​​establishing a shipping company began to restore confidence among the merchant
+    And shipping companies, and we have already created Speed For fast shipping
 
-    وهى شركة مصريه متخصصة في مجال الشحن والخدمات اللوجستية تسعى
-    دائما لتقديم حلول لوجستية حقيقية ومتقدمة لعملائها ، تأسست شركة
-    سبيد للشحن السريع عام 2019 في جمهورية مصر العربيه ، وباتت شركة
-    شحن تغطي خدماتها أكثر من منطقه داخل القاهره والجيزه ونسعى للتوسع
-    وتغطية باقى محافظات مصر بأكملها فى المستقبل القريب بأذن الله.
+    It is an Egyptian company specialized in the field of freight and logistics seeking
+    Always to provide real and advanced logistical solutions to its customers, the company was established
+    Speed For fast shipping in 2019 in the Arab Republic of Egypt, and it became a company
+    Shipping services cover more than one area within Cairo and Giza, and we are striving to expand
+    And to cover the rest of the entire governorates of Egypt in the near future, God willing.
 
     إن رؤية الشركة قائمة على تقديم أعلى مستويات الخدمة للعملاء كما
     نسعى جاهدين لابتكار وتنويع معايير خدماتنا، وذلك من أجل تلبية
@@ -26,44 +26,44 @@ return [
     أسعارنا وسرعة التنفيذ ، والالتزام بمواعيد التسليم وذلك لاكتساب
     اكبر عدد من العملاء .',
 
-    'footer_home'                => 'الرئيسية',
-    'footer_prices'              => 'الأسعار',
-    'footer_ordercharge'         => 'طلب شحن',
-    'footer_uswe'                => 'من نحن',
-    'footer_callme'              => 'اتصل بنا',
-    'footer_licinse'             => 'شروط الأستخدام',
-    'footer_jointoteam'          => 'أنضم لفريق العمل',
-    'footer_sendInTheSameDay'    => 'توصيل نفس اليوم',
-    'footer_licinse'             => 'شروط الأستخدام',
-    'footer_chargeIN'            => 'شحن داخلي',
-    'footer_chargeinspeed'       => 'تشحن وتغلف من قبل سبيد',
+    'footer_home'                => 'Home',
+    'footer_prices'              => 'Prices',
+    'footer_ordercharge'         => 'Shipping request',
+    'footer_uswe'                => 'About Us',
+    'footer_callme'              => 'Contact us',
+    'footer_licinse'             => 'Terms of use',
+    'footer_jointoteam'          => 'Join the Team',
+    'footer_sendInTheSameDay'    => 'Same day delivery',
+    'footer_licinse'             => 'Terms of use',
+    'footer_chargeIN'            => 'Internal Shipping',
+    'footer_chargeinspeed'       => 'Shipping and packing by Speed',
     'footer_speedApp'            => 'Speed App',
-    'footer_sendQuntitysenders'  => 'توزيع المراسلات الكمية',
-    'footer_documentSendService' => 'خدمة توصيل المستندات',
-    'footer_copyright'           => 'جميع الحقوق محفوظة لشركة سبيد للشحن السريع © 2020',
-    'footer_title'               => 'ليه تشحن مع سبيد لأننا الأفضل .. الأسرع .. والأسهل',
+    'footer_sendQuntitysenders'  => 'Correspondence distribution',
+    'footer_documentSendService' => 'Document delivery service',
+    'footer_copyright'           => 'All rights reserved to Speed For Fast shipping© 2020',
+    'footer_title'               => 'Why ship with Speed because we are the best .. fastest .. easiest',
 
-    'header_home'                => 'الرئيسيه',
-    'header_prices'              => 'الأسعار',
-    'header_services'            => 'خدماتنا',
-    'header_samedaydeliveryn'    => 'توصيل نفس اليوم',
-    'header_moneycollection'     => 'تحصيل الاموال',
-    'header_internalshipping'    => 'شحن داخلي',
-    'header_international'       => 'الشحن الدولي',
-    'header_fbs'                 => 'تشحن وتغلف من قبل سبيد',
-    'header_posta'               => 'خدمة المراسلين',
+    'header_home'                => 'Home',
+    'header_prices'              => 'Prices',
+    'header_services'            => 'Services',
+    'header_samedaydeliveryn'    => 'Same day delivery',
+    'header_moneycollection'     => 'Money collection',
+    'header_internalshipping'    => 'Internal Shipping',
+    'header_international'       => 'International shipping',
+    'header_fbs'                 => 'Shipping and packing by Speed',
+    'header_posta'               => 'Correspondents service',
     'header_speedApp'            => 'Speed App',
-    'header_mailing'             => 'توزيع المراسلات الكمية',
-    'header_documents'           => 'خدمة توصيل المستندات',
-    'header_makeorders'          => 'طلب شحن',
-    'header_about'               => 'من نحن',
-    'header_join'                => 'انضم لفريق العمل',
-    'header_contact'             => 'اتصل بنا',
+    'header_mailing'             => 'Correspondence distribution',
+    'header_documents'           => 'Document Delivery service',
+    'header_makeorders'          => 'Shipping request',
+    'header_about'               => 'About Us',
+    'header_join'                => 'Join the Team',
+    'header_contact'             => 'Contact us',
 
-    'historyOfOrders_requestsmade'               => 'الطلبات التى قمنا بها',
-    'historyOfOrders_ourcustomers'               => 'عملائنا',
-    'historyOfOrders_ourbranches'                => 'فروعنا',
-    'historyOfOrders_requestsite'                => 'الطلبات من خلال الموقع',
-    'historyOfOrders_requestmonth'               => 'طلبات هذا الشهر',
+    'historyOfOrders_requestsmade'               => 'Orders that we have Made',
+    'historyOfOrders_ourcustomers'               => 'Our customers',
+    'historyOfOrders_ourbranches'                => 'Our Branches',
+    'historyOfOrders_requestsite'                => 'Orders through the Website',
+    'historyOfOrders_requestmonth'               => 'Orders this Month',
 
 ];

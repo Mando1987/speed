@@ -10,7 +10,6 @@ $(function () {
         "responsive": true,
         "language": {
             "zeroRecords": "@lang('site.datatable_zero_records')",
-
         }
     });
     $('#myInput').on('keyup', function () {
@@ -44,7 +43,7 @@ $(document).on('change' , '.changeActive' , function(){
 
 $(function(){
     $(document).on('click' , '.showSingleModel' , function(){
-     
+
      $.get(this.href,{} , function(data){
          $('.modal-body').html('');
          $('.modal-body').html(data);
@@ -52,4 +51,4 @@ $(function(){
      })
      return false;
     })
-}) ; 
+}) ;

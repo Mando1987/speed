@@ -1,3 +1,7 @@
 .custom-control-label ,th {
     font-weight: 500 !important;
 }
+
+.input-group-prepend{
+    width: 120px;
+}

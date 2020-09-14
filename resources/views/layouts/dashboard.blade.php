@@ -10,19 +10,19 @@
   <title>{{ siteTitle() }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
- 
+
     <!-- DataTables -->
   <link rel="stylesheet"
     href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.'.defaultLangDirection().'min.css') }}">
   <link rel="stylesheet"
    href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.'.defaultLangDirection().'min.css') }}">
-   
+
   <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.'.defaultLangDirection().'min.css')}}">
 
 
@@ -33,13 +33,13 @@
   <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
   <style>
     html,body,h1,h2,h3,h4,h5,h6{
-      font-family: 'Cairo' , sans-serif !important; 
+      font-family: 'Cairo' , sans-serif !important;
     }
   </style>
  @endif
 </head>
-<body class="hold-transition sidebar-mini">
- 
+<body class="hold-transition @auth('admin')sidebar-mini @endauth @guest login-page @endguest ">
+
   @auth('admin')
 
     <div class="wrapper">
@@ -48,38 +48,38 @@
              @include('includes.dashboard.header')
         </nav>
         {{-- ########### Header ###################################################### --}}
-        
+
         {{-- ########### SideBar ###################################################### --}}
         @include('includes.dashboard.sidebar')
         {{-- ########### SideBar ###################################################### --}}
-        
-        
+
+
         <div class="content-wrapper"> <!-- ################################################# start content-wrapper -->
-          
+
            {{-- ########### Bredcrumbs ###################################################### --}}
-            @include('includes.dashboard.bredcrumbs')    
+            @include('includes.dashboard.bredcrumbs')
            {{-- ########### Bredcrumbs ###################################################### --}}
-          
+
            {{-- ########### Content ###################################################### --}}
            <section class="content">
-               @yield('content') 
+               @yield('content')
            </section>
            {{-- ########### Content ###################################################### --}}
-          
+
         </div><!-- ############################################################################ end content-wrapper -->
-        
-            
+
+
         <footer class="main-footer">
-            @include('includes.dashboard.footer') 
+            @include('includes.dashboard.footer')
         </footer>
 
         <aside class="control-sidebar control-sidebar-dark"></aside>
-        
+
     </div>
   @endauth
 
   @hasSection ('login')
-      @yield('login')      
+      @yield('login')
   @endif
 
 
@@ -87,7 +87,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-         
+
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -104,6 +104,7 @@
 <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script src="{{asset('assets/plugins/sweetalert2/sweetalert2.all.min.js')}}"></script>
+<script src="{{asset('assets/plugins/inputmask/min/jquery.inputmask.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 
 <script src="{{asset('assets/dist/js/adminlte.min.js')}}"></script>

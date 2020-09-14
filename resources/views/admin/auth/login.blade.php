@@ -1,8 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('login')
-<div class="login-page">
-    <div style="min-height: 512.391px;">
         <div class="login-box">
             <div class="login-logo">
                 <a href="{{ route('admin.index') }}"><b>Admin</b>LTE</a>
@@ -57,6 +55,5 @@
                 <!-- /.login-card-body -->
             </div>
         </div>
-    </div>
-</div>
+
 @endsection

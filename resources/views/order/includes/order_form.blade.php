@@ -13,7 +13,7 @@
                             @lang('site.order_type')
                         </span>
                     </div>
-                    <select class="custom-select" name="order[order_type]">
+                    <select class="custom-select" name="order[type]">
                         <option value="governorates_delivery">@lang('site.order_governorates_delivery')</option>
                         <option value="next_day_delivery">@lang('site.order_next_day_delivery')</option>
                         <option value="international_shipping">@lang('site.order_international_shipping')</option>
@@ -32,7 +32,7 @@
                             @lang('site.order_status')
                         </span>
                     </div>
-                    <select class="custom-select" name="order[order_status]">
+                    <select class="custom-select" name="order[status]">
                         <option value="phone_from_empolyee">@lang('site.order_status_phone_from_empolyee')</option>
                         <option value="employee_store_in_company">@lang('site.order_status_employee_store_in_company')
                         </option>
@@ -46,10 +46,10 @@
                             @lang('site.order_weight')
                         </span>
                     </div>
-                    <input type="text" name="order[order_weight]" value="{{old('order.order_weight')}}"
-                        class="form-control  @error('order.order_weight') is-invalid @enderror" id="order_weight"
-                        placeholder="@lang('site.order_weight_placeholder')" onkeyup="getOrderChargePrice()">
-                    @error('order.order_weight')
+                    <input type="text" name="order[weight]" value="{{old('order.weight')}}"
+                        class="form-control  @error('order.weight') is-invalid @enderror" id="order_weight"
+                        placeholder="@lang('site.order_weight_placeholder')" >
+                    @error('order.weight')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -62,12 +62,12 @@
                             @lang('site.order_quantity')
                         </span>
                     </div>
-                    <input type="text" name="order[order_quantity]" value="{{old('order.order_quantity')}}"
+                    <input type="text" name="order[quantity]" value="{{old('order.quantity')}}"
                         class="form-control  @error('order.order_quantity') is-invalid @enderror" id="order_quantity"
-                        placeholder="@lang('site.order_quantity_placeholder')" onkeyup="getOrderChargePrice()"
+                        placeholder="@lang('site.order_quantity_placeholder')"
                         data-inputmask="'mask': ['9[9][9][9][9]']" data-mask="" im-insert="true">
 
-                    @error('order.order_quantity')
+                    @error('order.quantity')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -79,11 +79,11 @@
                             @lang('site.order_price')
                         </span>
                     </div>
-                    <input type="text" name="order[order_price]" value="{{old('order.order_price')}}"
-                        class="form-control  @error('order.order_price') is-invalid @enderror" id="order_price"
+                    <input type="text" name="order[price]" value="{{old('order.price')}}"
+                        class="form-control  @error('order.price') is-invalid @enderror" id="order_price"
                         placeholder="@lang('site.order_price_placeholder')">
 
-                    @error('order.order_price')
+                    @error('order.rice')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -95,9 +95,9 @@
                             @lang('site.order_charge')
                         </span>
                     </div>
-                    <select class="custom-select" name="order[order_charge_on]">
-                        <option value="order_charge_sender">@lang('site.order_charge_sender')</option>
-                        <option value="order_charge_reciver">@lang('site.order_charge_reciver')</option>
+                    <select class="custom-select" name="order[charge_on]">
+                        <option value="charge_sender">@lang('site.order_charge_sender')</option>
+                        <option value="charge_reciver">@lang('site.order_charge_reciver')</option>
                     </select>
                 </div>
             </div>
@@ -109,10 +109,10 @@
                             @lang('site.order_info')
                         </span>
                     </div>
-                    <textarea name="order[order_info]"
-                        class="form-control  @error('order.order_info') is-invalid @enderror" id="order_info" rows="1"
-                        placeholder="@lang('site.order_info_placeholder')">{{old('order.order_info')}}</textarea>
-                    @error('order.order_info')
+                    <textarea name="order[info]"
+                        class="form-control  @error('order.info') is-invalid @enderror" id="order_info" rows="1"
+                        placeholder="@lang('site.order_info_placeholder')">{{old('order.info')}}</textarea>
+                    @error('order.info')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -124,12 +124,12 @@
                             @lang('site.order_notes')
                         </span>
                     </div>
-                    <textarea name="order[order_notes]"
-                        class="form-control  @error('order.order_notes') is-invalid @enderror" id="order_notes" rows="1"
-                        placeholder="@lang('site.order_notes_placeholder')">{{old('order.order.order_notes')}}</textarea>
+                    <textarea name="order[notes]"
+                        class="form-control  @error('order.notes') is-invalid @enderror" id="order_notes" rows="1"
+                        placeholder="@lang('site.order_notes_placeholder')">{{old('order.order.notes')}}</textarea>
 
-                    @error('order.order_notes')
-                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @error('order.notes')
+                       <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
@@ -144,11 +144,11 @@
                             @lang('site.order_total_weight')
                         </span>
                     </div>
-                    <input type="text" name="order[order_total_weight]" value="{{old('order.order_total_weight')}}"
-                        class="form-control  @error('order.order_total_weight') is-invalid @enderror"
+                    <input type="text" name="order[total_weight]" value="{{old('order.total_weight')}}"
+                        class="form-control  @error('order.total_weight') is-invalid @enderror"
                         id="order_total_weight" placeholder="@lang('site.order_total_weight')" disabled>
 
-                    @error('order.order_total_weight')
+                    @error('order.total_weight')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -162,8 +162,8 @@
                         </span>
                     </div>
                     <input type="text" name="order[total_over_weight]"
-                        value="{{old('order.order_total_over_weight')}}"
-                        class="form-control  @error('order.order_total_over_weight') is-invalid @enderror"
+                        value="{{old('order.total_over_weight')}}"
+                        class="form-control  @error('order.total_over_weight') is-invalid @enderror"
                         id="order_total_over_weight" placeholder="@lang('site.order_total_over_weight')" disabled>
 
                     @error('order.total_over_weight')
@@ -179,8 +179,8 @@
                         </span>
                     </div>
                     <input type="text" name="order[total_over_weight_price]"
-                        value="{{old('order.order_total_over_weight_price')}}"
-                        class="form-control  @error('order.order_total_over_weight_price') is-invalid @enderror"
+                        value="{{old('order.total_over_weight_price')}}"
+                        class="form-control  @error('order.total_over_weight_price') is-invalid @enderror"
                         id="order_total_over_weight_price" placeholder="@lang('site.order_total_over_weight_price')"
                         disabled>
 
@@ -196,8 +196,8 @@
                             @lang('site.order_discount')
                         </span>
                     </div>
-                    <input type="text" name="order[discount]" value="{{old('order.order_discount')}}"
-                        class="form-control  @error('order.order_discount') is-invalid @enderror" id="order_discount"
+                    <input type="text" name="order[discount]" value="{{old('order.discount')}}"
+                        class="form-control  @error('order.discount') is-invalid @enderror" id="order_discount"
                         placeholder="@lang('site.order_discount_placeholder')">
 
                     @error('order.discount')
@@ -213,7 +213,7 @@
                         </span>
                     </div>
                     <input type="text" name="order[charge_price]" value="{{old('order.charge_price')}}"
-                        class="form-control  @error('order.order_charge_price') is-invalid @enderror"
+                        class="form-control  @error('order.charge_price') is-invalid @enderror"
                         id="order_charge_price" placeholder="@lang('site.order_charge_price')" disabled>
 
                     @error('order.charge_price')
@@ -228,11 +228,11 @@
                             @lang('site.order_total_price')
                         </span>
                     </div>
-                    <input type="text" name="order[order_total_price]" value="{{old('order.order_total_price')}}"
-                        class="form-control  @error('order.order_total_price') is-invalid @enderror"
+                    <input type="text" name="order[total_price]" value="{{old('order.total_price')}}"
+                        class="form-control  @error('order.total_price') is-invalid @enderror"
                         id="order_total_price" placeholder="@lang('site.order_total_price')" disabled>
 
-                    @error('order.order_total_price')
+                    @error('order.total_price')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>

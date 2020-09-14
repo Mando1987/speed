@@ -60,24 +60,24 @@ class OrderController extends Controller
         if ($chargeprice) {
             $request->validate(
                 [
-                    'order_weight'   => ['bail', 'required'],
-                    'order_quantity' => ['bail', 'required', 'integer'],
+                    'weight'   => ['bail', 'required'],
+                    'quantity' => ['bail', 'required', 'integer'],
                 ],
                 [],
                 [
-                    'order_weight' => trans('site.order_weight'),
-                    'order_quantity' => trans('site.order_quantity'),
+                    'weight' => trans('site.weight'),
+                    'quantity' => trans('site.quantity'),
                 ]
             );
 
-            $order_total_weight = floor($request->order_weight * $request->order_quantity);
-            $order_total_over_weight =  $order_total_weight - $chargeprice->send_weight ;
-            $order_total_over_weight_price = ($order_total_over_weight/$chargeprice->weight_addtion) * $chargeprice->price_addtion;
+            $total_weight = floor($request->weight * $request->quantity);
+            $total_over_weight =  $total_weight - $chargeprice->send_weight ;
+            $total_over_weight_price = ($total_over_weight/$chargeprice->weight_addtion) * $chargeprice->price_addtion;
 
             return response()->json([
-                'order_total_weight'            => $order_total_weight ,
-                'order_total_over_weight'       => $order_total_over_weight ,
-                'order_total_over_weight_price' => $order_total_over_weight_price
+                'total_weight'            => $total_weight ,
+                'total_over_weight'       => $total_over_weight ,
+                'total_over_weight_price' => $total_over_weight_price
             ]);
         }else{
             return response()->json(['showModelAddPlacePrice' => true]);

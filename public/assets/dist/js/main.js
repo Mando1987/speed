@@ -29,14 +29,21 @@ $(document).ready(function () {
 
 });
 
+$('input[name="order[weight]"]').on('keyup touchend', function(){
+    getOrderChargePrice();
+});
+$('input[name="order[quantity]"]').on('keyup touchend', function(){
+    getOrderChargePrice();
+});
+
 /*** get order charge price  */
 function getOrderChargePrice() {
     var url = '/order/get-order-charge-price';
-    var order_weight = $('input[name="order[order_weight]"]');
-    var order_quantity = $('input[name="order[order_quantity]"]');
+    var weight = $('input[name="order[weight]"]');
+    var quantity = $('input[name="order[quantity]"]');
     var data = {
-        order_weight: order_weight.val(),
-        order_quantity: order_quantity.val()
+        weight: weight.val(),
+        quantity: quantity.val()
     };
     $('.is-invalid').removeClass('is-invalid');
     $('.invalid-feedback').remove();

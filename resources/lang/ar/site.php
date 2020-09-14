@@ -86,13 +86,8 @@ return [
   'order_info_title'            => 'تفاصيل الشحنة',
   'order_type'                  => 'اختار نوع الشحن',
   'order_info'                  => 'وصف الشحنة',
-<<<<<<< HEAD
-  'order_notes'                 => 'ملحوظات',
-  'order_weight'                => 'وزن القطعة',
-=======
   'order_notes'                 => 'ملاحظات',
   'order_weight'                => 'وزن الشحنة',
->>>>>>> 1954cfa379a2b8a82aa71394adc1a244e6e9a6c1
   'order_quantity'              => 'عدد المنتجات',
   'order_price'                 => 'قيمة الشحنة',
   'order_charge_price'          => 'تكاليف الشحن',

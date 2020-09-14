@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStoreFormRequest;
+use App\Models\PlacePrice;
 use App\Services\Orders\OrdersFetshDataService;
+
 
 class OrderController extends Controller
 {
@@ -44,6 +47,40 @@ class OrderController extends Controller
             return $data;
             // return redirect()->route('order.index');
 
+        }
+    }
+
+    public function getOrderChargePrice(Request $request)
+    {
+
+        $reciver = session('reciver');
+
+        $chargeprice = PlacePrice::where('governorate_id', $reciver['governorate_id'])->where('city_id', $reciver['city_id'])->first();
+
+        if ($chargeprice) {
+            $request->validate(
+                [
+                    'order_weight'   => ['bail', 'required'],
+                    'order_quantity' => ['bail', 'required', 'integer'],
+                ],
+                [],
+                [
+                    'order_weight' => trans('site.order_weight'),
+                    'order_quantity' => trans('site.order_quantity'),
+                ]
+            );
+
+            $order_total_weight = floor($request->order_weight * $request->order_quantity);
+            $order_total_over_weight =  $order_total_weight - $chargeprice->send_weight ;
+            $order_total_over_weight_price = ($order_total_over_weight/$chargeprice->weight_addtion) * $chargeprice->price_addtion;
+
+            return response()->json([
+                'order_total_weight'            => $order_total_weight ,
+                'order_total_over_weight'       => $order_total_over_weight ,
+                'order_total_over_weight_price' => $order_total_over_weight_price
+            ]);
+        }else{
+            return response()->json(['showModelAddPlacePrice' => true]);
         }
     }
 }

@@ -14,18 +14,17 @@ class CreateCustomersTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
+
             $table->id();
             $table->unsignedBigInteger('governorate_id');
             $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('admin_id');
+            $table->unsignedBigInteger('admin_id')->nullable();
             $table->string('other_phone', 11)->unique()->nullable();
             $table->string('company_name', 100)->nullable();
             $table->string('facebook_page')->nullable();
             $table->string('notes')->nullable();
             $table->string('image')->default('default.png');
-            $table->enum('contract_type',['daily' , 'monthly']);
-
-
+            $table->enum('contract_type',['daily','monthly']);
 
             $table->foreign('governorate_id')->references('id')->on('governorates');
             $table->foreign('city_id')->references('id')->on('cities');

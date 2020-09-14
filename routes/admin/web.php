@@ -17,6 +17,11 @@ Route::post('admin/{id}/change-passowrd', [AdminController::class, 'changePasswo
 
 Route::get('/get-cities',[PlaceController::class, 'getCities'] );
 
+
+Route::get('order/get-order-charge-price',[OrderController::class, 'getOrderChargePrice'] );
+
+
+
 Route::resources([
     'admin'        => AdminController::class,
     'role'         => RoleController::class,

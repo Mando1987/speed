@@ -4,15 +4,13 @@ namespace App\Services\Orders;
 
 use App\Models\City;
 use App\Models\Governorate;
+use App\Models\OrderStore;
 use App\Services\BaseService;
 
 
 class OrdersFetshDataService extends BaseService
 {
-
     //const IMAGE_PATH = 'customers/';
-
-
     public function getGovernorateCitiesPrice($governorate_id)
     {
         $gov_id = $governorate_id ? $governorate_id : 1;
@@ -27,25 +25,11 @@ class OrdersFetshDataService extends BaseService
 
     public function createNewOrder()
     {
+        $userData = app(OrderSaveUserDataToSession::class)->handle(request('page'));
 
-        // return session('sender');
-        $page = (request('page')) ? request('page') : 1;
+        // dd($userData);
 
-        if ($page == 2 && !session('sender')) {
-            $page = 1;
-        } elseif ($page == 3 && !session('sender') && !session('reciver')) {
-
-            $page = 1;
-        } elseif ($page == 3 && session('sender') && !session('reciver')) {
-
-            $page = 2;
-        }
-        session(['page' => $page]);
-        $data['sender']  = session('sender') ? session('sender') : $this->getSenderOrReciverArray();
-        $data['reciver'] = session('reciver') ? session('reciver') : $this->getSenderOrReciverArray();
-        $data['page']    = $page;
-        //  return $data;
-        return view('order.create', array_merge($this->getAllGovernoratesAndCities(), $data));
+        return view('order.create', array_merge($this->getAllGovernoratesAndCities(), ['userData' => $userData]));
     }
 
     public function editCityPriceRow($id)
@@ -58,19 +42,4 @@ class OrdersFetshDataService extends BaseService
         ]);
     }
 
-    public function getSenderOrReciverArray()
-    {
-        return [
-            'fullname'       => '',
-            'phone'          => '',
-            'governorate_id' => 1,
-            'address'        => '',
-            'special_marque' => '',
-            'house_number'   => '',
-            'door_number'    => '',
-            'shaka_number'   => '',
-            'city_id'        => 1,
-            'other_phone'    => '',
-        ];
-    }
 }

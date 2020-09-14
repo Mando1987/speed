@@ -3,18 +3,15 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <!-- left column -->
+
         <div class="col-md-12">
-            <!-- jquery validation -->
+
             <form action="{{ route('order.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
-                <div class="card card-info">
-                    <div class="card-header">
-                        <h3 class="card-title">{{ breadcrumbName() }} </h3>
-                    </div>
+                <div class="card card-purple card-outline">
                     <div class="card-body">
-                        {{-- sender info  --}}
+
                         @includeWhen(session('page') == 1 ,'order.includes.sender_form')
                         @includeWhen(session('page') == 2 ,'order.includes.reciver_form')
                         @includeWhen(session('page') == 3 ,'order.includes.order_form')
@@ -27,30 +24,21 @@
                         <button type="submit" class="btn btn-success">@lang('site.add')</button>
                     </div>
                     @endif
-                </div> <!-- end of card -->
+                </div>
             </form>
-        </div> <!-- end of row -->
+        </div>
     </div>
 </div>
 @endsection
 
-@if($reciver['governorate_id'])
+@if($userData->governorate_id)
 @push('scripts')
 <script>
     $(function () {
-        $('#governorate_id').val("{{$reciver['governorate_id'] }}");
+        $('#governorate_id').val("{{$userData->governorate_id}}");
         $('#governorate_id').trigger("change");
     });
 
-</script>
-@endpush
-@elseif($sender['governorate_id'])
-@push('scripts')
-<script>
-    $(function () {
-        $('#governorate_id').val("{{$sender['governorate_id']}}");
-        $('#governorate_id').trigger("change");
-    });
 </script>
 @endpush
 @endif

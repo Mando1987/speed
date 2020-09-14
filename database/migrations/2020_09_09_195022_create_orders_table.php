@@ -14,7 +14,24 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
+
             $table->id();
+            $table->unsignedBigInteger('reciver_id');
+            $table->unsignedBigInteger('customer_id');
+
+            $table->enum('order_type', [
+                'same_day_delivery',
+                'document_delivery_service',
+                'send_transmitters_service',
+                'correspondents_service',
+                'packaging_service',
+                'international_shipping',
+                'governorates_delivery',
+            ]);
+
+            $table->foreign('reciver_id')->references('id')->on('recivers');
+            $table->foreign('customer_id')->references('id')->on('customers');
+
             $table->timestamps();
         });
     }

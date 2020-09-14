@@ -87,7 +87,7 @@ return [
   'order_type'                  => 'اختار نوع الشحن',
   'order_info'                  => 'وصف الشحنة',
   'order_notes'                 => 'ملحوظات',
-  'order_weight'                => 'وزن الشحنة',
+  'order_weight'                => 'وزن القطعة',
   'order_quantity'              => 'عدد المنتجات',
   'order_price'                 => 'قيمة الشحنة',
   'order_charge_price'          => 'تكاليف الشحن',
@@ -99,4 +99,33 @@ return [
   'order_status'                => 'حالة الشحنة',
   'order_status_phone_from_empolyee' => 'إتصال هاتفى من العميل',
   'order_status_employee_store_in_company' => 'الإستلام من العميل ف مقر الشركة',
+
+  'admin_user_name' => 'اسم المستخدم',
+  'admin_password' => 'كلمة السر',
+  'order_total_weight' => 'اجمالى وزن الشحنة',
+  'order_total_over_weight' => 'اجمالى الوزن الزائد ',
+  'order_total_over_weight_price' => 'تكاليف الوزن الزائد ',
+  'order_discount' => 'قيمة الخصم',
+  'order_quantity_title' => 'قطعة',
+
+  // 13/9/2020
+  'order_governorates_delivery'     => 'توصيل محافظات' ,
+  'order_next_day_delivery'         => 'توصيل تانى يوم' ,
+  'order_international_shipping'    => 'شحن دولي' ,
+  'order_packaging_service'         => 'خدمة التغليف' ,
+  'order_correspondents_service'    => 'خدمة المراسلين' ,
+  'order_send_transmitters_service' => 'خدمة ارسال المرسلات' ,
+  'order_document_delivery_service' => 'خدمة توصيل المستندات' ,
+  'order_same_day_delivery'         => 'توصيل في نفس اليوم' ,
+  //14/9/2020
+  'order_info_placeholder'          => 'اكتب وصفا يدل على محتوى الشحنة',
+  'order_notes_placeholder'         => 'اكتب اى ملاحظة تفيدك لاحقا',
+  'order_weight_placeholder'        => 'اكتب الوزن بالكيلو',
+  'order_quantity_placeholder'      => 'اكتب عددا صحيحا',
+  'order_price_placeholder'         => 'اكتب المبلغ بالجنية',
+  'order_discount_placeholder' => 'اكتب المبلغ بالجنية',
+  'order_user_can_open_order'  => 'السماح للعميل بفتح الشحنة',
+  'yes' => 'نعم',
+  'no' => 'لا',
+
 ];

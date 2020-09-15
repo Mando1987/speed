@@ -29,40 +29,44 @@ $(document).ready(function () {
 
 });
 
-$('input[name="order[weight]"]').on('keyup touchend', function(){
-    getOrderChargePrice();
+$('input[name="shipping[weight]"]').on('keyup touchend', function () {
+    getOrderChargePrice($(this));
 });
-$('input[name="order[quantity]"]').on('keyup touchend', function(){
-    getOrderChargePrice();
+$('input[name="shipping[quantity]"]').on('keyup touchend', function () {
+    getOrderChargePrice($(this));
 });
 
 /*** get order charge price  */
-function getOrderChargePrice() {
-    var url = '/order/get-order-charge-price';
-    var weight = $('input[name="order[weight]"]');
-    var quantity = $('input[name="order[quantity]"]');
-    var data = {
-        weight: weight.val(),
-        quantity: quantity.val()
-    };
-    $('.is-invalid').removeClass('is-invalid');
-    $('.invalid-feedback').remove();
-    $.get(url, data, function (data) {
+function getOrderChargePrice(obj) {
+    if (obj.val().length > 0) {
 
-        if (data.showModelAddPlacePrice == 1) {
-            $('.modal-body').html('');
-            $('#modal-default').modal('show');
-        }
-        $.each(data, function (key, val) {
-            $('input[name="order[' + key + ']"]').val(val);
+        var url = '/order/get-order-charge-price';
+        var weight = $('input[name="shipping[weight]"]');
+        var quantity = $('input[name="shipping[quantity]"]');
+        var data = {
+            weight: weight.val(),
+            quantity: quantity.val()
+        };
+        $('.is-invalid').removeClass('is-invalid');
+        $('.invalid-feedback').remove();
+        $.get(url, data, function (data) {
 
+            if (data.showModelAddPlacePrice == 1) {
+                $('.modal-body').html('');
+                $('#modal-default').modal('show');
+            }
+            $.each(data, function (key, val) {
+                $('input[name="shipping[' + key + ']"]').val(val);
+            });
+        }).fail(function (errors) {
+            console.table(errors.responseJSON.errors);
+            $.each(errors.responseJSON.errors, function (key, val) {
+                $('input[name="shipping[' + key + ']"]').addClass('is-invalid');
+                $('input[name="shipping[' + key + ']"]').after('<span class="error invalid-feedback">' + val + '</span>');;
+            });
         });
-    }).fail(function (errors) {
-        $.each(errors.responseJSON.errors, function (key, val) {
-            $('input[name="order[' + key + ']"]').addClass('is-invalid');
-            $('input[name="order[' + key + ']"]').after('<span class="error invalid-feedback">' + val + '</span>');;
-        });
-    });
+    }
+
 }
 /*** get order charge price  */
 var loadFile = function (event) {

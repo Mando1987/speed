@@ -47,12 +47,23 @@ return [
         'reciver.door_number'         => 'رقم الدور',
         'reciver.shaka_number'        => 'رقم الشقة',
 
-        'order.order_info'            => 'وصف الشحنة',
-        'order.order_weight'          => 'وزن الشحنة',
-        'order.order_quantity'        => 'عدد المنتجات',
-        'order.order_price'           => 'قيمة الشحنة',
-        'order.order_charge_price'    => 'تكاليف الشحن',
-        'order.order_total_price'     => 'إجمالى الشحنة',
+        'order.info'                  => 'وصف الشحنة',
+        'order.status'                => 'حالة الشحنة',
+        'order_type'                  => 'اختار نوع الشحن',
+        'order_notes'                 => 'ملاحظات',
+        'order.user_can_open_order'   => 'السماح للعميل بفتح الشحنة',
+
+        'shipping.weight'          => 'وزن الشحنة',
+        'shipping.quantity'        => 'عدد المنتجات',
+        'shipping.price'           => 'قيمة الشحنة',
+        'shipping.charge_price'    => 'تكاليف الشحن',
+        'shipping.total_price'     => 'إجمالى الشحنة',
+        'shipping.charge_on'                => 'تكلفة مصاريف الشحن',
+        'shipping.total_weight'             => 'اجمالى وزن الشحنة',
+        'shipping.total_over_weight'        => 'اجمالى الوزن الزائد',
+        'shipping.total_over_weight_price'  => 'تكاليف الوزن الزائد',
+        'shipping.discount'                 => 'الخصم',
+
     ],
 
 ];

@@ -65,8 +65,8 @@ class OrderController extends Controller
                 ],
                 [],
                 [
-                    'weight' => trans('site.weight'),
-                    'quantity' => trans('site.quantity'),
+                    'weight' => trans('site.order_weight'),
+                    'quantity' => trans('site.order_quantity'),
                 ]
             );
 

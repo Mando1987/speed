@@ -6,14 +6,15 @@
     </div>
     <div class="row">
         <div class="col-md">
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_type')
                         </span>
-                    </div>
-                    <select class="custom-select" name="order[type]">
+                    </label>
+                    <select class="custom-select col-sm-8" name="order[type]">
                         <option value="governorates_delivery">@lang('site.order_governorates_delivery')</option>
                         <option value="next_day_delivery">@lang('site.order_next_day_delivery')</option>
                         <option value="international_shipping">@lang('site.order_international_shipping')</option>
@@ -24,238 +25,253 @@
                         <option value="same_day_delivery">@lang('site.order_same_day_delivery')</option>
                     </select>
                 </div>
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_status')
                         </span>
-                    </div>
-                    <select class="custom-select" name="order[status]">
-                        <option value="phone_from_empolyee">@lang('site.order_status_phone_from_empolyee')</option>
-                        <option value="employee_store_in_company">@lang('site.order_status_employee_store_in_company')
+                    </label>
+                    <select class="custom-select col-sm-8" name="order[status]">
+                        <option value="phone_from_customer">@lang('site.order_status_phone_from_customer')</option>
+                        <option value="customer_store_in_company">@lang('site.order_status_customer_store_in_company')
                         </option>
                     </select>
                 </div>
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_weight')
                         </span>
-                    </div>
-                    <input type="text" name="order[weight]" value="{{old('order.weight')}}"
-                        class="form-control  @error('order.weight') is-invalid @enderror" id="order_weight"
-                        placeholder="@lang('site.order_weight_placeholder')" >
-                    @error('order.weight')
+                    </label>
+                    <input type="text" name="shipping[weight]" value="{{old('shipping.weight')}}"
+                        class="form-control col-sm-8  @error('shipping.weight') is-invalid @enderror" id="order_weight"
+                        placeholder="@lang('site.order_weight_placeholder')">
+                    @error('shipping.weight')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+
             </div>
 
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_quantity')
                         </span>
-                    </div>
-                    <input type="text" name="order[quantity]" value="{{old('order.quantity')}}"
-                        class="form-control  @error('order.order_quantity') is-invalid @enderror" id="order_quantity"
-                        placeholder="@lang('site.order_quantity_placeholder')"
-                        data-inputmask="'mask': ['9[9][9][9][9]']" data-mask="" im-insert="true">
+                    </label>
+                    <input type="text" name="shipping[quantity]" value="{{old('shipping.quantity')}}"
+                        class="form-control col-sm-8  @error('shipping.quantity') is-invalid @enderror" id="order_quantity"
+                        placeholder="@lang('site.order_quantity_placeholder')">
 
-                    @error('order.quantity')
+                    @error('shipping.quantity')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_price')
                         </span>
-                    </div>
-                    <input type="text" name="order[price]" value="{{old('order.price')}}"
-                        class="form-control  @error('order.price') is-invalid @enderror" id="order_price"
+                    </label>
+                    <input type="text" name="shipping[price]" value="{{old('shipping.price')}}"
+                        class="form-control col-sm-8  @error('shipping.price') is-invalid @enderror" id="order_price"
                         placeholder="@lang('site.order_price_placeholder')">
 
-                    @error('order.rice')
+                    @error('shipping.rice')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-5 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_charge')
                         </span>
-                    </div>
-                    <select class="custom-select" name="order[charge_on]">
-                        <option value="charge_sender">@lang('site.order_charge_sender')</option>
-                        <option value="charge_reciver">@lang('site.order_charge_reciver')</option>
+                    </label>
+                    <select class="custom-select col-sm-7" name="shipping[charge_on]">
+                        <option value="sender">@lang('site.order_charge_sender')</option>
+                        <option value="reciver">@lang('site.order_charge_reciver')</option>
                     </select>
                 </div>
+
+
             </div>
 
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_info')
                         </span>
-                    </div>
-                    <textarea name="order[info]"
-                        class="form-control  @error('order.info') is-invalid @enderror" id="order_info" rows="1"
+                    </label>
+                    <textarea name="order[info]" class="form-control col-sm-8  @error('order.info') is-invalid @enderror"
+                        id="order_info" rows="1"
                         placeholder="@lang('site.order_info_placeholder')">{{old('order.info')}}</textarea>
                     @error('order.info')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
+
                 </div>
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_notes')
                         </span>
-                    </div>
-                    <textarea name="order[notes]"
-                        class="form-control  @error('order.notes') is-invalid @enderror" id="order_notes" rows="1"
+                    </label>
+                    <textarea name="order[notes]" class="form-control col-sm-8  @error('order.notes') is-invalid @enderror"
+                        id="order_notes" rows="1"
                         placeholder="@lang('site.order_notes_placeholder')">{{old('order.order.notes')}}</textarea>
 
                     @error('order.notes')
-                       <span class="error invalid-feedback">{{ $message }}</span>
+                    <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
-
         </div>
         {{-- second column --}}
         <div class="col-md">
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_total_weight')
                         </span>
-                    </div>
-                    <input type="text" name="order[total_weight]" value="{{old('order.total_weight')}}"
-                        class="form-control  @error('order.total_weight') is-invalid @enderror"
-                        id="order_total_weight" placeholder="@lang('site.order_total_weight')" disabled>
+                    </label>
+                    <input type="text" name="shipping[total_weight]" value="{{old('shipping.total_weight')}}"
+                        class="form-control col-sm-8  @error('shipping.total_weight') is-invalid @enderror"
+                        id="order_total_weight" placeholder="@lang('site.order_total_weight')" readonly>
 
-                    @error('order.total_weight')
+                    @error('shipping.total_weight')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+
             </div>
 
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_total_over_weight')
                         </span>
-                    </div>
-                    <input type="text" name="order[total_over_weight]"
-                        value="{{old('order.total_over_weight')}}"
-                        class="form-control  @error('order.total_over_weight') is-invalid @enderror"
-                        id="order_total_over_weight" placeholder="@lang('site.order_total_over_weight')" disabled>
+                    </label>
+                    <input type="text" name="shipping[total_over_weight]" value="{{old('shipping.total_over_weight')}}"
+                        class="form-control col-sm-8  @error('shipping.total_over_weight') is-invalid @enderror"
+                        id="order_total_over_weight" placeholder="@lang('site.order_total_over_weight')" readonly>
 
-                    @error('order.total_over_weight')
+                    @error('shipping.total_over_weight')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_total_over_weight_price')
                         </span>
-                    </div>
-                    <input type="text" name="order[total_over_weight_price]"
-                        value="{{old('order.total_over_weight_price')}}"
-                        class="form-control  @error('order.total_over_weight_price') is-invalid @enderror"
+                    </label>
+                    <input type="text" name="shipping[total_over_weight_price]"
+                        value="{{old('shipping.total_over_weight_price')}}"
+                        class="form-control col-sm-8  @error('shipping.total_over_weight_price') is-invalid @enderror"
                         id="order_total_over_weight_price" placeholder="@lang('site.order_total_over_weight_price')"
-                        disabled>
+                        readonly>
 
-                    @error('order.total_over_weight_price')
+                    @error('shipping.total_over_weight_price')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_discount')
                         </span>
-                    </div>
-                    <input type="text" name="order[discount]" value="{{old('order.discount')}}"
-                        class="form-control  @error('order.discount') is-invalid @enderror" id="order_discount"
+                    </label>
+                    <input type="text" name="shipping[discount]" value="{{old('shipping.discount')}}"
+                        class="form-control col-sm-8  @error('shipping.discount') is-invalid @enderror" id="order_discount"
                         placeholder="@lang('site.order_discount_placeholder')">
 
-                    @error('order.discount')
+                    @error('shipping.discount')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_charge_price')
                         </span>
-                    </div>
-                    <input type="text" name="order[charge_price]" value="{{old('order.charge_price')}}"
-                        class="form-control  @error('order.charge_price') is-invalid @enderror"
-                        id="order_charge_price" placeholder="@lang('site.order_charge_price')" disabled>
+                    </label>
+                    <input type="text" name="shipping[charge_price]" value="{{old('shipping.charge_price')}}"
+                        class="form-control col-sm-8  @error('shipping.charge_price') is-invalid @enderror"
+                        id="order_charge_price" placeholder="@lang('site.order_charge_price')" readonly>
 
-                    @error('order.charge_price')
+                    @error('shipping.charge_price')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
+
+
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="badge bg-info pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_total_price')
                         </span>
-                    </div>
-                    <input type="text" name="order[total_price]" value="{{old('order.total_price')}}"
-                        class="form-control  @error('order.total_price') is-invalid @enderror"
-                        id="order_total_price" placeholder="@lang('site.order_total_price')" disabled>
+                    </label>
+                    <input type="text" name="shipping[total_price]" value="{{old('shipping.total_price')}}"
+                        class="form-control col-sm-8  @error('shipping.total_price') is-invalid @enderror" id="order_total_price"
+                        placeholder="@lang('site.order_total_price')" readonly>
 
-                    @error('order.total_price')
+                    @error('shipping.total_price')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
-            <div class="form-group col-md">
-                <div class="input-group">
-                    <div class="input-group-prepend" style="width: 170px">
-                        <span class="badge bg-info  pt-3 w-100">
+            <div class="col-md">
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        <span class="text-gray-dark font-weight-normal">
                             @lang('site.order_user_can_open_order')
                         </span>
-                    </div>
-                    <select class="custom-select" name="order[user_can_open_order]">
+                    </label>
+                    <select class="custom-select col-sm-6" name="order[user_can_open_order]">
                         <option value="0">@lang('site.no')</option>
                         <option value="1">@lang('site.yes')</option>
-
                     </select>
                 </div>
             </div>
-
         </div>
     </div>
-
-
 </div>
 
 {{-- <div class="row">

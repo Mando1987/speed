@@ -38,7 +38,7 @@
   </style>
  @endif
 </head>
-<body class="hold-transition @auth('admin')sidebar-mini @endauth @guest login-page @endguest ">
+<body class="hold-transition layout-fixed layout-navbar-fixed text-sm @auth('admin')sidebar-mini @endauth @guest login-page @endguest ">
 
   @auth('admin')
 
@@ -69,7 +69,7 @@
         </div><!-- ############################################################################ end content-wrapper -->
 
 
-        <footer class="main-footer">
+        <footer class="main-footer d-none d-sm-block">
             @include('includes.dashboard.footer')
         </footer>
 

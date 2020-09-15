@@ -47,22 +47,28 @@ return [
   'old_password'                => 'كلمة المرور السابقة',
   'password_confirmation'       => 'تاكيد كلمة المرور',
   'change_password'             => 'تعديل كلمة المرور',
+
   'fullname'                    => 'الأسم بالكامل',
   'email'                       => 'البريد الالكترونى',
   'phone'                       => 'رقم التليفون',
   'other_phone'                 => 'رقم تليفون إضافى',
   'address'                     => 'العنوان',
+
   'status'                      => 'الحالة',
   'active'                      => 'متاح',
   'role_id'                     => 'الصلاحيات',
+
   'image'                       => 'صورة الملف الشخصى',
   'choose_image'                => 'إختار صورة',
+
   'special_marque'              => 'علامة مميزة',
   'house_number'                => 'رقم المنزل / العقار',
   'door_number'                 => 'رقم الدور',
   'shaka_number'                => 'رقم الشقة',
   'company_name'                => 'أسم الشركه / ستور',
+
   'facebook_page'               => 'لينك صفحة الفيس',
+
   'role_name'                   => 'أسم المجموعة',
   'role_name_placeholder'       => 'مثال : كافة الصلاحيات',
   'contract_type'               => 'نوع التعاقد',
@@ -83,10 +89,12 @@ return [
   'sender_fullname'             => 'اسم العميل ',
   'reciver_info_title'          => 'بيانات المرسل إليه ',
   'reciver_fullname'            => 'اسم المرسل إليه',
+
   'order_info_title'            => 'تفاصيل الشحنة',
   'order_type'                  => 'اختار نوع الشحن',
   'order_info'                  => 'وصف الشحنة',
   'order_notes'                 => 'ملاحظات',
+
   'order_weight'                => 'وزن الشحنة',
   'order_quantity'              => 'عدد المنتجات',
   'order_price'                 => 'قيمة الشحنة',
@@ -97,8 +105,8 @@ return [
   'order_charge_sender'         => 'على الراسل',
   'order_charge_reciver'        => 'على المرسل إليه',
   'order_status'                => 'حالة الشحنة',
-  'order_status_phone_from_empolyee' => 'إتصال هاتفى من العميل',
-  'order_status_employee_store_in_company' => 'الإستلام من العميل ف مقر الشركة',
+  'order_status_phone_from_customer' => 'إتصال هاتفى من العميل',
+  'order_status_customer_store_in_company' => 'الإستلام من العميل ف مقر الشركة',
 
   'admin_user_name' => 'اسم المستخدم',
   'admin_password' => 'كلمة السر',
@@ -127,5 +135,15 @@ return [
   'order_user_can_open_order'  => 'السماح للعميل بفتح الشحنة',
   'yes' => 'نعم',
   'no' => 'لا',
+  //15/9/2020
+  'fullname_placholder'                    => 'مثال:عمرو محمد',
+  'phone_placholder'                       => 'مثال:01233445566',
+  'other_phone_placholder'                 => 'مثال:01033445500',
+  'address_placholder'                     => 'مثال:شارع التسعين ميدان عابدين',
+  'special_marque_placholder'              => 'مثال:بجوار مسجد العمرى',
+  'house_number_placholder'                => 'مثال:123',
+  'door_number_placholder'                 => 'مثال:3',
+  'shaka_number_placholder'                => 'مثال:234',
+
 
 ];

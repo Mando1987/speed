@@ -1,5 +1,8 @@
 <div class="float-right d-none d-sm-block">
-    <b>Version</b> 3.0.4
+
+</div>
+<div class="row">
+  <div class="col-sm">
+    <strong>Copyright &copy; 2014-2019 <a href="">speed</a>.</strong>
   </div>
-  <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-  reserved.
+</div>

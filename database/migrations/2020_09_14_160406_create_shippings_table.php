@@ -7,15 +7,35 @@ use Illuminate\Support\Facades\Schema;
 class CreateShippingsTable extends Migration
 {
     /**
-     * Run the migrations.
+     *  weight
+     *  quantity
+     *  price
+     *  charge_on
+     *  total_weight
+     *  total_over_weight
+     *  total_over_weight_price
+     *  discount
+     *  charge_price
+     *  total_price
      *
-     * @return void
+     *
      */
     public function up()
     {
         Schema::create('shippings', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('order_id');
+            $table->unsignedSmallInteger('quantity');
+            $table->string('weight', 6);
+            $table->string('total_weight', 6);
+            $table->string('total_over_weight', 6);
+            $table->string('price', 6);
+            $table->string('total_over_weight_price', 6);
+            $table->string('discount', 6);
+            $table->string('charge_price', 6);
+            $table->string('total_price', 6);
+            $table->enum('charge_on', ['sender','reciver']);
+            $table->foreign('order_id')->references('id')->on('orders');
         });
     }
 

@@ -6,6 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class OrderStoreFormRequest extends FormRequest
 {
+
+    private $orderType = 'same_day_delivery,
+                          document_delivery_service,
+                          send_transmitters_service,
+                          correspondents_service,
+                          packaging_service,
+                          governorates_delivery';
+    private $orderStatus = 'phone_from_customer,customer_store_in_company';
     public function authorize()
     {
         return true;
@@ -16,7 +24,6 @@ class OrderStoreFormRequest extends FormRequest
         if (session('page') == 1) {
 
             return $this->validateSenderInputs();
-
         } elseif (session('page') == 2) {
 
             return $this->validateReciverInputs();
@@ -24,13 +31,23 @@ class OrderStoreFormRequest extends FormRequest
 
             return [
 
-                // "order_type_id"      => "1" ,
-                "order.order_info"         => 'required|string|max:150',
-                "order.order_weight"       => 'required|numeric',
-                "order.order_quantity"     => 'required|integer',
-                "order.order_price"        => 'required|numeric',
-                "order.order_charge_price" => 'required|numeric',
-                "order.order_total_price"  => 'required|numeric',
+                'order.type'                => ['required', 'in:'.$this->orderType],
+                'order.status'              => ['required', 'in:'.$this->orderStatus],
+                'order.info'                => ['nullable','string','max:150'],
+                'order.notes'               => ['nullable','string','max:150'],
+                'order.user_can_open_order' => ['required','in:1,0'],
+
+                'shipping.weight'                  => ['required', 'string', 'max:6'] ,
+                'shipping.quantity'                => ['required', 'integer'] ,
+                'shipping.price'                   => ['required', 'string', 'max:6'] ,
+                'shipping.charge_price'            => ['required', 'string', 'max:6'] ,
+                'shipping.total_price'             => ['required', 'string', 'max:6'] ,
+                'shipping.charge_on'               => ['required', 'in:sender,reciver'],
+                'shipping.total_weight'            => ['required', 'string', 'max:6'],
+                'shipping.total_over_weight'       => ['required', 'string', 'max:6'],
+                'shipping.total_over_weight_price' => ['required', 'string', 'max:6'],
+                'shipping.discount'                => ['nullable', 'string', 'max:6'],
+
             ];
         }
     }

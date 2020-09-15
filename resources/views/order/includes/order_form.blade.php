@@ -15,8 +15,8 @@
                     </label>
                     <div class="col-sm-8">
                         <select class="custom-select" name="order[type]">
-                            <option value="governorates_delivery">@lang('site.order_governorates_delivery')</option>
                             <option value="next_day_delivery">@lang('site.order_next_day_delivery')</option>
+                            <option value="governorates_delivery">@lang('site.order_governorates_delivery')</option>
                             <option value="international_shipping">@lang('site.order_international_shipping')</option>
                             <option value="packaging_service">@lang('site.order_packaging_service')</option>
                             <option value="correspondents_service">@lang('site.order_correspondents_service')</option>

@@ -1,7 +1,7 @@
 <?php 
 
 return [
-     'dashboard_index'  =>'عرض صفحة الأحصائيات',
+     'dashboard_index'  =>'عرض صفحة الإحصائيات',
      'admin_index'      => 'عرض كافة المديرين' ,
      'admin_create'     => 'إضافة مدير' ,
      'admin_edit'       => 'تعديل مدير' ,
@@ -13,5 +13,5 @@ return [
      'role_create'     => 'إضافة' ,
      'role_edit'       => 'تعديل' ,
      'role_show'       => 'عرض بيانات' ,
-     'role_destroy'    => 'حذف ' ,
+     'role_destroy'    => 'حذف' ,
 ];

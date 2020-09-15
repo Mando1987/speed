@@ -4,7 +4,7 @@ return [
     'admin' => [
         'user_name'                   => 'اسم المستخدم',
         'password'                    => 'كلمة المرور',
-        'password_confirmation'       => 'تاكيد كلمة المرور',
+        'password_confirmation'       => 'تأكيد كلمة المرور',
         'fullname'                    => 'الأسم بالكامل',
         'email'                       => 'البريد الألكترونى',
         'phone'                       => 'رقم التليفون',
@@ -25,8 +25,8 @@ return [
     'prices'=>[
         'send_weight'                 => 'حتى وزن',
         'send_price'                  => 'سعر التوصيل',
-        'weight_addtion'              => 'الوزن الاضافى',
-        'price_addtion'               => 'السعر الاضافى',
+        'weight_addtion'              => 'الوزن الإضافى',
+        'price_addtion'               => 'السعر الإضافى',
     ],
     'order' =>  [
         'sender.fullname'             => 'اسم العميل',
@@ -43,7 +43,7 @@ return [
         'reciver.other_phone'         => 'رقم تليفون إضافى',
         'reciver.address'             => 'العنوان',
         'reciver.special_marque'      => 'علامة مميزة',
-        'reciver.house_number'        => 'رقم البيت او العقار',
+        'reciver.house_number'        => 'رقم البيت أو العقار',
         'reciver.door_number'         => 'رقم الدور',
         'reciver.shaka_number'        => 'رقم الشقة',
 

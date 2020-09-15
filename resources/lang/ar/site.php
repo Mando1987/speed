@@ -113,7 +113,7 @@ return [
   'order_total_weight' => 'إجمالى وزن الشحنة',
   'order_total_over_weight' => 'إجمالى الوزن الزائد ',
   'order_total_over_weight_price' => 'تكاليف الوزن الزائد ',
-  'order_discount' => 'قيمة الخصم',
+  'order_discount' => 'تقديم خصم للعميل',
   'order_quantity_title' => 'قطعة',
 
   // 13/9/2020

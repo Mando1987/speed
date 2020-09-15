@@ -29,10 +29,11 @@ $(document).ready(function () {
 
 });
 
-$('[name="shipping[weight]"]').on('keyup touchend', function () {
+$('[name="shipping[weight]"],[name="shipping[quantity]"],[name="shipping[price]"],[name="shipping[discount]"]').on('keyup touchend', function () {
     getOrderChargePrice();
 });
-$('[name="shipping[quantity]"]').on('keyup touchend', function () {
+
+$('[name="shipping[charge_on]"]').on('change', function(){
     getOrderChargePrice();
 });
 

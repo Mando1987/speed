@@ -60,24 +60,36 @@ class OrderController extends Controller
         if ($chargeprice) {
             $request->validate(
                 [
-                    'weight'   => ['bail', 'required'],
-                    'quantity' => ['bail', 'required', 'integer'],
+                    'weight'    => ['bail', 'required'],
+                    'quantity'  => ['bail', 'required', 'integer'],
+                    'price'     => ['bail', 'required', 'numeric'] ,
+                    'charge_on' => ['bail', 'required', 'in:sender,reciver'] ,
+                    'discount'  => ['nullable', 'numeric'] ,
                 ],
                 [],
                 [
-                    'weight' => trans('site.order_weight'),
-                    'quantity' => trans('site.order_quantity'),
+                    'weight'    => trans('site.order_weight'),
+                    'quantity'  => trans('site.order_quantity'),
+                    'price'     => trans('site.order_price'),
+                    'charge_on' => trans('site.order_charge_on'),
+                    // 'discount'  => trans('site.order_discount'),
                 ]
             );
 
-            $total_weight = floor($request->weight * $request->quantity);
-            $total_over_weight =  $total_weight - $chargeprice->send_weight ;
+            $total_weight            = ceil($request->weight * $request->quantity);
+            $total_over_weight       =  $total_weight - $chargeprice->send_weight ;
             $total_over_weight_price = ($total_over_weight/$chargeprice->weight_addtion) * $chargeprice->price_addtion;
+            $discount                = $request->discount ?? 0;
+            $charge_price            = ($total_over_weight_price + $chargeprice->send_price) - $discount;
+            $addtion_price           = $request->charge_on == 'reciver' ?  $charge_price : 0;
+            $total_price             = $request->price +  $addtion_price;
 
             return response()->json([
                 'total_weight'            => $total_weight ,
                 'total_over_weight'       => $total_over_weight ,
-                'total_over_weight_price' => $total_over_weight_price
+                'total_over_weight_price' => $total_over_weight_price,
+                'charge_price'            => $charge_price,
+                'total_price'             => $total_price
             ]);
         }else{
             return response()->json(['showModelAddPlacePrice' => true]);

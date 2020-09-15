@@ -29,24 +29,32 @@ $(document).ready(function () {
 
 });
 
-$('input[name="shipping[weight]"]').on('keyup touchend', function () {
-    getOrderChargePrice($(this));
+$('[name="shipping[weight]"]').on('keyup touchend', function () {
+    getOrderChargePrice();
 });
-$('input[name="shipping[quantity]"]').on('keyup touchend', function () {
-    getOrderChargePrice($(this));
+$('[name="shipping[quantity]"]').on('keyup touchend', function () {
+    getOrderChargePrice();
 });
 
 /*** get order charge price  */
-function getOrderChargePrice(obj) {
-    if (obj.val().length > 0) {
+function getOrderChargePrice() {
 
-        var url = '/order/get-order-charge-price';
-        var weight = $('input[name="shipping[weight]"]');
-        var quantity = $('input[name="shipping[quantity]"]');
-        var data = {
-            weight: weight.val(),
-            quantity: quantity.val()
-        };
+    var url       = '/order/get-order-charge-price' ,
+        weight    = $('[name="shipping[weight]"]') ,
+        quantity  = $('[name="shipping[quantity]"]') ,
+        price     = $('[name="shipping[price]"]') ,
+        charge_on = $('[name="shipping[charge_on]"]');
+        discount  = $('[name="shipping[discount]"]');
+
+    var data = {
+        weight    : weight.val(),
+        quantity  : quantity.val(),
+        price     : price.val(),
+        charge_on : charge_on.val(),
+        discount  : discount.val(),
+    };
+    if (weight.val() > 0 && quantity.val() > 0) {
+
         $('.is-invalid').removeClass('is-invalid');
         $('.invalid-feedback').remove();
         $.get(url, data, function (data) {
@@ -56,13 +64,13 @@ function getOrderChargePrice(obj) {
                 $('#modal-default').modal('show');
             }
             $.each(data, function (key, val) {
-                $('input[name="shipping[' + key + ']"]').val(val);
+                $('[name="shipping[' + key + ']"]').val(val);
             });
         }).fail(function (errors) {
             console.table(errors.responseJSON.errors);
             $.each(errors.responseJSON.errors, function (key, val) {
-                $('input[name="shipping[' + key + ']"]').addClass('is-invalid');
-                $('input[name="shipping[' + key + ']"]').after('<span class="error invalid-feedback">' + val + '</span>');;
+                $('[name="shipping[' + key + ']"]').addClass('is-invalid');
+                $(`[name="shipping[${key}]"]`).after('<span class="error invalid-feedback">' + val + '</span>');;
             });
         });
     }

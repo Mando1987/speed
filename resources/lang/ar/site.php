@@ -140,7 +140,7 @@ return [
   'phone_placholder'                       => 'مثال: 01133445566',
   'other_phone_placholder'                 => 'مثال: 01033445500',
   'address_placholder'                     => 'مثال: شارع محى الدين ابوالعز',
-  'special_marque_placholder'              => 'مثال: بجوار مسجداو مدرسة كذا',
+  'special_marque_placholder'              => 'مثال: بجوار مسجد او مدرسة كذا',
   'house_number_placholder'                => 'مثال: 123',
   'door_number_placholder'                 => 'مثال: 3',
   'shaka_number_placholder'                => 'مثال: 5',

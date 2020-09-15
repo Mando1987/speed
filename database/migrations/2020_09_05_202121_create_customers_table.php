@@ -28,10 +28,7 @@ class CreateCustomersTable extends Migration
 
             $table->foreign('governorate_id')->references('id')->on('governorates');
             $table->foreign('city_id')->references('id')->on('cities');
-            $table->foreign('admin_id')
-                ->references('id')
-                ->on('admins')
-                ->onDelete('cascade');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
 
         Schema::create('customer_infos', function (Blueprint $table) {

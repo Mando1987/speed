@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model
 {
-    //
+    protected $guarded = [];
+    public $timestamps = false;
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
 }

@@ -25,7 +25,6 @@ class CreateAdminsTable extends Migration
         floor_number
         Block_number
         Apartment_number
-
         notes
      *
      *

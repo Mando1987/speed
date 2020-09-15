@@ -59,6 +59,7 @@ function getOrderChargePrice() {
         $('.is-invalid').removeClass('is-invalid');
         $('.invalid-feedback').remove();
         $.get(url, data, function (data) {
+            // console.table(data);
 
             if (data.showModelAddPlacePrice == 1) {
                 $('.modal-body').html('');
@@ -68,7 +69,7 @@ function getOrderChargePrice() {
                 $('[name="shipping[' + key + ']"]').val(val);
             });
         }).fail(function (errors) {
-            console.table(errors.responseJSON.errors);
+            // console.table(errors.responseJSON);
             $.each(errors.responseJSON.errors, function (key, val) {
                 $('[name="shipping[' + key + ']"]').addClass('is-invalid');
                 $(`[name="shipping[${key}]"]`).after('<span class="error invalid-feedback">' + val + '</span>');;

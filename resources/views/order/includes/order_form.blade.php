@@ -20,10 +20,8 @@
                             <option value="international_shipping">@lang('site.order_international_shipping')</option>
                             <option value="packaging_service">@lang('site.order_packaging_service')</option>
                             <option value="correspondents_service">@lang('site.order_correspondents_service')</option>
-                            <option value="send_transmitters_service">@lang('site.order_send_transmitters_service')
-                            </option>
-                            <option value="document_delivery_service">@lang('site.order_document_delivery_service')
-                            </option>
+                            <option value="send_transmitters_service">@lang('site.order_send_transmitters_service')</option>
+                            <option value="document_delivery_service">@lang('site.order_document_delivery_service')</option>
                             <option value="same_day_delivery">@lang('site.order_same_day_delivery')</option>
                         </select>
                     </div>

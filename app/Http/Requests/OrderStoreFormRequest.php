@@ -2,18 +2,24 @@
 
 namespace App\Http\Requests;
 
+use App\Services\Orders\OrderCountChargePrice;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class OrderStoreFormRequest extends FormRequest
 {
-
-    private $orderType = 'same_day_delivery,
-                          document_delivery_service,
-                          send_transmitters_service,
-                          correspondents_service,
-                          packaging_service,
-                          governorates_delivery';
-    private $orderStatus = 'phone_from_customer,customer_store_in_company';
+    private $orderType = [
+        'same_day_delivery',
+        'next_day_delivery',
+        'document_delivery_service',
+        'send_transmitters_service',
+        'correspondents_service',
+        'packaging_service',
+        'governorates_delivery',
+        'international_shipping'
+    ];
+    private $orderStatus = ['phone_from_customer', 'customer_store_in_company'];
     public function authorize()
     {
         return true;
@@ -31,17 +37,17 @@ class OrderStoreFormRequest extends FormRequest
 
             return [
 
-                'order.type'                => ['required', 'in:'.$this->orderType],
-                'order.status'              => ['required', 'in:'.$this->orderStatus],
-                'order.info'                => ['nullable','string','max:150'],
-                'order.notes'               => ['nullable','string','max:150'],
-                'order.user_can_open_order' => ['required','in:1,0'],
+                'order.type'                => ['required', Rule::in($this->orderType)],
+                'order.status'              => ['required', Rule::in($this->orderStatus)],
+                'order.info'                => ['nullable', 'string', 'max:150'],
+                'order.notes'               => ['nullable', 'string', 'max:150'],
+                'order.user_can_open_order' => ['required', 'in:1,0'],
 
-                'shipping.weight'                  => ['required', 'string', 'max:6'] ,
-                'shipping.quantity'                => ['required', 'integer'] ,
-                'shipping.price'                   => ['required', 'string', 'max:6'] ,
-                'shipping.charge_price'            => ['required', 'string', 'max:6'] ,
-                'shipping.total_price'             => ['required', 'string', 'max:6'] ,
+                'shipping.weight'                  => ['required', 'string', 'max:6'],
+                'shipping.quantity'                => ['required', 'integer'],
+                'shipping.price'                   => ['required', 'string', 'max:6'],
+                'shipping.charge_price'            => ['required', 'string', 'max:6'],
+                'shipping.total_price'             => ['required', 'string', 'max:6'],
                 'shipping.charge_on'               => ['required', 'in:sender,reciver'],
                 'shipping.total_weight'            => ['required', 'string', 'max:6'],
                 'shipping.total_over_weight'       => ['required', 'string', 'max:6'],
@@ -86,5 +92,24 @@ class OrderStoreFormRequest extends FormRequest
     public function attributes()
     {
         return  trans('custom-attributes.order');
+    }
+
+    public function validated()
+    {
+        if ($this->order) {
+
+            $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($this->validator->validated()['shipping']);
+
+            $data        = array_merge(
+                $this->validator->validated(),
+                [
+                    'shipping' => $ChargePrice,
+                    'sender' => session('sender'),
+                    'reciver' => session('reciver'),
+                ]
+            );
+            return $data;
+        }
+        return $this->validator->validated();
     }
 }

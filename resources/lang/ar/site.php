@@ -137,8 +137,8 @@ return [
   'no' => 'لا',
   //15/9/2020
   'fullname_placholder'                    => 'اسم العميل /الراسل',
-  'phone_placholder'                       => 'مثال:01133445566',
-  'other_phone_placholder'                 => 'مثال:01033445500',
+  'phone_placholder'                       => 'مثال: 01133445566',
+  'other_phone_placholder'                 => 'مثال: 01033445500',
   'address_placholder'                     => 'مثال: شارع محى الدين ابوالعز',
   'special_marque_placholder'              => 'مثال: بجوار مسجداو مدرسة كذا',
   'house_number_placholder'                => 'مثال: 123',

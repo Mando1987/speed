@@ -26,14 +26,23 @@ class PlacePriceFetshDataService extends BaseService
         $governorateCitiesPrice = $this->city::where('governorate_id', $gov_id)->with('placePrices')->paginate(12);
         return view('place-prices.index', [
             'governorateCitiesPrice' => $governorateCitiesPrice,
-            'governorates'           => $this->getAllGovernorates() ,
+            'governorates'           => $this->getAllGovernorates(),
             'selectedGovId'          => $gov_id
         ]);
     }
 
-    public function createNewCityPrice()
+    public function createNewCityPrice($showInModel = false)
     {
-        return view('place-prices.create', $this->getAllGovernoratesAndCities());
+
+        if ($showInModel == true)
+            $reciver = session('reciver');
+            $data = ['governorate_id'=> $reciver['governorate_id'], 'city_id' =>  $reciver['city_id']];
+        return view('place-prices.create-in-model' , $data);
+
+        return view('place-prices.create', array_merge(
+            $this->getAllGovernoratesAndCities(),
+            ['showInModel' => $showInModel]
+        ));
     }
 
     public function editCityPriceRow($id)
@@ -45,16 +54,9 @@ class PlacePriceFetshDataService extends BaseService
             'governorate_name' => $city->governorate->name,
         ]);
     }
-
-
-
-
-
-
     public function getAllGovernorates()
     {
         return $this->governorate::all();
-
     }
     public function getAllGovernoratesAndCities()
     {
@@ -65,6 +67,6 @@ class PlacePriceFetshDataService extends BaseService
 
     public function getCities()
     {
-         return  $this->governorate::findOrFail(request('governorate_id'))->cities()->get();
+        return  $this->governorate::findOrFail(request('governorate_id'))->cities()->get();
     }
 }

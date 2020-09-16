@@ -82,6 +82,12 @@ class OrderCountChargePrice
 
     private function showAddPlacePrice()
     {
-        return response()->json(['showModelAddPlacePrice' => true]);
+        return response()->json([
+            'showModelAddPlacePrice' => true ,
+            'title'                  => trans('site.place_price_not_found'),
+            'cancelButtonText'       => trans('site.cancel'),
+            'confirmButtonText'      => trans('site.add'),
+            'url'                    => '/price/create',
+            ]);
     }
 }

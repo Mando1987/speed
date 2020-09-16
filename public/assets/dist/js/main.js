@@ -1,89 +1,140 @@
 $(document).ready(function () {
     bsCustomFileInput.init();
-    $('[data-mask]').inputmask();
+    $("[data-mask]").inputmask();
 
-    $('#governorate_id').change(function () {
+    $(document).on("submit", ".addPlacePrice", function (e) {
+        e.preventDefault();
+        form = this;
+        formdata = new FormData(form);
 
-        var id = $(this).val();
-        $('#city_id').html('');
-        $.get('/get-cities', {
-            governorate_id: id
-        }, function (data) {
-
-            $.each(data, function (_index, city) {
-
-                $('#city_id').append($('<option></option>').val(city.id).html(city.name));
-            }, 'json');
-
-            if ($('#city_id').attr('data')) {
-
-                $('#city_id').val($('#city_id').attr('data'));
-            }
-            $('#city_id').removeAttr('data');
+        $.ajax({
+            url: form.action,
+            type: "POST",
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                if (data.code == 200) {
+                    var alertDiv = '<div class="alert alert-success">';
+                    alertDiv += "<h5>" + data.title + "</h5></div>";
+                    $(".modal-body").html(alertDiv);
+                    getOrderChargePrice();
+                }
+            },
+            error: function (reject) {
+                var response = $.parseJSON(reject.responseText);
+                $.each(response.errors, function (key, val) {
+                    $("#" + key).addClass("is-invalid");
+                    $("#" + key).after(
+                        '<span class="error invalid-feedback">' +
+                            val[0] +
+                            "</span>"
+                    );
+                });
+            },
         });
+        return false;
     });
 
-    $('#getCitiesPriceSelect').change(function () {
-        $('#getCitiesPrice').submit();
+    $("#governorate_id").change(function () {
+        var id = $(this).val();
+        $("#city_id").html("");
+        $.get(
+            "/get-cities",
+            {
+                governorate_id: id,
+            },
+            function (data) {
+                $.each(
+                    data,
+                    function (_index, city) {
+                        $("#city_id").append(
+                            $("<option></option>").val(city.id).html(city.name)
+                        );
+                    },
+                    "json"
+                );
+
+                if ($("#city_id").attr("data")) {
+                    $("#city_id").val($("#city_id").attr("data"));
+                }
+                $("#city_id").removeAttr("data");
+            }
+        );
     });
 
+    $("#getCitiesPriceSelect").change(function () {
+        $("#getCitiesPrice").submit();
+    });
 });
 
-$('[name="shipping[weight]"],[name="shipping[quantity]"],[name="shipping[price]"],[name="shipping[discount]"]').on('keyup touchend', function () {
+$(
+    '[name="shipping[weight]"],[name="shipping[quantity]"],[name="shipping[price]"],[name="shipping[discount]"]'
+).on("keyup touchend", function () {
     getOrderChargePrice();
 });
 
-$('[name="shipping[charge_on]"]').on('change', function(){
+$('[name="shipping[charge_on]"]').on("change", function () {
     getOrderChargePrice();
 });
 
 /*** get order charge price  */
 function getOrderChargePrice() {
-
-    var url       = '/order/get-order-charge-price' ,
-        weight    = $('[name="shipping[weight]"]') ,
-        quantity  = $('[name="shipping[quantity]"]') ,
-        price     = $('[name="shipping[price]"]') ,
+    var url = "/order/get-order-charge-price",
+        weight = $('[name="shipping[weight]"]'),
+        quantity = $('[name="shipping[quantity]"]'),
+        price = $('[name="shipping[price]"]'),
         charge_on = $('[name="shipping[charge_on]"]');
-        discount  = $('[name="shipping[discount]"]');
+    discount = $('[name="shipping[discount]"]');
 
     var data = {
-        weight    : weight.val(),
-        quantity  : quantity.val(),
-        price     : price.val(),
-        charge_on : charge_on.val(),
-        discount  : discount.val(),
+        weight: weight.val(),
+        quantity: quantity.val(),
+        price: price.val(),
+        charge_on: charge_on.val(),
+        discount: discount.val(),
     };
     if (weight.val() > 0 && quantity.val() > 0) {
-
-        $('.is-invalid').removeClass('is-invalid');
-        $('.invalid-feedback').remove();
+        $(".is-invalid").removeClass("is-invalid");
+        $(".invalid-feedback").remove();
         $.get(url, data, function (data) {
-            // console.table(data);
-
             if (data.showModelAddPlacePrice == 1) {
-                $('.modal-body').html('');
-                $('#modal-default').modal('show');
+                Swal.fire({
+                    title: data.title,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    cancelButtonText: data.cancelButtonText,
+                    confirmButtonText: data.confirmButtonText,
+                }).then((result) => {
+                    if (result.value) {
+                        $.get(data.url, { showInModel: true }, function (data) {
+                            $(".modal-body").html(data);
+                            $("#modal-default").modal("show");
+                        });
+                    }
+                });
             }
             $.each(data, function (key, val) {
                 $('[name="shipping[' + key + ']"]').val(val);
             });
         }).fail(function (errors) {
-            // console.table(errors.responseJSON);
             $.each(errors.responseJSON.errors, function (key, val) {
-                $('[name="shipping[' + key + ']"]').addClass('is-invalid');
-                $(`[name="shipping[${key}]"]`).after('<span class="error invalid-feedback">' + val + '</span>');;
+                $('[name="shipping[' + key + ']"]').addClass("is-invalid");
+                $(`[name="shipping[${key}]"]`).after(
+                    '<span class="error invalid-feedback">' + val + "</span>"
+                );
             });
         });
     }
-
 }
 /*** get order charge price  */
 var loadFile = function (event) {
-
-    var output = document.getElementById('image-privew');
+    var output = document.getElementById("image-privew");
     output.src = URL.createObjectURL(event.target.files[0]);
     output.onload = function () {
-        URL.revokeObjectURL(output.src) // free memory
-    }
+        URL.revokeObjectURL(output.src); // free memory
+    };
 };

@@ -21,13 +21,12 @@ class PlacePricesController extends Controller
 
     public function create()
     {
-        return app(PlacePriceFetshDataService::class)->createNewCityPrice();
-
+        return app(PlacePriceFetshDataService::class)->createNewCityPrice(request('showInModel'));
     }
 
     public function store(PlacePriceStoreFormRequest $request)
     {
-        return app(PlacePriceStoreService::class)->handle($request->validated());
+        return app(PlacePriceStoreService::class)->handle($request);
     }
 
 

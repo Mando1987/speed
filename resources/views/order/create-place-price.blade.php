@@ -1,56 +1,19 @@
-@extends('layouts.dashboard')
 
-@section('content')
 <div class="container-fluid">
     <div class="row">
         <!-- left column -->
         <div class="col-md-12">
             <!-- jquery validation -->
             <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">{{ breadcrumbName() }} </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
+
                 <form role="form" id="quickForm" action="{{ route('price.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('POST')
                     <div class="card-body">
                         <div class="row">
-
-                            <div class="form-group col-md-12">
-
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="badge bg-secondary pt-3">
-                                            @lang('site.governorate')
-                                        </span>
-                                    </div>
-                                    <select class="custom-select" name="governorate_id" id="governorate_id">
-                                        @foreach($governorates as $governorate)
-                                        <option value="{{ $governorate->id }}">{{ $governorate->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="badge bg-secondary pt-3">
-                                            @lang('site.city')
-                                        </span>
-                                    </div>
-                                    <select class="custom-select" name="city_id" id="city_id">
-                                        @foreach($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                         <div class="row">
-
                             <div class="form-group col-md-12">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -65,7 +28,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-group col-md-12">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -139,4 +101,4 @@
     </div>
     <!-- /.row -->
 </div>
-@endsection
+

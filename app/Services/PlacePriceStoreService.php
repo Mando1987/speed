@@ -10,11 +10,12 @@ class PlacePriceStoreService extends BaseService
 {
     const IMAGE_PATH = 'customers/';
 
-    private $placePrice , $route = 'price.index';
+    private $placePrice;
 
     public function __construct(PlacePrice $placePrice)
     {
         $this->placePrice = $placePrice;
+        $this->route = 'price.index';
     }
 
     public function handle($request)
@@ -22,27 +23,31 @@ class PlacePriceStoreService extends BaseService
         //   dd($request);
         try {
 
-
             DB::beginTransaction();
 
-            $newPlacePrice = $this->placePrice->where('city_id',$request['city_id']);
+            $newPlacePrice = $this->placePrice->where('city_id', $request->validated()['city_id']);
 
-            ($newPlacePrice->exists())? $newPlacePrice->update($request) : $newPlacePrice->create($request);
+            ($newPlacePrice->exists()) ? $newPlacePrice->update($request->validated()) : $newPlacePrice->create($request->validated());
 
 
             DB::commit();
-            $this->notify(['icon' => self::ICON_SUCCESS ,'title' => self::TITLE_ADDED]);
-            return $this->path($this->route);
+            if ($request->ajax()) {
 
+                return response()->json([
+                    'code'  => 200,
+                    'title' => trans('site.added'),
+                ]);
+            }
+
+            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
+            return $this->path($this->route);
         } catch (\Exception $ex) {
 
             DB::rollback();
-            $this->notify(['icon' => self::ICON_ERROR ,'title' => self::TITLE_FAILED]);
+            $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
 
             dd($ex->getMessage());
             return back();
         }
-
     }
-
 }

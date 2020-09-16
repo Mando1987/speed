@@ -11,8 +11,7 @@
             confirmButtonText : "@lang('site.confirm_delete')"
         }).then((result) => {
             if (result.value) {
-
-                deletedForm.submit();  
+                deletedForm.submit();
             }
         });
 }

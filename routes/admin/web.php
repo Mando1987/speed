@@ -19,6 +19,7 @@ Route::get('/get-cities',[PlaceController::class, 'getCities'] );
 
 
 Route::get('order/get-order-charge-price',[OrderController::class, 'getOrderChargePrice'] );
+Route::get('/price/create-place-price',[PlacePricesController::class, 'store'] );
 
 
 

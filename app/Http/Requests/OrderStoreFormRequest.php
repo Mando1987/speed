@@ -37,11 +37,11 @@ class OrderStoreFormRequest extends FormRequest
 
             return [
 
-                'order.type'                => ['required', Rule::in($this->orderType)],
-                'order.status'              => ['required', Rule::in($this->orderStatus)],
-                'order.info'                => ['nullable', 'string', 'max:150'],
-                'order.notes'               => ['nullable', 'string', 'max:150'],
-                'order.user_can_open_order' => ['required', 'in:1,0'],
+                'order.type'                       => ['required', Rule::in($this->orderType)],
+                'order.status'                     => ['required', Rule::in($this->orderStatus)],
+                'order.info'                       => ['required', 'string', 'max:150'],
+                'order.notes'                      => ['nullable', 'string', 'max:150'],
+                'order.user_can_open_order'        => ['required', 'in:1,0'],
 
                 'shipping.weight'                  => ['required', 'string', 'max:6'],
                 'shipping.quantity'                => ['required', 'integer'],
@@ -100,12 +100,12 @@ class OrderStoreFormRequest extends FormRequest
 
             $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($this->validator->validated()['shipping']);
 
-            $data        = array_merge(
+            $data = array_merge(
                 $this->validator->validated(),
                 [
                     'shipping' => $ChargePrice,
-                    'sender' => session('sender'),
-                    'reciver' => session('reciver'),
+                    'sender'   => session('sender'),
+                    'reciver'  => session('reciver'),
                 ]
             );
             return $data;

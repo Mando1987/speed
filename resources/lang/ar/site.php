@@ -145,5 +145,7 @@ return [
   'door_number_placholder'                 => 'مثال: 3',
   'shaka_number_placholder'                => 'مثال: 5',
 
+  //16/9/2020
+  'place_price_not_found' => 'لم تقم باضافة سعر الشحن لهذة المنطقة',
 
 ];

@@ -3,7 +3,7 @@
 
 return [
 
-     'dashboard.index'      => 'الرئيسية',
+     'dashboard.index'      => 'الرئيسيه',
      'auth.login'           => 'تسجيل الدخول',
      'admin.index'          => 'المديرين',
      'admin.all'            => 'كافة المديرين',
@@ -15,15 +15,15 @@ return [
      'customer.all'         => 'كافة العملاء',
 
      'role.index'           => 'الصلاحيات',
-     'role.create'          => 'إضافة مجموعة جديدة',
+     'role.create'          => 'إضافة مجموعه جديدة',
      'role.all'             => 'كافة الصلاحيات',
      'place.index'          => 'المناطق',
      'place.all'            => 'كافة المناطق',
-     'place.create'         => 'إضافة منطقة جديدة',
+     'place.create'         => 'إضافة منطقه جديده',
      'place.prices'         => 'مصاريف الشحن',
-     'place.prices_add'     => 'إضافة سعر لمنطقة',
+     'place.prices_add'     => 'إضافة سعر لمنطقه',
      'price.index'          => 'مصاريف الشحن',
-     'price.create'         => 'إضافة سعر لمنطقة',
+     'price.create'         => 'إضافة سعر لمنطقه',
      'price.edit'           => 'تعديل مصاريف شحن ',
 
      'order.index'          => 'إدارة الطلبات',

@@ -32,7 +32,7 @@ class DelegateStoreFormRequest extends FormRequest
 
             'delegateDrive.type'         => ['required', Rule::in($this->driveType)],
             'delegateDrive.color'        => 'required|string|max:20',
-            'delegateDrive.plate_number' => 'required|string|max:20',
+            'delegateDrive.plate_number' => 'required|string|unique:delegateDrive,plate_number|max:20',
             'image'                      => 'nullable|mimes:png,jpg,jpeg|max:500',
             'national_image'             => 'nullable|mimes:png,jpg,jpeg|max:500',
         ];

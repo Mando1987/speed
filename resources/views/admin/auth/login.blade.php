@@ -3,7 +3,7 @@
 @section('login')
         <div class="login-box">
             <div class="login-logo">
-                <a href="{{ route('admin.index') }}"><b>Speed</b> Shippings</a>
+                <a href="{{ route('admin.index') }}"><b>Speed</b> Shipping</a>
             </div>
             <!-- /.login-logo -->
             <div class="card">

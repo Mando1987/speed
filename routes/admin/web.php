@@ -21,6 +21,7 @@ Route::get('/get-cities',[PlaceController::class, 'getCities'] );
 
 Route::get('order/get-order-charge-price',[OrderController::class, 'getOrderChargePrice'] );
 Route::get('/price/create-place-price',[PlacePricesController::class, 'store'] );
+Route::get('/delegate/changeActive/{id}',[DelegateController::class, 'changeActive'])->name('delegate.changeActive');
 
 
 

@@ -51,4 +51,23 @@ class DelegateEditUpdateService extends BaseService
     {
         return $this->viewWithGovernorates('delegate.edit');
     }
+
+    public function changeActive($id)
+    {
+        try {
+
+            $delegateEnabled = $this->delegate::findOrFail($id);
+
+            $active = $delegateEnabled->active == 1 ? 0 : 1;
+            $message = trans('site.delegate_set_active_' . $active);
+            $text = trans('site.delegate_get_active_' . $active);
+
+            $delegateEnabled->update(['active' => $active]);
+
+            return ['code' => 1, 'title' => trans('site.success_title'), 'message' => $message, 'text' => $text];
+        } catch (\Exception $ex) {
+
+            return ['code' => 2, 'title' => trans('site.failed_title'), 'message' => trans('site.failed')];
+        }
+    }
 }

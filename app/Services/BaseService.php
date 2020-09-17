@@ -14,6 +14,7 @@ class BaseService
     const TITLE_FAILED  = 'filed';
     const FOLDER_UPLOAD = '/uploads/images/';
     const DEFAULT_IMAGE = 'default.png';
+    const PAGINATE_NUM  = 12;
 
     public $route = 'price.index';
     private $governorate;

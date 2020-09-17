@@ -26,4 +26,9 @@ class Delegate extends Model
     {
         return $this->hasOne(DelegateDrive::class);
     }
+
+    // public function getActiveText()
+    // {
+    //    return  trans('site.delegate_get_active_'. $this->active);
+    // }
 }

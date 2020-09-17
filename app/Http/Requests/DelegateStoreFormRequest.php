@@ -16,6 +16,15 @@ class DelegateStoreFormRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        $this->merge([
+
+            'delegate' => array_merge($this->get('delegate'), ['active' => isset($this->get('delegate')['active']) ? 1 : 0]) ,
+
+        ]);
+    }
+
     public function rules()
     {
         return [
@@ -29,10 +38,11 @@ class DelegateStoreFormRequest extends FormRequest
             'delegate.governorate_id'    => 'required|exists:governorates,id',
             'delegate.city_id'           => 'required|exists:cities,id',
             'delegate.address'           => 'required|string',
+            'delegate.active'            => 'required',
 
             'delegateDrive.type'         => ['required', Rule::in($this->driveType)],
             'delegateDrive.color'        => 'required|string|max:20',
-            'delegateDrive.plate_number' => 'required|string|unique:delegateDrive,plate_number|max:20',
+            'delegateDrive.plate_number' => 'required|string|unique:delegate_drives,plate_number|max:20',
             'image'                      => 'nullable|mimes:png,jpg,jpeg|max:500',
             'national_image'             => 'nullable|mimes:png,jpg,jpeg|max:500',
         ];

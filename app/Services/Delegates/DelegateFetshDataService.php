@@ -2,18 +2,26 @@
 
 namespace App\Services\Delegates;
 
-use App\Models\City;
-use App\Models\Governorate;
+use App\Models\Delegate;
 use App\Services\BaseService;
 
 
 class DelegateFetshDataService extends BaseService
 {
-    const IMAGE_PATH = 'orders/';
+    const IMAGE_PATH = 'delegates/';
 
-    public function create()
+    private $delegate;
+    public function __construct(Delegate $delegate)
     {
-        return $this->viewCreateWithGovernorates('delegate.create');
+
+        $this->delegate = $delegate;
     }
 
+    public function index()
+    {
+        $delegates = $this->delegate::with('delegateDrive')->paginate(self::PAGINATE_NUM);
+        return view('delegate.index', [
+            'delegates' => $delegates
+        ]);
+    }
 }

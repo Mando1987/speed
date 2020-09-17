@@ -26,6 +26,7 @@ class CreateDelegatesTable extends Migration
             $table->string('social_status', 8)->nullable();
             $table->string('image')->default('default.png');
             $table->string('national_image')->default('default.png');
+            $table->tinyInteger('active')->size(1)->default(1);
             $table->timestamps();
             $table->foreign('governorate_id')->references('id')->on('governorates');
             $table->foreign('city_id')->references('id')->on('cities');

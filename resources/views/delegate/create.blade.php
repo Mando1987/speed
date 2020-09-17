@@ -13,6 +13,14 @@
                 <div class="card card-purple card-outline">
                     <div class="card-body">
                         <div class="row">
+                            <div class="form-group col-md-2">
+                                <div class="custom-control custom-switch" >
+                                    <input type="checkbox" class="custom-control-input" id="is_active" name="delegate[active]" checked>
+                                    <label class="custom-control-label" for="is_active">@lang('site.delegate_active')</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md">
                                 <div class="form-group row">
                                     <label class="col-sm-4 col-form-label">

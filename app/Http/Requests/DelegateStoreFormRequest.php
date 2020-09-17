@@ -22,10 +22,10 @@ class DelegateStoreFormRequest extends FormRequest
 
             'delegate.fullname'          => 'required|string|max:50',
             'delegate.qualification'     => 'required|string|max:50',
-            'delegate.national_id'       => 'required|string|min:14|max:14',
+            'delegate.national_id'       => 'required|string|unique:delegates,national_id|min:14|max:14',
             'delegate.social_status'     => ['required', Rule::in($this->status)],
-            'delegate.phone'             => 'required|max:11',
-            'delegate.other_phone'       => 'nullable|max:11',
+            'delegate.phone'             => 'required|unique:delegates,phone|max:11',
+            'delegate.other_phone'       => 'nullable|unique:delegates,other_phone|max:11',
             'delegate.governorate_id'    => 'required|exists:governorates,id',
             'delegate.city_id'           => 'required|exists:cities,id',
             'delegate.address'           => 'required|string',

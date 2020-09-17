@@ -69,10 +69,12 @@ class BaseService
          return  Governorate::findOrFail(request('governorate_id'))->cities()->get();
     }
 
-    public function viewCreateWithGovernorates($route,array $data = [])
+    public function viewWithGovernorates($route,array $data = [])
     {
         return view( $route, array_merge($this->getAllGovernoratesAndCities(), $data));
     }
+
+
 
 
 

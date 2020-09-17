@@ -6,7 +6,7 @@ use App\Models\Delegate;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
-class DelegateCreateStoreService extends BaseService
+class DelegateEditUpdateService extends BaseService
 {
     const IMAGE_PATH             = 'delegates/profile/';
     const IMAGE_PATH_NATIONAL_ID = 'delegates/national/';
@@ -47,8 +47,8 @@ class DelegateCreateStoreService extends BaseService
         }
     }
 
-    public function create()
+    public function edit($id)
     {
-        return $this->viewWithGovernorates('delegate.create');
+        return $this->viewWithGovernorates('delegate.edit');
     }
 }

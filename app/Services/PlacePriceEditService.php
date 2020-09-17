@@ -33,7 +33,6 @@ class PlacePriceEditService extends BaseService
             }else{
 
                 $city->placePrices->update($request);
-
             }
 
             DB::commit();

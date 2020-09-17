@@ -33,7 +33,7 @@ return [
      'sellersouq.index'    => 'تجار سوق دوت كوم',
      'sellersouq.create'   => 'إضافة طلب جديد',
      'sellersouq.all'      => 'كافة الطلبات',
-    
+
      'delegate.index'       => 'إدارة المناديب',
      'delegate.create'      => 'إضافة مندوب جديد',
      'delegate.all'         => 'كافة المناديب',

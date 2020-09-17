@@ -155,7 +155,7 @@ return [
   'national_id'                     => 'الرقم القومى',
   'national_image'                  => 'إرفاق صورة البطاقه',
   'qualification'                   => 'المؤهل',
-  'social_status'                   => 'الحاله الاجتماعيه',
+  'social_status'                   => 'الحاله الأجتماعيه',
 
   'social_status_single'            => 'أعزب',
   'social_status_married'           => 'متزوج',

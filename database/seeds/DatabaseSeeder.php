@@ -16,13 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+         $this->call(ShippingTableSeeder::class);
         // AdminProfile::truncate();
         // Admin::truncate();
         // Role::truncate();
         // Company::truncate();
         // Permission::truncate();
-        factory(Profile::class, 300)->create();
+        //factory(Profile::class, 300)->create();
 
         // factory(Admin::class, 1)->create(
 

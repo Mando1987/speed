@@ -30,4 +30,8 @@ return [
      'order.create'      => 'إضافة طلب جديد',
      'order.all'         => 'كافة الطلبات',
 
+     'delegate.index'       => 'إدارة المناديب',
+     'delegate.create'      => 'إضافة مندوب جديد',
+     'delegate.all'         => 'كافة المناديب',
+
 ];

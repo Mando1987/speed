@@ -22,7 +22,7 @@ return [
     'role' => [
         'name'                        => 'اسم المجموعة'
     ],
-    'prices'=>[
+    'prices' => [
         'send_weight'                 => 'حتى وزن',
         'send_price'                  => 'سعر التوصيل',
         'weight_addtion'              => 'الوزن الإضافى',
@@ -65,5 +65,21 @@ return [
         'shipping.discount'                 => 'الخصم',
 
     ],
+    'delegate' => [
+        'delegate.national_id'          => 'الرقم القومى',
+        'delegate.qualification'        => 'المؤهل',
+        'delegate.social_status'        => 'الحالة الاجتماعيه',
+        'delegate.fullname'             => 'الاسم بالكامل',
+        'delegate.phone'                => 'رقم التليفون',
+        'delegate.other_phone'          => 'رقم تليفون إضافى',
+        'delegate.address'              => 'العنوان',
+        'delegate.image'                => 'الصورة الشحصية',
+        'delegate.national_image'       => 'ارفاق صورة البطاقه',
+        'delegate.governorate_id'       => 'المحافظة',
+        'delegate.city_id'              => 'المدينة',
+        'delegateDrive.type'            => 'نوع المركبة',
+        'delegateDrive.color'           => 'لون المركبة',
+        'delegateDrive.plate_number'    => 'رقم اللوحة',
+    ]
 
 ];

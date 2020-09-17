@@ -131,7 +131,6 @@
                             </div>
 
                             <div class="form-group col-md">
-
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="badge bg-secondary pt-3">
@@ -144,7 +143,6 @@
                                         @endforeach
                                     </select>
                                 </div>
-
                             </div>
 
                             <div class="form-group col-md">

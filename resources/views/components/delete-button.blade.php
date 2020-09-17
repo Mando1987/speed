@@ -2,7 +2,7 @@
 <button class="btn btn-danger btn-sm" onclick="deletedMethod({{ $id }})">
     <span class="d-none d-md-block">
         <i class="far fa-trash-alt"></i>
-        @lang('site.delete')
+        {{-- @lang('site.delete') --}}
     </span>
     <span class="d-block d-md-none">
         <i class="far fa-trash-alt"></i>

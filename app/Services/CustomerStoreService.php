@@ -9,7 +9,8 @@ class CustomerStoreService extends BaseService
 {
     const IMAGE_PATH = 'customers/';
 
-    private $admin , $route = 'customer.index';
+    private $admin ;
+    public $route = 'customer.index';
 
     public function __construct(Admin $admin)
     {

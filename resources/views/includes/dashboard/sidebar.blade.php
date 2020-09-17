@@ -111,6 +111,35 @@
                         </ul>
                     </li>
                     {{-- End Of Orders  --}}
+                    {{-- Orders  --}}
+                    <li class="nav-item has-treeview">
+                        <a href="{{ route('delegate.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                @lang('sidebar.delegate.index')
+
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right">6</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="{{ route('delegate.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.delegate.all')</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('delegate.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.delegate.create')</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    {{-- End Of Orders  --}}
 
                     {{-- ############# Start Manager Pane ########################################################### --}}
                 @else
@@ -159,7 +188,38 @@
                         </ul>
                     </li>
                     {{-- roles links --}}
+                    <li class="nav-item has-treeview">
+                        <a href="{{ route('role.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                @lang('sidebar.role.index')
 
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right">6</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('role_index')
+                                <li class="nav-item">
+                                    <a href="{{ route('role.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>@lang('sidebar.role.all')</p>
+                                    </a>
+                                </li>
+                            @endcan
+
+                            @can('role_create')
+
+                            <li class="nav-item">
+                                <a href="{{ route('role.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.role.create')</p>
+                                </a>
+                            </li>
+                            @endcan
+                        </ul>
+                    </li>
+                    {{-- roles links --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('role.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>

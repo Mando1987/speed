@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Admin;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -42,6 +43,16 @@ class CreateAdminsTable extends Migration
             $table->enum('type',['manager','customer','mandoob']);
             $table->timestamps();
         });
+
+        Admin::create([
+            'fullname'   => 'admin' ,
+            'user_name'  => 'admin' ,
+            'phone'      => '54823954' ,
+            'email'      => 'admin@admin.com' ,
+            'password'   => bcrypt('123456') ,
+            'is_active'  => 1 ,
+            'type'       => 'manager' ,
+        ]);
     }
 
     /**

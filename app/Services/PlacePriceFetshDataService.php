@@ -34,15 +34,13 @@ class PlacePriceFetshDataService extends BaseService
     public function createNewCityPrice($showInModel = false)
     {
 
-        if ($showInModel == true)
+        if ($showInModel == true){
             $reciver = session('reciver');
             $data = ['governorate_id'=> $reciver['governorate_id'], 'city_id' =>  $reciver['city_id']];
-        return view('place-prices.create-in-model' , $data);
+            return view('place-prices.create-in-model' , $data);
+        }
 
-        return view('place-prices.create', array_merge(
-            $this->getAllGovernoratesAndCities(),
-            ['showInModel' => $showInModel]
-        ));
+        return view('place-prices.create', $this->getAllGovernoratesAndCities());
     }
 
     public function editCityPriceRow($id)

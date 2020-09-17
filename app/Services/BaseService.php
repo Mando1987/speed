@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\City;
 use App\Models\Governorate;
 use Intervention\Image\Facades\Image;
 
@@ -16,13 +15,8 @@ class BaseService
     const FOLDER_UPLOAD = '/uploads/images/';
     const DEFAULT_IMAGE = 'default.png';
 
-    public $governorate, $route = 'price.index';
-
-    public function __construct( Governorate $governorate)
-    {
-        $this->governorate = $governorate;
-
-    }
+    public $route = 'price.index';
+    private $governorate;
 
     protected function path($route)
     {
@@ -39,13 +33,19 @@ class BaseService
 
     protected function handeImageUploadUsingIntervention($image , $folder)
     {
+        $image_path = public_path() . self::FOLDER_UPLOAD . $folder;
+
         if(is_object($image)){
 
+            if (!file_exists($image_path)) {
+
+                mkdir($image_path, 666, true);
+            }
             $img = Image::make($image)->resize(150,150, function ($constraint) {
 
                 $constraint->aspectRatio();
 
-            })->save(public_path() . self::FOLDER_UPLOAD . $folder . $image->hashName());
+            })->save($image_path . $image->hashName());
 
             return $img->basename;
         }
@@ -54,7 +54,7 @@ class BaseService
     }
     public function getAllGovernorates()
     {
-        return $this->governorate::all();
+        return Governorate::all();
 
     }
     public function getAllGovernoratesAndCities()
@@ -66,7 +66,12 @@ class BaseService
 
     public function getCities()
     {
-         return  $this->governorate::findOrFail(request('governorate_id'))->cities()->get();
+         return  Governorate::findOrFail(request('governorate_id'))->cities()->get();
+    }
+
+    public function viewCreateWithGovernorates($route,array $data = [])
+    {
+        return view( $route, array_merge($this->getAllGovernoratesAndCities(), $data));
     }
 
 

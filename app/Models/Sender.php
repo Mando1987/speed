@@ -13,4 +13,9 @@ class Sender extends Model
     {
         return $this->hasOne(Order::class);
     }
+
+    public function city()
+    {
+      return $this->belongsTo(City::class);
+    }
 }

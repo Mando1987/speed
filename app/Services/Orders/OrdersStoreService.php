@@ -23,6 +23,7 @@ class OrdersStoreService extends BaseService
 
     public function handle($request)
     {
+
         if (session('page') == 1) {
 
             return $this->orderPath($request, 2);
@@ -45,9 +46,13 @@ class OrdersStoreService extends BaseService
                     [
                         'sender_id'  => $sender->id,
                         'reciver_id' => $reciver->id
+
                     ]
                 ));
-                $order->shipping()->create($request['shipping']);
+                $order->shipping()->create(array_merge(
+                    $request['shipping'],
+                    ['order_num' => $this->setOrderNumberUnique($order->id)]
+                ));
 
 
                 DB::commit();
@@ -70,5 +75,10 @@ class OrdersStoreService extends BaseService
         session(['page' =>  $page]);
         session($request);
         return redirect()->route('order.create', ['page' => $page]);
+    }
+
+    private function setOrderNumberUnique($orderId)
+    {
+        return   3018 . ($orderId + 4);
     }
 }

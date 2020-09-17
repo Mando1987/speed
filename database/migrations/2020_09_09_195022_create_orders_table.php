@@ -74,7 +74,7 @@ class CreateOrdersTable extends Migration
             $table->string('type', 100);
             $table->string('status', 100);
             $table->string('info', 200);
-            $table->string('notes', 200);
+            $table->string('notes', 200)->nullable();
             $table->tinyInteger('user_can_open_order')->size(1)->default(0);
             $table->unsignedBigInteger('customer_id')->nullable();
             $table->unsignedBigInteger('sender_id')->nullable();
@@ -97,6 +97,7 @@ class CreateOrdersTable extends Migration
             $table->string('discount', 6);
             $table->string('charge_price', 6);
             $table->string('total_price', 6);
+            $table->string('order_num', 6)->unique();
             $table->enum('charge_on', ['sender','reciver']);
             $table->foreign('order_id')->references('id')->on('orders');
         });
@@ -105,8 +106,11 @@ class CreateOrdersTable extends Migration
 
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('recivers');
+        Schema::dropIfExists('senders');
         Schema::dropIfExists('orders');
         Schema::dropIfExists('shippings');
-        Schema::dropIfExists('senders');
+        Schema::enableForeignKeyConstraints();
     }
 }

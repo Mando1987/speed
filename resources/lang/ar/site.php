@@ -31,6 +31,8 @@ return [
   'forget_password'             => 'نسيت كلمة المرور',
   'reset_password'              => 'إعادة تعيين كلمة المرور',
   'remmber_me'                  => 'تذكرنى',
+
+
   'profile'                     => 'الملف الشخصى',
   'dashboard'                   => 'الرئيسية',
   'admin'                       => 'المديرين',
@@ -117,35 +119,64 @@ return [
   'order_quantity_title' => 'قطعة',
 
   // 13/9/2020
-  'order_governorates_delivery'     => 'توصيل محافظات' ,
-  'order_next_day_delivery'         => 'توصيل تانى يوم' ,
-  'order_international_shipping'    => 'شحن دولي' ,
-  'order_packaging_service'         => 'خدمة التغليف' ,
-  'order_correspondents_service'    => 'خدمة المراسلين' ,
-  'order_send_transmitters_service' => 'خدمة إرسال المرسلات' ,
-  'order_document_delivery_service' => 'خدمة توصيل المستندات' ,
-  'order_same_day_delivery'         => 'توصيل في نفس اليوم' ,
+  'order_governorates_delivery'     => 'توصيل محافظات',
+  'order_next_day_delivery'         => 'توصيل تانى يوم',
+  'order_international_shipping'    => 'شحن دولي',
+  'order_packaging_service'         => 'خدمة التغليف',
+  'order_correspondents_service'    => 'خدمة المراسلين',
+  'order_send_transmitters_service' => 'خدمة إرسال المرسلات',
+  'order_document_delivery_service' => 'خدمة توصيل المستندات',
+  'order_same_day_delivery'         => 'توصيل في نفس اليوم',
   //14/9/2020
   'order_info_placeholder'          => 'أكتب وصفاً يدل على محتوى الشحنة',
   'order_notes_placeholder'         => 'أكتب اى ملاحظة خاصه بالشحنه',
   'order_weight_placeholder'        => 'اكتب الوزن بالكيلو',
   'order_quantity_placeholder'      => 'اكتب عدداً صحيحاً',
   'order_price_placeholder'         => 'أكتب المبلغ بالجنية',
-  'order_discount_placeholder' => 'أكتب المبلغ بالجنية',
-  'order_user_can_open_order'  => 'السماح للعميل بفتح الشحنة',
-  'yes' => 'نعم',
-  'no' => 'لا',
+  'order_discount_placeholder'      => 'أكتب المبلغ بالجنية',
+  'order_user_can_open_order'       => 'السماح للعميل بفتح الشحنة',
+  'yes'                             => 'نعم',
+  'no'                              => 'لا',
   //15/9/2020
-  'fullname_placholder'                    => 'اسم العميل /الراسل',
-  'phone_placholder'                       => 'مثال: 01133445566',
-  'other_phone_placholder'                 => 'مثال: 01033445500',
-  'address_placholder'                     => 'مثال: شارع محى الدين ابو العز',
-  'special_marque_placholder'              => 'مثال: بجوار مسجد او مدرسة كذا',
-  'house_number_placholder'                => 'مثال: 123',
-  'door_number_placholder'                 => 'مثال: 3',
-  'shaka_number_placholder'                => 'مثال: 5',
+  'fullname_placholder'             => 'اسم العميل /الراسل',
+  'phone_placholder'                => 'مثال: 01133445566',
+  'other_phone_placholder'          => 'مثال: 01033445500',
+  'address_placholder'              => 'مثال: شارع محى الدين ابو العز',
+  'special_marque_placholder'       => 'مثال: بجوار مسجد او مدرسة كذا',
+  'house_number_placholder'         => 'مثال: 123',
+  'door_number_placholder'          => 'مثال: 3',
+  'shaka_number_placholder'         => 'مثال: 5',
 
   //16/9/2020
   'place_price_not_found' => 'لم تقم باضافة سعر الشحن لهذة المنطقة',
+
+  //17/9/202
+
+  'national_id'          => 'الرقم القومى',
+  'national_image'       => 'ارفاق صورة البطاقه',
+  'qualification'        => 'المؤهل',
+  'social_status'        => 'الحالة الاجتماعيه',
+
+  'social_status_single'  => 'اعزب',
+  'social_status_married' => 'متزوج',
+  'social_status_divorce' => 'مطلق',
+  'social_status_widower' => 'ارمل',
+
+  'delegate_image'       => 'الصورة الشحصية',
+  'driveType'            => 'نوع المركبة',
+  'driveType_motocycle'  => 'موتوسيكل',
+  'driveType_car'        => 'عربية',
+  'driveType_trocycle'   => 'تروسيكل مغلق',
+  'driveColor'           => 'لون المركبة',
+  'drivePlate_number'    => 'رقم اللوحة',
+
+  'national_id_placeholder'          => 'مثال:20127814021122',
+  'qualification_placeholder'        => 'مثال:دبلوم او بكالوريوس تجارة',
+  'social_status_placeholder'        => 'dd',
+  'driveColor_placeholder'           => 'مثال:اسود',
+  'driveplate_number_placeholder'    => 'مثال:475-dlb',
+  'address_placeholder'    => 'مثال:شارع المعز لدين الله',
+
+
 
 ];

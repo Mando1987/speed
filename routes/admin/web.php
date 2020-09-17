@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PlaceController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DelegateController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PlacePricesController;
 
@@ -31,6 +32,7 @@ Route::resources([
     'place'        => PlaceController::class,
     'price'        => PlacePricesController::class,
     'order'        => OrderController::class,
+    'delegate'     => DelegateController::class,
 ]);
 
 Route::fallback(function () {

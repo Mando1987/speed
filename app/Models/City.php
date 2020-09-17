@@ -27,6 +27,11 @@ class City extends Model
         );
     }
 
+    public function sender()
+    {
+        return $this->hasOne(Sender::class);
+    }
+
     public function getNameAttribute()
     {
         return (app()->getLocale() == 'ar') ? $this->city_name :  $this->city_name_en;

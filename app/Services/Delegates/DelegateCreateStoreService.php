@@ -6,7 +6,7 @@ use App\Models\Delegate;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
-class DelegateStoreService extends BaseService
+class DelegateCreateStoreService extends BaseService
 {
     const IMAGE_PATH             = 'delegates/profile/';
     const IMAGE_PATH_NATIONAL_ID = 'delegates/national/';
@@ -45,5 +45,10 @@ class DelegateStoreService extends BaseService
             dd($ex->getMessage());
             return back();
         }
+    }
+
+    public function create()
+    {
+        return $this->viewCreateWithGovernorates('delegate.create');
     }
 }

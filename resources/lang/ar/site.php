@@ -148,34 +148,34 @@ return [
   'shaka_number_placholder'         => 'مثال: 5',
 
   //16/9/2020
-  'place_price_not_found' => 'لم تقم باضافة سعر الشحن لهذه المنطقة',
+  'place_price_not_found'           => 'لم تقم باضافة سعر الشحن لهذه المنطقة',
 
   //17/9/202
 
-  'national_id'          => 'الرقم القومى',
-  'national_image'       => 'ارفاق صورة البطاقه',
-  'qualification'        => 'المؤهل',
-  'social_status'        => 'الحالة الاجتماعيه',
+  'national_id'                     => 'الرقم القومى',
+  'national_image'                  => 'إرفاق صورة البطاقه',
+  'qualification'                   => 'المؤهل',
+  'social_status'                   => 'الحاله الاجتماعيه',
 
-  'social_status_single'  => 'اعزب',
-  'social_status_married' => 'متزوج',
-  'social_status_divorce' => 'مطلق',
-  'social_status_widower' => 'ارمل',
+  'social_status_single'             => 'أعزب',
+  'social_status_married'            => 'متزوج',
+  'social_status_divorce'            => 'مطلق',
+  'social_status_widower'            => 'ارمل',
 
-  'delegate_image'       => 'الصورة الشحصية',
-  'driveType'            => 'نوع المركبة',
-  'driveType_motocycle'  => 'موتوسيكل',
-  'driveType_car'        => 'عربية',
-  'driveType_trocycle'   => 'تروسيكل مغلق',
-  'driveColor'           => 'لون المركبة',
-  'drivePlate_number'    => 'رقم اللوحة',
+  'delegate_image'                  => 'الصوره الشحصيه',
+  'driveType'                       => 'نوع المركبه',
+  'driveType_motocycle'             => 'موتوسيكل',
+  'driveType_car'                   => 'سياره',
+  'driveType_trocycle'              => 'تروسيكل مغلق',
+  'driveColor'                      => 'لون المركبه',
+  'drivePlate_number'               => 'رقم اللوحه',
 
-  'national_id_placeholder'          => 'مثال:20127814021122',
-  'qualification_placeholder'        => 'مثال:دبلوم او بكالوريوس تجارة',
-  'social_status_placeholder'        => 'dd',
-  'driveColor_placeholder'           => 'مثال:اسود',
-  'driveplate_number_placeholder'    => 'مثال:475-dlb',
-  'address_placeholder'    => 'مثال:شارع المعز لدين الله',
+  'national_id_placeholder'         => 'مثال: 28127814021122',
+  'qualification_placeholder'       => 'مثال: دبلوم او بكالوريوس تجاره',
+  'social_status_placeholder'       => 'dd',
+  'driveColor_placeholder'          => 'مثال: اسود ، أحمر ، أبيض',
+  'driveplate_number_placeholder'   => 'مثال: س ص ع / 2030',
+  'address_placeholder'             => 'مثال: شارع محى الدين ابو العز',
 
 
 

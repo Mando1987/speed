@@ -3,7 +3,7 @@
 
 return [
 
-  'add'                             => 'إضافة',
+  'add'                             => 'إضافه',
   'next'                            => 'التالى',
   'back'                            => 'السابق',
   'search'                          => 'ابحث',
@@ -12,7 +12,7 @@ return [
   'show'                            => 'عرض',
   'login'                           => 'دخول',
   'logout'                          => 'تسجيل خروج',
-  'added'                           => 'تم الإضافة بنجاح',
+  'added'                           => 'تم الإضافه بنجاح',
   'edited'                          => 'تم التعديل بنجاح',
   'deleted'                         => 'تم الحذف بنجاح',
   'actions'                         => 'خيارات',
@@ -34,19 +34,19 @@ return [
 
 
   'profile'                         => 'الملف الشخصى',
-  'dashboard'                       => 'الرئيسية',
+  'dashboard'                       => 'الرئيسيه',
   'admin'                           => 'المديرين',
   'role'                            => 'الصلاحيات',
   'admin_set_active_1'              => 'تم تفعيل الأدمن بنجاح',
   'admin_set_active_0'              => 'تم الغاء تفعيل الأدمن بنجاح',
   'admin_get_active_1'              => 'مفعل',
   'admin_get_active_0'              => 'غير مفعل',
-  'governorate'                     => 'المحافظة',
-  'city'                            => 'المدينة',
+  'governorate'                     => 'المحافظه',
+  'city'                            => 'المدينه',
   'name'                            => 'اسم المستخدم',
   'password'                        => 'كلمة المرور',
-  'new_password'                    => 'كلمة المرور الجديدة',
-  'old_password'                    => 'كلمة المرور السابقة',
+  'new_password'                    => 'كلمة المرور الجديده',
+  'old_password'                    => 'كلمة المرور السابقه',
   'password_confirmation'           => 'تاكيد كلمة المرور',
   'change_password'                 => 'تعديل كلمة المرور',
 
@@ -56,22 +56,22 @@ return [
   'other_phone'                     => 'رقم تليفون إضافى',
   'address'                         => 'العنوان',
 
-  'status'                          => 'الحالة',
+  'status'                          => 'الحاله',
   'active'                          => 'متاح',
   'role_id'                         => 'الصلاحيات',
 
   'image'                           => 'صورة الملف الشخصى',
   'choose_image'                    => 'إختار صورة',
 
-  'special_marque'                  => 'علامة مميزة',
+  'special_marque'                  => 'علامه مميزه',
   'house_number'                    => 'رقم المنزل / العقار',
   'door_number'                     => 'رقم الدور',
-  'shaka_number'                    => 'رقم الشقة',
+  'shaka_number'                    => 'رقم الشقه',
   'company_name'                    => 'أسم الشركه / ستور',
 
   'facebook_page'                   => 'لينك صفحة الفيس',
 
-  'role_name'                       => 'أسم المجموعة',
+  'role_name'                       => 'أسم المجموعه',
   'role_name_placeholder'           => 'مثال : كافة الصلاحيات',
   'contract_type'                   => 'نوع التعاقد',
   'daily'                           => 'يومى',
@@ -107,8 +107,8 @@ return [
   'order_charge_sender'             => 'على الراسل',
   'order_charge_reciver'            => 'على المرسل إليه',
   'order_status'                    => 'حالة الشحنة',
-  'order_status_phone_from_customer' => 'إتصال هاتفى للعميل',
-  'order_status_customer_store_in_company' => 'الإستلام من العميل ف مقر الشركة',
+  'order_status_phone_from_customer'=> 'إتصال هاتفى للعميل',
+  'order_status_customer_store_in_company' => 'الإستلام من العميل ف مقر الشركه',
 
   'admin_user_name'                 => 'اسم المستخدم',
   'admin_password'                  => 'كلمة السر',
@@ -128,13 +128,13 @@ return [
   'order_document_delivery_service' => 'خدمة توصيل المستندات',
   'order_same_day_delivery'         => 'توصيل في نفس اليوم',
   //14/9/2020
-  'order_info_placeholder'          => 'أكتب وصفاً يدل على محتوى الشحنة',
-  'order_notes_placeholder'         => 'أكتب اى ملاحظة خاصه بالشحنه',
+  'order_info_placeholder'          => 'أكتب وصفاً يدل على محتوى الشحنه',
+  'order_notes_placeholder'         => 'أكتب اى ملاحظه خاصه بالشحنه',
   'order_weight_placeholder'        => 'اكتب الوزن بالكيلو',
   'order_quantity_placeholder'      => 'اكتب عدداً صحيحاً',
-  'order_price_placeholder'         => 'أكتب المبلغ بالجنية',
-  'order_discount_placeholder'      => 'أكتب المبلغ بالجنية',
-  'order_user_can_open_order'       => 'السماح للعميل بفتح الشحنة',
+  'order_price_placeholder'         => 'أكتب المبلغ بالجنيه',
+  'order_discount_placeholder'      => 'أكتب المبلغ بالجنيه',
+  'order_user_can_open_order'       => 'السماح للعميل بفتح الشحنه',
   'yes'                             => 'نعم',
   'no'                              => 'لا',
   //15/9/2020
@@ -148,7 +148,7 @@ return [
   'shaka_number_placholder'         => 'مثال: 5',
 
   //16/9/2020
-  'place_price_not_found'           => 'لم تقم باضافة سعر الشحن لهذه المنطقة',
+  'place_price_not_found'           => 'لم تقم باضافة سعر الشحن لهذه المنطقه',
 
   //17/9/202
 

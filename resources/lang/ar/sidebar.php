@@ -30,8 +30,11 @@ return [
      'order.create'         => 'إضافة طلب جديد',
      'order.all'            => 'كافة الطلبات',
 
+     'seller.souq.index'    => 'تجار سوق دوت كوم',
+     'seller.souq.create'   => 'إضافة طلب جديد',
+     'seller.souq.all'      => 'كافة الطلبات',
+    
      'delegate.index'       => 'إدارة المناديب',
      'delegate.create'      => 'إضافة مندوب جديد',
      'delegate.all'         => 'كافة المناديب',
-
 ];

@@ -2,30 +2,30 @@
 
 return [
 
-    'action'             => 'خيارات',
-    'admin_columns' => [
-        'name'           => 'اسم المستخدم',
-        'fullname'       => 'الأسم بالكامل',
-        'parent_id'      => 'الأدمن الرئيسى',
-        'role_id'        => 'الصلاحيات',
-        'active'         => 'متاح',
-    ], 'order' => [
-        'customer'       => 'العميل',
-        'created_at'     => 'التاريخ',
-        'city'           => 'المنطقة',
-        'total_price'    => 'إجمالى الشحنة',
-        'status'         => 'الحاله',
-        'delegate'       => 'المندوب',
-        //'type'         => 'نوع الشحن',
-        // 'price'        => 'قيمة الشحنة',
-        // 'charge_price' => 'تكاليف الشحن',
-        'order_num'      => 'رقم البوليصه',
+    'action'                => 'خيارات',
+    'admin_columns'         => [
+        'name'              => 'اسم المستخدم',
+        'fullname'          => 'الأسم بالكامل',
+        'parent_id'         => 'الأدمن الرئيسى',
+        'role_id'           => 'الصلاحيات',
+        'active'            => 'متاح',
+    ], 'order'              => [
+        'customer'          => 'العميل',
+        'created_at'        => 'التاريخ',
+        'city'              => 'المنطقة',
+        'total_price'       => 'إجمالى الشحنة',
+        'status'            => 'الحاله',
+        'delegate'          => 'المندوب',
+        //'type'            => 'نوع الشحن',
+        // 'price'          => 'قيمة الشحنة',
+        // 'charge_price'   => 'تكاليف الشحن',
+        'order_num'         => 'رقم البوليصه',
 
-    ], 'delegate' => [
+    ], 'delegate'           => [
         'fullname'          => 'الأسم ',
         'qualification'     => 'المؤهل',
         'phone'             => 'رقم التليفون',
-        // 'national_id'       => 'الرقم القومى',
+        // 'national_id'    => 'الرقم القومى',
         'driveType'         => 'نوع المركبه',
         'driveColor'        => 'لون المركبه',
         'drivePlate_number' => 'رقم اللوحه',

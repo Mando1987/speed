@@ -23,7 +23,7 @@
     <td> {{ $delegate->fullname }} </td>
     <td> {{ $delegate->qualification }}</td>
     <td> {{ $delegate->phone }}</td>
-    <td> {{ $delegate->delegateDrive->type }}</td>
+    <td> @lang('site.driveType_' . $delegate->delegateDrive->type)</td>
     <td> {{ $delegate->delegateDrive->color }}</td>
     <td> {{ $delegate->delegateDrive->plate_number }}</td>
     <td class="text-left"><x-enable-button ability="delegate_edit" route="delegate.changeActive"  isActive="{{$delegate->active }}"   id="{{ $delegate->id }}" /></td>

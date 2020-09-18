@@ -2,12 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Services\Delegates\DelegateSaveUserInputDataService;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 
-class DelegateStoreFormRequest extends FormRequest
+class DelegateUpdateFormRequest extends FormRequest
 {
     private $status = ['single', 'married', 'divorce', 'widower'];
     private $driveType = ['motocycle', 'car', 'trocycle'];
@@ -19,8 +18,6 @@ class DelegateStoreFormRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        $userData = new DelegateSaveUserInputDataService($this->get('delegate'));
-        // dd($userData);
         $this->merge([
 
             'delegate' => array_merge($this->get('delegate'), ['active' => isset($this->get('delegate')['active']) ? 1 : 0]),
@@ -34,10 +31,10 @@ class DelegateStoreFormRequest extends FormRequest
 
             'delegate.fullname'          => 'required|string|max:50',
             'delegate.qualification'     => 'required|string|max:50',
-            'delegate.national_id'       => 'required|string|unique:delegates,national_id|min:14|max:14',
+            'delegate.national_id'       => 'required|string|min:14|max:14|unique:delegates,national_id,'.$this->id,
             'delegate.social_status'     => ['required', Rule::in($this->status)],
-            'delegate.phone'             => 'required|unique:delegates,phone|max:11',
-            'delegate.other_phone'       => 'nullable|unique:delegates,other_phone|max:11',
+            'delegate.phone'             => 'required|max:11|unique:delegates,phone,'.$this->id,
+            'delegate.other_phone'       => 'nullable|max:11|unique:delegates,other_phone,'.$this->id,
             'delegate.governorate_id'    => 'required|exists:governorates,id',
             'delegate.city_id'           => 'required|exists:cities,id',
             'delegate.address'           => 'required|string',
@@ -45,7 +42,7 @@ class DelegateStoreFormRequest extends FormRequest
 
             'delegateDrive.type'         => ['required', Rule::in($this->driveType)],
             'delegateDrive.color'        => 'required|string|max:20',
-            'delegateDrive.plate_number' => 'required|string|unique:delegate_drives,plate_number|max:20',
+            'delegateDrive.plate_number' => 'required|string|max:20|unique:delegate_drives,plate_number,'.$this->delegateDrvieId,
             'image'                      => 'nullable|mimes:png,jpg,jpeg|max:500',
             'national_image'             => 'nullable|mimes:png,jpg,jpeg|max:500',
         ];

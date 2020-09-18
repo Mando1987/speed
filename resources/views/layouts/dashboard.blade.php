@@ -84,9 +84,9 @@
 
 
   <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
+    <div class="modal-dialog p-0">
+      <div class="modal-content p-0">
+        <div class="modal-body p-0">
 
         </div>
         <div class="modal-footer justify-content-between">

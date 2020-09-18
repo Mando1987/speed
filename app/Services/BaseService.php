@@ -11,6 +11,7 @@ class BaseService
     const ICON_SUCCESS  = 'success';
     const ICON_ERROR    = 'error';
     const TITLE_ADDED   = 'added';
+    const TITLE_EDITED  = 'edited';
     const TITLE_FAILED  = 'filed';
     const FOLDER_UPLOAD = '/uploads/images/';
     const DEFAULT_IMAGE = 'default.png';

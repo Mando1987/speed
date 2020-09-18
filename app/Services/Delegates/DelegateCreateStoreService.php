@@ -19,7 +19,7 @@ class DelegateCreateStoreService extends BaseService
         $this->delegate = $delegate;
     }
 
-    public function handle($request)
+    public function store($request)
     {
         try {
             DB::beginTransaction();

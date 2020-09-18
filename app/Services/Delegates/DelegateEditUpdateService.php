@@ -19,23 +19,25 @@ class DelegateEditUpdateService extends BaseService
         $this->delegate = $delegate;
     }
 
-    public function handle($request)
+    public function update($request , $id)
     {
         try {
             DB::beginTransaction();
 
-            $createDelegate = $this->delegate::create(
+            $updateDelegate = $this->delegate::find($id);
+
+            $updateDelegate->update(
                 array_merge($request->validated()['delegate'], [
                     'image' => $this->handeImageUploadUsingIntervention($request->validated()['image'], self::IMAGE_PATH),
                     'national_image' => $this->handeImageUploadUsingIntervention($request->validated()['national_image'], self::IMAGE_PATH_NATIONAL_ID)
                 ])
             );
 
-            $createDelegate->delegateDrive()->create($request->validated()['delegateDrive']);
+            $updateDelegate->delegateDrive()->update($request->validated()['delegateDrive']);
 
             DB::commit();
 
-            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
+            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
             return $this->path($this->route);
 
         } catch (\Exception $ex) {
@@ -49,18 +51,18 @@ class DelegateEditUpdateService extends BaseService
 
     public function edit($id)
     {
-        return $this->viewWithGovernorates('delegate.edit');
+        $delegate = $this->delegate::with('delegateDrive')->findOrFail($id);
+
+        return $this->viewWithGovernorates('delegate.edit', ['delegate' =>$delegate]);
     }
 
     public function changeActive($id)
     {
         try {
-
             $delegateEnabled = $this->delegate::findOrFail($id);
-
-            $active = $delegateEnabled->active == 1 ? 0 : 1;
+            $active  = $delegateEnabled->active == 1 ? 0 : 1;
             $message = trans('site.delegate_set_active_' . $active);
-            $text = trans('site.delegate_get_active_' . $active);
+            $text    = trans('site.delegate_get_active_' . $active);
 
             $delegateEnabled->update(['active' => $active]);
 
@@ -70,4 +72,5 @@ class DelegateEditUpdateService extends BaseService
             return ['code' => 2, 'title' => trans('site.failed_title'), 'message' => trans('site.failed')];
         }
     }
+
 }

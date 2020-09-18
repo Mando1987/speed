@@ -19,6 +19,11 @@ class Governorate extends Model
         return $this->hasMany(PlacePrice::class);
     }
 
+    public function delegates()
+    {
+        return $this->hasMany(Delegate::class);
+    }
+
     public function getNameAttribute()
     {
         return (app()->getLocale() == 'ar') ? $this->governorate_name :  $this->governorate_name_en;

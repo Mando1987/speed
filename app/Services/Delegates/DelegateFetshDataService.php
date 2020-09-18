@@ -19,9 +19,16 @@ class DelegateFetshDataService extends BaseService
 
     public function index()
     {
-        $delegates = $this->delegate::with('delegateDrive')->paginate(self::PAGINATE_NUM);
+        $delegates = $this->delegate::with('delegateDrive' , 'governorate')->paginate(self::PAGINATE_NUM);
         return view('delegate.index', [
             'delegates' => $delegates
         ]);
+    }
+    public function show($id)
+    {
+        $delegateDetails = $this->delegate::with('delegateDrive')->where('id', $id)->first();
+        if ($delegateDetails) {
+            return view('delegate.show', ['delegate' => $delegateDetails]);
+        }
     }
 }

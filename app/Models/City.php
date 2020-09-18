@@ -32,6 +32,12 @@ class City extends Model
         return $this->hasOne(Sender::class);
     }
 
+    public function delegates()
+    {
+        return $this->hasMany(Delegate::class);
+    }
+
+
     public function getNameAttribute()
     {
         return (app()->getLocale() == 'ar') ? $this->city_name :  $this->city_name_en;

@@ -1,176 +1,322 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
 <div class="container-fluid">
+
     <div class="row">
-        <!-- left column -->
+
         <div class="col-md-12">
-            <!-- jquery validation -->
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">{{ breadcrumbName() }} </h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form role="form" id="quickForm" 
-                    action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('POST')
+
+            <form action="{{ route('delegate.update' , $delegate->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="card card-purple card-outline">
                     <div class="card-body">
-                        <div class="form-group col-md-2">
-                            <div class="custom-control custom-switch" >
-                                <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" checked>
-                                <label class="custom-control-label" for="is_active">@lang('site.admin_active')</label>
-                            </div>
-                        </div>
-
                         <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="fullname">@lang('site.admin_fullname')</label>
-                                <input type="text" name="fullname" value="{{old('fullname')}}"
-                                    class="form-control @error('fullname') is-invalid @enderror" id="fullname"
-                                    placeholder="@lang('site.admin_fullname')">
-                                @error('fullname')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
+                            <div class="form-group col-md-2">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="is_active"
+                                        name="delegate[active]" @if ($delegate->active) checked @endif>
+                                    <label class="custom-control-label"
+                                        for="is_active">@lang('site.delegate_active')</label>
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="name">@lang('site.admin_name')</label>
-                                <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" placeholder="@lang('site.admin_name')">
-                                @error('name')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                            <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="role_id">@lang('site.admin_role_id')</label>
-                                <select class="custom-select" name="role_id">
-                                    @foreach($allRoles as $role)
-                                        <option value="{{ $role->id }}" @if($admin->role_id == $role->id) selected @endif>{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="phone">@lang('site.admin_phone')</label>
-                                <input type="text"  name="phone" value="{{old('phone')}}"
-                                    class="form-control @error('phone') is-invalid @enderror" id="phone"
-                                    placeholder="@lang('site.admin_phone')">
-                                @error('phone')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div> 
-                           
                         </div>
                         <div class="row">
-                         
-                            <div class="form-group col-md-6">
-                                <label for="password">@lang('site.admin_password')</label>
-                                <input type="password" name="password" value=""  class="form-control @error('password') is-invalid @enderror" id="password"
-                                    placeholder="@lang('site.admin_password')">
-                                @error('password')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="password_confirmation">@lang('site.admin_password_confirmation')</label>
-                                <input type="password" name="password_confirmation" value=""  class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"
-                                    placeholder="@lang('site.admin_password_confirmation')">
-                                @error('password_confirmation')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            
-                        </div>
-                        {{-- password and password_confimation --}}
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="email">@lang('site.admin_email')</label>
-                                <input type="email" name="email" value="{{old('email')}}"
-                                    class="form-control @error('email') is-invalid @enderror" id="email"
-                                    placeholder="@lang('site.admin_email')">
-                                @error('email')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="address">@lang('site.admin_address')</label>
-                                <input type="text" name="address" value="{{old('address')}}"
-                                    class="form-control @error('address') is-invalid @enderror" id="address"
-                                    placeholder="@lang('site.admin_address')">
-                                @error('address')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="admin-image">@lang('site.admin_image')</label>
-                                    <div class="input-group">
-                                      <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror" name="image" id="admin-image" onchange="loadFile(event)">
-                                        <label class="custom-file-label" for="admin-image">@lang('site.admin_choose_image')</label>
-                                        @error('image')
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.fullname')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="delegate[fullname]" value="{{$delegate->fullname}}"
+                                            class="form-control  @error('delegate.fullname') is-invalid @enderror"
+                                            id="fullname">
+                                        @error('delegate.fullname')
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
-                                      </div>
                                     </div>
-                                  </div>   
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <div class="text-center float-left">
-                                    <img id="image-privew" class="profile-user-img img-fluid img-circle" src="{{ asset('/uploads/images/default.png') }}">
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.qualification')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="delegate[qualification]"
+                                            value="{{$delegate->qualification}}"
+                                            class="form-control @error('delegate.qualification') is-invalid @enderror"
+                                            id="qualification" placeholder="@lang('site.qualification_placeholder')">
+                                        @error('delegate.qualification')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
                                     </div>
+                                </div>
                             </div>
-                           
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.national_id')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="delegate[national_id]"
+                                            value="{{$delegate->national_id}}"
+                                            class="form-control  @error('delegate.national_id') is-invalid @enderror"
+                                            placeholder="@lang('site.national_id_placeholder')"
+                                            data-inputmask="'mask': ['99999999999999']" data-mask="" im-insert="true">
+                                        @error('delegate.national_id')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.social_status')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <select name="delegate[social_status]" class="custom-select">
+                                            <option value="single">@lang('site.social_status_single')</option>
+                                            <option value="married">@lang('site.social_status_married')</option>
+                                            <option value="divorce">@lang('site.social_status_divorce')</option>
+                                            <option value="widower">@lang('site.social_status_widower')</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-6">
-            
-                                    @if($isParentSigular == true)
-                                       <input type="hidden" name="parent_id" value="{{ $admin->parent_id }}" />
-                                    @else
 
-                                        <label for="parent_id">@lang('site.admin_parent_id')</label>
-                                          <select class="custom-select" name="role_id">
-                                    
-                                        @foreach($parents as $parent)
-                                            <option value="{{ $parent->id }}" @if($admin->parent_id == $parent->id) selected @endif>{{ $parent->fullname }}</option>
-                                        @endforeach
-                                         </select>
-
-                                    @endif
-                                    
-                                </select>
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.phone')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="delegate[phone]" value="{{$delegate->phone}}"
+                                            class="form-control  @error('delegate.phone') is-invalid @enderror"
+                                            data-inputmask="'mask': ['099999999[9][9]']" data-mask="" im-insert="true">
+                                        @error('delegate.phone')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.other_phone')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="delegate[other_phone]"
+                                            value="{{$delegate->other_phone}}"
+                                            class="form-control @error('delegate.other_phone') is-invalid @enderror"
+                                            data-inputmask="'mask': ['099999999[9][9]']" data-mask="" im-insert="true">
+                                        @error('delegate.other_phone')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.governorate')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <select
+                                            class="custom-select @error('delegate.governorate_id') is-invalid @enderror"
+                                            name="delegate[governorate_id]" id="governorate_id">
+                                            @isset($governorates)
+                                            @foreach($governorates as $governorate)
+                                            <option value="{{ $governorate->id }}" @if($governorate->id ==
+                                                $delegate->governorate_id) selected @endif>{{ $governorate->name }}
+                                            </option>
+                                            @endforeach
+                                            @endisset
+                                        </select>
+                                        @error('delegate.governorate_id')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.city')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <select class="custom-select @error('delegate.city_id') is-invalid @enderror"
+                                            name="delegate[city_id]" id="city_id">
+                                            @isset($cities)
+                                            @foreach($cities as $city)
+                                            <option value="{{ $city->id }}" @if ($city->id == $delegate->city_id)
+                                                selected
+                                            @endif>{{ $city->name }}</option>
+                                            @endforeach
+                                            @endisset
+                                        </select>
+                                        @error('delegate.city_id')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.address')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="delegate[address]" value="{{$delegate->address}}"
+                                            class="form-control  @error('delegate.address') is-invalid @enderror"
+                                            id="address" placeholder="@lang('site.address_placeholder')">
+                                        @error('delegate.address')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.driveType')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <select class="custom-select" name="delegateDrive[type]">
+                                            <option value="motocycle">@lang('site.driveType_motocycle')</option>
+                                            <option value="car">@lang('site.driveType_car')</option>
+                                            <option value="trocycle">@lang('site.driveType_trocycle')</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
-                    </div>
-                    <!-- /.card-body -->
+                        </div>
+                        <!-- start delegateDrive information ########################################################### -->
+                        <div class="row">
+
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.driveColor')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="delegateDrive[color]"
+                                            value="{{$delegate->delegateDrive->color}}"
+                                            class="form-control  @error('delegateDrive.color') is-invalid @enderror"
+                                            placeholder="@lang('site.driveColor_placeholder')">
+                                        @error('delegateDrive.color')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.drivePlate_number')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="delegateDrive[plate_number]"
+                                            value="{{$delegate->delegateDrive->plate_number}}"
+                                            class="form-control  @error('delegateDrive.plate_number') is-invalid @enderror"
+                                            placeholder="@lang('site.driveplate_number_placeholder')">
+                                        @error('delegateDrive.plate_number')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end of row-->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.image')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group @error('delegate.image') is-invalid @enderror">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="image">
+                                                <label class="custom-file-label" for="image">إختار صورة</label>
+                                            </div>
+                                        </div>
+                                        @error('delegate.image')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">
+                                        <span class="text-gray-dark font-weight-normal">
+                                            @lang('site.national_image')
+                                        </span>
+                                    </label>
+                                    <div class="col-sm-8">
+                                        <div class="input-group @error('delegate.national_image') is-invalid @enderror">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="national_image">
+                                                <label class="custom-file-label" for="national_image">إختار صورة</label>
+                                            </div>
+                                        </div>
+                                        @error('delegate.national_image')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end of row-->
+                        <!-- start delegateDrive information ########################################################### -->
+                    </div><!-- end of card-body-->
+
+
                     <div class="card-footer">
-
-                       <button type="submit" class="btn btn-primary">@lang('site.add')</button> 
-
+                    <input type="hidden" name="delegateDrvieId" value="{{ $delegate->delegateDrive->id }}">
+                    <input type="hidden" name="id" value="{{ $delegate->id }}">
+                        <button type="submit" class="btn btn-success">@lang('site.add')</button>
                     </div>
-                </form>
-            </div>
-            <!-- /.card -->
+                </div>
+            </form>
         </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-
-        </div>
-        <!--/.col (right) -->
     </div>
-    <!-- /.row -->
 </div>
 @endsection
-
-

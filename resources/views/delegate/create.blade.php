@@ -270,7 +270,7 @@
                                         <div class="input-group @error('delegate.image') is-invalid @enderror">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="image"
-                                                    onchange="loadFile(event)">
+                                                    >
                                                 <label class="custom-file-label" for="image">إختار صورة</label>
                                             </div>
                                         </div>
@@ -291,7 +291,7 @@
                                         <div class="input-group @error('delegate.national_image') is-invalid @enderror">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input"
-                                                    name="national_image" onchange="loadFile(event)">
+                                                    name="national_image" >
                                                 <label class="custom-file-label" for="national_image">إختار صورة</label>
                                             </div>
                                         </div>
@@ -307,8 +307,6 @@
 
 
                     <div class="card-footer">
-                        <a href="{{ route('order.create' , ['page' => 2]) }}"
-                            class="btn btn-outline-secondary">@lang('site.back')</a>
                         <button type="submit" class="btn btn-success">@lang('site.add')</button>
                     </div>
                 </div>

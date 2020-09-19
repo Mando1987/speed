@@ -16,25 +16,25 @@
                     {{-- ############# Start Manager Pane ########################################################### --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('customer.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="nav-icon fas fa-user"></i>
                             <p>
                                 @lang('sidebar.customer.index')
 
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
 
                             <li class="nav-item">
                                 <a href="{{ route('customer.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fas fa-users nav-icon"></i>
                                     <p>@lang('sidebar.customer.all')</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('customer.create') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="nav-icon fas fa-user-plus"></i>
                                     <p>@lang('sidebar.customer.create')</p>
                                 </a>
                             </li>
@@ -44,19 +44,19 @@
 
                     <li class="nav-item has-treeview">
                         <a href="{{ route('place.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="nav-icon fa fa-map-marker"></i>
                             <p>
                                 @lang('sidebar.place.index')
 
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
 
                             <li class="nav-item">
                                 <a href="{{ route('place.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="nav-icon fa fa-map-marker nav-icon"></i>
                                     <p>@lang('sidebar.place.all')</p>
                                 </a>
                             </li>
@@ -68,7 +68,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('price.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-euro nav-icon"></i>
                                     <p>@lang('sidebar.place.prices')</p>
                                 </a>
                             </li>
@@ -85,12 +85,12 @@
                     {{-- Orders  --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('order.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="ion ion-bag"></i>
                             <p>
                                 @lang('sidebar.order.index')
 
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -114,12 +114,12 @@
                     {{-- delegate  --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('delegate.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="fas fa-users"></i>
                             <p>
                                 @lang('sidebar.delegate.index')
 
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -143,12 +143,12 @@
                     {{-- delegate  --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('sellersouq.index') }}" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="fas fa-shopping-cart"></i>
                             <p>
                                 @lang('sidebar.sellersouq.index')
 
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -192,7 +192,7 @@
                                 @lang('sidebar.admin.index')
 
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -224,7 +224,7 @@
                                 @lang('sidebar.role.index')
 
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
@@ -256,7 +256,7 @@
                                 @lang('sidebar.role.index')
 
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
+
                             </p>
                         </a>
                         <ul class="nav nav-treeview">

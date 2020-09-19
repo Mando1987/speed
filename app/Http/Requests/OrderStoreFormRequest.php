@@ -62,7 +62,7 @@ class OrderStoreFormRequest extends FormRequest
     {
         return [
             'sender.fullname'              => 'required|string|max:50',
-            'sender.phone'                 => 'required',
+            'sender.phone'                 => ['required' , 'unique:senders,phone'],
             'sender.governorate_id'        => 'required|exists:governorates,id',
             'sender.address'               => 'required|string',
             'sender.special_marque'        => 'required|string|max:100',
@@ -70,14 +70,14 @@ class OrderStoreFormRequest extends FormRequest
             'sender.door_number'           => 'required|string|max:10',
             'sender.shaka_number'          => 'required|string|max:10',
             'sender.city_id'               => 'required|exists:cities,id',
-            'sender.other_phone'           => 'nullable|max:11',
+            'sender.other_phone'           => ['nullable', 'max:11', 'unique:senders,other_phone'],
         ];
     }
     private function validateReciverInputs()
     {
         return [
             'reciver.fullname'              => 'required|string|max:50',
-            'reciver.phone'                 => 'required',
+            'reciver.phone'                 => 'required|unique:recivers,phone',
             'reciver.governorate_id'        => 'required|exists:governorates,id',
             'reciver.address'               => 'required|string',
             'reciver.special_marque'        => 'required|string|max:100',
@@ -85,7 +85,7 @@ class OrderStoreFormRequest extends FormRequest
             'reciver.door_number'           => 'required|string|max:10',
             'reciver.shaka_number'          => 'required|string|max:10',
             'reciver.city_id'               => 'required|exists:cities,id',
-            'reciver.other_phone'           => 'nullable|max:11',
+            'reciver.other_phone'           => 'nullable|max:11|unique:recivers,other_phone',
         ];
     }
 

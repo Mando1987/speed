@@ -91,7 +91,7 @@ class OrderStoreFormRequest extends FormRequest
 
     public function attributes()
     {
-        return  trans('custom-attributes.order');
+        return  trans('custom-attributes');
     }
 
     public function validated()

@@ -111,7 +111,7 @@
                         </ul>
                     </li>
                     {{-- End Of Orders  --}}
-                    {{-- Orders  --}}
+                    {{-- delegate  --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('delegate.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>
@@ -139,7 +139,36 @@
 
                         </ul>
                     </li>
-                    {{-- End Of Orders  --}}
+                    {{-- End Of delegate  --}}
+                    {{-- delegate  --}}
+                    <li class="nav-item has-treeview">
+                        <a href="{{ route('sellersouq.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                @lang('sidebar.sellersouq.index')
+
+                                    <i class="fas fa-angle-left right"></i>
+                                    <span class="badge badge-info right">6</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="{{ route('sellersouq.index') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.sellersouq.all')</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('sellersouq.create') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>@lang('sidebar.sellersouq.create')</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    {{-- End Of delegate  --}}
 
                     {{-- ############# Start Manager Pane ########################################################### --}}
                 @else

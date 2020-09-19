@@ -3,12 +3,12 @@
 @section('login')
         <div class="login-box">
             <div class="login-logo">
-                <a href="{{ route('admin.index') }}"><b>Speed</b> Shipping</a>
+                <a href="{{ route('admin.index') }}"><b>@lang('site.website_name')</b> @lang('site.website_name_b')</a>
             </div>
             <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
-                    <p class="login-box-msg">Sign in to start your session</p>
+                    <p class="login-box-msg">@lang('site.login_title')</p>
 
                     <form action="{{ route('admin.login') }}" method="post">
                         @csrf

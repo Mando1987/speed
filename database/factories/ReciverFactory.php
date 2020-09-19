@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Reciver::class, function (Faker $faker) {
     return [
         'fullname'       => 'R' . $faker->name(),
-        'phone'          => '011701426' . rand(10,99),
+        'phone'          => '0117014' . rand(0000,9999),
         'governorate_id' => 1,
         'address'        => 'any address',
         'special_marque' => 'any address',
@@ -16,6 +16,6 @@ $factory->define(Reciver::class, function (Faker $faker) {
         'door_number'    => rand(1,30),
         'shaka_number'   => 300,
         'city_id'        => 1,
-        'other_phone'    =>  '012701426' . rand(10,99),
+        'other_phone'    =>  '0127014' . rand(0000,9999),
     ];
 });

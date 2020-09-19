@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="table-responsive-md">
-                                <table id="dataTableId" class="table table-sm table-bordered table-striped  dataTable dtr-inline text-center"
+                                <table id="dataTableId123" class="table table-sm table-bordered table-striped   dtr-inline text-center"
                                     role="grid" aria-describedby="admin_info">
                                     <thead>
                                         @yield('thead')

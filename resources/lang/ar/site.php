@@ -45,7 +45,7 @@ return [
 
   'governorate'                     => 'المحافظه',
   'city'                            => 'المدينه',
-  'name'                            => 'اسم المستخدم',
+  'user_name'                            => 'اسم المستخدم',
   'password'                        => 'كلمة المرور',
   'new_password'                    => 'كلمة المرور الجديده',
   'old_password'                    => 'كلمة المرور السابقه',
@@ -181,6 +181,9 @@ return [
   'delegate_set_active_0'           => 'تم الغاء تفعيل المندوب بنجاح',
   'delegate_get_active_1'           => 'يعمل',
   'delegate_get_active_0'           => 'لا يعمل',
+  'website_name'  => 'Speed',
+  'website_name_b'  => 'Shipping',
+  'login_title' => 'Sign in to start your session',
 
 
 

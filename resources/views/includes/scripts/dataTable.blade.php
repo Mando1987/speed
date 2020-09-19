@@ -15,7 +15,7 @@
             "responsive": true,
             "language": {
             "zeroRecords": "@lang('site.datatable_zero_records')",
-            
+
         }
         });
         $('#myInput').on( 'keyup', function () {

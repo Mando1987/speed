@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CustomerStoreFormRequest;
+use App\Http\Requests\CustomerUpdateFormRequest;
 use App\Http\Traits\GovernorateTrait;
-use App\Models\City;
 use App\Models\Customer;
-use App\Models\Governorate;
-use App\Services\CustomerStoreService;
+use App\Services\customers\CustomerCreateStoreService;
+use App\Services\customers\CustomerEditUpdateService;
 
 class CustomerController extends Controller
 {
@@ -22,13 +22,12 @@ class CustomerController extends Controller
 
     public function create()
     {
-
-        return view('customer.create' , $this->getAllGovernoratesAndCities() );
+        return app(CustomerCreateStoreService::class)->create();
     }
 
     public function store(CustomerStoreFormRequest $request)
     {
-        return app(CustomerStoreService::class)->handle($request->validated());
+        return app(CustomerCreateStoreService::class)->store($request);
     }
 
 
@@ -37,14 +36,16 @@ class CustomerController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        //
+      return app(CustomerEditUpdateService::class)->edit($customer);
+
     }
 
-    public function update(Request $request, $id)
+    public function update(CustomerUpdateFormRequest $request, Customer $customer)
     {
-        //
+        return app(CustomerEditUpdateService::class)->update($request , $customer);
+
     }
 
     public function destroy($id)

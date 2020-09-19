@@ -4,24 +4,22 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CustomerStoreFormRequest extends FormRequest
+class CustomerUpdateFormRequest extends FormRequest
 {
 
     public function authorize()
     {
         return true;
     }
-
     protected function prepareForValidation()
     {
-
         $this->merge([
 
             'admin' => array_merge(
                 $this->get('admin'),
                 [
                     'is_active' => isset($this->is_active) ? 1 : 0,
-                    'password'  => bcrypt($this->password),
+                    // 'password'  => bcrypt($this->password),
                     'type'      => 'customer',
                 ]
             ),
@@ -32,19 +30,19 @@ class CustomerStoreFormRequest extends FormRequest
         return [
 
             'admin.is_active'              => 'nullable',
-            'admin.phone'                  => 'required|unique:admins,phone',
+            'admin.phone'                  => 'required|unique:admins,phone,' . $this->admin_id,
             'admin.fullname'               => 'required|string|max:50',
-            'admin.user_name'              => 'required|string|unique:admins,user_name|max:20',
+            'admin.user_name'              => 'required|string|max:20|unique:admins,user_name,' . $this->admin_id,
             'admin.password'               => 'nullable',
             'admin.type'                   => 'nullable',
-            'admin.email'                  => 'required|email|unique:admins,email',
-            'password'                     => 'required|confirmed|min:6',
-            'password_confirmation'        => 'required|same:password',
+            'admin.email'                  => 'required|email|unique:admins,email,'. $this->admin_id,
+            // 'password'                     => 'required|confirmed|min:6',
+            // 'password_confirmation'        => 'required|same:password',
 
             'customer.governorate_id'      => 'required|exists:governorates,id',
             'customer.city_id'             => 'required|exists:cities,id',
             'customer.company_name'        => 'nullable|string|max:50',
-            'customer.other_phone'         => 'nullable|unique:customers,other_phone',
+            'customer.other_phone'         => 'nullable|unique:customers,other_phone,' . $this->customer_id,
             'customer.facebook_page'       => 'nullable|string',
             // 'customer.notes'               => 'nullable|string',
             'customer.contract_type'       => 'required|in:daily,monthly',
@@ -66,13 +64,10 @@ class CustomerStoreFormRequest extends FormRequest
     {
         return  trans('custom-attributes');
     }
-
     public function validated()
     {
-
         return array_merge($this->validator->validated(), [
             'image'  =>  $this->image ?? 'default.png',
         ]);
-
     }
 }

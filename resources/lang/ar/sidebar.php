@@ -13,6 +13,7 @@ return [
      'customer.index'       => 'كل العملاء',
      'customer.create'      => 'إضافة عميل جديد',
      'customer.all'         => 'كافة العملاء',
+     'customer.edit'         => 'تعديل بيانات عميل',
 
      'role.index'           => 'الصلاحيات',
      'role.create'          => 'إضافة مجموعه جديدة',

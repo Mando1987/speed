@@ -1,176 +1,314 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
 <div class="container-fluid">
     <div class="row">
         <!-- left column -->
         <div class="col-md-12">
             <!-- jquery validation -->
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">{{ breadcrumbName() }} </h3>
-                </div>
-                <!-- /.card-header -->
+            <div class="card card-purple card-outline">
+
                 <!-- form start -->
-                <form role="form" id="quickForm" 
-                    action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
+                <form role="form" id="quickForm" action="{{ route('customer.update' , $data['customer']['id']) }}"
+                    method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('POST')
+                    @method('PUT')
                     <div class="card-body">
                         <div class="form-group col-md-2">
-                            <div class="custom-control custom-switch" >
-                                <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" checked>
-                                <label class="custom-control-label" for="is_active">@lang('site.admin_active')</label>
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="is_active" name="is_active"
+                                    @if($data['admin']['is_active']==1) checked @endif>
+                                <label class="custom-control-label" for="is_active">@lang('site.active')</label>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="fullname">@lang('site.admin_fullname')</label>
-                                <input type="text" name="fullname" value="{{old('fullname')}}"
-                                    class="form-control @error('fullname') is-invalid @enderror" id="fullname"
-                                    placeholder="@lang('site.admin_fullname')">
-                                @error('fullname')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="name">@lang('site.admin_name')</label>
-                                <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror"
-                                    id="name" placeholder="@lang('site.admin_name')">
-                                @error('name')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                            <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="role_id">@lang('site.admin_role_id')</label>
-                                <select class="custom-select" name="role_id">
-                                    @foreach($allRoles as $role)
-                                        <option value="{{ $role->id }}" @if($admin->role_id == $role->id) selected @endif>{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="phone">@lang('site.admin_phone')</label>
-                                <input type="text"  name="phone" value="{{old('phone')}}"
-                                    class="form-control @error('phone') is-invalid @enderror" id="phone"
-                                    placeholder="@lang('site.admin_phone')">
-                                @error('phone')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div> 
-                           
                         </div>
                         <div class="row">
-                         
-                            <div class="form-group col-md-6">
-                                <label for="password">@lang('site.admin_password')</label>
-                                <input type="password" name="password" value=""  class="form-control @error('password') is-invalid @enderror" id="password"
-                                    placeholder="@lang('site.admin_password')">
-                                @error('password')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="password_confirmation">@lang('site.admin_password_confirmation')</label>
-                                <input type="password" name="password_confirmation" value=""  class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"
-                                    placeholder="@lang('site.admin_password_confirmation')">
-                                @error('password_confirmation')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            
-                        </div>
-                        {{-- password and password_confimation --}}
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="email">@lang('site.admin_email')</label>
-                                <input type="email" name="email" value="{{old('email')}}"
-                                    class="form-control @error('email') is-invalid @enderror" id="email"
-                                    placeholder="@lang('site.admin_email')">
-                                @error('email')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="address">@lang('site.admin_address')</label>
-                                <input type="text" name="address" value="{{old('address')}}"
-                                    class="form-control @error('address') is-invalid @enderror" id="address"
-                                    placeholder="@lang('site.admin_address')">
-                                @error('address')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="admin-image">@lang('site.admin_image')</label>
-                                    <div class="input-group">
-                                      <div class="custom-file">
-                                        <input type="file" class="custom-file-input @error('image') is-invalid @enderror" name="image" id="admin-image" onchange="loadFile(event)">
-                                        <label class="custom-file-label" for="admin-image">@lang('site.admin_choose_image')</label>
-                                        @error('image')
-                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                        @enderror
-                                      </div>
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.fullname')}}" />
                                     </div>
-                                  </div>   
-                            </div>
-                            <div class="col-6">
-                                <div class="text-center float-left">
-                                    <img id="image-privew" class="profile-user-img img-fluid img-circle" src="{{ asset('/uploads/images/default.png') }}">
+                                    <div class="col-sm-8">
+                                        <x-input-text name="admin[fullname]" />
                                     </div>
+                                </div>
                             </div>
-                           
-                        </div>
+
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.user_name')}}" />
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <x-input-text name="admin[user_name]" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end of row-->
+
                         <div class="row">
-                            <div class="form-group col-md-6">
-            
-                                    @if($isParentSigular == true)
-                                       <input type="hidden" name="parent_id" value="{{ $admin->parent_id }}" />
-                                    @else
+                            <div class="col-md">
+                                <div class="col-md">
+                                    <div class="form-group row">
+                                        <div class="col-sm-4">
+                                            <x-label title="{{__('site.phone')}}" />
+                                        </div>
 
-                                        <label for="parent_id">@lang('site.admin_parent_id')</label>
-                                          <select class="custom-select" name="role_id">
-                                    
-                                        @foreach($parents as $parent)
-                                            <option value="{{ $parent->id }}" @if($admin->parent_id == $parent->id) selected @endif>{{ $parent->fullname }}</option>
-                                        @endforeach
-                                         </select>
-
-                                    @endif
-                                    
-                                </select>
+                                        <div class="col-sm-8">
+                                            <x-input-text name="admin[phone]" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-md">
+                                <div class="col-md">
+                                    <div class="form-group row">
+                                        <div class="col-sm-4">
+                                            <x-label title="{{__('site.other_phone')}}" />
+                                        </div>
 
+                                        <div class="col-sm-8">
+                                            <x-input-text name="customer[other_phone]" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!-- end of row-->
+
+                        {{-- <div class="row">
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.password')}}" />
                     </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer">
-
-                       <button type="submit" class="btn btn-primary">@lang('site.add')</button> 
-
+                    <div class="col-sm-8">
+                        <x-input-text type="password" name="password" />
                     </div>
-                </form>
             </div>
-            <!-- /.card -->
         </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.password_confirmation')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text type="password" name="password_confirmation" />
+                </div>
+            </div>
+        </div>
 
+    </div><!-- end of row--> --}}
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.email')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text type="email" name="admin[email]" />
+                </div>
+            </div>
         </div>
-        <!--/.col (right) -->
-    </div>
-    <!-- /.row -->
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.activity')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text name="customerInfo[activity]" />
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- end of row-->
+
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.contract_type')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <select class="custom-select" name="customer[contract_type]">
+                        <option value="daily">@lang('site.daily')</option>
+                        <option value="monthly">@lang('site.monthly')</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.company_name')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text name="customer[company_name]" />
+                </div>
+            </div>
+        </div>
+    </div><!-- end of row-->
+
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.governorate')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-Governorates name="customer[]" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.city')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-cities name="customer[]" />
+                </div>
+            </div>
+        </div>
+    </div><!-- end of row-->
+
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.address')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text name="customerInfo[address]" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.special_marque')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text name="customerInfo[special_marque]" />
+                </div>
+            </div>
+        </div>
+    </div><!-- end of row-->
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.house_number')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text name="customerInfo[house_number]" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.door_number')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text name="customerInfo[door_number]" />
+                </div>
+            </div>
+        </div>
+    </div><!-- end of row-->
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.shaka_number')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text name="customerInfo[shaka_number]" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.facebook_page')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <x-input-text name="customer[facebook_page]" />
+                </div>
+            </div>
+        </div>
+    </div><!-- end of row-->
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <x-label title="{{__('site.image')}}" />
+                </div>
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input @error('image') is-invalid @enderror"
+                                name="image" id="image" >
+                            <label class="custom-file-label" for="image">@lang('site.choose_image')</label>
+                            @error('image')
+                            <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {{-- <div class="col-6">
+            <div class="text-center float-left">
+                <img id="image-privew" class="profile-user-img img-fluid img-circle"
+                    src="{{ asset('/uploads/images/default.png') }}">
+            </div>
+        </div> --}}
+    </div><!-- end of row-->
+
+</div>
+<!-- /.card-body -->
+<div class="card-footer">
+    <input type="hidden" name="admin_id" value="{{ $data['admin']['id'] }}" />
+    <input type="hidden" name="customer_id" value="{{ $data['customer']['id'] }}" />
+    <button type="submit" class="btn btn-success">@lang('site.edit')</button>
+</div>
+</form>
+</div>
+<!-- /.card -->
+</div>
+<!--/.col (left) -->
+<!-- right column -->
+<div class="col-md-6">
+
+</div>
+<!--/.col (right) -->
+</div>
+<!-- /.row -->
 </div>
 @endsection
 
+@push('scripts')
+    <script>
+        $(function () {
+            /**
+             *   data = [customer => [] , admin=[] , customerInfo=[]]
+             *  parentKey = customer , admin , customerInfo
+             */
+            var data = @json($data);
+            $.each(data, function (parentKey, array) {
 
+                $.each(array, function (key, val) {
+                    $('[name="' + parentKey + '[' + key + ']"]').val(val);
+                });
+            });
+            $('#city_id').attr('data', data.customer.city_id);
+            $('#governorate_id').trigger('change');
+        });
+    </script>
+@endpush

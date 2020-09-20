@@ -7,7 +7,9 @@
     </div>
     <div class="card">
         <div class="card-body register-card-body">
-            <p class="login-box-msg"></p>
+            <p class="login-box-msg">
+                <img class="profile-user-img img-fluid img-circle" src="{{ session('facebook')['image'] }}" />
+            </p>
 
         <form action="{{ route('facebook.register_proccess') }}" method="post">
             @csrf
@@ -77,11 +79,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-8">
-                    <img src="{{ session('facebook')['image'] }}" />
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-4">
+                    <div class="col">
                         <button type="submit" class="btn btn-success btn-block">Register</button>
                     </div>
                     <!-- /.col -->

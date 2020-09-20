@@ -21,6 +21,14 @@ class inputText extends Component
 
     public function render()
     {
+        return function (array $data) {
+            $data['input-text'];
+            $data['attributes'] = [
+                'key' => 1234,
+                'value' => 1234,
+                'name' => 1234,
+            ];
         return view('components.input-text');
+        }
     }
 }

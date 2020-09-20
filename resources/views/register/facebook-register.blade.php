@@ -87,15 +87,6 @@
                     <!-- /.col -->
                 </div>
             </form>
-
-            <div class="social-auth-links text-center">
-                <p>- OR -</p>
-            <a href="{{ route('facebook.login') }}" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i>
-                    @lang('site.facebook_register')
-                </a>
-
-            </div>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

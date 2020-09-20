@@ -27,7 +27,7 @@ class RegisterController extends Controller
         $user = Socialite::driver('facebook')->user();
         $state = $request->get('state');
         $request->session()->put('state',$state);
-        return $user;
+        return session('state');
         $user->getId();
         $user->getNickname();
         $user->getName();

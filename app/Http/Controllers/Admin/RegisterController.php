@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FacebookRegisterFormRequest;
 use Laravel\Socialite\Facades\Socialite;
 
 
@@ -42,5 +43,10 @@ class RegisterController extends Controller
     {
         //return session('facebook');
         return view('register.facebook-register');
+    }
+
+    public function FacebookRegisterProccess(FacebookRegisterFormRequest $request)
+    {
+       return $request->validated();
     }
 }

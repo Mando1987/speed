@@ -14,17 +14,17 @@ class FacebookRegisterFormRequest extends FormRequest
     protected function prepareForValidation()
     {
 
-        $this->merge([
+        // $this->merge([
 
-            'admin' => array_merge(
-                $this->get('admin'),
-                [
-                    'is_active' => 1,
-                    'password'  => bcrypt($this->password),
-                    'type'      => 'customer',
-                ]
-            ),
-        ]);
+        //     'admin' => array_merge(
+        //         $this->get('admin'),
+        //         [
+        //             'is_active' => 1,
+        //             'password'  => bcrypt($this->password),
+        //             'type'      => 'customer',
+        //         ]
+        //     ),
+        // ]);
     }
     public function rules()
     {

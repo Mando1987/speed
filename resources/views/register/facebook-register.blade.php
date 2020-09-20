@@ -80,7 +80,7 @@
 
                 <div class="row">
                     <div class="col">
-                        <button type="submit" class="btn btn-success btn-block">Register</button>
+                        <button type="submit" class="btn btn-success btn-block">@lang('site.register')</button>
                     </div>
                     <!-- /.col -->
                 </div>

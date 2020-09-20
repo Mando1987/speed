@@ -18,7 +18,7 @@ class RegisterController extends Controller
     }
     public function redirectToFacebook()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->with(['access_token' => 'd43b2a56bad09abac57b7b937501b50f'])->redirect();
     }
 
     public function handleFacebookCallback()

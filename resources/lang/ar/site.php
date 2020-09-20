@@ -186,9 +186,9 @@ return [
   'login_title'                     => 'تسجيل الدخول لبدء الجلسه الخاصة بك',
 
   'sellersouq_order_num'            => 'رقم بوليصة سوق',
-  'sellersouq_order_info'           => 'وصف الشحنه',
-  'sellersouq_order_quantity'       => 'عدد محتويات الشحنه',
-  'sellersouq_order_weight'         => 'وزن الشحنه',
+  'sellersouq_order_info'           => 'وصف البيك أب',
+  'sellersouq_order_quantity'       => 'عدد محتويات البيك أب',
+  'sellersouq_order_weight'         => 'وزن البيك أب',
   'seller_add'                      => 'إضافة بيك أب جديد' ,
   'order_number_badge'              => 'بيك أب رقم',
   'facebook_register'               => 'التسجيل بواسطة حساب فيس بوك'

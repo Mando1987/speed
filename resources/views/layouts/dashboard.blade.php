@@ -38,10 +38,8 @@
   </style>
  @endif
 </head>
-<body class="hold-transition layout-fixed layout-navbar-fixed text-sm @auth('admin')sidebar-mini @endauth @guest login-page @endguest ">
-
+<body class="hold-transition layout-fixed layout-navbar-fixed text-sm @auth('admin') sidebar-mini @endauth @guest login-page @endguest">
   @auth('admin')
-
     <div class="wrapper">
         {{-- ########### Header ###################################################### --}}
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -65,16 +63,12 @@
                @yield('content')
            </section>
            {{-- ########### Content ###################################################### --}}
-
         </div><!-- ############################################################################ end content-wrapper -->
-
-
         <footer class="main-footer d-none d-sm-block">
             @include('includes.dashboard.footer')
         </footer>
 
         <aside class="control-sidebar control-sidebar-dark"></aside>
-
     </div>
   @endauth
 
@@ -111,11 +105,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('assets/dist/js/demo.js')}}"></script>
 <script src="{{asset('assets/dist/js/main.js')}}"></script>
-
 @stack('datatable')
-
 @include('includes.notify.message')
-
 @stack('scripts')
 </body>
 </html>

@@ -185,6 +185,14 @@ return [
   'website_name_b'  => 'Shipping',
   'login_title' => 'Sign in to start your session',
 
+  'sellersouq_order_num'           => 'رقم بوليصة سوق',
+  'sellersouq_order_info'          => 'وصف الشحنة',
+  'sellersouq_order_quantity'      => 'عدد محتويات الشحنة',
+  'sellersouq_order_weight'        => 'وزن الشحنة',
+  'seller_add' => 'اضافة طلب جديد' ,
+  'order_number_badge' => 'طلب رقم',
+  'facebook_register' => 'التسجيل بواسطة حساب فيس بوك'
+
 
 
 ];

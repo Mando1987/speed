@@ -24,7 +24,7 @@ class CreateCustomersTable extends Migration
             $table->string('facebook_page')->nullable();
             // $table->string('notes')->nullable();
             $table->string('image')->default('default.png');
-            $table->enum('contract_type',['daily','monthly']);
+            $table->enum('contract_type',['daily','monthly'])->default('daily');
 
             $table->foreign('governorate_id')->references('id')->on('governorates');
             $table->foreign('city_id')->references('id')->on('cities');
@@ -35,11 +35,11 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('customer_id');
             $table->string('address');
-            $table->string('special_marque', 100);
-            $table->string('house_number', 10);
-            $table->string('door_number', 10);
-            $table->string('shaka_number', 10);
-            $table->string('activity', 100);
+            $table->string('special_marque', 100)->nullable();
+            $table->string('house_number', 10)->nullable();
+            $table->string('door_number', 10)->nullable();
+            $table->string('shaka_number', 10)->nullable();
+            $table->string('activity', 100)->nullable();
 
             $table->foreign('customer_id')
                 ->references('id')

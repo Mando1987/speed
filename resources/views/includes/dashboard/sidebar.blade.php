@@ -85,7 +85,7 @@
                     {{-- Orders  --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('order.index') }}" class="nav-link">
-                            <i class="ion ion-bag"></i>
+                            <i class="nav-icon ion ion-bag"></i>
                             <p>
                                 @lang('sidebar.order.index')
 
@@ -114,7 +114,7 @@
                     {{-- delegate  --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('delegate.index') }}" class="nav-link">
-                            <i class="fas fa-users"></i>
+                            <i class="nav-icon fas fa-users"></i>
                             <p>
                                 @lang('sidebar.delegate.index')
 
@@ -143,7 +143,7 @@
                     {{-- delegate  --}}
                     <li class="nav-item has-treeview">
                         <a href="{{ route('sellersouq.index') }}" class="nav-link">
-                            <i class="fas fa-shopping-cart"></i>
+                            <i class="nav-icon fas fa-shopping-cart"></i>
                             <p>
                                 @lang('sidebar.sellersouq.index')
 

@@ -25,7 +25,6 @@ Route::get('/price/create-place-price',[PlacePricesController::class, 'store'] )
 Route::get('/delegate/changeActive/{id}',[DelegateController::class, 'changeActive'])->name('delegate.changeActive');
 
 
-
 Route::resources([
     'admin'        => AdminController::class,
     'role'         => RoleController::class,

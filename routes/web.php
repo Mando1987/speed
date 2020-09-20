@@ -1,9 +1,7 @@
 <?php
 
-use App\Models\CustomerInfo;
-use App\Models\Governorate;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\RegisterController;
 
 
 // Route::get('/', function () {
@@ -16,22 +14,9 @@ Route::get('/', function () {
     return view('front.index');
 })->name('site.index');
 
-Route::get('/city', function () {
-    // $c = [];
-    // foreach (config('cities') as $array) {
+Route::get('/register' , [RegisterController::class , 'viewRegisterPage']);
+Route::post('/register' , [RegisterController::class , 'register'])->name('register');
+Route::get('/redirectToFacebook' , [RegisterController::class , 'redirectToFacebook'])->name('facebook.login');
 
-    //     $c[] = [
-    //         'id'            => $array[0],
-    //         'gov_id'        => $array[1],
-    //         'city_name'     => $array[2],
-    //         'city_name_en'  => $array[3]
-    //     ];
-    // }
-    // return $c;
+Route::get('/callback/facebook' , [RegisterController::class , 'handleFacebookCallback']);
 
-   // return config('cities');
-
-  //    return ( new CustomerInfo)->getTable();
-
-  return Governorate::with('cities')->first();
-});

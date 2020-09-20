@@ -79,5 +79,10 @@ return [
     'delegateDrive.color'               => 'لون المركبه',
     'delegateDrive.plate_number'        => 'رقم اللوحه',
 
+    'sellersouq.*.order_num'            => 'رقم البوليصة ',
+    'sellersouq.*.order_info'           => 'وصف الشحنة',
+    'sellersouq.*.order_quantity'       => 'عدد محتويات الشحنة',
+    'sellersouq.*.order_weight'         => 'وزن الشحنة',
+
 
 ];

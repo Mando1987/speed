@@ -62,7 +62,7 @@ class OrderStoreFormRequest extends FormRequest
     {
         return [
             'sender.fullname'              => 'required|string|max:50',
-            'sender.phone'                 => ['required' , 'unique:senders,phone'],
+            'sender.phone'                 => ['required' ,'unique:senders,phone'],
             'sender.governorate_id'        => 'required|exists:governorates,id',
             'sender.address'               => 'required|string',
             'sender.special_marque'        => 'required|string|max:100',

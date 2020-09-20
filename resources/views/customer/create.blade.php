@@ -48,30 +48,30 @@
 
                         <div class="row">
                             <div class="col-md">
-                                <div class="col-md">
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">
-                                            <x-label title="{{__('site.phone')}}" />
-                                        </div>
 
-                                        <div class="col-sm-8">
-                                            <x-input-text name="admin[phone]" />
-                                        </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.phone')}}" />
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <x-input-text name="admin[phone]" />
                                     </div>
                                 </div>
+
                             </div>
                             <div class="col-md">
-                                <div class="col-md">
-                                    <div class="form-group row">
-                                        <div class="col-sm-4">
-                                            <x-label title="{{__('site.other_phone')}}" />
-                                        </div>
 
-                                        <div class="col-sm-8">
-                                            <x-input-text name="customer[other_phone]" />
-                                        </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.other_phone')}}" />
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <x-input-text name="customer[other_phone]" />
                                     </div>
                                 </div>
+
                             </div>
 
                         </div><!-- end of row-->

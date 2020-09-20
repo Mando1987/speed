@@ -13,7 +13,7 @@ class inputText extends Component
     {
         $this->name        = $name;
         // $this->key         = \str_replace('[' , '.' ,\str_replace(']' , '' ,$name));
-        $this->key         = $name;
+        $this->key         = 12345;
         $this->value       = $value ?? null;
         $this->placeHolder = $placeHolder;
         $this->type        = $type;

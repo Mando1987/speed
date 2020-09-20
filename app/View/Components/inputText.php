@@ -12,7 +12,8 @@ class inputText extends Component
     public function __construct($name ,$value = null ,  $placeHolder = "" , $type = 'text')
     {
         $this->name        = $name;
-        $this->key         = \str_replace('[' , '.' ,\str_replace(']' , '' ,$name));
+        // $this->key         = \str_replace('[' , '.' ,\str_replace(']' , '' ,$name));
+        $this->key         = $name;
         $this->value       = $value ?? null;
         $this->placeHolder = $placeHolder;
         $this->type        = $type;

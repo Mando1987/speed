@@ -9,11 +9,11 @@ class inputText extends Component
 {
     public $name, $value, $placeholder , $type, $key = '';
 
-    public function __construct($name, $value = '', $placeholder = "" , $type = 'text')
+    public function __construct($name , $placeholder = "" , $type = 'text')
     {
         $this->name        = $name;
         $this->key         = str_replace('[' , '.' ,str_replace(']' , '' ,$name));
-        $this->value       = $value ?? '';
+        // $this->value       = $value ?? '';
         $this->placeholder = $placeholder;
         $this->type        = $type;
     }

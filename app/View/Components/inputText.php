@@ -3,7 +3,6 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-use Str;
 
 class inputText extends Component
 {
@@ -14,10 +13,10 @@ class inputText extends Component
     {
         $this->name        = $name;
         $this->key         = \str_replace('[' , '.' ,\str_replace(']' , '' ,$name));
-        $this->key         = $name;
         $this->value       = $value ?? null;
         $this->placeHolder = $placeHolder;
         $this->type        = $type;
+        $this->key         = $name;
     }
 
     public function render()

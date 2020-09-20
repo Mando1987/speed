@@ -16,7 +16,7 @@ class inputText extends Component
         $this->value       = $value ?? null;
         $this->placeHolder = $placeHolder;
         $this->type        = $type;
-        $this->key         = $name;
+        $this->key         = 123456;
     }
 
     public function render()

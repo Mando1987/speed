@@ -45,7 +45,7 @@ return [
 
   'governorate'                     => 'المحافظه',
   'city'                            => 'المدينه',
-  'user_name'                            => 'اسم المستخدم',
+  'user_name'                       => 'اسم المستخدم',
   'password'                        => 'كلمة المرور',
   'new_password'                    => 'كلمة المرور الجديده',
   'old_password'                    => 'كلمة المرور السابقه',
@@ -108,7 +108,7 @@ return [
   'order_charge_sender'             => 'على الراسل',
   'order_charge_reciver'            => 'على المرسل إليه',
   'order_status'                    => 'حالة الشحنة',
-  'order_status_phone_from_customer' => 'إتصال هاتفى للعميل',
+  'order_status_phone_from_customer'=> 'إتصال هاتفى للعميل',
   'order_status_customer_store_in_company' => 'الإستلام من العميل ف مقر الشركه',
 
   'admin_user_name'                 => 'اسم المستخدم',
@@ -151,7 +151,7 @@ return [
   //16/9/2020
   'place_price_not_found'           => 'لم تقم باضافة سعر الشحن لهذه المنطقه',
 
-  //17/9/202
+  //17/9/2020
   'delegate_active'                 => 'حالة المندوب',
   'national_id'                     => 'الرقم القومى',
   'national_image'                  => 'إرفاق صورة البطاقه',
@@ -181,17 +181,17 @@ return [
   'delegate_set_active_0'           => 'تم الغاء تفعيل المندوب بنجاح',
   'delegate_get_active_1'           => 'يعمل',
   'delegate_get_active_0'           => 'لا يعمل',
-  'website_name'  => 'Speed',
-  'website_name_b'  => 'Shipping',
-  'login_title' => 'Sign in to start your session',
+  'website_name'                    => 'سبيد لخدمات',
+  'website_name_b'                  => 'الشحن السريع',
+  'login_title'                     => 'تسجيل الدخول لبدء الجلسه الخاصة بك',
 
-  'sellersouq_order_num'           => 'رقم بوليصة سوق',
-  'sellersouq_order_info'          => 'وصف الشحنة',
-  'sellersouq_order_quantity'      => 'عدد محتويات الشحنة',
-  'sellersouq_order_weight'        => 'وزن الشحنة',
-  'seller_add' => 'اضافة طلب جديد' ,
-  'order_number_badge' => 'طلب رقم',
-  'facebook_register' => 'التسجيل بواسطة حساب فيس بوك'
+  'sellersouq_order_num'            => 'رقم بوليصة سوق',
+  'sellersouq_order_info'           => 'وصف البيك أب',
+  'sellersouq_order_quantity'       => 'عدد محتويات البيك أب',
+  'sellersouq_order_weight'         => 'وزن البيك أب',
+  'seller_add'                      => 'إضافة بيك أب جديد' ,
+  'order_number_badge'              => 'بيك أب رقم',
+  'facebook_register'               => 'التسجيل بواسطة حساب فيس بوك'
 
 
 

@@ -181,8 +181,8 @@ return [
   'delegate_set_active_0'           => 'تم الغاء تفعيل المندوب بنجاح',
   'delegate_get_active_1'           => 'يعمل',
   'delegate_get_active_0'           => 'لا يعمل',
-  'website_name'                    => 'سبيد لخدمات',
-  'website_name_b'                  => 'الشحن السريع',
+  'website_name'                    => 'سبيد',
+  'website_name_b'                  => 'للشحن السريع',
   'login_title'                     => 'تسجيل الدخول لبدء الجلسه الخاصة بك',
 
   'sellersouq_order_num'            => 'رقم بوليصة سوق',

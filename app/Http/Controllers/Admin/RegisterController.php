@@ -25,6 +25,6 @@ class RegisterController extends Controller
     {
         $user = Socialite::driver('facebook')->user();
 
-          dd($user);
+        return $user->getEmail();
     }
 }

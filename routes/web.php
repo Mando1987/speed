@@ -4,12 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RegisterController;
 
 
-// Route::get('/', function () {
-//     return view('site.index');
-// })->name('home.index');
-
-//  Auth::routes();
-
 Route::get('/', function () {
     return view('front.index');
 })->name('site.index');

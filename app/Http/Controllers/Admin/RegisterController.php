@@ -22,11 +22,11 @@ class RegisterController extends Controller
         return Socialite::driver('facebook')->with(['access_token' => 'd43b2a56bad09abac57b7b937501b50f'])->redirect();
     }
 
-    public function handleFacebookCallback(Request $request)
+    public function handleFacebookCallback()
     {
         $user = Socialite::driver('facebook')->user();
-        return $user->token;
 
+        dd($user);
         $user->getId();
         $user->getNickname();
         $user->getName();

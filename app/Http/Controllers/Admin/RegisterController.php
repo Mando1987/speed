@@ -25,9 +25,8 @@ class RegisterController extends Controller
     public function handleFacebookCallback(Request $request)
     {
         $user = Socialite::driver('facebook')->user();
-        $state = $request->get('state');
-        $request->session()->put('state',$state);
-        return session('state');
+        return $user->token;
+
         $user->getId();
         $user->getNickname();
         $user->getName();

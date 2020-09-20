@@ -24,13 +24,23 @@ class RegisterController extends Controller
 
     public function handleFacebookCallback()
     {
+        if(session()->has('facebook')){
+            return redirect()->route('facebook.register');
+        }
         $user = Socialite::driver('facebook')->user();
+        $data = [
+            'fullname' => $user->getName(),
+            'email'    => $user->getEmail(),
+            'image'    => $user->getAvatar(),
+        ];
 
-        dd($user);
-        $user->getId();
-        $user->getNickname();
-        $user->getName();
-        $user->getEmail();
-        $user->getAvatar();
+        session(['facebook' => $data]);
+        return redirect()->route('facebook.register');
+    }
+
+    public function viewFacebookRegister()
+    {
+        return session('facebook');
+        return view('register.facebook-register');
     }
 }

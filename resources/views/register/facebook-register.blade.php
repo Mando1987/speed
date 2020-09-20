@@ -44,16 +44,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="form-group row">
-                        <div class="col-sm-4">
-                            <x-label title="{{__('site.email')}}" />
-                        </div>
-                        <div class="col-sm-8">
-                            <x-input-text type="email" name="admin[email]" />
-                        </div>
-                    </div>
-                </div>
+
                 <div class="col-md">
                     <div class="form-group row">
                         <div class="col-sm-4">

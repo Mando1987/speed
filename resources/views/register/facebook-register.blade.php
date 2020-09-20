@@ -9,7 +9,7 @@
         <div class="card-body register-card-body">
             <p class="login-box-msg"></p>
 
-        <form action="{{ route('register') }}" method="post">
+        <form action="{{ route('facebook.register_proccess') }}" method="post">
             @csrf
             @method('POST')
                 <div class="col-md">

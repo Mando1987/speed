@@ -14,4 +14,5 @@ Route::get('/redirectToFacebook' , [RegisterController::class , 'redirectToFaceb
 
 Route::get('/callback/facebook' , [RegisterController::class , 'handleFacebookCallback']);
 Route::get('/facebook/register' , [RegisterController::class , 'viewFacebookRegister'])->name('facebook.register');
+Route::post('/facebook/register' , [RegisterController::class , 'FacebookRegisterProccess'])->name('facebook.register_proccess');
 

@@ -40,7 +40,7 @@ class RegisterController extends Controller
 
     public function viewFacebookRegister()
     {
-        // return session('facebook');
+        return session('facebook');
         return view('register.facebook-register');
     }
 }

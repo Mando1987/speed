@@ -23,7 +23,7 @@ class RegisterController extends Controller
 
     public function handleFacebookCallback()
     {
-        $user = Socialite::driver('facebook')->stateless()->user();
+        $user = Socialite::driver('facebook')->user();
 
          return $user;
     }

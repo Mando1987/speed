@@ -87,6 +87,7 @@
             </form>
         </div> --}}
         <x-text name="admin"/>
+        <x-text />
         <!-- /.form-box -->
     </div><!-- /.card -->
 </div>

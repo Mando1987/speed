@@ -9,7 +9,7 @@ class Text extends Component
 
     public $name;
 
-    public function __construct($name)
+    public function __construct($name = 'mando')
     {
       $this->name= $name;
     }
@@ -19,8 +19,8 @@ class Text extends Component
     {
         return <<<'blade'
 <div>
-    <!-- When there is no desire, all things are at peace. - Laozi -->
-    $name
+
+    {{$name}}
 </div>
 blade;
     }

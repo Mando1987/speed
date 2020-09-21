@@ -4,25 +4,30 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class inputText extends Component
+class InputText extends Component
 {
-    public $name, $value, $placeHolder , $type;
-    public $key;
-
-    public function __construct($name , $value = null ,  $placeHolder = '' , $type = 'text' ,$key = '')
+    public $name;
+    public $value;
+    public $placeholder;
+    public $type ;
+    public $key ;
+    public function __construct($name , $value = null ,  $placeholder = '' , $type = 'text')
     {
         $this->name        = $name;
         $this->key         = \str_replace('[' , '.' ,\str_replace(']' , '' ,$name));
         $this->value       = $value ?? null;
-        $this->placeHolder = $placeHolder;
-        $this->type        = $type;
-        $this->key         = $key;
+        $this->placeholder = $placeholder;
+        $this->type        = $type ?? 'text';
     }
 
     public function render()
     {
-
-        return view('components.input-text');
-
+        return <<<'blade'
+        <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" class="form-control @error($key) is-invalid @enderror"
+        placeholder="{{ $placeholder }}">
+        @error($key)
+        <span class="error invalid-feedback">{{ $message }}</span>
+        @enderror
+blade;
     }
 }

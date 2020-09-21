@@ -6,7 +6,6 @@ use App\Models\Governorate;
 use Illuminate\Support\Str;
 
 use Illuminate\View\Component;
-use function PHPSTORM_META\type;
 
 class Governorates extends Component
 {

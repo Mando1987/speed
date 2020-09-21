@@ -28,6 +28,8 @@ class FacebookRegisterService extends BaseService
 
             $newCustomer->customerInfos()->create($request->validated()['customerInfo']);
 
+            auth('admin')->login($newAdmin);
+
             DB::commit();
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
             return $this->path($this->route);

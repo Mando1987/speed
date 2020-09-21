@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -15,7 +17,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->redirectTo = route('dashboard.index');
-        // مدخلش الادمن هنا لو هو مسجل دخول
         $this->middleware('guest:admin')->except('logout');
     }
 
@@ -26,11 +27,25 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'user_name';
+
+        $value = request('user_name');
+
+        $colmun = filter_var($value , FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+
+        request()->merge([$colmun => $value]);
+
+        return $colmun;
+
     }
     protected function guard()
     {
         return Auth::guard('admin');
     }
 
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.' . $this->username())],
+        ]);
+    }
 }

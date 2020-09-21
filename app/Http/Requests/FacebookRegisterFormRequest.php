@@ -14,25 +14,6 @@ class FacebookRegisterFormRequest extends FormRequest
     protected function prepareForValidation()
     {
 
-        $this->merge([
-
-            'admin' => array_merge(
-                $this->get('admin'),
-                [
-                    'is_active' => 1,
-                    'password'  => bcrypt($this->password),
-                    'type'      => 'customer',
-                    'email'     => session('facebook')['email'],
-                    'fullname'  => session('facebook')['fullname'],
-                ]
-            ),
-            'customer' => array_merge(
-                $this->get('customer'),
-                [
-                    'image'     => session('facebook')['image'],
-                ]
-            ),
-        ]);
     }
     public function rules()
     {
@@ -65,14 +46,12 @@ class FacebookRegisterFormRequest extends FormRequest
                 'is_active' => 1,
                 'password'  => bcrypt($this->password),
                 'type'      => 'customer',
-                'email'     => session('facebook')['email'],
-                'fullname'  => session('facebook')['fullname']
             ]
         );
         $data['customer'] = array_merge(
             $this->validator->validated()['customer'],
             [
-                'image'  => session('facebook')['image']
+                'image'  => session('facebook')['image']?? 'default.png'
             ]
         );
         $data['customerInfo'] = $this->customerInfo;

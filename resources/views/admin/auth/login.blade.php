@@ -13,10 +13,13 @@
                     <form action="{{ route('admin.login') }}" method="post">
                         @csrf
                         <div class="form-group mb-3">
-                            <input type="text" name="user_name" value="{{ old('user_name') }}"
-                                class="form-control @error('user_name') is-invalid @enderror" id="user_name"
+                            <input type="text" name="user_name" value="{{ old('email') ?? old('phone') }}"
+                                class="form-control @error('phone') is-invalid @enderror @error('email') is-invalid @enderror"
                                 placeholder="@lang('site.admin_user_name')">
-                            @error('user_name')
+                            @error('phone')
+                                <span class="error invalid-feedback">{{ $message }}</span>
+                            @enderror
+                            @error('email')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
                         </div>

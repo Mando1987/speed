@@ -19,7 +19,7 @@
                             <x-label title="{{__('site.fullname')}}" />
                         </div>
                         <div class="col-sm">
-                            <x-input-text name="admin[fullname]"  type="text"/>
+                            <x-input name="admin[fullname]"  type="text"/>
                         </div>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="col-sm-8">
-                            <x-input-text name="admin[user_name]" type="text"/>
+                            <x-input name="admin[user_name]" type="text"/>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                                 <x-label title="{{__('site.phone')}}" />
                             </div>
                             <div class="col-sm-8">
-                                <x-input-text name="admin[phone]" type="text"/>
+                                <x-input name="admin[phone]" type="text"/>
                             </div>
                         </div>
 
@@ -52,7 +52,7 @@
                             <x-label title="{{__('site.password')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <x-input-text type="password" name="password" />
+                            <x-input type="password" name="password" />
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                             <x-label title="{{__('site.password_confirmation')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <x-input-text type="password" name="password_confirmation" />
+                            <x-input type="password" name="password_confirmation" />
                         </div>
                     </div>
                 </div>
@@ -72,7 +72,7 @@
                             <x-label title="{{__('site.email')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <x-input-text type="email" name="admin[email]" />
+                            <x-input type="email" name="admin[email]" />
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                             <x-label title="{{__('site.address')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <x-input-text name="customerInfo[address]" type="text"/>
+                            <x-input name="customerInfo[address]" type="text"/>
                         </div>
                     </div>
                 </div>

@@ -11,28 +11,38 @@
                 <img class="profile-user-img img-fluid img-circle" src="{{ session('facebook')['image'] }}" />
             </p>
 
-        <form action="{{ route('facebook.register_proccess') }}" method="post">
-            @csrf
-            @method('POST')
-                    <div class="col-md">
-                        <div class="form-group row">
-                            <div class="col-sm-4">
+            <form action="{{ route('facebook.register_proccess') }}" method="post">
+                @csrf
+                @method('POST')
+                <div class="col-md">
+                    <div class="form-group row">
+                        <div class="col-sm-4">
                             <x-label title="{{__('site.fullname')}}" />
-                            </div>
-                            <div class="col-sm-8">
-                                <x-input name="admin[fullname]" value="{{ $data['fullname'] }}"/>
-                            </div>
                         </div>
+                        <div class="col-sm-8">
+                            <x-input name="admin[fullname]" value="{{ $data['fullname'] }}" />
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md">
-                        <div class="form-group row">
-                            <div class="col-sm-4">
-                                <x-label title="{{__('site.phone')}}" />
-                            </div>
-                            <div class="col-sm-8">
-                                <x-input name="admin[phone]" />
-                            </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <x-label title="{{__('site.email')}}" />
                         </div>
+                        <div class="col-sm-8">
+                            <x-input type="email" name="admin[email]" value="{{ $data['email'] }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <x-label title="{{__('site.phone')}}" />
+                        </div>
+                        <div class="col-sm-8">
+                            <x-input name="admin[phone]" />
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md">
                     <div class="form-group row">
@@ -81,7 +91,7 @@
                             <x-label title="{{__('site.address')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <x-input name="customerInfo[address]" type="text"/>
+                            <x-input name="customerInfo[address]" type="text" />
                         </div>
                     </div>
                 </div>

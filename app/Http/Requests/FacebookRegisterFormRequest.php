@@ -38,7 +38,9 @@ class FacebookRegisterFormRequest extends FormRequest
     {
         return [
 
-            'admin.phone'                  => 'required|unique:admins,phone',
+            'admin.phone'                  => 'required|unique:admins,phone|max:11',
+            'admin.fullname'               => 'required|string|max:50',
+            'admin.email'                  => 'required|email|unique:admins,email',
 
             'password'                     => 'required|confirmed|min:6',
             'password_confirmation'        => 'required|same:password',

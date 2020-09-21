@@ -22,7 +22,7 @@ class inputText extends Component
     public function render()
     {
 
-        return view('components.input-text');
+        return view('components.input-text' ,['key' => 12345]);
 
     }
 }

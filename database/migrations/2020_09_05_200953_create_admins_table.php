@@ -46,7 +46,7 @@ class CreateAdminsTable extends Migration
 
         Admin::create([
             'fullname'   => 'admin' ,
-            'phone'      => '54823954' ,
+            'phone'      => '01111213141' ,
             'email'      => 'admin@admin.com' ,
             'user_name'  => 'mando1987',
             'password'   => bcrypt('123456') ,

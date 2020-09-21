@@ -35,7 +35,6 @@ class CreateAdminsTable extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('fullname', 50);
-            $table->string('user_name', 50)->unique();
             $table->string('phone', 11)->unique();
             $table->string('email')->unique();
             $table->string('password');
@@ -46,7 +45,6 @@ class CreateAdminsTable extends Migration
 
         Admin::create([
             'fullname'   => 'admin' ,
-            'user_name'  => 'admin' ,
             'phone'      => '54823954' ,
             'email'      => 'admin@admin.com' ,
             'password'   => bcrypt('123456') ,

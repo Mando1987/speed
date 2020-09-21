@@ -14,24 +14,31 @@ class FacebookRegisterFormRequest extends FormRequest
     protected function prepareForValidation()
     {
 
-        // $this->merge([
+        $this->merge([
 
-        //     'admin' => array_merge(
-        //         $this->get('admin'),
-        //         [
-        //             'is_active' => 1,
-        //             'password'  => bcrypt($this->password),
-        //             'type'      => 'customer',
-        //         ]
-        //     ),
-        // ]);
+            'admin' => array_merge(
+                $this->get('admin'),
+                [
+                    'is_active' => 1,
+                    'password'  => bcrypt($this->password),
+                    'type'      => 'customer',
+                    'email'     => session('facebook')['email'],
+                    'fullname'  => session('facebook')['fullname'],
+                ]
+            ),
+            'customer' => array_merge(
+                $this->get('customer'),
+                [
+                    'image'     => session('facebook')['image'],
+                ]
+            ),
+        ]);
     }
     public function rules()
     {
         return [
 
             'admin.phone'                  => 'required|unique:admins,phone',
-            'admin.user_name'              => 'required|string|unique:admins,user_name|max:20',
 
             'password'                     => 'required|confirmed|min:6',
             'password_confirmation'        => 'required|same:password',
@@ -43,9 +50,6 @@ class FacebookRegisterFormRequest extends FormRequest
 
         ];
     }
-
-
-
     public function attributes()
     {
         return  trans('custom-attributes');
@@ -53,10 +57,25 @@ class FacebookRegisterFormRequest extends FormRequest
 
     public function validated()
     {
+        $data['admin'] = array_merge(
+            $this->validator->validated()['admin'],
+            [
+                'is_active' => 1,
+                'password'  => bcrypt($this->password),
+                'type'      => 'customer',
+                'email'     => session('facebook')['email'],
+                'fullname'  => session('facebook')['fullname']
+            ]
+        );
+        $data['customer'] = array_merge(
+            $this->validator->validated()['customer'],
+            [
+                'image'  => session('facebook')['image']
+            ]
+        );
+        $data['customerInfo'] = $this->customerInfo;
 
-        return array_merge($this->validator->validated(), [
-            'image'  =>  $this->image ?? 'default.png',
-        ]);
+        return $data;
 
     }
 }

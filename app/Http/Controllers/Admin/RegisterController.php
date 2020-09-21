@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FacebookRegisterFormRequest;
+use App\Services\Registers\FacebookRegisterService;
 use Laravel\Socialite\Facades\Socialite;
 
 
@@ -47,6 +48,6 @@ class RegisterController extends Controller
 
     public function FacebookRegisterProccess(FacebookRegisterFormRequest $request)
     {
-       return $request->validated();
+       return app(FacebookRegisterService::class)->store($request);
     }
 }

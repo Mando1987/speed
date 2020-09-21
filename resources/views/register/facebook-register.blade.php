@@ -14,8 +14,17 @@
         <form action="{{ route('facebook.register_proccess') }}" method="post">
             @csrf
             @method('POST')
+                    <div class="col-md">
+                        <div class="form-group row">
+                            <div class="col-sm-4">
+                            <x-label title="{{__('site.fullname')}}" value="{{ session('facebook')['fullname'] }}" />
+                            </div>
+                            <div class="col-sm-8">
+                                <x-input name="admin[fullname]" type="text"/>
+                            </div>
+                        </div>
+                </div>
                 <div class="col-md">
-
                         <div class="form-group row">
                             <div class="col-sm-4">
                                 <x-label title="{{__('site.phone')}}" />
@@ -24,7 +33,6 @@
                                 <x-input name="admin[phone]" type="text"/>
                             </div>
                         </div>
-
                 </div>
                 <div class="col-md">
                     <div class="form-group row">

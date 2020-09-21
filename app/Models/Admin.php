@@ -78,6 +78,11 @@ class Admin extends Authenticatable
 
     }
 
+    public function getPassword()
+    {
+       return $this->password;
+    }
+
 
 
 

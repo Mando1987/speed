@@ -47,9 +47,7 @@
                             <i class="nav-icon fa fa-map-marker"></i>
                             <p>
                                 @lang('sidebar.place.index')
-
-                                    <i class="fas fa-angle-left right"></i>
-
+                                <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">

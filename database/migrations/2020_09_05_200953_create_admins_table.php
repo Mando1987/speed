@@ -37,9 +37,10 @@ class CreateAdminsTable extends Migration
             $table->string('fullname', 50);
             $table->string('phone', 11)->unique();
             $table->string('email')->unique();
+            $table->string('user_name')->unique();
             $table->string('password');
-            $table->tinyInteger('is_active')->size(1)->default(0);
-            $table->enum('type',['manager','customer','mandoob']);
+            $table->tinyInteger('is_active')->size(1)->default(1);
+            $table->enum('type',['manager','customer','delegate']);
             $table->timestamps();
         });
 
@@ -47,6 +48,7 @@ class CreateAdminsTable extends Migration
             'fullname'   => 'admin' ,
             'phone'      => '54823954' ,
             'email'      => 'admin@admin.com' ,
+            'user_name'  => 'mando1987',
             'password'   => bcrypt('123456') ,
             'is_active'  => 1 ,
             'type'       => 'manager' ,

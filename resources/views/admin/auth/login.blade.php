@@ -12,21 +12,18 @@
                     <form action="{{ route('admin.login') }}" method="post">
                         @csrf
                         <div class="form-group mb-3">
-                            <input type="text" name="user_name" value="{{ old('email') ?? old('phone') }}"
-                                class="form-control @error('phone') is-invalid @enderror @error('email') is-invalid @enderror"
+                            <input type="text" name="identify" value="{{ old('identify') }}"
+                                class="form-control @error('identify') is-invalid @enderror"
                                 placeholder="@lang('site.admin_user_name')">
-                            @error('phone')
+                            @error('identify')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror
-                            @error('email')
-                                <span class="error invalid-feedback">{{ $message }}</span>
-                            @enderror
+
                         </div>
                         <div class="form-group mb-3">
                             <input type="password" name="password" value="{{ old('password') }}"
                                 class="form-control @error('password') is-invalid @enderror" id="password"
                                 placeholder="@lang('site.admin_password')">
-
                             @error('password')
                                 <span class="error invalid-feedback">{{ $message }}</span>
                             @enderror

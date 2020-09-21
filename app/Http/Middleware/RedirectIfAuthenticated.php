@@ -14,7 +14,7 @@ class RedirectIfAuthenticated
 
         if ($guard == 'admin' && Auth::guard($guard)->check()) {
 
-            return redirect()->route('price.index');
+            return redirect()->route('order.index');
         }
         return $next($request);
 

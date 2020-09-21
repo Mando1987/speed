@@ -17,7 +17,7 @@
                     <div class="col-md">
                         <div class="form-group row">
                             <div class="col-sm-4">
-                            <x-label title="{{__('site.fullname')}}" value="{{ session('facebook')['fullname'] }}" />
+                            <x-label title="{{__('site.fullname')}}" value="{{ $data['fullname'] }}" />
                             </div>
                             <div class="col-sm-8">
                                 <x-input name="admin[fullname]" type="text"/>

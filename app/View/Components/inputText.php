@@ -7,22 +7,22 @@ use Illuminate\View\Component;
 class inputText extends Component
 {
     public $name, $value, $placeHolder , $type;
-    public $key;
+    public $mando;
 
-    public function __construct($name , $value = null ,  $placeHolder = '' , $type = 'text' ,$key = '')
+    public function __construct($name , $value = null ,  $placeHolder = '' , $type = 'text' ,$mando = '')
     {
         $this->name        = $name;
-        $this->key         = \str_replace('[' , '.' ,\str_replace(']' , '' ,$name));
+        $this->mando         = \str_replace('[' , '.' ,\str_replace(']' , '' ,$name));
         $this->value       = $value ?? null;
         $this->placeHolder = $placeHolder;
         $this->type        = $type;
-        $this->key         = $key;
+        $this->mando         = $mando;
     }
 
     public function render()
     {
 
-        return view('components.input-text' ,['key' => 12345]);
+        return view('components.input-text' ,['mando' => 12345]);
 
     }
 }

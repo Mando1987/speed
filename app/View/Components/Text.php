@@ -6,27 +6,21 @@ use Illuminate\View\Component;
 
 class Text extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    public $name;
+
+    public function __construct($name)
     {
-        //
+      $this->name= $name;
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|string
-     */
+
     public function render()
     {
         return <<<'blade'
 <div>
     <!-- When there is no desire, all things are at peace. - Laozi -->
-    any
+    $name
 </div>
 blade;
     }

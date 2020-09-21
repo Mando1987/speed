@@ -1,6 +1,5 @@
-@extends('layouts.dashboard')
-
-@section('login')
+@extends('layouts.login')
+@section('content')
         <div class="login-box">
             <div class="login-logo">
                 <a href="{{ route('admin.index') }}"><b>@lang('site.website_name')</b> @lang('site.website_name_b')</a>

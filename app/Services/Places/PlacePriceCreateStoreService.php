@@ -1,12 +1,11 @@
 <?php
+namespace App\Services\Places;
 
-namespace App\Services;
-
-use App\Models\Admin;
 use App\Models\PlacePrice;
+use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
-class PlacePriceStoreService extends BaseService
+class PlacePriceCreateStoreService extends BaseService
 {
     const IMAGE_PATH = 'customers/';
 
@@ -18,9 +17,9 @@ class PlacePriceStoreService extends BaseService
         $this->route = 'price.index';
     }
 
-    public function handle($request)
+    public function store($request)
     {
-        //   dd($request);
+
         try {
 
             DB::beginTransaction();
@@ -29,16 +28,14 @@ class PlacePriceStoreService extends BaseService
 
             ($newPlacePrice->exists()) ? $newPlacePrice->update($request->validated()) : $newPlacePrice->create($request->validated());
 
-
             DB::commit();
             if ($request->ajax()) {
 
                 return response()->json([
-                    'code'  => 200,
+                    'code' => 200,
                     'title' => trans('site.added'),
                 ]);
             }
-
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
             return $this->path($this->route);
         } catch (\Exception $ex) {
@@ -49,5 +46,16 @@ class PlacePriceStoreService extends BaseService
             dd($ex->getMessage());
             return back();
         }
+    }
+
+    public function create($showInModel)
+    {
+        if ($showInModel == true) {
+            $reciver = session('reciver');
+            $data = ['governorate_id' => $reciver['governorate_id'], 'city_id' => $reciver['city_id']];
+            return view('place-prices.create-in-model', $data);
+        }
+
+        return view('place-prices.create', $this->getAllGovernoratesAndCities());
     }
 }

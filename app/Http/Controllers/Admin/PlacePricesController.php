@@ -9,6 +9,7 @@ use App\Models\PlacePrice;
 use App\Services\PlacePriceEditService;
 use App\Services\PlacePriceFetshDataService;
 use App\Services\PlacePriceStoreService;
+use App\Services\Places\PlacePriceCreateStoreService;
 
 class PlacePricesController extends Controller
 {
@@ -21,12 +22,12 @@ class PlacePricesController extends Controller
 
     public function create()
     {
-        return app(PlacePriceFetshDataService::class)->createNewCityPrice(request('showInModel'));
+        return app(PlacePriceCreateStoreService::class)->create(request('showInModel'));
     }
 
     public function store(PlacePriceStoreFormRequest $request)
     {
-        return app(PlacePriceStoreService::class)->handle($request);
+        return app(PlacePriceCreateStoreService::class)->store($request);
     }
 
 

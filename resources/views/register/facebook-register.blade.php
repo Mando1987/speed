@@ -1,6 +1,6 @@
-@extends('layouts.dashboard')
+@extends('layouts.login')
 
-@section('login')
+@section('content')
 <div class="register-box" style="width: 400px !important">
     <div class="login-logo">
         <a href="{{ route('admin.index') }}"><b>@lang('site.website_name')</b> @lang('site.website_name_b')</a>
@@ -104,7 +104,6 @@
                 </div>
             </form>
         </div>
-
         <!-- /.form-box -->
     </div><!-- /.card -->
 </div>

@@ -17,8 +17,7 @@ use App\Http\Controllers\Admin\SellersouqController;
 Route::get('admin/{id}/change-active', [AdminController::class, 'changeActive'])->name('admin.changeActive');
 Route::post('admin/{id}/change-passowrd', [AdminController::class, 'changePassword'])->name('admin.change_password');
 
-Route::get('/get-cities',[PlaceController::class, 'getCities'] );
-
+Route::get('/get-cities',[PlaceController::class, 'getCities'])->withoutMiddleware('auth:admin');
 
 Route::get('order/get-order-charge-price',[OrderController::class, 'getOrderChargePrice'] );
 Route::get('/price/create-place-price',[PlacePricesController::class, 'store'] );

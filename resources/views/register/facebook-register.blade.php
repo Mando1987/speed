@@ -11,7 +11,7 @@
                 <img class="profile-user-img img-fluid img-circle" src="{{ session('facebook')['image'] }}" />
             </p>
 
-        {{-- <form action="{{ route('facebook.register_proccess') }}" method="post">
+        <form action="{{ route('facebook.register_proccess') }}" method="post">
             @csrf
             @method('POST')
                 <div class="col-md">
@@ -85,9 +85,8 @@
                     <!-- /.col -->
                 </div>
             </form>
-        </div> --}}
-        {{-- <x-text name="admin"/> --}}
-        <x-input name="admin[]" />
+        </div>
+
         <!-- /.form-box -->
     </div><!-- /.card -->
 </div>

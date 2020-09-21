@@ -34,14 +34,6 @@ class LoginController extends Controller
 
     public function username()
     {
-
-        // $value = request('identify');
-
-        // $colmun = filter_var($value, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
-
-        // request()->merge([$colmun => $value]);
-
-        // return $colmun;
         return 'identify';
     }
     protected function guard()

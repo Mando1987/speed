@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\PlacePrice;
 use App\Http\Controllers\Controller;
+use App\Services\PlacePriceEditService;
 use App\Http\Requests\PlacePriceEditFormRequest;
 use App\Http\Requests\PlacePriceStoreFormRequest;
-use App\Models\PlacePrice;
-use App\Services\PlacePriceEditService;
-use App\Services\PlacePriceFetshDataService;
-use App\Services\PlacePriceStoreService;
+use App\Models\City;
+use App\Services\Places\PlacePriceFetshDataService;
 use App\Services\Places\PlacePriceCreateStoreService;
+use App\Services\Places\PlacePriceEditUpdateService;
 
 class PlacePricesController extends Controller
 {
@@ -31,16 +32,16 @@ class PlacePricesController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(City $price)
     {
-
-        return app(PlacePriceFetshDataService::class)->editCityPriceRow($id);
+        dd($price);
+        return app(PlacePriceEditUpdateService::class)->edit($id);
 
     }
 
     public function update(PlacePriceEditFormRequest $request ,$cityId)
     {
-        return app(PlacePriceEditService::class)->handle($request->validated() , $cityId);
+        return app(PlacePriceEditUpdateService::class)->update($request, $cityId);
 
     }
 

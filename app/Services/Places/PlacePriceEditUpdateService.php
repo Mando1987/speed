@@ -1,24 +1,23 @@
 <?php
-
-namespace App\Services;
+namespace App\Services\Places;
 
 use App\Models\City;
 use App\Models\PlacePrice;
+use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
-class PlacePriceEditService extends BaseService
+class PlacePriceEditUpdateService extends BaseService
 {
     const IMAGE_PATH = 'customers/';
 
-    private $city, $route = 'price.index';
+    public $city, $route = 'price.index';
 
     public function __construct(City $city){
 
         $this->city = $city;
     }
 
-
-    public function handle($request ,$cityId)
+    public function update($request ,$cityId)
     {
         try {
 
@@ -28,11 +27,11 @@ class PlacePriceEditService extends BaseService
 
             if (!$city->placePrices()->value('city_id')){
 
-                $city->placePrices->create($request);
+                $city->placePrices->create($request->validated());
 
             }else{
 
-                $city->placePrices->update($request);
+                $city->placePrices->update($request->validated());
             }
 
             DB::commit();
@@ -48,6 +47,16 @@ class PlacePriceEditService extends BaseService
             return back();
         }
 
+    }
+
+    public function edit($id)
+    {
+        $city = $this->city::where('id', $id)->first();
+        return view('place-prices.edit', [
+            'city_price'       => $city->placePrices,
+            'city_name'        => $city->name,
+            'governorate_name' => $city->governorate->name,
+        ]);
     }
 
 }

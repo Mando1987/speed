@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class PlacePriceCreateStoreService extends BaseService
 {
-    const IMAGE_PATH = 'customers/';
+    const IMAGE_PATH = 'places/';
 
     private $placePrice;
+    public $route;
 
     public function __construct(PlacePrice $placePrice)
     {
@@ -56,6 +57,6 @@ class PlacePriceCreateStoreService extends BaseService
             return view('place-prices.create-in-model', $data);
         }
 
-        return view('place-prices.create', $this->getAllGovernoratesAndCities());
+        return view('place-prices.create');
     }
 }

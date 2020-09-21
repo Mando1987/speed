@@ -17,10 +17,10 @@
                     <div class="col-md">
                         <div class="form-group row">
                             <div class="col-sm-4">
-                            <x-label title="{{__('site.fullname')}}" value="{{ $data['fullname'] }}" />
+                            <x-label title="{{__('site.fullname')}}" />
                             </div>
                             <div class="col-sm-8">
-                                <x-input name="admin[fullname]" type="text"/>
+                                <x-input name="admin[fullname]" value="{{ $data['fullname'] }}"/>
                             </div>
                         </div>
                 </div>
@@ -30,7 +30,7 @@
                                 <x-label title="{{__('site.phone')}}" />
                             </div>
                             <div class="col-sm-8">
-                                <x-input name="admin[phone]" type="text"/>
+                                <x-input name="admin[phone]" />
                             </div>
                         </div>
                 </div>

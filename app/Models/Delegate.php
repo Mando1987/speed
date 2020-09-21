@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Delegate extends Model
 {
-    const DEFAULT_IMAGE_PATH     = '/uploads/images/';
-    const IMAGES_FOLDER          = self::DEFAULT_IMAGE_PATH . 'delegates/';
-    const IMAGES_FOLDER_PROFILE  = self::IMAGES_FOLDER . 'profile/';
+    const DEFAULT_IMAGE_PATH = '/uploads/images/';
+    const IMAGES_FOLDER = self::DEFAULT_IMAGE_PATH . 'delegates/';
+    const IMAGES_FOLDER_PROFILE = self::IMAGES_FOLDER . 'profile/';
     const IMAGES_FOLDER_NATIONAL = self::IMAGES_FOLDER . 'national/';
     /**
     fullname
@@ -27,12 +27,12 @@ class Delegate extends Model
 
     public function governorate()
     {
-       return $this->belongsTo(Governorate::class);
+        return $this->belongsTo(Governorate::class);
     }
 
     public function city()
     {
-       return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class);
     }
 
     public function delegateDrive()
@@ -42,10 +42,12 @@ class Delegate extends Model
 
     public function getImageProfilePAth()
     {
-        return  $this->image == 'default.png' ? asset(self::DEFAULT_IMAGE_PATH . $this->image) : asset(self::IMAGES_FOLDER_PROFILE . $this->image);
+        return $this->image == 'default.png' ?
+        asset(self::DEFAULT_IMAGE_PATH . $this->image) :
+        asset(self::IMAGES_FOLDER_PROFILE . $this->image);
     }
     public function getImageNationalPAth()
     {
-        return  $this->national_image == 'default.png' ? asset(self::DEFAULT_IMAGE_PATH . $this->national_image) : asset(self::IMAGES_FOLDER_NATIONAL . $this->national_image);
+        return $this->national_image == 'default.png' ? asset(self::DEFAULT_IMAGE_PATH . $this->national_image) : asset(self::IMAGES_FOLDER_NATIONAL . $this->national_image);
     }
 }

@@ -32,9 +32,8 @@ class PlacePricesController extends Controller
     }
 
 
-    public function edit(City $price)
+    public function edit($id)
     {
-        dd($price);
         return app(PlacePriceEditUpdateService::class)->edit($id);
 
     }

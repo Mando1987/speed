@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FacebookRegisterFormRequest;
 use App\Services\Registers\FacebookRegisterService;
 use Laravel\Socialite\Facades\Socialite;
-
+use Str;
 
 class RegisterController extends Controller
 {
@@ -21,6 +21,16 @@ class RegisterController extends Controller
     }
     public function redirectToFacebook()
     {
+        $url = request()->url();
+        //site in local
+        if(Str::contains($url, 'speed.test')){
+            session(['facebook' => [
+                'fullname' => 'customer',
+                'email'    => 'customer@test.com',
+                'image'    => 'default.png',
+           ]]);
+           return redirect()->route('facebook.register');
+        }
         return Socialite::driver('facebook')->with(['access_token' => 'd43b2a56bad09abac57b7b937501b50f'])->redirect();
     }
 

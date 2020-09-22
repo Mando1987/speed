@@ -28,7 +28,9 @@ class FacebookRegisterService extends BaseService
 
             $newCustomer->customerInfos()->create($request->validated()['customerInfo']);
 
+            session()->forget('facebook');
             auth('admin')->login($newAdmin);
+
 
             DB::commit();
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);

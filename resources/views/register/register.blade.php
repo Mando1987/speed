@@ -1,6 +1,6 @@
 @extends('layouts.login')
 @section('content')
-<div class="register-box" style="width: 400px !important">
+<div class="register-box">
     <div class="login-logo">
         <a href="{{ route('admin.index') }}"><b>@lang('site.website_name')</b> @lang('site.website_name_b')</a>
     </div>

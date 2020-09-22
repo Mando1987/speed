@@ -34,7 +34,7 @@
                                                 <x-label title="{{__('site.sellersouq_order_num')}}" />
                                             </div>
                                             <div class="col-sm-8">
-                                                <x-input-text name="sellersouq[{{$i}}][order_num]" />
+                                                <x-input name="sellersouq[{{$i}}][order_num]" />
                                             </div>
                                         </div>
                                     </div>
@@ -46,7 +46,7 @@
                                             </div>
 
                                             <div class="col-sm-8">
-                                                <x-input-text name="sellersouq[{{$i}}][order_info]" />
+                                                <x-input name="sellersouq[{{$i}}][order_info]" />
                                             </div>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                                                 <x-label title="{{__('site.sellersouq_order_quantity')}}" />
                                             </div>
                                             <div class="col-sm-8">
-                                                <x-input-text name="sellersouq[{{$i}}][order_quantity]" />
+                                                <x-input name="sellersouq[{{$i}}][order_quantity]" />
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +70,7 @@
                                             </div>
 
                                             <div class="col-sm-8">
-                                                <x-input-text name="sellersouq[{{$i}}][order_weight]" />
+                                                <x-input name="sellersouq[{{$i}}][order_weight]" />
                                             </div>
                                         </div>
                                     </div>

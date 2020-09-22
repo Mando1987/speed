@@ -13,7 +13,6 @@ class DelegateFetshDataService extends BaseService
     private $delegate;
     public function __construct(Delegate $delegate)
     {
-
         $this->delegate = $delegate;
     }
 

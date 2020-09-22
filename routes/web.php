@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\City;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\RegisterController;
 
@@ -16,3 +17,7 @@ Route::get('/callback/facebook' , [RegisterController::class , 'handleFacebookCa
 Route::get('/facebook/register' , [RegisterController::class , 'viewFacebookRegister'])->name('facebook.register');
 Route::post('/facebook/register' , [RegisterController::class , 'FacebookRegisterProccess'])->name('facebook.register_proccess');
 
+
+Route::get('/test', function(){
+
+});

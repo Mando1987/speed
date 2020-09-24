@@ -4,7 +4,7 @@ namespace App\Services\customers;
 
 use App\Models\Admin;
 use App\Services\BaseService;
-use App\Services\currentAdminService;
+use App\Services\CurrentAdminService;
 use Illuminate\Support\Facades\DB;
 
 class CustomerEditUpdateService extends BaseService
@@ -48,7 +48,7 @@ class CustomerEditUpdateService extends BaseService
             DB::commit();
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
 
-            return $this->path($this->currentAdminService->route);
+            return $this->path($this->CurrentAdminService->route);
 
         } catch (\Exception $ex) {
 

@@ -3,7 +3,7 @@ namespace App\Services\Orders;
 
 use App\Models\Admin;
 use App\Services\BaseService;
-use App\Services\currentAdminService;
+use App\Services\CurrentAdminService;
 use Illuminate\Support\Facades\DB;
 use App\Services\Orders\OrderSaveUserDataToSession;
 
@@ -30,7 +30,7 @@ class CustomerOrderCreateStoreService extends BaseService
             try {
 
                 DB::beginTransaction();
-                $customer = (new currentAdminService)->customer();
+                $customer = (new CurrentAdminService)->customer();
 
                 $reciver = $customer->recivers()->create($request->validated()['reciver']);
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Services\currentAdminService;
+use App\Services\CurrentAdminService;
 use App\Services\Orders\OrderCountChargePrice;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -15,7 +15,7 @@ class OrderStoreFormRequest extends FormRequest
 
     public function __construct()
     {
-       $this->orderFormRequest = app(currentAdminService::class)->orderFormRequest();
+       $this->orderFormRequest = app(CurrentAdminService::class)->orderFormRequest();
     }
 
     public function authorize()

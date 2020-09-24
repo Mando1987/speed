@@ -49,11 +49,10 @@ class CurrentAdminService
 
     public function orderFormRequest()
     {
-        if($this->type == 'customer'):
+        if ($this->type == 'customer') :
             return app(CustomerOrderStoreRequest::class);
         endif;
 
         return app(ManagerOrderStoreFormRequest::class);
-
     }
 }

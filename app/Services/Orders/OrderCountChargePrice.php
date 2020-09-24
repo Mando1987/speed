@@ -17,6 +17,7 @@ class OrderCountChargePrice
     public  $addtion_price;
     public  $charge_price;
     public  $total_price;
+    public  $charge_on;
 
 
     public function getOrderChargePrice($request, $validation = false)
@@ -69,6 +70,7 @@ class OrderCountChargePrice
             'total_over_weight_price'  => $this->total_over_weight_price,
             'charge_price'             => $this->charge_price,
             'total_price'              => $this->total_price,
+            'charge_on'                => $this->request->charge_on,
         ];
     }
 

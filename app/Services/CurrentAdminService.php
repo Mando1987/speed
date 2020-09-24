@@ -7,7 +7,7 @@ use App\Http\Requests\ManagerOrderStoreFormRequest;
 use App\Services\Orders\ManagerOrderCreateStoreService;
 use App\Services\Orders\CustomerOrderCreateStoreService;
 
-class currentAdminService
+class CurrentAdminService
 {
     private $admin;
     private $type;

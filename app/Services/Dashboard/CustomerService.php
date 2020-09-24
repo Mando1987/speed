@@ -2,18 +2,27 @@
 
 namespace App\Services\Dashboard;
 
-use App\Services\currentAdminService;
+use App\Models\Order;
+use App\Models\Customer;
+use App\Models\Shipping;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use App\Services\CurrentAdminService;
 use Illuminate\Database\Eloquent\Builder;
 
 class CustomerService
 {
 
     protected $customer;
+    protected $current;
+    protected $id;
 
     public function __construct()
     {
 
-        $this->customer = app(currentAdminService::class)->customer();
+        $this->current = app(CurrentAdminService::class);
+        $this->customer = $this->current->customer();
+        $this->id = $this->current->getId();
     }
 
     public function index()
@@ -21,51 +30,28 @@ class CustomerService
         $filters = [
             'under_review',
             'under_preparation',
-            'my_balance',
             'ready_to_chip',
             'delivered',
             'postpond',
             'cancelld',
         ];
+        $queryText = "(SELECT COUNT(*) FROM orders WHERE status='?' and customer_id ='?') AS '?_count'";
 
-
-        $allStatus = [];
+        $query = Shipping::query()
+            ->select('order_id')
+            ->selectRaw('SUM(price)-(SELECT SUM(charge_price) FROM shippings WHERE charge_on="sender") AS my_balance_count')
+            ->selectRaw("(SELECT COUNT(*) FROM orders WHERE customer_id ={$this->id}) AS all_count");
 
         foreach ($filters as $index) {
-
-            $allStatus['orders as ' . $index . '_count'] = function ($q) use ($index) {
-
-                $q->where('status', $index);
-            };
+            $data = $query->selectRaw(Str::replaceArray('?', [$index, $this->id, $index], $queryText));
         }
 
-        $allStatus[] = 'orders as all_count';
+        $data = $query->whereIn('order_id', Order::select('id')->where(function ($q) {
+            $q->where('customer_id', $this->id)
+                ->where('status', 'delivered');
+        })->get())
+            ->first();
 
-        $data = $this->customer->select('id')->withCount($allStatus)->first();
-
-       // return $data;
-
-        // $all = $this->customer->select('id')->with(['orders' => function($q){
-
-        //     $q->select('id', 'customer_id','status')
-        //       ->where('status','under_review');
-
-        // } , 'orders.shipping' => function($q){
-        //     $q->select('id', 'price', 'order_id');
-
-        // }])->first();
-
-        // $totalPrice = 0;
-        //  $all->orders->map(function($item) use(&$totalPrice){
-
-        //      $totalPrice =  $totalPrice + $item->shipping->price;
-        // });
-
-        // return $totalPrice;
-
-
-
-        // return $data;
         return view('dashboard.customer', ['data' => $data]);
     }
 }

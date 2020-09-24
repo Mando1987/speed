@@ -20,9 +20,9 @@
 @foreach($orders as $index => $order)
 <tr>
     <td class="sorting_1" tabindex="0">{{ $orders->firstItem()+$index }}</td>
-    <td> {{ $order->sender->fullname }} </td>
+    <td> {{ $order->sender->fullname ?? $order->customer->admin->fullname }} </td>
     <td> {{ $order->getDate()}} </td>
-    <td> {{ $order->sender->city->name }} </td>
+    <td> {{ $order->sender->city->name ?? $order->customer->city->name}} </td>
     <td> {{ $order->shipping->total_price  }}</td>
     <td> {{ $order->status }}</td>
     <td> -- </td>

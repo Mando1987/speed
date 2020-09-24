@@ -203,6 +203,15 @@ return [
   'dashboard_postpond_count'          => 'تم التاجيل',
   'dashboard_cancelld_count'          => 'تم الالغاء',
 
+  'order_status_under_review'      => 'قيد المراجعة',
+  'order_status_under_preparation' => 'تحت الاعداد',
+  'order_status_my_balance'        => 'رصيدى',
+  'order_status_ready_to_chip'     => 'جاهز للشحن',
+  'order_status_delivered'         => 'تم التوصيل',
+  'order_status_postpond'          => 'تم التاجيل',
+  'order_status_cancelld'          => 'تم الالغاء',
+  //24/9/2020
+  'more_info' => 'عرض المزيد',
 
 
 ];

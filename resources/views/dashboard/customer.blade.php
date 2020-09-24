@@ -12,8 +12,8 @@
         <div class="icon">
           <i class="fas fa-shopping-cart"></i>
         </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fas fa-arrow-circle-right"></i>
+        <a href="{{ route('order.index') }}" class="small-box-footer">
+          @lang('site.more_info') <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
@@ -29,8 +29,8 @@
         <div class="icon">
           <i class="ion">👁‍🗨</i>
         </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fas fa-arrow-circle-right"></i>
+        <a href="{{ route('order.index' ,['status' => 'under_review']) }}" class="small-box-footer">
+          @lang('site.more_info') <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
@@ -46,8 +46,8 @@
         <div class="icon">
           <i class="fas fa-chart-pie"></i>
         </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fas fa-arrow-circle-right"></i>
+        <a href="{{ route('order.index' ,['status' => 'under_preparation']) }}" class="small-box-footer">
+          @lang('site.more_info') <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
@@ -64,8 +64,8 @@
         <div class="icon">
           <i class="ion">$</i>
         </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fas fa-arrow-circle-right"></i>
+      <a href="{{ route('order.index' ,['status' => 'my_balance']) }}" class="small-box-footer">
+          @lang('site.more_info') <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
@@ -82,8 +82,8 @@
         <div class="icon">
           <i class="ion">🏍</i>
         </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fas fa-arrow-circle-right"></i>
+        <a href="{{ route('order.index' ,['status' => 'ready_to_chip']) }}" class="small-box-footer">
+          @lang('site.more_info') <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
@@ -100,8 +100,8 @@
 
           <i class="ion">😃</i>
         </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fas fa-arrow-circle-right"></i>
+        <a href="{{ route('order.index' ,['status' => 'delivered']) }}" class="small-box-footer">
+          @lang('site.more_info') <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
@@ -117,8 +117,8 @@
         <div class="icon">
           <i class="ion">🚳</i>
         </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fas fa-arrow-circle-right"></i>
+        <a href="{{ route('order.index' ,['status' => 'postpond']) }}" class="small-box-footer">
+          @lang('site.more_info') <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>
@@ -135,8 +135,8 @@
         <div class="icon">
           <i class="ion">❌</i>
         </div>
-        <a href="#" class="small-box-footer">
-          More info <i class="fas fa-arrow-circle-right"></i>
+        <a href="{{ route('order.index' ,['status' => 'cancelld']) }}" class="small-box-footer">
+          @lang('site.more_info') <i class="fas fa-arrow-circle-right"></i>
         </a>
       </div>
     </div>

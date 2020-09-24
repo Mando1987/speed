@@ -23,7 +23,7 @@ class OrdersFetshDataService extends BaseService
             'shipping', 'sender:id,fullname,city_id', 'customer:id,city_id,admin_id', 'customer.admin:id,fullname', 'sender.city'
         ])->paginate(12);
 
-        return $orders;
+        // return $orders;
 
         return view('order.index', [
             'orders' => $orders,

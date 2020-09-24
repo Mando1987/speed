@@ -26,6 +26,11 @@ class Customer extends Model
        return $this->belongsTo(Admin::class);
     }
 
+    public function city()
+    {
+       return $this->belongsTo(City::class);
+    }
+
     public function customerInfos()
     {
         return $this->hasOne(CustomerInfo::class);

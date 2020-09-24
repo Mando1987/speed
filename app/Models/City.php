@@ -32,6 +32,11 @@ class City extends Model
         return $this->hasOne(Sender::class);
     }
 
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
+
     public function delegates()
     {
         return $this->hasMany(Delegate::class);

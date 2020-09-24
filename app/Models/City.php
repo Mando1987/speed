@@ -27,14 +27,18 @@ class City extends Model
         );
     }
 
-    public function sender()
+    public function senders()
     {
-        return $this->hasOne(Sender::class);
+        return $this->hasMany(Sender::class);
+    }
+    public function recivers()
+    {
+        return $this->hasMany(Reciver::class);
     }
 
-    public function customer()
+    public function customers()
     {
-        return $this->hasOne(Customer::class);
+        return $this->hasMany(Customer::class);
     }
 
     public function delegates()

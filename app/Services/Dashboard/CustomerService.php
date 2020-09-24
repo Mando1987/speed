@@ -2,13 +2,11 @@
 
 namespace App\Services\Dashboard;
 
-use App\Models\Order;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Shipping;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 use App\Services\CurrentAdminService;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 class CustomerService
 {

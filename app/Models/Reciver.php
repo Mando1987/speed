@@ -17,4 +17,9 @@ class Reciver extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function city()
+    {
+    return $this->belongsTo(City::class);
+    }
 }

@@ -56,7 +56,7 @@ class LoginController extends Controller
 
                 if (Hash::check($request->password, $admin->getPassword())) {
                     // login this admin
-                    return Auth::guard('admin')->login($admin);
+                    return Auth::guard('admin')->login($admin ,1);
                 } else {
                     $this->passwordError = true;
                 }

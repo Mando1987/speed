@@ -9,18 +9,33 @@ return [
         'parent_id'         => 'الأدمن الرئيسى',
         'role_id'           => 'الصلاحيات',
         'active'            => 'متاح',
-    ], 'order'              => [
-        'customer'          => 'العميل',
-        'created_at'        => 'التاريخ',
-        'city'              => 'المنطقة',
-        'total_price'       => 'إجمالى الشحنة',
-        'status'            => 'الحاله',
-        'delegate'          => 'المندوب',
-        //'type'            => 'نوع الشحن',
-        // 'price'          => 'قيمة الشحنة',
-        // 'charge_price'   => 'تكاليف الشحن',
-        'order_num'         => 'رقم البوليصه',
+    ], 'order'            => [
+        'customer' => [
+            'reciver'          => 'العميل',
+            'created_at'        => 'التاريخ',
+            'city'              => 'المنطقة',
+            'phone'             => 'رقم التليفون',
+            'total_price'       => 'إجمالى الشحنة',
+            'status'            => 'الحاله',
+            //'type'            => 'نوع الشحن',
+            // 'price'          => 'قيمة الشحنة',
+            // 'charge_price'   => 'تكاليف الشحن',
+            'order_num'         => 'رقم البوليصه',
 
+        ],
+        'manager' => [
+            'customer'          => 'العميل',
+            'created_at'        => 'التاريخ',
+            'city'              => 'المنطقة',
+            'total_price'       => 'إجمالى الشحنة',
+            'status'            => 'الحاله',
+            'delegate'          => 'المندوب',
+            //'type'            => 'نوع الشحن',
+            // 'price'          => 'قيمة الشحنة',
+            // 'charge_price'   => 'تكاليف الشحن',
+            'order_num'         => 'رقم البوليصه',
+
+        ]
     ], 'delegate'           => [
         'fullname'          => 'الأسم ',
         'qualification'     => 'المؤهل',

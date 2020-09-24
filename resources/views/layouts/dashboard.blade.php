@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-@inject('admin', 'App\Services\currentAdminService')
+@inject('admin', 'App\Services\CurrentAdminService')
 @php
 $languages= config('languages');
 @endphp

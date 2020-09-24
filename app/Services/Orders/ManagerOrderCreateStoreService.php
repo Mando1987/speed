@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services\Orders;
 
 use App\Models\Order;
@@ -8,7 +7,7 @@ use App\Models\Sender;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
-class OrdersStoreService extends BaseService
+class ManagerOrderCreateStoreService extends BaseService
 {
     const IMAGE_PATH = 'orders/';
 
@@ -21,9 +20,8 @@ class OrdersStoreService extends BaseService
         $this->order   = $order;
     }
 
-    public function handle($request)
+    public function store($request)
     {
-
         if (session('page') == 1) {
 
             return $this->orderPath($request, 2);
@@ -70,13 +68,20 @@ class OrdersStoreService extends BaseService
             }
         }
     }
+
+    public function create()
+    {
+        $userData = app(OrderSaveUserDataToSession::class)->handle(request('page'));
+        return view('order.create', ['userData' => $userData]);
+
+    }
+
     private function orderPath($request, $page)
     {
         session(['page' =>  $page]);
-        session($request);
-        return redirect()->route('order.create', ['page' => $page]);
+        $request->reciver ? session(['reciver' => $request->reciver]):false;
+        return redirect()->route('customer.order.create', ['page' => $page]);
     }
-
     private function setOrderNumberUnique($orderId)
     {
         return   3018 . ($orderId + 4);

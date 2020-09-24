@@ -23,6 +23,8 @@ Route::get('order/get-order-charge-price',[OrderController::class, 'getOrderChar
 Route::get('/price/create-place-price',[PlacePricesController::class, 'store'] );
 Route::get('/delegate/changeActive/{id}',[DelegateController::class, 'changeActive'])->name('delegate.changeActive');
 
+Route::get('customer/order/create', [CustomerController::class, 'createOrder'] )->name('customer.order.create');
+Route::post('customer/order', [CustomerController::class, 'storeOrder'] )->name('customer.order.store');
 
 Route::resources([
     'admin'        => AdminController::class,

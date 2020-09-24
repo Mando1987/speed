@@ -56,6 +56,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('governorate_id');
             $table->unsignedBigInteger('city_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->string('phone', 11)->unique();
             $table->string('fullname', 50);
             $table->string('other_phone', 11)->unique()->nullable();
@@ -66,6 +67,7 @@ class CreateOrdersTable extends Migration
             $table->string('shaka_number', 10);
             $table->foreign('governorate_id')->references('id')->on('governorates');
             $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('customer_id')->references('id')->on('customers');
 
         });
         Schema::create('orders', function (Blueprint $table) {

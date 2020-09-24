@@ -3,7 +3,6 @@
 namespace App\Services\Orders;
 
 class OrderSaveUserDataToSession
-
 {
   const SESSION_SENDER  = 'sender';
   const SESSION_RECIVER = 'reciver';
@@ -20,6 +19,21 @@ class OrderSaveUserDataToSession
   public  $city_id = 1;
   public  $other_phone;
   public  $page;
+
+  public $data = [
+    'fullname'       => '',
+    'phone'          => '',
+    'governorate_id' => 1,
+    'address'        => '',
+    'special_marque' => '',
+    'house_number'   => '',
+    'door_number'    => '',
+    'shaka_number'   => '',
+    'city_id'        => 1,
+    'other_phone'    => '',
+    'page'           => '',
+  ];
+
   private $sender;
   private $reciver;
 
@@ -27,16 +41,19 @@ class OrderSaveUserDataToSession
   {
 
     $this->page = $page ?? 1;
-
     $this->sender  = session(self::SESSION_SENDER);
     $this->reciver = session(self::SESSION_RECIVER);
 
-    $this->redirctToSenderForm();
-    $this->redirctToReciverForm();
+    if (auth('admin')->user()->type == 'manager') {
 
+      $this->redirctToSenderForm();
+      $this->redirctToReciverForm();
+    } else {
+      $this->customerRedirctToReciverForm();
+    }
     session([self::SESSION_PAGE => $this->page]);
 
-    return $this;
+    return (object) $this->data;
   }
 
   private function redirctToSenderForm()
@@ -54,13 +71,20 @@ class OrderSaveUserDataToSession
       $this->setData($this->reciver);
     }
   }
+  private function customerRedirctToReciverForm()
+  {
+    if ($this->page == 1 || ($this->page == 2 && !$this->reciver)) {
+      $this->page = 1;
+      $this->setData($this->reciver);
+    }
+  }
 
   private function setData($userData)
   {
-    if (is_array($userData)) {
 
+    if (is_array($userData)) {
       foreach ($userData as $key => $val) {
-        $this->$key = $val;
+        $this->data[$key] = $val;
       }
     }
   }

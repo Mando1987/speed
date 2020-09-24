@@ -4,12 +4,12 @@ namespace App\Services\customers;
 
 use App\Models\Admin;
 use App\Services\BaseService;
+use App\Services\currentAdminService;
 use Illuminate\Support\Facades\DB;
 
 class CustomerEditUpdateService extends BaseService
 {
     const IMAGE_PATH = 'customers/profile/';
-
     private $admin;
     public $route = 'customer.index';
 
@@ -20,6 +20,7 @@ class CustomerEditUpdateService extends BaseService
 
     public function edit($customer)
     {
+
         return view('customer.edit', [
             'data' => [
                 'customer'     => $customer,
@@ -31,7 +32,6 @@ class CustomerEditUpdateService extends BaseService
 
     public function update($request, $customer)
     {
-
         try {
             DB::beginTransaction();
 
@@ -47,7 +47,9 @@ class CustomerEditUpdateService extends BaseService
             $customer->customerInfos()->update($request->validated()['customerInfo']);
             DB::commit();
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
-            return $this->path($this->route);
+
+            return $this->path($this->currentAdminService->route);
+
         } catch (\Exception $ex) {
 
             DB::rollback();

@@ -14,11 +14,12 @@ class CreateDelegatesTable extends Migration
     public function up()
     {
         Schema::create('delegates', function (Blueprint $table) {
+
             $table->id();
             $table->unsignedBigInteger('governorate_id');
             $table->unsignedBigInteger('city_id');
-            $table->string('fullname', 50);
-            $table->string('phone', 11)->unique();
+            $table->unsignedBigInteger('admin_id');
+
             $table->string('other_phone', 11)->unique()->nullable();
             $table->string('national_id', 14)->unique();
             $table->string('address');
@@ -26,10 +27,11 @@ class CreateDelegatesTable extends Migration
             $table->string('social_status', 8)->nullable();
             $table->string('image')->default('default.png');
             $table->string('national_image')->default('default.png');
-            $table->tinyInteger('active')->size(1)->default(1);
             $table->timestamps();
+
             $table->foreign('governorate_id')->references('id')->on('governorates');
             $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
         });
         Schema::create('delegate_drives', function (Blueprint $table) {
 

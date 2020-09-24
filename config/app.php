@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Africa/Cairo',
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
         */
         Intervention\Image\ImageServiceProvider::class,
-        
+
         /*
          * Application Service Providers...
          */

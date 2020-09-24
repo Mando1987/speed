@@ -67,29 +67,25 @@
                 @enderror
 
             </div>
-            <div class="form-group col-md-6">
-                <label>
-                    <span class="text-gray-dark font-weight-normal">
-                        @lang('site.governorate')
-                    </span>
-                </label>
-                <select class="custom-select" name="sender[governorate_id]" id="governorate_id">
-                    @foreach($governorates as $governorate)
-                    <option value="{{ $governorate->id }}">{{ $governorate->name }}</option>
-                    @endforeach
-                </select>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <x-label title="{{__('site.governorate')}}" />
+                    </div>
+                    <div class="col-sm-8">
+                        <x-Governorates name="sender[]" />
+                    </div>
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                <label>
-                    <span class="text-gray-dark font-weight-normal">
-                        @lang('site.city')
-                    </span>
-                </label>
-                <select class="custom-select" name="sender[city_id]" id="city_id" data="{{$userData->city_id}}">
-                    @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
-                    @endforeach
-                </select>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <x-label title="{{__('site.city')}}" />
+                    </div>
+                    <div class="col-sm-8">
+                        <x-cities name="sender[]" />
+                    </div>
+                </div>
             </div>
             <div class="form-group col-md-6">
                 <label>

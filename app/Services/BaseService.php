@@ -63,7 +63,7 @@ class BaseService
     {
 
         $firstGovernoratesCities = $this->getAllGovernorates()->first()->cities;
-        return  ['governorates' => $this->getAllGovernorates(), 'cities' => $firstGovernoratesCities];
+        return ['governorates' => $this->getAllGovernorates(), 'cities' => $firstGovernoratesCities];
     }
 
     public function getCities()
@@ -73,7 +73,7 @@ class BaseService
 
     public function viewWithGovernorates($route,array $data = [])
     {
-        return view( $route, array_merge($this->getAllGovernoratesAndCities(), $data));
+        return view($route, array_merge($this->getAllGovernoratesAndCities(), $data));
     }
 
 

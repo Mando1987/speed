@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStoreFormRequest;
+use App\Services\currentAdminService;
 use App\Services\Orders\OrderCountChargePrice;
 use App\Services\Orders\OrdersFetshDataService;
 use App\Services\Orders\OrdersStoreService;
@@ -19,12 +20,12 @@ class OrderController extends Controller
 
     public function create()
     {
-        return app(OrdersFetshDataService::class)->createNewOrder();
+        return app(currentAdminService::class)->order()->create();
     }
 
     public function store(OrderStoreFormRequest $request)
     {
-        return app(OrdersStoreService::class)->handle($request->validated());
+        return app(currentAdminService::class)->order()->store($request);
     }
 
     public function getOrderChargePrice(Request $request)

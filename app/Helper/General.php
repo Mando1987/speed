@@ -14,9 +14,13 @@ if(!function_exists('breadcrumb') ){
     {
 
         $routeName = Route::currentRouteName();
-        $breadcrumbUrl[] = [ 'route' =>route('dashboard.index') ,'class'=> 'active' , 'lang' => trans('sidebar.dashboard.index')];
+        $routeLang = 'sidebar.' . currentAdminType();
 
-        if (array_key_exists($routeName , trans('sidebar'))):
+        $breadcrumbUrl[] = [ 'route' =>route('dashboard.index') ,'class'=> 'active' , 'lang' => trans($routeLang .'.dashboard.index')];
+
+        // dd($routeLang);
+
+        if (array_key_exists($routeName , trans('sidebar' ))):
 
             if($routeName != 'dashboard.index'):
 
@@ -25,11 +29,13 @@ if(!function_exists('breadcrumb') ){
 
                     if($child != 'index'):
 
-                        $breadcrumbUrl[] = ['route' => route($parent) , 'class'=> 'active' ,'lang' => trans('sidebar.' . $parent)];
+                        $breadcrumbUrl[] = ['route' => route($parent) , 'class'=> 'active' ,'lang' => trans($routeLang .'.' .  $parent)];
                     endif;
 
-                    $breadcrumbUrl[] = ['route' => '' , 'class'=> '' ,'lang' => trans('sidebar.' . $routeName)];
+                    $breadcrumbUrl[] = ['route' => '' , 'class'=> '' ,'lang' => trans($routeLang .'.' . $routeName)];
             endif;
+        else:
+            $breadcrumbUrl[] = ['route' => '' , 'class'=> '' ,'lang' => trans($routeLang .'.' . $routeName)];
         endif;
         return $breadcrumbUrl;
     }
@@ -42,7 +48,7 @@ if(!function_exists('breadcrumbName') ){
     function breadcrumbName()
 
     {
-      return (trans('sidebar.' . Route::currentRouteName()));
+      return (trans('sidebar.' . currentAdminType() .'.' . Route::currentRouteName()));
     }
 }
 
@@ -77,6 +83,7 @@ if(!function_exists('currentAdminType') ){
        return currentAdmin()->type;
     }
 }
+
 
 
 

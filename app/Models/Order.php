@@ -50,6 +50,11 @@ class Order extends Model
         return $this->hasOne(Shipping::class);
     }
 
+    public function orderStatuses()
+    {
+       return $this->hasMany(OrderStatus::class);
+    }
+
     public function getTypeAttribute($value)
     {
         return trans('site.order_' . $value);

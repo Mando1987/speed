@@ -16,7 +16,7 @@ class DashboardFetchDataService extends BaseService
     {
         $this->admin     = auth('admin')->user();
         $this->type      = $this->admin->type;
-        $this->className =  __NAMESPACE__ . DIRECTORY_SEPARATOR . Str::ucfirst($this->type . 'Service');
+        $this->className =  __NAMESPACE__ .'\\' . Str::ucfirst($this->type . 'Service');
         $this->service   = (new $this->className);
     }
 

@@ -211,6 +211,13 @@ return [
   'order_status_delivered'         => 'تم التوصيل',
   'order_status_postpond'          => 'تم التاجيل',
   'order_status_cancelld'          => 'تم الالغاء',
+
+  'color_under_review'      => 'lightblue',
+  'color_under_preparation' => 'info',
+  'color_ready_to_chip'     => 'teal',
+  'color_delivered'         => 'success',
+  'color_postpond'          => 'purple',
+  'color_cancelld'          => 'danger',
   //24/9/2020
   'more_info' => 'عرض المزيد',
 

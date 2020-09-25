@@ -15,7 +15,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        return app(OrdersFetshDataService::class)->handle();
+        return app(OrdersFetshDataService::class)->handle(request());
     }
 
     public function create()

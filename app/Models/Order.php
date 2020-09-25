@@ -55,14 +55,14 @@ class Order extends Model
        return $this->hasMany(OrderStatus::class);
     }
 
-    public function getTypeAttribute($value)
+    public function getType()
     {
-        return trans('site.order_' . $value);
+        return trans('site.order_' . $this->type);
     }
 
-    public function getStatusAttribute($value)
+    public function getStatus()
     {
-        return trans('site.order_status_' . $value);
+        return trans('site.order_status_' . $this->status);
     }
 
     public function getDate()

@@ -20,9 +20,9 @@ class OrdersFetshDataService extends BaseService
         $this->service   = (new $this->className);
     }
 
-    public function handle()
+    public function handle($request)
     {
-        return $this->service->handle($this->admin);
+        return $this->service->setView($request->view)->handle($this->admin);
     }
 
     // public function editCityPriceRow($id)

@@ -11,11 +11,12 @@ $factory->define(Order::class, function (Faker $faker) {
 
     return [
         'type'                => 'next_day_delivery',
-        'status'              => 'phone_from_customer',
+        'status'              => $faker->randomElement(['under_review', 'cancelld' , 'under_preparation' ,'delivered' ,'postpond']),
         'info'                => 'info',
         'notes'               => 'info',
         'user_can_open_order' => 0,
-        'sender_id'           => factory(Sender::class),
+        // 'sender_id'           => factory(Sender::class),
+        'customer_id'         => 1,
         'reciver_id'          => factory(Reciver::class)
     ];
 });

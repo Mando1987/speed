@@ -11,10 +11,10 @@ return [
         'active'            => 'متاح',
     ], 'order'            => [
         'customer' => [
-            'reciver'          => 'العميل',
+            'reciver'           => ' العميل',
             'created_at'        => 'التاريخ',
             'city'              => 'المنطقة',
-            'phone'             => 'رقم التليفون',
+            'phone'             => 'التليفون',
             'total_price'       => 'إجمالى الشحنة',
             'status'            => 'الحاله',
             //'type'            => 'نوع الشحن',

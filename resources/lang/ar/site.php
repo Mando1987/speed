@@ -93,6 +93,7 @@ return [
   'reciver_info_title'              => 'بيانات المرسل إليه ',
   'reciver_fullname'                => 'اسم المرسل إليه',
 
+  'order_title'                     => 'الشحنة',
   'order_info_title'                => 'تفاصيل الشحنة',
   'order_type'                      => 'اختار نوع الشحن',
   'order_info'                      => 'وصف الشحنة',

@@ -98,7 +98,7 @@
     </div>
     @else
     <div class="table-responsive p-0">
-    <table class="table table-head-fixed text-nowrap text-center">
+    <table class="table table-head-fixed table-bordered text-nowrap text-center">
       <thead>
         <tr>
         <th> # </th>

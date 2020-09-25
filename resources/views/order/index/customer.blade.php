@@ -4,7 +4,7 @@
 
 @if($orders->count())
 <div class="card card-solid">
-  <div class="card-header">
+  <div class="card-header p-1 border-bottom-0">
     <div class="float-right">
       <a href="{{ route('order.index' , ['view' => 'list']) }}" class="btn btn-sm @if($view =='list') btn-primary @endif">
         <i class="fas fa-bars"></i>
@@ -14,7 +14,7 @@
       </a>
     </div>
   </div><!--card-header-->
-  <div class="card-body pb-0">
+  <div class="card-body p-1">
     @if($view =='grid')
     <div class="row d-flex align-items-stretch">
       @foreach($orders as $index => $order)

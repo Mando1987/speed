@@ -70,5 +70,10 @@ class Order extends Model
        return $this->created_at->format('Y-m-d');
     }
 
+    public function getCityName()
+    {
+       return app()->getLocale() == 'ar' ? $this->city_name : $this->city_name_en;
+    }
+
 
 }

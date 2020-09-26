@@ -204,6 +204,7 @@ return [
   'dashboard_postpond_count'          => 'تم التاجيل',
   'dashboard_cancelld_count'          => 'تم الالغاء',
 
+  'order_status_all_orders'        => 'كل الشحنات',
   'order_status_under_review'      => 'قيد المراجعة',
   'order_status_under_preparation' => 'تحت الاعداد',
   'order_status_my_balance'        => 'رصيدى',
@@ -220,6 +221,7 @@ return [
   'color_cancelld'          => 'danger',
   //24/9/2020
   'more_info' => 'عرض المزيد',
+  'search_placeholder'     => 'ابحث عما تريد',
 
 
 ];

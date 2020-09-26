@@ -9,20 +9,23 @@ class OrdersFetshDataService extends BaseService
 {
     private $admin;
     private $type;
-    private $service;
-    private $className;
+    private $identifyOrdersFetch;
 
     public function __construct()
     {
-        $this->admin     = auth('admin')->user();
-        $this->type      = $this->admin->type;
-        $this->className =  __NAMESPACE__ .'\\' . Str::ucfirst($this->type . 'OrderFetshDataService');
-        $this->service   = (new $this->className);
+        $identify      = auth('admin')->user();
+        $this->type    = $identify->type;
+        $type          = $this->type;
+        $className     =  __NAMESPACE__ .'\\' . Str::ucfirst($type . 'OrderFetshDataService');
+        $this->admin   = $identify->$type;
+        $this->identifyOrdersFetch = (new $className);
     }
 
     public function handle($request)
     {
-        return $this->service->setView($request->view)->handle($this->admin);
+        return $this->identifyOrdersFetch->handle(
+            (object) array_merge($request->all() ,[$this->type => $this->admin])
+        );
     }
 
     // public function editCityPriceRow($id)

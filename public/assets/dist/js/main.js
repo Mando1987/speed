@@ -37,8 +37,24 @@ $(document).ready(function () {
         return false;
     });
 
+    $("#orderStatus").change(function () {
+        var statusValue = $(this).val();
+        var query = location.search.split("&");
+        var params = "";
+        for (var i = 0; i < query.length; i++) {
+            if (query[i].startsWith("status")) {
+                continue;
+            }
+             params += query[i] + '&';
+
+        }
+        params += 'status=' + statusValue;
+        location.href =`/order/${params}`;
+    });
+
     $("#governorate_id").change(function () {
         var id = $(this).val();
+
         $("#city_id").html("");
         $.get(
             "/get-cities",

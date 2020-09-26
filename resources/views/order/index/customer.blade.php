@@ -122,9 +122,7 @@
                 @endif
               </div>
             </div>
-
           </div>
-
         </div><!-- end of card-->
       </div>
       @endforeach

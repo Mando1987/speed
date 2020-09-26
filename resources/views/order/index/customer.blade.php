@@ -7,14 +7,15 @@
     <div class="row d-flex align-items-stretch">
 
       <div class="col-12 col-sm-5 col-md-5  d-flex align-items-stretch mb-1">
-        <select class="custom-select custom-select-sm" id="orderStatus">
-
+        <form class="w-100" id="changeStatus" action="{{ route('order.index' , $_SERVER['QUERY_STRING']) }}" method="GET">
+        <select class="custom-select custom-select-sm" id="orderStatus" name="status">
           <option value="all">@lang('site.dashboard_all_orders')</option>
           @foreach (config('orderStatus') as $orderStatus)
           <option value="{{ $orderStatus }}" "@if ($orderStatus == $status) selected @endif">@lang('site.order_status_'
             . $orderStatus)</option>
           @endforeach
         </select>
+      </form>
       </div>
       <div class="col-8 col-sm-5 col-md-5">
         <form action="{{ route('order.index' , $_SERVER['QUERY_STRING']) }}" method="GET">

@@ -38,9 +38,9 @@ $(document).ready(function () {
     });
 
     $("#orderStatus").change(function () {
-        var statusValue = $(this).val();
+       // var statusValue = $(this).val();
         // var query = location.search.split("&");
-        var params = "?";
+       // var params = "?";
         // if (Array.isArray(query) && query !="" && query.length > 0) {
         //     for (var i = 0; i < query.length; i++) {
         //         if (query[i].startsWith("status")) {
@@ -50,8 +50,9 @@ $(document).ready(function () {
         //     }
         // }
         // if(params == ""){params+="?"}
-         params += "status=" + statusValue;
-        location.href = `/order/${params}`;
+        //  params += "status=" + statusValue;
+        // location.href = `/order/${params}`;
+        $('#changeStatus').submit();
     });
 
     $("#governorate_id").change(function () {

@@ -220,9 +220,8 @@ return [
   'color_postpond'                 => 'purple',
   'color_cancelld'                 => 'danger',
   //24/9/2020
-<<<<<<< HEAD
-  'more_info' => 'عرض المزيد',
-  'search_placeholder'     => 'ابحث عما تريد',
+  'more_info'                      => 'عرض المزيد',
+  'search_placeholder'             => 'ابحث عما تريد',
 =======
   'more_info'                      => 'عرض المزيد',
 >>>>>>> 56b525fd9c764c43b24dd55d1e135d571614fb7d

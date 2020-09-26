@@ -1,24 +1,21 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
 <div class="card card-solid">
   <div class="card-header p-1 border-bottom-0">
-    <div class="row d-flex align-items-stretch">
-
-      <div class="col-12 col-sm-5 col-md-5  d-flex align-items-stretch mb-1">
-        <form class="w-100" id="changeStatus" action="{{ route('order.index' , $_SERVER['QUERY_STRING']) }}" method="GET">
-        <select class="custom-select custom-select-sm" id="orderStatus" name="status">
-          <option value="all">@lang('site.dashboard_all_orders')</option>
-          @foreach (config('orderStatus') as $orderStatus)
-          <option value="{{ $orderStatus }}" "@if ($orderStatus == $status) selected @endif">@lang('site.order_status_'
-            . $orderStatus)</option>
-          @endforeach
-        </select>
-      </form>
-      </div>
-      <div class="col-8 col-sm-5 col-md-5">
-        <form action="{{ route('order.index' , $_SERVER['QUERY_STRING']) }}" method="GET">
+    <form class="w-100" id="changeStatus" action="{{ route('order.index') }}" method="GET">
+      <div class="row d-flex align-items-stretch">
+        <div class="col-12 col-sm-5 col-md-5  d-flex align-items-stretch mb-1">
+          <select class="custom-select custom-select-sm" id="orderStatus" name="status">
+            <option value="all">@lang('site.dashboard_all_orders')</option>
+            @foreach (config('orderStatus') as $orderStatus)
+            <option value="{{ $orderStatus }}" "@if ($orderStatus == $status) selected @endif">
+              @lang('site.order_status_'
+              . $orderStatus)</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="col-8 col-sm-5 col-md-5">
           <div class="input-group input-group-sm">
             <input type="text" name="search" value="" placeholder="@lang('site.search_placeholder')"
               class="form-control">
@@ -28,21 +25,21 @@
               </button>
             </span>
           </div>
-        </form>
-      </div>
-      <div class="col-4 col-sm-2 col-md-2">
-        <div class="float-right">
-          <a href="{{ route('order.index' , ['view' => 'list']) }}"
-            class="btn btn-sm @if($view =='list') btn-primary @endif">
-            <i class="fas fa-bars"></i>
-          </a>
-          <a href="{{ route('order.index' , ['view' => 'grid']) }}"
-            class="btn btn-sm @if($view =='grid') btn-primary @endif">
-            <i class="fas fa-th"></i>
-          </a>
+        </div>
+        <div class="col-4 col-sm-2 col-md-2">
+          <div class="float-right">
+            <a href="{{ route('order.index' , ['view' => 'list' ,'status'=>$status??'all' , 'search'=> $search]) }}"
+              class="btn btn-sm @if($view =='list') btn-primary @endif">
+              <i class="fas fa-bars"></i>
+            </a>
+            <a href="{{ route('order.index' , ['view' => 'grid' ,'status'=>$status??'all' , 'search'=> $search]) }}"
+              class="btn btn-sm @if($view =='grid') btn-primary @endif">
+              <i class="fas fa-th"></i>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   </div>
   <!--card-header-->
   @if($orders->count())
@@ -116,10 +113,42 @@
             </table>
             <div class="text-center mt-3 mb-0">
               <div class="btn-group btn-group-sm">
-                <x-show-button ability="admin_show" route="order.show" id="{{ $order->id ?? 1 }}" />
-                @if($order->status != 'delivered')
-                <x-edit-button ability="order_edit" route="order.edit" id="{{ $order->id ?? 1}}" />
-                <x-delete-button ability="order_destroy" route="order.destroy" id="{{ $order->id ?? 1}}" />
+                <x-show-button ability="admin_show" route="order.show" id="{{ $order->id  }}" />
+
+                @if($order->status == 'under_review ' || $order->status == 'under_preparation')
+                <a class="btn btn-info btn-sm mr-2" href="{{ route('order.edit' , $order->id) }}">
+                  <span class="d-none d-md-block">
+                    <i class="fas fa-pencil-alt"></i>
+                    @lang('site.edit')
+                  </span>
+                  <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
+                </a>
+                <button class="btn btn-danger btn-sm" onclick="deletedMethod({{ $order->id }})">
+                  <span class="d-none d-md-block">
+                    <i class="far fa-trash-alt"></i>
+                    @lang('site.delete')
+                  </span>
+                  <span class="d-block d-md-none">
+                    <i class="far fa-trash-alt"></i>
+                  </span>
+                </button>
+
+                <form id="deletedForm{{ $order->id }}" action="{{ route('order.destroy', $order->id) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                </form>
+                @else
+                <a class="btn btn-info btn-sm mr-2 disabled" href="#">
+                  <span class="d-none d-md-block">
+                    <i class="fas fa-pencil-alt"></i>
+                    @lang('site.edit')
+                  </span>
+                  <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
+                </a>
+                <button class="btn btn-danger btn-sm disabled">
+                  <i class="far fa-trash-alt"></i>
+                  @lang('site.delete')
+                </button>
                 @endif
               </div>
             </div>
@@ -144,7 +173,7 @@
           @foreach($orders as $index => $order)
           <tr>
             <td class="sorting_1" tabindex="0">{{ $orders->firstItem()+$index }}</td>
-            <td class="font-weight-bold"> {{ $order->fullname??'' }} </td>
+            <td> {{ $order->fullname??'' }} </td>
             <td> {{ $order->getDate()}} </td>
             <td> {{ $order->getCityName() }} </td>
             <td> {{ $order->phone??'' }} </td>
@@ -158,8 +187,43 @@
             <td>
               <div class="btn-group btn-group-sm">
                 <x-show-button ability="admin_show" route="order.show" id="{{ $order->id }}" />
-                <x-edit-button ability="order_edit" route="order.edit" id="{{ $order->id }}" />
-                <x-delete-button ability="order_destroy" route="order.destroy" id="{{ $order->id }}" />
+
+                @if($order->status == 'under_review ' || $order->status == 'under_preparation')
+                <a class="btn btn-info btn-sm mr-2" href="{{ route('order.edit' , $order->id) }}">
+                  <span class="d-none d-md-block">
+                    <i class="fas fa-pencil-alt"></i>
+                    @lang('site.edit')
+                  </span>
+                  <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
+                </a>
+                <button class="btn btn-danger btn-sm" onclick="deletedMethod({{ $order->id }})">
+                  <span class="d-none d-md-block">
+                    <i class="far fa-trash-alt"></i>
+                    @lang('site.delete')
+                  </span>
+                  <span class="d-block d-md-none">
+                    <i class="far fa-trash-alt"></i>
+                  </span>
+                </button>
+
+                <form id="deletedForm{{ $order->id }}" action="{{ route('order.destroy', $order->id) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                </form>
+
+                @else
+                <a class="btn btn-info btn-sm mr-2 disabled" href="#">
+                  <span class="d-none d-md-block">
+                    <i class="fas fa-pencil-alt"></i>
+                    @lang('site.edit')
+                  </span>
+                  <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
+                </a>
+                <button class="btn btn-danger btn-sm disabled">
+                  <i class="far fa-trash-alt"></i>
+                  @lang('site.delete')
+                </button>
+                @endif
               </div>
             </td>
           </tr>

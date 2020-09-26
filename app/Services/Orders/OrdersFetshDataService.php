@@ -30,12 +30,10 @@ class OrdersFetshDataService extends BaseService
         $this->admin   = $identify->$type;
         $this->identifyOrdersFetch = (new $className);
     }
-
-    public function handle($request)
+    public function index($request)
     {
         $this->setView($request->view ?? null);
-
-        return $this->identifyOrdersFetch->handle(
+        return $this->identifyOrdersFetch->index(
             (object) array_merge(
                 $request->all(),
                 [
@@ -47,6 +45,10 @@ class OrdersFetshDataService extends BaseService
                 ]
             )
         );
+    }
+    public function show($id)
+    {
+        return $this->identifyOrdersFetch->show([$this->type => $this->admin,'id' => $id]);
     }
     private function setView($value = null)
     {
@@ -68,13 +70,5 @@ class OrdersFetshDataService extends BaseService
             $this->paginate = 12;
         }
     }
-    // public function editCityPriceRow($id)
-    // {
-    //     $city = $this->city::where('id', $id)->first();
-    //     return view('place-prices.edit', [
-    //         'city_price' => $city->placePrices,
-    //         'city_name' => $city->name,
-    //         'governorate_name' => $city->governorate->name,
-    //     ]);
-    // }
+
 }

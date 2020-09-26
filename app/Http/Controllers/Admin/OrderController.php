@@ -15,7 +15,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        return app(OrdersFetshDataService::class)->handle(request());
+        return app(OrdersFetshDataService::class)->index(request());
     }
 
     public function create()
@@ -32,4 +32,9 @@ class OrderController extends Controller
     {
         return app(OrderCountChargePrice::class)->getOrderChargePrice($request, true);
     }
+    public function show($id)
+    {
+        return app(OrdersFetshDataService::class)->show($id);
+    }
+
 }

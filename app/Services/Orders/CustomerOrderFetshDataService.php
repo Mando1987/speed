@@ -8,9 +8,8 @@ use App\Services\BaseService;
 class CustomerOrderFetshDataService extends BaseService
 {
 
-    public function handle($request)
+    public function index($request)
     {
-
         $orders = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')
             ->join('recivers', 'recivers.id', '=', 'orders.reciver_id')
             ->join('cities', 'cities.id', '=', 'recivers.city_id')
@@ -45,5 +44,22 @@ class CustomerOrderFetshDataService extends BaseService
             ]
         );
     }
+    public function show(array $data)
+    {
+        $order = Order::with(['shipping' => function ($query) {
+            $query->select('shippings.*')
+                ->selectRaw('IF(charge_on="sender" ,price - charge_price ,price) AS finalPrice');
+        } ,'reciver' ,'reciver.city'])
+            ->where('orders.customer_id', $data['customer']->id)
+            ->where('id', $data['id'])
+            ->first();
 
+        // return $order;
+        return view(
+            'order.show',
+            [
+                'order' => $order,
+            ]
+        );
+    }
 }

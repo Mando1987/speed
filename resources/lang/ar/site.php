@@ -222,5 +222,12 @@ return [
   //24/9/2020
   'more_info'                       => 'عرض المزيد',
   'search_placeholder'              => 'ابحث عما تريد',
+  'reciver_show_title'              => 'بيانات العميل',
+  'order_show_title'                => 'بيانات الشحنة',
+  'order_show_shipping'             =>  'التكاليف',
+  'order_show_date'                 =>  'التاريخ',
+  'order_user_can_open_order_0'     => 'لا',
+  'order_user_can_open_order_1'     => 'نعم',
+  'order_show_discount'             => 'قيمة الخصم',
 
 ];

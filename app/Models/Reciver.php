@@ -22,4 +22,8 @@ class Reciver extends Model
     {
     return $this->belongsTo(City::class);
     }
+    public function governorate()
+    {
+    return $this->belongsTo(Governorate::class);
+    }
 }

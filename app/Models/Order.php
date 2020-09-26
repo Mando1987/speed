@@ -75,5 +75,10 @@ class Order extends Model
        return app()->getLocale() == 'ar' ? $this->city_name : $this->city_name_en;
     }
 
+    public function getOpenOrder()
+    {
+        return trans('site.order_user_can_open_order_'. $this->user_can_open_order);
+    }
+
 
 }

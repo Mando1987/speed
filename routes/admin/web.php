@@ -13,7 +13,6 @@ use App\Http\Controllers\Admin\PlacePricesController;
 use App\Http\Controllers\Admin\SellersouqController;
 
 // // ############################################################################
-
 Route::get('admin/{id}/change-active', [AdminController::class, 'changeActive'])->name('admin.changeActive');
 Route::post('admin/{id}/change-passowrd', [AdminController::class, 'changePassword'])->name('admin.change_password');
 
@@ -43,7 +42,4 @@ Route::fallback(function () {
     return abort(404);
 });
 
-// Route::get('test', function () {
-//    return (new Customer() )->getTable();
-// });
 

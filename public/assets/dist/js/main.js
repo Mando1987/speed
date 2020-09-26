@@ -39,17 +39,19 @@ $(document).ready(function () {
 
     $("#orderStatus").change(function () {
         var statusValue = $(this).val();
-        var query = location.search.split("&");
-        var params = "";
-        for (var i = 0; i < query.length; i++) {
-            if (query[i].startsWith("status")) {
-                continue;
-            }
-             params += query[i] + '&';
-
-        }
-        params += 'status=' + statusValue;
-        location.href =`/order/${params}`;
+        // var query = location.search.split("&");
+        var params = "?";
+        // if (Array.isArray(query) && query !="" && query.length > 0) {
+        //     for (var i = 0; i < query.length; i++) {
+        //         if (query[i].startsWith("status")) {
+        //             continue;
+        //         }
+        //         params += query[i] + "&";
+        //     }
+        // }
+        // if(params == ""){params+="?"}
+         params += "status=" + statusValue;
+        location.href = `/order/${params}`;
     });
 
     $("#governorate_id").change(function () {

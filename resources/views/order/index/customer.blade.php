@@ -17,16 +17,17 @@
         </select>
       </div>
       <div class="col-8 col-sm-5 col-md-5">
-      <form action="{{ route('order.index' , $_SERVER['QUERY_STRING']) }}" method="GET">
-        <div class="input-group input-group-sm">
-        <input type="text" name="search" value="{{ $search }}" placeholder="@lang('site.search_placeholder')" class="form-control">
-          <span class="input-group-append">
-            <button type="submit" class="btn btn-primary">
-              <i class="fas fa-search"></i>
-            </button>
-          </span>
-        </div>
-      </form>
+        <form action="{{ route('order.index' , $_SERVER['QUERY_STRING']) }}" method="GET">
+          <div class="input-group input-group-sm">
+            <input type="text" name="search" value="" placeholder="@lang('site.search_placeholder')"
+              class="form-control">
+            <span class="input-group-append">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </form>
       </div>
       <div class="col-4 col-sm-2 col-md-2">
         <div class="float-right">
@@ -115,8 +116,10 @@
             <div class="text-center mt-3 mb-0">
               <div class="btn-group btn-group-sm">
                 <x-show-button ability="admin_show" route="order.show" id="{{ $order->id ?? 1 }}" />
+                @if($order->status != 'delivered')
                 <x-edit-button ability="order_edit" route="order.edit" id="{{ $order->id ?? 1}}" />
                 <x-delete-button ability="order_destroy" route="order.destroy" id="{{ $order->id ?? 1}}" />
+                @endif
               </div>
             </div>
 
@@ -171,7 +174,7 @@
   <div class="card-footer">
     <nav aria-label="Contacts Page Navigation">
       <ul class="pagination justify-content-center m-0">
-        {{ $orders->appends(['view' => $view ,'status'=>$status , 'search'=> $search])->links() }}
+        {{ $orders->appends(['view' => $view ,'status'=>$status??'all' , 'search'=> $search])->links() }}
       </ul>
     </nav>
   </div>
@@ -183,18 +186,3 @@
   @endif
 </div>
 @endsection
-
-
-
-
-
-{{-- <div class="card-header">
-    <div class="input-group input-group-sm">
-        <input type="text" class="form-control" placeholder="Search Mail">
-        <div class="input-group-append">
-          <div class="btn btn-primary">
-            <i class="fas fa-search"></i>
-          </div>
-        </div>
-      </div>
-</div> --}}

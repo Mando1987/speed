@@ -132,7 +132,6 @@
                     <i class="far fa-trash-alt"></i>
                   </span>
                 </button>
-
                 <form id="deletedForm{{ $order->id }}" action="{{ route('order.destroy', $order->id) }}" method="POST">
                   @csrf
                   @method('DELETE')
@@ -146,8 +145,13 @@
                   <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
                 </a>
                 <button class="btn btn-danger btn-sm disabled">
-                  <i class="far fa-trash-alt"></i>
-                  @lang('site.delete')
+                  <span class="d-none d-md-block">
+                    <i class="far fa-trash-alt"></i>
+                    @lang('site.delete')
+                  </span>
+                  <span class="d-block d-md-none">
+                    <i class="far fa-trash-alt"></i>
+                  </span>
                 </button>
                 @endif
               </div>
@@ -196,6 +200,7 @@
                   </span>
                   <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
                 </a>
+
                 <button class="btn btn-danger btn-sm" onclick="deletedMethod({{ $order->id }})">
                   <span class="d-none d-md-block">
                     <i class="far fa-trash-alt"></i>
@@ -220,8 +225,13 @@
                   <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
                 </a>
                 <button class="btn btn-danger btn-sm disabled">
-                  <i class="far fa-trash-alt"></i>
-                  @lang('site.delete')
+                  <span class="d-none d-md-block">
+                    <i class="far fa-trash-alt"></i>
+                    @lang('site.delete')
+                  </span>
+                  <span class="d-block d-md-none">
+                    <i class="far fa-trash-alt"></i>
+                  </span>
                 </button>
                 @endif
               </div>

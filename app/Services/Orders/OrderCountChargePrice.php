@@ -18,6 +18,7 @@ class OrderCountChargePrice
     public  $charge_price;
     public  $total_price;
     public  $charge_on;
+    public  $customer_price;
 
 
     public function getOrderChargePrice($request, $validation = false)
@@ -57,7 +58,10 @@ class OrderCountChargePrice
         $this->total_over_weight_price = ($this->total_over_weight / $this->chargeprice->weight_addtion) * $this->chargeprice->price_addtion;
         $this->discount                = $this->request->discount ?? 0;
         $this->charge_price            = ($this->total_over_weight_price + $this->chargeprice->send_price) - $this->discount;
+
         $this->addtion_price           = $this->request->charge_on == 'reciver' ?  $this->charge_price : 0;
+
+        $this->customer_price          = $this->request->charge_on == 'sender' ?  $this->request->price - $this->charge_price : $this->request->price;
         $this->total_price             = $this->request->price +  $this->addtion_price;
 
         return [
@@ -71,6 +75,7 @@ class OrderCountChargePrice
             'charge_price'             => $this->charge_price,
             'total_price'              => $this->total_price,
             'charge_on'                => $this->request->charge_on,
+            'customer_price'           => $this->customer_price
         ];
     }
 
@@ -85,11 +90,11 @@ class OrderCountChargePrice
     private function showAddPlacePrice()
     {
         return response()->json([
-            'showModelAddPlacePrice' => true ,
+            'showModelAddPlacePrice' => true,
             'title'                  => trans('site.place_price_not_found'),
             'cancelButtonText'       => trans('site.cancel'),
             'confirmButtonText'      => trans('site.add'),
             'url'                    => '/price/create',
-            ]);
+        ]);
     }
 }

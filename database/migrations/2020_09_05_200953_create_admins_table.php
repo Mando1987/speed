@@ -40,19 +40,22 @@ class CreateAdminsTable extends Migration
             $table->string('user_name')->unique();
             $table->string('password');
             $table->tinyInteger('is_active')->size(1)->default(1);
-            $table->enum('type',['manager','customer','delegate']);
+            $table->enum('type', ['manager', 'customer', 'delegate']);
             $table->timestamps();
         });
 
-        Admin::create([
-            'fullname'   => 'admin' ,
-            'phone'      => '01111213141' ,
-            'email'      => 'admin@admin.com' ,
-            'user_name'  => 'mando1987',
-            'password'   => bcrypt('123456') ,
-            'is_active'  => 1 ,
-            'type'       => 'manager' ,
-        ]);
+        Admin::create(
+
+                [
+                    'fullname'   => 'admin',
+                    'phone'      => '01111213141',
+                    'email'      => 'admin@admin.com',
+                    'user_name'  => 'mando1987',
+                    'password'   => bcrypt('123456'),
+                    'is_active'  => 1,
+                    'type'       => 'manager',
+                ]
+        );
     }
 
     public function down()

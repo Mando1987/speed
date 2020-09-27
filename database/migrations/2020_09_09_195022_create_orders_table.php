@@ -95,6 +95,7 @@ class CreateOrdersTable extends Migration
             $table->string('total_weight', 6);
             $table->string('total_over_weight', 6);
             $table->string('price', 6);
+            $table->string('customer_price', 6);
             $table->string('total_over_weight_price', 6);
             $table->string('discount', 6);
             $table->string('charge_price', 6);

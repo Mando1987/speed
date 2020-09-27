@@ -57,7 +57,7 @@
       <!-- small card -->
       <div class="small-box bg-pink">
         <div class="inner">
-        <h3>{{ $data->my_balance_count ?? 0 }}</h3>
+        <h3>{{ $data->my_balance_count }}</h3>
 
           <p>@lang('site.dashboard_my_balance_count')</p>
         </div>

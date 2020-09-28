@@ -9,19 +9,19 @@ class DashboardFetchDataService extends BaseService
 {
     private $admin;
     private $type;
-    private $service;
-    private $className;
+    private $identifyOrdersFetch;
 
     public function __construct()
     {
-        $this->admin     = auth('admin')->user();
-        $this->type      = $this->admin->type;
-        $this->className =  __NAMESPACE__ .'\\' . Str::ucfirst($this->type . 'Service');
-        $this->service   = (new $this->className);
+        $identify      = auth('admin')->user();
+        $this->type    = $identify->type;
+        $type          = $this->type;
+        $className     = __CLASS__ . Str::title('By'.$type);
+        $this->admin   = $identify->$type;
+        $this->identifyOrdersFetch = (new $className);
     }
-
     public function index()
     {
-        return $this->service->index();
+        return $this->identifyOrdersFetch->index($this->admin);
     }
 }

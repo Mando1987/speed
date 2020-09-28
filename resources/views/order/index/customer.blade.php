@@ -97,7 +97,7 @@
                   <td>@lang('datatable.order.customer.total_price')</td>
                   <td>
                     <strong>
-                      {{$order->price ?? 0}}
+                      {{$order->customer_price ?? 0}}
                     </strong>
                   </td>
                 </tr>
@@ -181,7 +181,7 @@
             <td> {{ $order->getDate()}} </td>
             <td> {{ $order->getCityName() }} </td>
             <td> {{ $order->phone??'' }} </td>
-            <td class="font-weight-bold"> {{ $order->price??''  }}</td>
+            <td class="font-weight-bold"> {{ $order->customer_price??''  }}</td>
             <td>
               <span class="badge w-100 p-2 bg-{{ __('site.color_' . $order->status)}}">
                 {{ $order->getStatus() ?? '' }}

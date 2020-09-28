@@ -26,7 +26,7 @@ class OrdersFetshDataService extends BaseService
         $identify      = auth('admin')->user();
         $this->type    = $identify->type;
         $type          = $this->type;
-        $className     =  __NAMESPACE__ . '\\' . Str::ucfirst($type . 'OrderFetshDataService');
+        $className     = __CLASS__ . Str::title('By'.$type);
         $this->admin   = $identify->$type;
         $this->identifyOrdersFetch = (new $className);
     }

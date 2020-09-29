@@ -11,7 +11,6 @@ class OrdersFetshDataServiceByManager extends BaseService
 
     public function index($request)
     {
-        return __CLASS__;
         $orders = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')
             ->join('recivers', 'recivers.id', '=', 'orders.reciver_id')
             ->join('cities', 'cities.id', '=', 'recivers.city_id')

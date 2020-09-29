@@ -16,7 +16,7 @@ class DashboardFetchDataService extends BaseService
         $identify      = auth('admin')->user();
         $this->type    = $identify->type;
         $type          = $this->type;
-        $className     = __CLASS__ . Str::title('By'.$type);
+        $className     = __CLASS__ .'By'.Str::ucfirst($type);
         $this->admin   = $identify->$type;
         $this->identifyOrdersFetch = (new $className);
     }

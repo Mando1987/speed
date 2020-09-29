@@ -9,7 +9,6 @@ class DashboardFetchDataServiceByManager
 {
     public function index($manager)
     {
-        return $manager;
         $filters = [
             'under_review',
             'under_preparation',

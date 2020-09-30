@@ -28,6 +28,7 @@ $languages= config('languages');
     <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.'.defaultLangDirection().'min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/notify.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/dist/css/print.css')}}">
     <!-- Google Font: Source Sans Pro -->
     @if(defaultLangAbbr() == 'ar')
     <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
@@ -48,7 +49,7 @@ $languages= config('languages');
 </head>
 
 <body class="hold-transition layout-fixed layout-navbar-fixed text-sm sidebar-mini">
-    <div class="wrapper">
+    <div class="wrapper hide-in-print">
         {{-- ########### Header ###################################################### --}}
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             @include('includes.dashboard.header')
@@ -78,22 +79,27 @@ $languages= config('languages');
         </footer>
 
         <aside class="control-sidebar control-sidebar-dark"></aside>
-    </div>
+        <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog p-0">
+                <div class="modal-content p-0">
+                    <div class="modal-body p-0">
 
-    <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog p-0">
-            <div class="modal-content p-0">
-                <div class="modal-body p-0">
-
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-dialog -->
     </div>
+
+    <div id="print">
+
+    </div>
+
+
 
     <!-- jQuery -->
     <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>

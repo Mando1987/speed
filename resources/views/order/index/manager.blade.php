@@ -114,7 +114,6 @@
             <div class="text-center mt-3 mb-0">
               <div class="btn-group btn-group-sm">
                 <x-show-button ability="admin_show" route="order.show" id="{{ $order->id  }}" />
-
                 @if($order->status == 'under_review ' || $order->status == 'under_preparation')
                 <a class="btn btn-info btn-sm mr-2" href="{{ route('order.edit' , $order->id) }}">
                   <span class="d-none d-md-block">
@@ -154,6 +153,7 @@
                   </span>
                 </button>
                 @endif
+                <a href="" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
               </div>
             </div>
           </div>
@@ -234,6 +234,11 @@
                   </span>
                 </button>
                 @endif
+
+              <a href="{{ route('order.print') }}" class="print btn btn-default ml-1">
+                <i class="fas fa-print"></i>
+                @lang('site.print')
+              </a>
               </div>
             </td>
           </tr>

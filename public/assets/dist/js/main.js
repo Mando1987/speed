@@ -95,6 +95,14 @@ $(document).ready(function () {
         })
         return false;
        });
+    /// print order num
+    $(document).on('click' , '.print' , function(){
+
+        $.get(this.href,{} , function(data){
+            $('#print').html(data);
+        });
+        return false;
+       });
 });
 
 $(

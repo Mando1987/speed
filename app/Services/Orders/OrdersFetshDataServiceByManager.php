@@ -11,12 +11,15 @@ class OrdersFetshDataServiceByManager extends BaseService
 
     public function index($request)
     {
-        $orders = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')
-            ->join('recivers', 'recivers.id', '=', 'orders.reciver_id')
-            ->join('cities', 'cities.id', '=', 'recivers.city_id')
-            ->select('cities.*', 'orders.id', 'orders.reciver_id', 'orders.customer_id', 'orders.created_at', 'orders.status')
-            ->addSelect('recivers.id', 'recivers.fullname', 'recivers.phone')
-            ->selectRaw('shippings.id,shippings.order_id,shippings.charge_on,shippings.charge_price,shippings.order_num,shippings.customer_price')
+        // $orders = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')
+            // ->join('recivers', 'recivers.id', '=', 'orders.reciver_id')
+            // ->join('cities', 'cities.id', '=', 'recivers.city_id')
+            // ->select('cities.*', 'orders.id', 'orders.reciver_id', 'orders.customer_id', 'orders.created_at', 'orders.status')
+            // ->addSelect('recivers.id', 'recivers.fullname')
+            // ->selectRaw('shippings.id,shippings.order_id,shippings.charge_on,shippings.charge_price,shippings.order_num,shippings.customer_price')
+
+           $orders =Order::with('shipping' ,'reciver:id,fullname,city_id' , 'reciver.city')
+
             ->where(function ($query) use ($request) {
                 return  $query->when($request->search, function ($qsearch) use ($request) {
                     $columns = $qsearch->where('recivers.fullname', 'LIKE', '%' . $request->search . '%');
@@ -33,8 +36,10 @@ class OrdersFetshDataServiceByManager extends BaseService
             ->latest()
             ->paginate($request->paginate);
 
+            // return $orders;
+
         return view(
-            'order.index.customer',
+            'order.index.manager',
             [
                 'orders' => $orders,
                 'view'   => $request->view,

@@ -7,7 +7,7 @@ use App\Services\CurrentAdminService;
 use Illuminate\Support\Facades\DB;
 use App\Services\Orders\OrderSaveUserDataToSession;
 
-class CustomerOrderCreateStoreService extends BaseService
+class OrdersCreateStoreDataServiceByCustomer extends BaseService
 {
     const IMAGE_PATH = 'customers/profile/';
 
@@ -16,17 +16,12 @@ class CustomerOrderCreateStoreService extends BaseService
 
     public function store($request)
     {
-
-
-
         if (session('page') == 1) {
 
             return $this->orderPath($request, 2);
         }
 
         if (session('page') == 2 && session('reciver')) {
-
-
             try {
 
                 DB::beginTransaction();
@@ -67,7 +62,7 @@ class CustomerOrderCreateStoreService extends BaseService
     public function create()
     {
         $userData = app(OrderSaveUserDataToSession::class)->handle(request('page'));
-        return view('customer.create-order', ['userData' => $userData]);
+        return view('order.create.customer', ['userData' => $userData]);
     }
 
     private function orderPath($request, $page)

@@ -1,0 +1,28 @@
+
+#print{
+    display: none;
+}
+
+@media print {
+
+    *,
+    body {
+        font-family: 'Cairo', sans-serif;
+    }
+
+    @page {
+        size: auto;
+        margin: 0mm;
+    }
+    .hide-in-print{
+        display: none;
+    }
+    #print{
+        display: block;
+        font-size: 16px;
+        padding: 5px;
+    }
+    #print .tdBlack{
+        background-color: black;
+    }
+}

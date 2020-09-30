@@ -22,7 +22,6 @@ class CreateCustomersTable extends Migration
             $table->string('other_phone', 11)->unique()->nullable();
             $table->string('company_name', 100)->nullable();
             $table->string('facebook_page')->nullable();
-            // $table->string('notes')->nullable();
             $table->string('image')->default('default.png');
             $table->enum('contract_type',['daily','monthly'])->default('daily');
 

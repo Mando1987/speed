@@ -8,29 +8,19 @@ class OrderSaveUserDataToSession
   const SESSION_RECIVER = 'reciver';
   const SESSION_PAGE    = 'page';
 
-  public  $fullname;
-  public  $phone;
-  public  $governorate_id = 1;
-  public  $address;
-  public  $special_marque;
-  public  $house_number;
-  public  $door_number;
-  public  $shaka_number;
-  public  $city_id = 1;
-  public  $other_phone;
   public  $page;
 
   public $data = [
     'fullname'       => '',
     'phone'          => '',
-    'governorate_id' => 1,
-    'address'        => '',
+    'governorate_id' => 1 ,
+    'city_id'        => 1 ,
+    'other_phone'    => '',
     'special_marque' => '',
     'house_number'   => '',
+    'address'        => '',
     'door_number'    => '',
     'shaka_number'   => '',
-    'city_id'        => 1,
-    'other_phone'    => '',
     'page'           => '',
   ];
 
@@ -81,7 +71,6 @@ class OrderSaveUserDataToSession
 
   private function setData($userData)
   {
-
     if (is_array($userData)) {
       foreach ($userData as $key => $val) {
         $this->data[$key] = $val;

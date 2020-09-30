@@ -2,20 +2,26 @@
 
 namespace App\Http\Requests;
 
-use App\Services\CurrentAdminService;
-use App\Services\Orders\OrderCountChargePrice;
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Services\CurrentAdminService;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Services\Orders\OrderCountChargePrice;
 
 
 class OrderStoreFormRequest extends FormRequest
 {
 
     protected $orderFormRequest;
-
+    private $type;
+    private $identifyOrdersFetch;
     public function __construct()
     {
-       $this->orderFormRequest = app(CurrentAdminService::class)->orderFormRequest();
+        $identify      = auth('admin')->user();
+        $this->type    = $identify->type;
+        $type          = $this->type;
+        $className     = __CLASS__ .'By'.Str::ucfirst($type);
+        $this->identifyOrdersFetch = (new $className);
     }
 
     public function authorize()
@@ -25,7 +31,7 @@ class OrderStoreFormRequest extends FormRequest
 
     public function rules()
     {
-        return $this->orderFormRequest->rules();
+        return $this->identifyOrdersFetch->rules();
     }
 
 
@@ -36,7 +42,7 @@ class OrderStoreFormRequest extends FormRequest
 
     public function validated()
     {
-        return $this->orderFormRequest->validated();
+        return $this->identifyOrdersFetch->validated($this->order, $this->validator->validated());
     }
 
 

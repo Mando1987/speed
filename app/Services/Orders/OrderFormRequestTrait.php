@@ -13,7 +13,7 @@ trait OrderFormRequestTrait
         'governorates_delivery',
         'international_shipping'
     ];
-    protected $orderStatus = ['phone_from_customer', 'customer_store_in_company'];
+    protected $orderStatus = ['under_review', 'under_preparation'];
 
     protected function validateReciverInputs()
     {

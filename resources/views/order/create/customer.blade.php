@@ -12,14 +12,13 @@
                 <div class="card card-purple card-outline">
                     <div class="card-body">
 
-                        @includeWhen(session('page') == 1 ,'order.includes.sender_form')
-                        @includeWhen(session('page') == 2 ,'order.includes.reciver_form')
-                        @includeWhen(session('page') == 3 ,'order.includes.order_form')
+                        @includeWhen(session('page') == 1 ,'order.includes.customer.reciver_form')
+                        @includeWhen(session('page') == 2 ,'order.includes.customer.order_form')
                     </div>
                     <!-- /.card-body -->
-                    @if(session('page') == 3)
+                    @if(session('page') == 2)
                     <div class="card-footer">
-                        <a href="{{ route('order.create' , ['page' => 2]) }}"
+                        <a href="{{ route('order.create' , ['page' => 1]) }}"
                             class="btn btn-outline-secondary">@lang('site.back')</a>
                         <button type="submit" class="btn btn-success">@lang('site.add')</button>
                     </div>

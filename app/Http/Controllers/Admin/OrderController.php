@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Services\CurrentAdminService;
 use App\Services\Orders\OrderCountChargePrice;
+use App\Services\Orders\OrdersCreateStoreDataService;
 use App\Services\Orders\OrdersFetshDataService;
 use App\Services\Orders\OrdersStoreService;
 
@@ -18,23 +19,31 @@ class OrderController extends Controller
         return app(OrdersFetshDataService::class)->index(request());
     }
 
+    public function show($id)
+    {
+        return app(OrdersFetshDataService::class)->show($id);
+    }
+
     public function create()
     {
-        return app(CurrentAdminService::class)->order()->create();
+        return app(OrdersCreateStoreDataService::class)->create();
     }
 
     public function store(OrderStoreFormRequest $request)
     {
-        return app(CurrentAdminService::class)->order()->store($request);
+        // dd($request->validated());
+        return app(OrdersCreateStoreDataService::class)->store($request);
     }
+
 
     public function getOrderChargePrice(Request $request)
     {
         return app(OrderCountChargePrice::class)->getOrderChargePrice($request, true);
     }
-    public function show($id)
+
+    public function print()
     {
-        return app(OrdersFetshDataService::class)->show($id);
+       return view('order.print');
     }
 
 }

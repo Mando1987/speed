@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Services\Orders\OrderFormRequestTrait;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Services\Orders\OrderCountChargePrice;
+use App\Services\Orders\OrderFormRequestTrait;
 
-class ManagerOrderStoreFormRequest extends FormRequest
+class OrderStoreFormRequestByManager
 {
     use OrderFormRequestTrait;
 
@@ -46,35 +47,37 @@ class ManagerOrderStoreFormRequest extends FormRequest
     private function validateSenderInputs()
     {
         return [
-            'sender.fullname' => 'required|string|max:50',
-            'sender.phone' => ['required', 'unique:senders,phone'],
-            'sender.governorate_id' => 'required|exists:governorates,id',
-            'sender.address' => 'required|string',
-            'sender.special_marque' => 'required|string|max:100',
+            'sender.fullname'         => 'required|string|max:50',
+            'sender.phone'            => ['required', 'unique:senders,phone'],
+            'sender.governorate_id'   => 'required|exists:governorates,id',
+            'sender.special_marque'   => 'required|string|max:100',
+            'sender.city_id'          => 'required|exists:cities,id',
+
+            'sender.address'      => 'required|string',
             'sender.house_number' => 'required|string|max:10',
-            'sender.door_number' => 'required|string|max:10',
+            'sender.door_number'  => 'required|string|max:10',
             'sender.shaka_number' => 'required|string|max:10',
-            'sender.city_id' => 'required|exists:cities,id',
-            'sender.other_phone' => ['nullable', 'max:11', 'unique:senders,other_phone'],
+            'sender.other_phone'  => ['nullable', 'max:11', 'unique:senders,other_phone'],
         ];
     }
 
-    public function validated()
+    public function validated($order, $parentValidated)
     {
-        if ($this->order) {
+        if ($order) {
 
-            $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($this->validator->validated()['shipping']);
+            $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($parentValidated['shipping']);
 
             $data = array_merge(
-                $this->validator->validated(),
+                $parentValidated,
                 [
                     'shipping' => $ChargePrice,
-                    'sender' => session('sender'),
-                    'reciver' => session('reciver'),
+                    'sender'   => session('sender'),
+                    'reciver'  => session('reciver'),
                 ]
             );
             return $data;
         }
-        return $this->validator->validated();
+
+        return $parentValidated;
     }
 }

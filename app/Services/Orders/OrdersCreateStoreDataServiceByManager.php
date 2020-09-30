@@ -7,21 +7,15 @@ use App\Models\Sender;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
-class ManagerOrderCreateStoreService extends BaseService
+class OrdersCreateStoreDataServiceByManager extends BaseService
 {
     const IMAGE_PATH = 'orders/';
 
-    public $sender, $reciver, $order, $route = 'order.index';
-
-    public function __construct(Sender $sender, Reciver $reciver, Order $order)
-    {
-        $this->sender  = $sender;
-        $this->reciver = $reciver;
-        $this->order   = $order;
-    }
+    public $route = 'order.index';
 
     public function store($request)
     {
+
         if (session('page') == 1) {
 
             return $this->orderPath($request, 2);
@@ -37,10 +31,10 @@ class ManagerOrderCreateStoreService extends BaseService
             try {
 
                 DB::beginTransaction();
-                $sender  = $this->sender::create($request['sender']);
-                $reciver = $this->reciver::create($request['reciver']);
-                $order   = $this->order::create(array_merge(
-                    $request['order'],
+                $sender  = Sender::create($request->validated()['sender']);
+                $reciver = Reciver::create($request->validated()['reciver']);
+                $order   = Order::create(array_merge(
+                    $request->validated()['order'],
                     [
                         'sender_id'  => $sender->id,
                         'reciver_id' => $reciver->id
@@ -48,11 +42,9 @@ class ManagerOrderCreateStoreService extends BaseService
                     ]
                 ));
                 $order->shipping()->create(array_merge(
-                    $request['shipping'],
+                    $request->validated()['shipping'],
                     ['order_num' => $this->setOrderNumberUnique($order->id)]
                 ));
-
-
                 DB::commit();
 
                 session()->forget(['sender', 'reciver', 'page']);
@@ -72,15 +64,16 @@ class ManagerOrderCreateStoreService extends BaseService
     public function create()
     {
         $userData = app(OrderSaveUserDataToSession::class)->handle(request('page'));
-        return view('order.create', ['userData' => $userData]);
+        return view('order.create.manager', ['userData' => $userData]);
 
     }
 
     private function orderPath($request, $page)
     {
         session(['page' =>  $page]);
-        $request->reciver ? session(['reciver' => $request->reciver]):false;
-        return redirect()->route('customer.order.create', ['page' => $page]);
+        (isset($request->validated()['sender'])) ? session(['sender' => $request->validated()['sender']]):false;
+        (isset($request->validated()['reciver'])) ? session(['reciver' => $request->validated()['reciver']]):false;
+        return redirect()->route('order.create', ['page' => $page]);
     }
     private function setOrderNumberUnique($orderId)
     {

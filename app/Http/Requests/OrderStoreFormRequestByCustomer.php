@@ -3,11 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
 use App\Services\Orders\OrderCountChargePrice;
 use App\Services\Orders\OrderFormRequestTrait;
 
-class CustomerOrderStoreRequest extends FormRequest
+class OrderStoreFormRequestByCustomer
 {
      use OrderFormRequestTrait;
 
@@ -41,23 +40,23 @@ class CustomerOrderStoreRequest extends FormRequest
         }
     }
 
-    public function validated()
+    public function validated($order, $parentValidated)
     {
-        if ($this->order) {
+        if ($order) {
 
-            $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($this->validator->validated()['shipping']);
+            $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($parentValidated['shipping']);
 
             $data = array_merge(
-                $this->validator->validated(),
+                $parentValidated,
                 [
                     'shipping' => $ChargePrice,
                     'reciver'  => session('reciver'),
-                    'order'    => array_merge($this->validator->validated()['order'],['status' => 'under_review'])
+                    'order'    => array_merge($parentValidated['order'],['status' => 'under_review'])
 
                 ]
             );
             return $data;
         }
-        return $this->validator->validated();
+        return $parentValidated;
     }
 }

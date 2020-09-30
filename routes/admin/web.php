@@ -19,6 +19,8 @@ Route::post('admin/{id}/change-passowrd', [AdminController::class, 'changePasswo
 Route::get('/get-cities',[PlaceController::class, 'getCities'])->withoutMiddleware('auth:admin');
 
 Route::get('order/get-order-charge-price',[OrderController::class, 'getOrderChargePrice'] );
+Route::get('order/print',[OrderController::class, 'print'] )->name('order.print');
+
 Route::get('/price/create-place-price',[PlacePricesController::class, 'store'] );
 Route::get('/delegate/changeActive/{id}',[DelegateController::class, 'changeActive'])->name('delegate.changeActive');
 

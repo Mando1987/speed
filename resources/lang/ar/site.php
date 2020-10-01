@@ -165,7 +165,7 @@ return [
   'social_status_divorce'             => 'مطلق',
   'social_status_widower'             => 'ارمل',
 
-  'delegate_image'                    => 'الصوره الشحصيه',
+  'delegate_image'                    => 'الصوره الشخصيه',
   'driveType'                         => 'نوع المركبه',
   'driveType_motocycle'               => 'موتوسيكل',
   'driveType_car'                     => 'سياره',
@@ -225,8 +225,8 @@ return [
   'search_placeholder'                => 'ابحث عما تريد',
   'reciver_show_title'                => 'بيانات العميل',
   'order_show_title'                  => 'بيانات الشحنه',
-  'order_show_shipping'               =>  'التكاليف',
-  'order_show_date'                   =>  'التاريخ',
+  'order_show_shipping'               => 'التكاليف',
+  'order_show_date'                   => 'التاريخ',
   'order_user_can_open_order_0'       => 'لا',
   'order_user_can_open_order_1'       => 'نعم',
   'order_show_discount'               => 'قيمة الخصم',
@@ -243,7 +243,7 @@ return [
   'order_print_price'                 => 'القيمه',
   'order_print_charge_price'          => 'قيمة الشحن',
   'order_print_notes'                 => 'ملاحظات',
-  'order_print_danger_msg'            => 'الشركة غير مسؤله عن محتوى الشحنه وعلى العميل التأكد من بيانات البوليصه قبل طباعتها',
+  'order_print_danger_msg'            => 'الشركة غير مسؤولة عن محتوى الشحنه وعلى العميل التأكد من بيانات البوليصه قبل طباعتها',
   'order_print_contact_msg'           => 'فى حالة الأستفسار أو الأستعلام يرجى التواصل مع خدمة العملاء على 01148630107 - 01098026159',
 
 ];

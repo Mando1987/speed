@@ -94,22 +94,22 @@ return [
   'reciver_info_title'                => 'بيانات المرسل إليه ',
   'reciver_fullname'                  => 'اسم المرسل إليه',
 
-  'order_title'                       => 'الشحنة',
-  'order_info_title'                  => 'تفاصيل الشحنة',
+  'order_title'                       => 'الشحنه',
+  'order_info_title'                  => 'تفاصيل الشحنه',
   'order_type'                        => 'اختار نوع الشحن',
-  'order_info'                        => 'وصف الشحنة',
+  'order_info'                        => 'وصف الشحنه',
   'order_notes'                       => 'ملاحظات',
 
-  'order_weight'                      => 'وزن الشحنة',
+  'order_weight'                      => 'وزن الشحنه',
   'order_quantity'                    => 'عدد المنتجات',
-  'order_price'                       => 'قيمة الشحنة',
+  'order_price'                       => 'قيمة الشحنه',
   'order_charge_price'                => 'تكاليف الشحن',
-  'order_total_price'                 => 'إجمالى الشحنة',
-  'order_serial'                      => 'رقم البوليصة',
+  'order_total_price'                 => 'إجمالى الشحنه',
+  'order_serial'                      => 'رقم البوليصه',
   'order_charge'                      => 'تكلفة مصاريف الشحن',
   'order_charge_sender'               => 'على الراسل',
   'order_charge_reciver'              => 'على المرسل إليه',
-  'order_status'                      => 'حالة الشحنة',
+  'order_status'                      => 'حالة الشحنه',
   'order_status_phone_from_customer'       => 'إتصال هاتفى للعميل',
   'order_status_customer_store_in_company' => 'الإستلام من العميل ف مقر الشركه',
 
@@ -197,7 +197,7 @@ return [
   'register'  => 'تسجيل',
   // 23/9/2020
   'dashboard_all_orders'              => 'كل الشحنات',
-  'dashboard_under_review_count'      => 'قيد المراجعة',
+  'dashboard_under_review_count'      => 'قيد المراجعه',
   'dashboard_under_preparation_count' => 'تحت الاعداد',
   'dashboard_my_balance_count'        => 'رصيدى',
   'dashboard_ready_to_chip_count'     => 'جاهز للشحن',
@@ -206,7 +206,7 @@ return [
   'dashboard_cancelld_count'          => 'تم الالغاء',
 
   'order_status_all_orders'           => 'كل الشحنات',
-  'order_status_under_review'         => 'قيد المراجعة',
+  'order_status_under_review'         => 'قيد المراجعه',
   'order_status_under_preparation'    => 'تحت الاعداد',
   'order_status_my_balance'           => 'رصيدى',
   'order_status_ready_to_chip'        => 'جاهز للشحن',
@@ -243,7 +243,7 @@ return [
   'order_print_price'                 => 'القيمه',
   'order_print_charge_price'          => 'قيمة الشحن',
   'order_print_notes'                 => 'ملاحظات',
-  'order_print_danger_msg'            => 'الشركة غير مسؤولة عن محتوى الشحنه وعلى العميل التأكد من بيانات البوليصه قبل طباعتها',
+  'order_print_danger_msg'            => 'الشركة غير مسؤوله عن محتوى الشحنه وعلى العميل التأكد من بيانات البوليصه قبل طباعتها',
   'order_print_contact_msg'           => 'فى حالة الأستفسار أو الأستعلام يرجى التواصل مع خدمة العملاء على 01148630107 - 01098026159',
 
 ];

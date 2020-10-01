@@ -95,6 +95,8 @@ return [
   'order_charge_sender'         => 'On the sender',
   'order_charge_reciver'        => 'On the consignee',
   'order_status'                => 'Shipment case',
+    
+    
   'order_status_phone_from_empolyee' => 'Phone call from the customer',
   'order_status_employee_store_in_company' => 'Receipt in the company',
 

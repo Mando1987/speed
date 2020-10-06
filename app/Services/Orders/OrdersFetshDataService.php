@@ -41,6 +41,9 @@ class OrdersFetshDataService extends BaseService
         }
         $orderData = Order::with($relationsLoded)->where('id', $id)->first();
 
+
+         $orderData->shipping->final_price = ($request->adminType == 'manager') ? $orderData->shipping->total_price:$orderData->shipping->customer_price;
+
         return view(
             'order.show.' . $request->adminType,
             [

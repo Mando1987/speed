@@ -34,7 +34,7 @@ class CustomersFetshDataServiceByManager extends CustomersFetshDataService
                 });
 
             })
-            // ->latest('customers.id')
+             ->latest('customers.id')
             ->paginate($request->paginate);
 
         return $customers;

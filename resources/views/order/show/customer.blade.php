@@ -164,7 +164,7 @@
                     <tr>
                         <td>@lang('site.order_total_price')</td>
                         <td>
-                            {{$order->shipping->customer_price}}
+                            {{$order->shipping->final_price}}
                         </td>
                     </tr>
                 </table>

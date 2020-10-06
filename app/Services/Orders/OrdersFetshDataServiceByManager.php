@@ -25,7 +25,7 @@ class OrdersFetshDataServiceByManager extends OrdersFetshDataService
             ->select('cities.*', 'orders.id', 'orders.reciver_id', 'orders.customer_id', 'orders.created_at', 'orders.status')
             ->addSelect('customers.id as customer_id', 'customers.fullname as customer_fullname', 'customers.phone as customer_phone', 'customers.city_id')
             ->addSelect('recivers.id as reciver_id', 'recivers.fullname as reciver_fullname')
-            ->selectRaw('shippings.id,shippings.order_id,shippings.order_num,shippings.customer_price')
+            ->selectRaw('shippings.id,shippings.order_id,shippings.order_num,shippings.total_price')
 
             ->where(function ($query) use ($request) {
                 return $query->when($request->search, function ($qsearch) use ($request) {
@@ -43,8 +43,11 @@ class OrdersFetshDataServiceByManager extends OrdersFetshDataService
             ->latest()
             ->paginate($request->paginate);
 
-        //    return $orders;
-
+            foreach ($orders as $index => &$order) {
+                $order->city = app()->getLocale() == 'ar' ? $order->city_name:$order->city_name_en;
+                $order->date = $order->created_at->format('Y-m-d');
+                $order->getStatus = trans('site.order_status_' . $order->status);
+            }
         return view(
             'order.index.manager',
             [

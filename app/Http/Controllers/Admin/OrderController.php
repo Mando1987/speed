@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderStoreFormRequest;
-use App\Models\Order;
 use App\Services\Orders\OrderCountChargePrice;
 use App\Services\Orders\OrdersCreateStoreDataService;
 use App\Services\Orders\OrdersFetshDataService;
@@ -12,12 +11,12 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return app(OrdersFetshDataService::class)->index(request());
+        return app(OrdersFetshDataService::class)->index($request);
     }
 
-    public function show(Request $request,$id)
+    public function show(Request $request, $id)
     {
         return app(OrdersFetshDataService::class)->show($request, $id);
     }
@@ -37,8 +36,8 @@ class OrderController extends Controller
         return app(OrderCountChargePrice::class)->getOrderChargePrice($request, true);
     }
 
-    function print() {
-        return view('order.print');
+    function print(Request $request) {
+        return app(OrdersFetshDataService::class)->print($request);
     }
 
 }

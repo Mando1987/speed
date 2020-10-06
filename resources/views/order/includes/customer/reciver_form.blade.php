@@ -43,7 +43,7 @@
                         <x-label title="{{__('site.address')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="reciver[address]" value="{{$userData->address}}"
+                        <x-input name="address[address]" value="{{$userData->address->address}}"
                             placeholder="{{__('site.address_placholder')}}" />
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                         <x-label title="{{__('site.special_marque')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="reciver[special_marque]" value="{{$userData->special_marque}}"
+                        <x-input name="address[special_marque]" value="{{$userData->address->special_marque}}"
                             placeholder="{{__('site.special_marque_placholder')}}" />
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                         <x-label title="{{__('site.house_number')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="reciver[house_number]" value="{{$userData->house_number}}"
+                        <x-input name="address[house_number]" value="{{$userData->address->house_number}}"
                             placeholder="{{__('site.house_number_placholder')}}" />
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                         <x-label title="{{__('site.door_number')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="reciver[door_number]" value="{{$userData->door_number}}"
+                        <x-input name="address[door_number]" value="{{$userData->address->door_number}}"
                             placeholder="{{__('site.door_number_placholder')}}" />
                     </div>
                 </div>
@@ -129,12 +129,13 @@
                         <x-label title="{{__('site.shaka_number')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="reciver[shaka_number]" value="{{$userData->shaka_number}}"
+                        <x-input name="address[shaka_number]" value="{{$userData->address->shaka_number}}"
                             placeholder="{{__('site.shaka_number_placholder')}}" />
                     </div>
                 </div>
             </div>
         </div><!-- end of row-->
     </div>
+
     <button type="submit" class="btn btn-secondary">@lang('site.next')</button>
 </form>

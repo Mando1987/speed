@@ -80,7 +80,7 @@
                   <td>@lang('datatable.order.customer.city')</td>
                   <td>
                     <strong>
-                      {{$order->getCityName() ?? ''}}
+                      {{$order->city ?? ''}}
                     </strong>
                   </td>
                 </tr>
@@ -88,7 +88,7 @@
                   <td>@lang('datatable.order.customer.status')</td>
                   <td>
                     <span class="badge p-2 bg-{{ __('site.color_' . $order->status)}}">
-                      {{ $order->getStatus() ?? '' }}
+                      {{ $order->getStatus ?? '' }}
                     </span>
 
                   </td>
@@ -178,13 +178,13 @@
           <tr>
             <td class="sorting_1" tabindex="0">{{ $orders->firstItem()+$index }}</td>
             <td> {{ $order->fullname??'' }} </td>
-            <td> {{ $order->getDate()}} </td>
-            <td> {{ $order->getCityName() }} </td>
+            <td> {{ $order->date}} </td>
+            <td> {{ $order->city }} </td>
             <td> {{ $order->phone??'' }} </td>
             <td class="font-weight-bold"> {{ $order->customer_price??''  }}</td>
             <td>
               <span class="badge w-100 p-2 bg-{{ __('site.color_' . $order->status)}}">
-                {{ $order->getStatus() ?? '' }}
+                {{ $order->getStatus ?? '' }}
               </span>
             </td>
             <td class="font-weight-bold"> {{ $order->order_num ??0 }}</td>

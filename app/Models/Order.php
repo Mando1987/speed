@@ -65,16 +65,6 @@ class Order extends Model
        return $this->created_at->format('Y-m-d');
     }
 
-    public function getCustomerCityName()
-    {
-       return app()->getLocale() == 'ar' ? $this->customer->city->city_name : $this->customer->city->city_name_en;
-    }
-
-    public function getReciverCityName()
-    {
-       return app()->getLocale() == 'ar' ? $this->reciver->city->city_name : $this->reciver->city->city_name_en;
-    }
-
     public function getOpenOrder()
     {
         return trans('site.order_user_can_open_order_'. $this->user_can_open_order);

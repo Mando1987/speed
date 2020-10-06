@@ -56,7 +56,7 @@
                   <td class="border-top-0">@lang('datatable.order.manager.created_at')</td>
                   <td class="border-top-0">
                     <strong>
-                      {{ $order->getDate() }}
+                      {{ $order->date }}
                     </strong>
                   </td>
                 </tr>
@@ -80,7 +80,7 @@
                   <td>@lang('datatable.order.manager.city')</td>
                   <td>
                     <strong>
-                      {{ $order->getCustomerCityName() ?? ''}}
+                      {{ $order->city ?? ''}}
                     </strong>
                   </td>
                 </tr>
@@ -96,7 +96,7 @@
                   <td>@lang('datatable.order.manager.status')</td>
                   <td>
                     <span class="badge p-2 bg-{{ __('site.color_' . $order->status)}}">
-                      {{ $order->getStatus() ?? '' }}
+                      {{ $order->getStatus ?? '' }}
                     </span>
 
                   </td>
@@ -105,7 +105,7 @@
                   <td>@lang('datatable.order.manager.total_price')</td>
                   <td>
                     <strong>
-                      {{$order->customer_price ?? 0}}
+                      {{$order->total_price ?? 0}}
                     </strong>
                   </td>
                 </tr>
@@ -186,14 +186,14 @@
           <tr>
             <td class="sorting_1" tabindex="0">{{ $orders->firstItem()+$index }}</td>
             <td> {{ $order->customer_fullname}} </td>
-            <td> {{ $order->getDate()}} </td>
-            <td> {{ $order->getCustomerCityName() }} </td>
+            <td> {{ $order->date}} </td>
+            <td> {{ $order->city }} </td>
             <td> {{ $order->customer_phone }} </td>
             <td> {{ $order->reciver_fullname }} </td>
-            <td class="font-weight-bold"> {{ $order->customer_price??''  }}</td>
+            <td class="font-weight-bold"> {{ $order->total_price??''  }}</td>
             <td>
               <span class="badge w-100 p-2 bg-{{ __('site.color_' . $order->status)}}">
-                {{ $order->getStatus() ?? '' }}
+                {{ $order->getStatus ?? '' }}
               </span>
             </td>
             <td class="font-weight-bold"> {{ $order->order_num ??0 }}</td>
@@ -244,7 +244,7 @@
                 </button>
                 @endif
 
-              <a href="{{ route('order.print') }}" class="print btn btn-default ml-1">
+              <a href="{{ route('order.print' ,['orderId' =>$order->id]) }}" class="print btn btn-default ml-1">
                 <i class="fas fa-print"></i>
                 @lang('site.print')
               </a>

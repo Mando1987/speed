@@ -40,23 +40,23 @@
                     </tr>
                     <tr>
                         <td>@lang('site.address')</td>
-                        <td>{{ $order->reciver->address }}</td>
+                        <td>{{ $order->reciver->address->address }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.special_marque')</td>
-                          <td>  {{ $order->reciver->special_marque }}</td>
+                          <td>  {{ $order->reciver->address->special_marque }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.house_number')</td>
-                        <td>{{ $order->reciver->house_number }}</td>
+                        <td>{{ $order->reciver->address->house_number }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.door_number')</td>
-                        <td>{{ $order->reciver->door_number }}</td>
+                        <td>{{ $order->reciver->address->door_number }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.shaka_number')</td>
-                        <td>{{ $order->reciver->shaka_number }}</td>
+                        <td>{{ $order->reciver->address->shaka_number }}</td>
                     </tr>
                 </table>
 

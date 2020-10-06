@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Customer;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Traits\GovernorateTrait;
 use App\Http\Requests\CustomerStoreFormRequest;
 use App\Http\Requests\CustomerUpdateFormRequest;
-use App\Http\Traits\GovernorateTrait;
-use App\Models\Customer;
-use App\Services\customers\CustomerCreateStoreService;
 use App\Services\customers\CustomerEditUpdateService;
+use App\Services\Customers\CustomersFetshDataService;
+use App\Services\customers\CustomerCreateStoreService;
 
 class CustomerController extends Controller
 {
     use GovernorateTrait;
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+         return app(CustomersFetshDataService::class)->index($request);
     }
 
     public function create()

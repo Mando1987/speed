@@ -6,18 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    /**
-    governorate_id
-    city_id
-    other_phone
-    company_name
-    facebook_page
-    image
-    contract_type
-    admin_id
-     *
-     * @var array
-     */
+
     protected $guarded = [];
     public $timestamps = false;
 

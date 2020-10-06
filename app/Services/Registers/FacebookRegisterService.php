@@ -26,7 +26,7 @@ class FacebookRegisterService extends BaseService
 
             $newCustomer = $newAdmin->customer()->create($request->validated()['customer']);
 
-            $newCustomer->customerInfos()->create($request->validated()['customerInfo']);
+            $newCustomer->address()->create($request->validated()['customerInfo']);
 
             session()->forget('facebook');
             auth('admin')->login($newAdmin);

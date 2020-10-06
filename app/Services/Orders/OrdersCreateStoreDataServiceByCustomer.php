@@ -2,17 +2,10 @@
 namespace App\Services\Orders;
 
 use App\Models\Admin;
-use App\Services\BaseService;
-use App\Services\CurrentAdminService;
 use Illuminate\Support\Facades\DB;
-use App\Services\Orders\OrderSaveUserDataToSession;
 
-class OrdersCreateStoreDataServiceByCustomer extends BaseService
+class OrdersCreateStoreDataServiceByCustomer extends OrdersCreateStoreDataService
 {
-    const IMAGE_PATH = 'customers/profile/';
-
-    private $admin;
-    public $route = 'order.index';
 
     public function store($request)
     {
@@ -25,14 +18,16 @@ class OrdersCreateStoreDataServiceByCustomer extends BaseService
             try {
 
                 DB::beginTransaction();
-                $customer = (new CurrentAdminService)->customer();
+                $customer = Admin::find($request->adminId)->customer;
 
                 $reciver = $customer->recivers()->create($request->validated()['reciver']);
 
-                $order   = $customer->orders()->create(array_merge(
+                $reciver->address()->create($request->validated()['reciverAddress']);
+
+                $order = $customer->orders()->create(array_merge(
                     $request->validated()['order'],
                     [
-                        'reciver_id' => $reciver->id
+                        'reciver_id' => $reciver->id,
                     ]
                 ));
                 $order->shipping()->create(array_merge(
@@ -42,7 +37,7 @@ class OrdersCreateStoreDataServiceByCustomer extends BaseService
 
                 $order->orderStatuses()->create(['status' => 'under_review']);
 
-                session()->forget(['reciver', 'page']);
+                $this->forgetOrderData();
                 DB::commit();
 
                 $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
@@ -59,20 +54,4 @@ class OrdersCreateStoreDataServiceByCustomer extends BaseService
         }
     }
 
-    public function create()
-    {
-        $userData = app(OrderSaveUserDataToSession::class)->handle(request('page'));
-        return view('order.create.customer', ['userData' => $userData]);
-    }
-
-    private function orderPath($request, $page)
-    {
-        session(['page' =>  $page]);
-        $request->validated()['reciver'] ? session(['reciver' => $request->validated()['reciver']]):false;
-        return redirect()->route('order.create', ['page' => $page]);
-    }
-    private function setOrderNumberUnique($orderId)
-    {
-        return   3018 . ($orderId + 4);
-    }
 }

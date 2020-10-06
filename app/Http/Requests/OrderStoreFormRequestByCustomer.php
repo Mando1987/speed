@@ -51,6 +51,7 @@ class OrderStoreFormRequestByCustomer
                 [
                     'shipping' => $ChargePrice,
                     'reciver'  => session('reciver'),
+                    'reciverAddress'  => session('reciverAddress'),
                     'order'    => array_merge($parentValidated['order'],['status' => 'under_review'])
 
                 ]

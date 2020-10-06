@@ -1,20 +1,10 @@
 <?php
 
-namespace App\Services\Orders;
-
-use App\Models\Order;
+namespace App\Services\Customers;
 use App\Services\BaseService;
 
-class OrdersFetshDataService extends BaseService
+class CustomersFetshDataService extends BaseService
 {
-    protected $orderStatuses = [
-        'under_review',
-        'under_preparation',
-        'ready_to_chip',
-        'delivered',
-        'postpond',
-        'cancelld',
-    ];
     protected $paginate = 6;
     protected $view = 'list';
 
@@ -25,7 +15,6 @@ class OrdersFetshDataService extends BaseService
             (object) array_merge(
                 $request->all(),
                 [
-                    'status' => ($request->status ?? false) && in_array($request->status, $this->orderStatuses) ? $request->status : false,
                     'search' => $request->search ?? false,
                     'view' => $this->view,
                     'paginate' => $this->paginate,
@@ -69,18 +58,4 @@ class OrdersFetshDataService extends BaseService
         }
     }
 
-    public function print($request)
-    {
-        if ($request->adminType == 'manager')
-            $order = Order::select('id','customer_id','reciver_id' ,'user_can_open_order')->with([
-                'customer:id,fullname,phone',
-                'customer.address:addressable_id,address',
-                'reciver:id,fullname,phone',
-                'reciver.address',
-                'shipping:order_id,total_price,charge_on'
-            ])->where('id', $request->orderId)->first();
-            // return $order;
-            return view('order.print');
-        return abort(404);
-    }
 }

@@ -125,7 +125,7 @@ return [
   'order_quantity_placeholder'        => 'Write down an integer',
   'order_price_placeholder'           => 'Write down the amount in pounds',
   'order_discount_placeholder'        => 'Write down the amount in pounds',
-  'order_user_can_open_order'         => 'Allow the customer to open the shipment',
+  'order_user_can_open_order'         => 'Open the shipment',
   'yes'                               => 'yes',
   'no'                                => 'No',
   //15/9/2020

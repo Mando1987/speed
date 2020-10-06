@@ -40,6 +40,10 @@ class Customer extends Model
     {
         return $this->hasMany(Order::class);
     }
+    public function governorate()
+    {
+        return $this->belongsTo(Governorate::class);
+    }
 
     public function recivers()
     {

@@ -1,4 +1,4 @@
-{{-- <div class="card">
+<div class="card">
     <div class="card-header ui-sortable-handle">
         <h3 class="card-title">
             <i class="fas fa-chart-pie mr-1"></i>
@@ -6,7 +6,10 @@
         <div class="card-tools">
             <ul class="nav nav-pills ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#reciver" data-toggle="tab">@lang('site.reciver_show_title')</a>
+                    <a class="nav-link active" href="#customer" data-toggle="tab">@lang('site.customer_show_title')</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#reciver" data-toggle="tab">@lang('site.manager_reciver_title')</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#order" data-toggle="tab">@lang('site.order_show_title')</a>
@@ -20,7 +23,47 @@
     <div class="card-body p-0">
         <div class="tab-content p-0">
             <!-- Morris chart - Sales -->
-            <div class="tab-pane active" id="reciver">
+            <div class="tab-pane active" id="customer">
+                <table class="table text-nowrap align-items-stretch table-bordered table-sm">
+                    <tr>
+                        <td>@lang('site.fullname')</td>
+                        <td>{{ $order->customer->fullname }}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('site.phone')</td>
+                        <td>{{ $order->customer->phone .' - ' .($order->customer->other_phone??'') }}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('site.governorate')</td>
+                        <td>{{ $order->customer->governorate->name }}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('site.city')</td>
+                        <td>{{ $order->customer->city->name }}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('site.address')</td>
+                        <td>{{ $order->customer->address->address }}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('site.special_marque')</td>
+                          <td>  {{ $order->customer->address->special_marque }}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('site.house_number')</td>
+                        <td>{{ $order->customer->address->house_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('site.door_number')</td>
+                        <td>{{ $order->customer->address->door_number }}</td>
+                    </tr>
+                    <tr>
+                        <td>@lang('site.shaka_number')</td>
+                        <td>{{ $order->customer->address->shaka_number }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tab-pane" id="reciver">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.fullname')</td>
@@ -40,26 +83,25 @@
                     </tr>
                     <tr>
                         <td>@lang('site.address')</td>
-                        <td>{{ $order->reciver->address }}</td>
+                        <td>{{ $order->reciver->address->address }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.special_marque')</td>
-                          <td>  {{ $order->reciver->special_marque }}</td>
+                          <td>  {{ $order->reciver->address->special_marque }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.house_number')</td>
-                        <td>{{ $order->reciver->house_number }}</td>
+                        <td>{{ $order->reciver->address->house_number }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.door_number')</td>
-                        <td>{{ $order->reciver->door_number }}</td>
+                        <td>{{ $order->reciver->address->door_number }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.shaka_number')</td>
-                        <td>{{ $order->reciver->shaka_number }}</td>
+                        <td>{{ $order->reciver->address->shaka_number }}</td>
                     </tr>
                 </table>
-
             </div>
             <div class="tab-pane" id="order">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
@@ -171,4 +213,4 @@
             </div>
         </div>
     </div><!-- /.card-body -->
-</div> --}}
+</div>

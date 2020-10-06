@@ -4,6 +4,7 @@ namespace App\Services\Orders;
 
 use App\Models\City;
 use App\Models\Order;
+use App\Models\Address;
 use Illuminate\Support\Str;
 use App\Services\BaseService;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
@@ -39,20 +40,15 @@ class OrdersFetshDataService extends BaseService
     }
     public function show($request, $id)
     {
-        $cities = City::all();
-        $citiesMap = $cities->mapWithKeys(function($city){
-            return [$city->id => $city];
-        });
-        $relationsLoded = ['reciver' , 'shipping'];
+
+        $addresses  = Address::all();
+        $relationsLoded = ['reciver', 'reciver.city' ,'reciver.address' , 'shipping'];
         if($request->adminType == 'manager'){
-            $relationsLoded = array_merge( $relationsLoded, ['customer']);
+            $relationsLoded = array_merge( $relationsLoded, ['customer', 'customer.city' ,'customer.address']);
         }
 
 
-         $orderData = Order::with($relationsLoded)->where('id',$id)->first();
-
-         return $orderData;
-
+        $orderData = Order::with($relationsLoded)->where('id',$id)->first();
 
         return view(
             'order.show.' . $request->adminType,

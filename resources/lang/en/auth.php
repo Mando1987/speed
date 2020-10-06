@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed'   => 'These credentials do not match the data we have registered.',
+    'password' => 'The password is incorrect',
+    'email'    => 'The email is invalid',
+    'throttle' => 'Too many entry attempts. Please try again after :seconds a second.',
 
 ];

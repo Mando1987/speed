@@ -31,15 +31,15 @@ return [
             'order_num'         => 'رقم البوليصه',
 
         ]
-    ], 'delegate'           => [
-        'fullname'          => 'الأسم ',
-        'qualification'     => 'المؤهل',
-        'phone'             => 'رقم التليفون',
-        // 'national_id'    => 'الرقم القومى',
-        'driveType'         => 'نوع المركبه',
-        'driveColor'        => 'لون المركبه',
-        'drivePlate_number' => 'رقم اللوحه',
-        'delegate_active'   => 'حالة المندوب',
+    ], 'delegate'       => [
+    'fullname'          => 'الأسم ',
+    'qualification'     => 'المؤهل',
+    'phone'             => 'رقم التليفون',
+ // 'national_id'       => 'الرقم القومى',
+    'driveType'         => 'نوع المركبه',
+    'driveColor'        => 'لون المركبه',
+    'drivePlate_number' => 'رقم اللوحه',
+    'delegate_active'   => 'حالة المندوب',
     ]
 
 ];

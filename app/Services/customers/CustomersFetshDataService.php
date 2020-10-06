@@ -16,7 +16,7 @@ class CustomersFetshDataService extends BaseService
                 $request->all(),
                 [
                     'search' => $request->search ?? false,
-                    'customer_type' => $request->customer_type ?? 'registerd',
+                    'customer_type' => $request->customer_type,
                     'view' => $this->view,
                     'paginate' => $this->paginate,
                 ]

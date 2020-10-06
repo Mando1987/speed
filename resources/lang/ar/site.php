@@ -249,5 +249,7 @@ return [
   //06/10/2020
   'customer_show_title'               => 'بيانات العميل',
   'manager_reciver_title'             => 'بيانات المرسل اليه',
+  'customer_type_registered'  => 'كل العملاء المسجلين' ,
+  'customer_type_unRegistered'  => 'كل العملاء الغير مسجلين' ,
 
 ];

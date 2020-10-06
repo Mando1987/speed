@@ -32,14 +32,25 @@ return [
 
         ]
     ], 'delegate'       => [
-    'fullname'          => 'الأسم ',
-    'qualification'     => 'المؤهل',
-    'phone'             => 'رقم التليفون',
- // 'national_id'       => 'الرقم القومى',
-    'driveType'         => 'نوع المركبه',
-    'driveColor'        => 'لون المركبه',
-    'drivePlate_number' => 'رقم اللوحه',
-    'delegate_active'   => 'حالة المندوب',
+        'fullname'          => 'الأسم ',
+        'qualification'     => 'المؤهل',
+        'phone'             => 'رقم التليفون',
+        // 'national_id'       => 'الرقم القومى',
+        'driveType'         => 'نوع المركبه',
+        'driveColor'        => 'لون المركبه',
+        'drivePlate_number' => 'رقم اللوحه',
+        'delegate_active'   => 'حالة المندوب',
+    ],
+    'customer' => [
+        'manager' => [
+            'fullname'          => 'الأسم بالكامل',
+            'phone'             => 'التليفون',
+            'city'              => 'المنطقة',
+            'address'           => 'العنوان',
+            'company_name'      => 'اسم الشركة',
+            'activity'      => 'النشاط',
+        ]
+
     ]
 
 ];

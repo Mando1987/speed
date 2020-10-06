@@ -42,7 +42,9 @@ class OrdersFetshDataService extends BaseService
         $orderData = Order::with($relationsLoded)->where('id', $id)->first();
 
 
-         $orderData->shipping->final_price = ($request->adminType == 'manager') ? $orderData->shipping->total_price:$orderData->shipping->customer_price;
+        $orderData->shipping->final_price = ($request->adminType == 'manager') ?
+            $orderData->shipping->total_price :
+            $orderData->shipping->customer_price;
 
         return view(
             'order.show.' . $request->adminType,
@@ -75,15 +77,15 @@ class OrdersFetshDataService extends BaseService
     public function print($request)
     {
         if ($request->adminType == 'manager')
-            $order = Order::select('id','customer_id','reciver_id' ,'user_can_open_order')->with([
+            $order = Order::select('id', 'customer_id', 'reciver_id', 'user_can_open_order')->with([
                 'customer:id,fullname,phone',
                 'customer.address:addressable_id,address',
                 'reciver:id,fullname,phone',
                 'reciver.address',
                 'shipping:order_id,total_price,charge_on'
             ])->where('id', $request->orderId)->first();
-            // return $order;
-            return view('order.print');
+        // return $order;
+        return view('order.print');
         return abort(404);
     }
 }

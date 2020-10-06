@@ -19,11 +19,12 @@ class CustomersFetshDataServiceByManager extends CustomersFetshDataService
             ->where('addresses.addressable_type' ,'App\Models\Customer');
         })
         ->addSelect('customers.*')
-        ->addSelect('addresses.id as addresses_id')
+        ->addSelect('addresses.*')
 
             ->where(function ($query) use ($request) {
-
-                return $query->whereNotNull('customers.admin_id')
+                return $query->when($request->customer_type == 'registered',function($qtype){
+                    $qtype->whereNotNull('customers.admin_id');
+                })
                 ->when($request->search, function ($qsearch) use ($request) {
                     $columns = $qsearch->where('customers.fullname', 'LIKE', '%' . $request->search . '%');
 
@@ -37,7 +38,7 @@ class CustomersFetshDataServiceByManager extends CustomersFetshDataService
              ->latest('customers.id')
             ->paginate($request->paginate);
 
-        return $customers;
+       // return $customers;
 
         // foreach ($orders as $index => &$order) {
         //     $order->city = app()->getLocale() == 'ar' ? $order->city_name:$order->city_name_en;
@@ -45,26 +46,26 @@ class CustomersFetshDataServiceByManager extends CustomersFetshDataService
         //     $order->getStatus = trans('site.order_status_' . $order->status);
         // }
         return view(
-            'order.index.manager',
+            'customer.index.'. $request->adminType,
             [
-                'orders' => $orders,
+                'customers' => $customers,
                 'view' => $request->view,
-                'status' => $request->status ?? 'all',
+                'customer_type' => $request->customer_type ?? 'registered',
                 'search' => $request->search,
             ]
         );
     }
-    public function show($request, $id)
-    {
-        $order = Order::with(['shipping', 'reciver', 'reciver.city', 'customer', 'customer.city'])
-            ->where('id', $id)
-            ->first();
+    // public function show($request, $id)
+    // {
+    //     $order = Order::with(['shipping', 'reciver', 'reciver.city', 'customer', 'customer.city'])
+    //         ->where('id', $id)
+    //         ->first();
 
-        return view(
-            'order.show.' . $request->adminType,
-            [
-                'order' => $order,
-            ]
-        );
-    }
+    //     return view(
+    //         'order.show.' . $request->adminType,
+    //         [
+    //             'order' => $order,
+    //         ]
+    //     );
+    // }
 }

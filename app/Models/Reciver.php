@@ -17,13 +17,16 @@ class Reciver extends Model
     {
         return $this->belongsTo(Customer::class);
     }
-
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
     public function city()
     {
-    return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class);
     }
     public function governorate()
     {
-    return $this->belongsTo(Governorate::class);
+        return $this->belongsTo(Governorate::class);
     }
 }

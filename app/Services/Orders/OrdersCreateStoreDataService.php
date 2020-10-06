@@ -2,35 +2,47 @@
 
 namespace App\Services\Orders;
 
-use Illuminate\Support\Str;
 use App\Services\BaseService;
+use App\Services\Orders\OrderSaveUserDataToSession;
 
 class OrdersCreateStoreDataService extends BaseService
 {
-    private $admin;
-    private $type;
-    private $identifyOrdersFetch;
 
-    public function __construct()
+    const IMAGE_PATH = 'orders/';
+
+    public $route = 'order.index';
+
+
+    public function create($request)
     {
-        $identify      = auth('admin')->user();
-        $this->type    = $identify->type;
-        $type          = $this->type;
-        $className     = __CLASS__ .'By'.Str::ucfirst($type);
-        $this->admin   = $identify->$type;
-        $this->identifyOrdersFetch = (new $className);
-
-    }
-
-    public function create()
-    {
-        return $this->identifyOrdersFetch->create();
+        $userData = app(OrderSaveUserDataToSession::class)->handle(request('page'));
+        return view('order.create.' . $request->adminType, ['userData' => $userData]);
     }
 
     public function store($request)
     {
-        return $this->identifyOrdersFetch->store($request);
+        return $this->identify($request)->store($request);
     }
 
+    protected function orderPath($request, $page)
+    {
+        $data = $request->validated();
 
+        if (isset($data['customer'])) {
+            session(['customer' => $data['customer']]);
+            session(['customerAddress' => $data['address']]);
+        }
+        if (isset($data['reciver'])) {
+            session(['reciver' => $data['reciver']]);
+            session(['reciverAddress' => $data['address']]);
+
+        }
+        session(['page' =>  $page]);
+        return redirect()->route('order.create', ['page' => $page]);
+    }
+
+    protected function setOrderNumberUnique($orderId)
+    {
+        return   3018 . ($orderId + 4);
+    }
 }

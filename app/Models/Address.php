@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CustomerInfo extends Model
+class Address extends Model
 {
     protected $guarded = [];
     public $timestamps = false;
 
-    public function customer()
+    public function addressable()
     {
-       return $this->belongsTo(Customer::class);
+      return $this->morphTo();
     }
 }

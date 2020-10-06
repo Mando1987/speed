@@ -2,15 +2,15 @@
 
 namespace App\Services\Orders;
 
+use App\Models\City;
+use App\Models\Order;
 use Illuminate\Support\Str;
 use App\Services\BaseService;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class OrdersFetshDataService extends BaseService
 {
-    private $admin;
-    private $type;
-    private $identifyOrdersFetch;
-    private $orderStatuses = [
+    protected $orderStatuses = [
         'under_review',
         'under_preparation',
         'ready_to_chip',
@@ -18,38 +18,48 @@ class OrdersFetshDataService extends BaseService
         'postpond',
         'cancelld',
     ];
-    private $paginate = 6;
-    private $view = 'list';
+    protected $paginate = 6;
+    protected $view = 'list';
 
-    public function __construct()
-    {
-        $identify      = auth('admin')->user();
-        $this->type    = $identify->type;
-        $type          = $this->type;
-        $className     = __CLASS__ .'By'.Str::ucfirst($type);
-        $this->admin   = $identify->$type;
-        $this->identifyOrdersFetch = (new $className);
-
-    }
     public function index($request)
     {
         $this->setView($request->view ?? null);
-        return $this->identifyOrdersFetch->index(
+        return $this->identify($request)->index(
             (object) array_merge(
                 $request->all(),
                 [
-                    $this->type => $this->admin,
-                    'status'   => ($request->status ?? false) && in_array($request->status, $this->orderStatuses) ? $request->status : false,
-                    'search'   => $request->search ?? false,
-                    'view'     => $this->view,
+                    'type' => $request->adminType,
+                    'status' => ($request->status ?? false) && in_array($request->status, $this->orderStatuses) ? $request->status : false,
+                    'search' => $request->search ?? false,
+                    'view' => $this->view,
                     'paginate' => $this->paginate,
                 ]
             )
         );
     }
-    public function show($id)
+    public function show($request, $id)
     {
-        return $this->identifyOrdersFetch->show([$this->type => $this->admin,'id' => $id]);
+        $cities = City::all();
+        $citiesMap = $cities->mapWithKeys(function($city){
+            return [$city->id => $city];
+        });
+        $relationsLoded = ['reciver' , 'shipping'];
+        if($request->adminType == 'manager'){
+            $relationsLoded = array_merge( $relationsLoded, ['customer']);
+        }
+
+
+         $orderData = Order::with($relationsLoded)->where('id',$id)->first();
+
+         return $orderData;
+
+
+        return view(
+            'order.show.' . $request->adminType,
+            [
+                'order' => $orderData,
+            ]
+        );
     }
     private function setView($value = null)
     {
@@ -71,5 +81,4 @@ class OrdersFetshDataService extends BaseService
             $this->paginate = 12;
         }
     }
-
 }

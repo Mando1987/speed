@@ -35,11 +35,6 @@ class Order extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function sender()
-    {
-        return $this->belongsTo(Sender::class);
-    }
-
     public function reciver()
     {
         return $this->belongsTo(Reciver::class);
@@ -70,9 +65,14 @@ class Order extends Model
        return $this->created_at->format('Y-m-d');
     }
 
-    public function getCityName()
+    public function getCustomerCityName()
     {
-       return app()->getLocale() == 'ar' ? $this->city_name : $this->city_name_en;
+       return app()->getLocale() == 'ar' ? $this->customer->city->city_name : $this->customer->city->city_name_en;
+    }
+
+    public function getReciverCityName()
+    {
+       return app()->getLocale() == 'ar' ? $this->reciver->city->city_name : $this->reciver->city->city_name_en;
     }
 
     public function getOpenOrder()

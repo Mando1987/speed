@@ -68,7 +68,7 @@
                                     </div>
 
                                     <div class="col-sm-8">
-                                        <x-input name="customer[other_phone]" />
+                                        <x-input name="admin[other_phone]" />
                                     </div>
                                 </div>
 
@@ -116,7 +116,7 @@
                                         <x-label title="{{__('site.activity')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="customerInfo[activity]" />
+                                        <x-input name="customer[activity]" />
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                                         <x-label title="{{__('site.address')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="customerInfo[address]" />
+                                        <x-input name="address[address]" />
                                     </div>
                                 </div>
                             </div>
@@ -190,7 +190,7 @@
                                         <x-label title="{{__('site.special_marque')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="customerInfo[special_marque]" />
+                                        <x-input name="address[special_marque]" />
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                                         <x-label title="{{__('site.house_number')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="customerInfo[house_number]" />
+                                        <x-input name="address[house_number]" />
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +213,7 @@
                                         <x-label title="{{__('site.door_number')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="customerInfo[door_number]" />
+                                        <x-input name="address[door_number]" />
                                     </div>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                                         <x-label title="{{__('site.shaka_number')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="customerInfo[shaka_number]" />
+                                        <x-input name="address[shaka_number]" />
                                     </div>
                                 </div>
                             </div>

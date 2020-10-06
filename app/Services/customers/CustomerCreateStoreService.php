@@ -29,10 +29,10 @@ class CustomerCreateStoreService extends BaseService
 
                 array_merge($request->validated()['customer'], [
 
-                    'image' => $this->handeImageUploadUsingIntervention($request->validated()['image'], self::IMAGE_PATH)
+                    'image' => $this->handeImageUploadUsingIntervention($request->validated()['image'], self::IMAGE_PATH) ,
                 ])
             );
-            $newCustomer->customerInfos()->create($request->validated()['customerInfo']);
+            $newCustomer->address()->create($request->validated()['address']);
             DB::commit();
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
             return $this->path($this->route);

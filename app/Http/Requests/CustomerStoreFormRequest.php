@@ -2,15 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
 class CustomerStoreFormRequest extends FormRequest
 {
-
-    public function authorize()
-    {
-        return true;
-    }
 
     protected function prepareForValidation()
     {
@@ -33,6 +26,7 @@ class CustomerStoreFormRequest extends FormRequest
 
             'admin.is_active'              => 'nullable',
             'admin.phone'                  => 'required|unique:admins,phone',
+            'admin.other_phone'            => 'nullable|unique:admins,other_phone',
             'admin.fullname'               => 'required|string|max:50',
             'admin.user_name'              => 'required|string|unique:admins,user_name|max:20',
             'admin.password'               => 'nullable',
@@ -44,27 +38,19 @@ class CustomerStoreFormRequest extends FormRequest
             'customer.governorate_id'      => 'required|exists:governorates,id',
             'customer.city_id'             => 'required|exists:cities,id',
             'customer.company_name'        => 'nullable|string|max:50',
-            'customer.other_phone'         => 'nullable|unique:customers,other_phone',
             'customer.facebook_page'       => 'nullable|string',
-            // 'customer.notes'               => 'nullable|string',
+            'customer.activity'            => 'required|string',
             'customer.contract_type'       => 'required|in:daily,monthly',
+
             'image'                        => 'nullable|mimes:png,jpg,jpeg|max:500',
 
-            'customerInfo.address'         => 'required|string',
-            'customerInfo.special_marque'  => 'required|string|max:100',
-            'customerInfo.house_number'    => 'required|string|max:10',
-            'customerInfo.door_number'     => 'required|string|max:10',
-            'customerInfo.shaka_number'    => 'required|string|max:10',
-            'customerInfo.activity'        => 'required|string',
+            'address.address'         => 'required|string',
+            'address.special_marque'  => 'required|string|max:100',
+            'address.house_number'    => 'required|string|max:10',
+            'address.door_number'     => 'required|string|max:10',
+            'address.shaka_number'    => 'required|string|max:10',
 
         ];
-    }
-
-
-
-    public function attributes()
-    {
-        return  trans('custom-attributes');
     }
 
     public function validated()
@@ -73,6 +59,5 @@ class CustomerStoreFormRequest extends FormRequest
         return array_merge($this->validator->validated(), [
             'image'  =>  $this->image ?? 'default.png',
         ]);
-
     }
 }

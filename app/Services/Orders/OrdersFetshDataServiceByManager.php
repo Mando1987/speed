@@ -3,25 +3,32 @@
 namespace App\Services\Orders;
 
 use App\Models\Order;
-use App\Services\BaseService;
 
-class OrdersFetshDataServiceByManager extends BaseService
+class OrdersFetshDataServiceByManager extends OrdersFetshDataService
 {
-    private $searchColumns = ['recivers.phone', 'shippings.order_num', 'cities.city_name', 'cities.city_name_en'];
+    private $searchColumns = [
+        'recivers.fullname',
+        'recivers.phone',
+        'shippings.order_num',
+        'cities.city_name',
+        'cities.city_name_en',
+        'customers.fullname',
+        'customers.phone',
+    ];
 
     public function index($request)
     {
-        // $orders = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')
-            // ->join('recivers', 'recivers.id', '=', 'orders.reciver_id')
-            // ->join('cities', 'cities.id', '=', 'recivers.city_id')
-            // ->select('cities.*', 'orders.id', 'orders.reciver_id', 'orders.customer_id', 'orders.created_at', 'orders.status')
-            // ->addSelect('recivers.id', 'recivers.fullname')
-            // ->selectRaw('shippings.id,shippings.order_id,shippings.charge_on,shippings.charge_price,shippings.order_num,shippings.customer_price')
-
-           $orders =Order::with('shipping' ,'reciver:id,fullname,city_id' , 'reciver.city')
+        $orders = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')
+            ->join('customers', 'customers.id', '=', 'orders.customer_id')
+            ->join('recivers', 'recivers.id', '=', 'orders.reciver_id')
+            ->join('cities', 'cities.id', '=', 'customers.city_id')
+            ->select('cities.*', 'orders.id', 'orders.reciver_id', 'orders.customer_id', 'orders.created_at', 'orders.status')
+            ->addSelect('customers.id as customer_id', 'customers.fullname as customer_fullname', 'customers.phone as customer_phone', 'customers.city_id')
+            ->addSelect('recivers.id as reciver_id', 'recivers.fullname as reciver_fullname')
+            ->selectRaw('shippings.id,shippings.order_id,shippings.order_num,shippings.customer_price')
 
             ->where(function ($query) use ($request) {
-                return  $query->when($request->search, function ($qsearch) use ($request) {
+                return $query->when($request->search, function ($qsearch) use ($request) {
                     $columns = $qsearch->where('recivers.fullname', 'LIKE', '%' . $request->search . '%');
 
                     foreach ($this->searchColumns as $key) {
@@ -36,26 +43,26 @@ class OrdersFetshDataServiceByManager extends BaseService
             ->latest()
             ->paginate($request->paginate);
 
-            // return $orders;
+        //    return $orders;
 
         return view(
             'order.index.manager',
             [
                 'orders' => $orders,
-                'view'   => $request->view,
+                'view' => $request->view,
                 'status' => $request->status ?? 'all',
-                'search' => $request->search
+                'search' => $request->search,
             ]
         );
     }
-    public function show(array $data)
+    public function show($request, $id)
     {
-        $order = Order::with(['shipping', 'reciver', 'reciver.city'])
-            ->where('id', $data['id'])
+        $order = Order::with(['shipping', 'reciver','reciver.city' , 'customer' ,'customer.city'])
+            ->where('id', $id)
             ->first();
 
         return view(
-            'order.show',
+            'order.show.' .$request->adminType,
             [
                 'order' => $order,
             ]

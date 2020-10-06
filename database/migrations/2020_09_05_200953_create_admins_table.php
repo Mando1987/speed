@@ -36,6 +36,7 @@ class CreateAdminsTable extends Migration
             $table->id();
             $table->string('fullname', 50);
             $table->string('phone', 11)->unique();
+            $table->string('other_phone', 11)->nullable();
             $table->string('email')->unique();
             $table->string('user_name')->unique();
             $table->string('password');

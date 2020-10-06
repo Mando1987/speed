@@ -25,7 +25,7 @@ class CustomerEditUpdateService extends BaseService
             'data' => [
                 'customer'     => $customer,
                 'admin'        => $customer->admin,
-                'customerInfo' => $customer->customerInfos,
+                'address'      => $customer->address,
             ]
         ]);
     }
@@ -44,11 +44,11 @@ class CustomerEditUpdateService extends BaseService
                     'image' => $this->handeImageUploadUsingIntervention($request->validated()['image'], self::IMAGE_PATH)
                 ])
             );
-            $customer->customerInfos()->update($request->validated()['customerInfo']);
+            $customer->address()->update($request->validated()['address']);
             DB::commit();
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
 
-            return $this->path($this->CurrentAdminService->route);
+            return $this->path($this->route);
 
         } catch (\Exception $ex) {
 

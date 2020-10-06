@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
 use App\Services\Orders\OrderCountChargePrice;
 use App\Services\Orders\OrderFormRequestTrait;
+use Illuminate\Validation\Rule;
 
 class OrderStoreFormRequestByManager
 {
@@ -47,17 +46,17 @@ class OrderStoreFormRequestByManager
     private function validateSenderInputs()
     {
         return [
-            'sender.fullname'         => 'required|string|max:50',
-            'sender.phone'            => ['required', 'unique:senders,phone'],
-            'sender.governorate_id'   => 'required|exists:governorates,id',
-            'sender.special_marque'   => 'required|string|max:100',
-            'sender.city_id'          => 'required|exists:cities,id',
+            'customer.fullname' => 'required|string|max:50',
+            'customer.phone' => ['required', 'unique:customers,phone'],
+            'customer.other_phone' => ['nullable', 'max:11', 'unique:customers,other_phone'],
+            'customer.governorate_id' => 'required|exists:governorates,id',
+            'customer.city_id' => 'required|exists:cities,id',
 
-            'sender.address'      => 'required|string',
-            'sender.house_number' => 'required|string|max:10',
-            'sender.door_number'  => 'required|string|max:10',
-            'sender.shaka_number' => 'required|string|max:10',
-            'sender.other_phone'  => ['nullable', 'max:11', 'unique:senders,other_phone'],
+            'address.address' => 'required|string',
+            'address.special_marque' => 'required|string|max:100',
+            'address.house_number'   => 'required|string|max:10',
+            'address.door_number'    => 'required|string|max:10',
+            'address.shaka_number'   => 'required|string|max:10',
         ];
     }
 
@@ -71,13 +70,14 @@ class OrderStoreFormRequestByManager
                 $parentValidated,
                 [
                     'shipping' => $ChargePrice,
-                    'sender'   => session('sender'),
+                    'customer' => session('customer'),
                     'reciver'  => session('reciver'),
+                    'customerAddress' => session('customerAddress'),
+                    'reciverAddress'  => session('reciverAddress'),
                 ]
             );
             return $data;
         }
-
         return $parentValidated;
     }
 }

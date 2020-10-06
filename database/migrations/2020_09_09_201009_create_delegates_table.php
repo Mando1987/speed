@@ -19,8 +19,6 @@ class CreateDelegatesTable extends Migration
             $table->unsignedBigInteger('governorate_id');
             $table->unsignedBigInteger('city_id');
             $table->unsignedBigInteger('admin_id');
-
-            $table->string('other_phone', 11)->unique()->nullable();
             $table->string('national_id', 14)->unique();
             $table->string('address');
             $table->string('qualification',50)->nullable();

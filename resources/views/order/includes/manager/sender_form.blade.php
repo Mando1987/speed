@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md text-center">
                 <strong class="badge bg-purple p-md-3 p-2 mb-3">
-                    @lang('site.reciver_info_title')
+                    @lang('site.sender_info_title')
                 </strong>
             </div>
         </div>
@@ -16,7 +16,7 @@
                         <x-label title="{{__('site.fullname')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="sender[fullname]" value="{{ $userData->fullname}}"
+                        <x-input name="customer[fullname]" value="{{ $userData->fullname}}"
                             placeholder="{{__('site.fullname_placholder')}}" />
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="col-sm-8">
-                        <x-input name="sender[phone]" placeholder="{{__('site.phone_placholder')}}"
+                        <x-input name="customer[phone]" placeholder="{{__('site.phone_placholder')}}"
                             value="{{$userData->phone}}"/>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                         <x-label title="{{__('site.address')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="sender[address]" value="{{$userData->address}}"
+                        <x-input name="address[address]" value="{{$userData->address->address}}"
                             placeholder="{{__('site.address_placholder')}}" />
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="col-sm-8">
-                        <x-input name="sender[other_phone]" value="{{$userData->other_phone}}"
+                        <x-input name="customer[other_phone]" value="{{$userData->other_phone}}"
                             placeholder="{{__('site.other_phone_placholder')}}" />
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                         <x-label title="{{__('site.governorate')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-Governorates name="sender[]" />
+                        <x-Governorates name="customer[]" />
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                         <x-label title="{{__('site.city')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-cities name="sender[]" />
+                        <x-cities name="customer[]" />
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                         <x-label title="{{__('site.special_marque')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="sender[special_marque]" value="{{$userData->special_marque}}"
+                        <x-input name="address[special_marque]" value="{{$userData->address->special_marque}}"
                             placeholder="{{__('site.special_marque_placholder')}}" />
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                         <x-label title="{{__('site.house_number')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="sender[house_number]" value="{{$userData->house_number}}"
+                        <x-input name="address[house_number]" value="{{$userData->address->house_number}}"
                             placeholder="{{__('site.house_number_placholder')}}" />
                     </div>
                 </div>
@@ -118,7 +118,7 @@
                         <x-label title="{{__('site.door_number')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="sender[door_number]" value="{{$userData->door_number}}"
+                        <x-input name="address[door_number]" value="{{$userData->address->door_number}}"
                             placeholder="{{__('site.door_number_placholder')}}" />
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                         <x-label title="{{__('site.shaka_number')}}" />
                     </div>
                     <div class="col-sm-8">
-                        <x-input name="sender[shaka_number]" value="{{$userData->shaka_number}}"
+                        <x-input name="address[shaka_number]" value="{{$userData->address->shaka_number}}"
                             placeholder="{{__('site.shaka_number_placholder')}}" />
                     </div>
                 </div>

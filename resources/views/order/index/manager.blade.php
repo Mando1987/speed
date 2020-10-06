@@ -53,7 +53,7 @@
             <table class="table text-nowrap align-items-stretch table-sm">
               <tbody>
                 <tr>
-                  <td class="border-top-0">@lang('datatable.order.customer.created_at')</td>
+                  <td class="border-top-0">@lang('datatable.order.manager.created_at')</td>
                   <td class="border-top-0">
                     <strong>
                       {{ $order->getDate() }}
@@ -61,31 +61,39 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>@lang('datatable.order.customer.reciver')</td>
+                  <td>@lang('datatable.order.manager.customer')</td>
                   <td>
                     <strong>
-                      {{ $order->fullname ?? '' }}
+                      {{ $order->customer_fullname }}
                     </strong>
                   </td>
                 </tr>
                 <tr>
-                  <td>@lang('datatable.order.customer.phone')</td>
+                  <td>@lang('datatable.order.manager.phone')</td>
                   <td>
                     <strong>
-                      {{ $order->phone ?? ''  }}
+                      {{ $order->customer_phone }}
                     </strong>
                   </td>
                 </tr>
                 <tr>
-                  <td>@lang('datatable.order.customer.city')</td>
+                  <td>@lang('datatable.order.manager.city')</td>
                   <td>
                     <strong>
-                      {{$order->getCityName() ?? ''}}
+                      {{ $order->getCustomerCityName() ?? ''}}
                     </strong>
                   </td>
                 </tr>
                 <tr>
-                  <td>@lang('datatable.order.customer.status')</td>
+                  <td>@lang('datatable.order.manager.reciver')</td>
+                  <td>
+                    <strong>
+                      {{ $order->reciver_fullname ?? ''}}
+                    </strong>
+                  </td>
+                </tr>
+                <tr>
+                  <td>@lang('datatable.order.manager.status')</td>
                   <td>
                     <span class="badge p-2 bg-{{ __('site.color_' . $order->status)}}">
                       {{ $order->getStatus() ?? '' }}
@@ -94,7 +102,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>@lang('datatable.order.customer.total_price')</td>
+                  <td>@lang('datatable.order.manager.total_price')</td>
                   <td>
                     <strong>
                       {{$order->customer_price ?? 0}}
@@ -102,7 +110,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>@lang('datatable.order.customer.order_num')</td>
+                  <td>@lang('datatable.order.manager.order_num')</td>
                   <td>
                     <strong>
                       {{ $order->order_num ?? 0 }}
@@ -167,8 +175,8 @@
         <thead>
           <tr>
             <th> # </th>
-            @foreach (trans('datatable.order.customer') as $column =>$val)
-            <th>{{trans('datatable.order.customer.' . $column)}}</th>
+            @foreach (trans('datatable.order.manager') as $column =>$val)
+            <th>{{trans('datatable.order.manager.' . $column)}}</th>
             @endforeach
             <th>@lang('site.actions')</th>
           </tr>
@@ -177,10 +185,11 @@
           @foreach($orders as $index => $order)
           <tr>
             <td class="sorting_1" tabindex="0">{{ $orders->firstItem()+$index }}</td>
-            <td> {{ $order->fullname??'' }} </td>
+            <td> {{ $order->customer_fullname}} </td>
             <td> {{ $order->getDate()}} </td>
-            <td> {{ $order->getCityName() }} </td>
-            <td> {{ $order->phone??'' }} </td>
+            <td> {{ $order->getCustomerCityName() }} </td>
+            <td> {{ $order->customer_phone }} </td>
+            <td> {{ $order->reciver_fullname }} </td>
             <td class="font-weight-bold"> {{ $order->customer_price??''  }}</td>
             <td>
               <span class="badge w-100 p-2 bg-{{ __('site.color_' . $order->status)}}">

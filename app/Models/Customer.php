@@ -31,9 +31,9 @@ class Customer extends Model
        return $this->belongsTo(City::class);
     }
 
-    public function customerInfos()
+    public function address()
     {
-        return $this->hasOne(CustomerInfo::class);
+        return $this->morphOne(Address::class , 'addressable');
     }
 
     public function orders()

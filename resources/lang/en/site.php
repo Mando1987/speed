@@ -125,7 +125,7 @@ return [
   'order_quantity_placeholder'        => 'Write down an integer',
   'order_price_placeholder'           => 'Write down the amount in pounds',
   'order_discount_placeholder'        => 'Write down the amount in pounds',
-  'order_user_can_open_order'         => 'Allow the customer to open the shipment',
+  'order_user_can_open_order'         => 'Open the shipment',
   'yes'                               => 'yes',
   'no'                                => 'No',
   //15/9/2020
@@ -234,6 +234,10 @@ return [
   'order_print_danger_msg'            => 'The company is not responsible for the content of the shipment, and the customer must verify the policy information before printing it',
   'order_print_contact_msg'           => 'In case of inquiries or inquiries, please contact customer service on 01148630107 - 01098026159',
     
-    
+   //06/10/2020
+  'customer_show_title'               => 'Customer Data',
+  'manager_reciver_title'             => 'Consignee Data',
+  'customer_type_registered'          => 'All registered customers' ,
+  'customer_type_unRegistered'        => 'All non-registered customers' ,
     
 ];

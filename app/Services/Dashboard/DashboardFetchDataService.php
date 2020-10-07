@@ -7,21 +7,9 @@ use App\Services\BaseService;
 
 class DashboardFetchDataService extends BaseService
 {
-    private $admin;
-    private $type;
-    private $identifyOrdersFetch;
 
-    public function __construct()
+    public function index($request)
     {
-        $identify      = auth('admin')->user();
-        $this->type    = $identify->type;
-        $type          = $this->type;
-        $className     = __CLASS__ .'By'.Str::ucfirst($type);
-        $this->admin   = $identify->$type;
-        $this->identifyOrdersFetch = (new $className);
-    }
-    public function index()
-    {
-        return $this->identifyOrdersFetch->index($this->admin);
+        return $this->identify($request)->index($this->admin);
     }
 }

@@ -9,7 +9,7 @@ class RegisterFormRequest extends FormRequest
     {
         return [
 
-            'phone'                  => 'required|unique:admins,phone|max:11',
+            'phone'                  => 'required|unique:customers,phone|max:11',
             'fullname'               => 'required|string|max:50',
             'admin.email'                  => 'required|email|unique:admins,email',
             'admin.user_name'              => 'required|string|unique:admins,user_name',
@@ -47,6 +47,5 @@ class RegisterFormRequest extends FormRequest
         $data['address'] = $this->address;
 
         return $data;
-
     }
 }

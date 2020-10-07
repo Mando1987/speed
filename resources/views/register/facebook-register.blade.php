@@ -101,7 +101,7 @@
                             <x-label title="{{__('site.address')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <x-input name="customerInfo[address]" type="text" />
+                            <x-input name="address[address]" type="text" />
                         </div>
                     </div>
                 </div>

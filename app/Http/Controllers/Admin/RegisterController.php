@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Requests\RegisterFormRequest;
+use App\Services\Registers\RegisterService;
 use App\Http\Requests\FacebookRegisterFormRequest;
 use App\Services\Registers\FacebookRegisterService;
-use Laravel\Socialite\Facades\Socialite;
-use Str;
 
 class RegisterController extends Controller
 {
@@ -16,8 +18,9 @@ class RegisterController extends Controller
         return view('register.register');
     }
 
-    public function register()
+    public function register(RegisterFormRequest $request)
     {
+        return app(RegisterService::class)->registerStore($request);
     }
     public function redirectToFacebook()
     {

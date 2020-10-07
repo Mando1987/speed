@@ -2,15 +2,15 @@
 
 namespace App\Http\Requests;
 
-class FacebookRegisterFormRequest extends FormRequest
+class RegisterFormRequest extends FormRequest
 {
 
     public function rules()
     {
         return [
 
-            'admin.phone'                  => 'required|unique:admins,phone|max:11',
-            'admin.fullname'               => 'required|string|max:50',
+            'phone'                  => 'required|unique:admins,phone|max:11',
+            'fullname'               => 'required|string|max:50',
             'admin.email'                  => 'required|email|unique:admins,email',
             'admin.user_name'              => 'required|string|unique:admins,user_name',
 
@@ -28,19 +28,20 @@ class FacebookRegisterFormRequest extends FormRequest
     public function validated()
     {
         $data['admin'] = array_merge(
-            $this->validator->validated()['admin'],
+            $this->admin,
             [
                 'is_active' => 1,
                 'password'  => bcrypt($this->password),
                 'type'      => 'customer',
+                'phone'  => $this->phone,
+                'fullname'  => $this->fullname,
             ]
         );
         $data['customer'] = array_merge(
             $this->validator->validated()['customer'],
             [
-                'image'  => session('facebook')['image']?? 'default.png' ,
-                'phone'  => $this->validator->validated()['admin']['phone'],
-                'fullname'  => $this->validator->validated()['admin']['fullname'],
+                'phone'  => $this->phone,
+                'fullname'  => $this->fullname,
             ]
         );
         $data['address'] = $this->address;

@@ -6,7 +6,7 @@ use App\Models\Admin;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
 
-class FacebookRegisterService extends BaseService
+class RegisterService extends BaseService
 {
 
     public $admin;
@@ -17,9 +17,9 @@ class FacebookRegisterService extends BaseService
         $this->admin = $admin;
     }
 
-    public function store($request)
+    public function registerStore($request)
     {
-        dd($request);
+        // dd($request);
         try {
             DB::beginTransaction();
 

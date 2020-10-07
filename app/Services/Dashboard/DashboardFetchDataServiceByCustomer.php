@@ -2,13 +2,17 @@
 
 namespace App\Services\Dashboard;
 
+use App\Models\Admin;
 use App\Models\Order;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+
 
 class DashboardFetchDataServiceByCustomer
 {
-    public function index($customer)
+    public function index(Request $request)
     {
+        $customer = Admin::find($request->adminId)->customer;
         $filters = [
             'under_review',
             'under_preparation',
@@ -21,7 +25,7 @@ class DashboardFetchDataServiceByCustomer
 
         $query = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')
             ->select('orders.id', 'orders.customer_id', 'orders.status')
-            ->selectRaw('(SELECT count(*) FROM orders) as "all_count"');
+            ->selectRaw('(SELECT count(*) FROM orders where customer_id = '.$customer->id.') as "all_count"');
         foreach ($filters as $index) {
             $data = $query->selectRaw(Str::replaceArray('?', [$index, $customer->id, $index], $queryText));
         }
@@ -31,6 +35,7 @@ class DashboardFetchDataServiceByCustomer
             ->where('orders.customer_id', $customer->id)
             ->where('orders.status', 'delivered')
             ->first();
+
         return view('dashboard.customer', ['data' => $data]);
     }
 }

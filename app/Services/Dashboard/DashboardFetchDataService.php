@@ -10,6 +10,6 @@ class DashboardFetchDataService extends BaseService
 
     public function index($request)
     {
-        return $this->identify($request)->index($this->admin);
+        return $this->identify($request)->index($request);
     }
 }

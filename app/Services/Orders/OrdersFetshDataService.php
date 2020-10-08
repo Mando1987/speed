@@ -3,6 +3,7 @@
 namespace App\Services\Orders;
 
 use App\Models\Order;
+use App\Models\Address;
 use App\Services\BaseService;
 
 class OrdersFetshDataService extends BaseService
@@ -76,16 +77,59 @@ class OrdersFetshDataService extends BaseService
 
     public function print($request)
     {
+        $tables = [
+            'customer' => ['id', 'fullname', 'phone', 'city_name', 'city_name_en', 'governorate_name', 'governorate_name_en'],
+            'reciver' => ['id', 'fullname', 'phone', 'city_name', 'city_name_en', 'governorate_name', 'governorate_name_en'],
+            'shipping' => ['order_id', 'total_price', 'charge_on', 'order_num']
+
+        ];
         if ($request->adminType == 'manager')
-            $order = Order::select('id', 'customer_id', 'reciver_id', 'user_can_open_order')->with([
-                'customer:id,fullname,phone',
-                'customer.address:addressable_id,address',
-                'reciver:id,fullname,phone',
-                'reciver.address',
-                'shipping:order_id,total_price,charge_on'
-            ])->where('id', $request->orderId)->first();
-        // return $order;
-        return view('order.print');
+            $order = Order::select('orders.*')
+                ->join('shippings as s', 's.order_id', '=', 'orders.id')
+                ->join('customers as c', 'c.id', '=', 'orders.customer_id')
+                ->join('recivers as r', 'r.id', '=', 'orders.reciver_id')
+                ->join('cities as c_c', 'c_c.id', '=', 'c.city_id')
+                ->join('cities as c_r', 'c_r.id', '=', 'r.city_id')
+                ->join('governorates as g_c', 'g_c.id', '=', 'c.governorate_id')
+                ->join('governorates as g_r', 'g_r.id', '=', 'r.governorate_id')
+                ->selectRaw('CONCAT_WS(",",c.id,c.fullname,c.phone,c_c.city_name,c_c.city_name_en,g_c.governorate_name,g_c.governorate_name_en) as customer')
+                ->selectRaw('CONCAT_WS(",",r.id,r.fullname,r.phone,c_r.city_name,c_r.city_name_en,g_r.governorate_name,g_r.governorate_name_en) as reciver')
+                ->selectRaw('CONCAT_WS(",",s.order_id,s.total_price,s.charge_on,s.order_num) as shipping')
+                ->where('orders.id', $request->orderId)->first();
+
+            $order->date = $order->created_at->format('Y-m-d');
+
+            foreach ($tables as $table => $colmuns) {
+                $order->$table = (object) (array_combine($colmuns, explode(',', $order->$table)));
+            }
+
+            $localeIsAr = app()->getLocale() == 'ar';
+            $order->customer->city = $localeIsAr ? $order->customer->city_name : $order->customer->city_name_en;
+            $order->customer->governorate = $localeIsAr ? $order->customer->governorate_name : $order->customer->governorate_name_en;
+            $order->reciver->city = $localeIsAr ? $order->reciver->city_name : $order->reciver->city_name_en;
+            $order->reciver->governorate = $localeIsAr ? $order->reciver->governorate_name : $order->reciver->governorate_name_en;
+
+            $addresses = Address::get();
+
+            $addresses->map(function($address) use($order) {
+                if($address->addressable_type == "App\\Models\\Customer" && $address->addressable_id == $order->customer->id){
+                    $order->customer->address = $address;
+                }
+                if($address->addressable_type == "App\\Models\\Reciver" && $address->addressable_id == $order->reciver->id){
+                    $order->reciver->address = $address;
+                }
+            });
+
+            $order->userCanOpenOrder  = trans('site.order_print_user_can_open_order_'. $order->user_can_open_order);
+            $order->charge_on_customer= $order->shipping->charge_on == 'customer' ? trans('site.order_print_true'):trans('site.order_print_false');
+            $order->charge_on_reciver = $order->shipping->charge_on == 'reciver' ? trans('site.order_print_true'):trans('site.order_print_false');
+            $order->get_price = $order->shipping->total_price != 0 ? trans('site.order_print_true'):trans('site.order_print_false');
+            $order->get_price_viza = $order->shipping->total_price == 0 ? trans('site.order_print_true'):trans('site.order_print_false');
+
+
+            // return $order;
+            return view('order.print', ['order' => $order]);
         return abort(404);
     }
+
 }

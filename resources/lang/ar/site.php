@@ -253,14 +253,14 @@ return [
   'customer_type_unRegistered'        => 'كل العملاء الغير مسجلين' ,
   //08/10/2002
   'order_print_door_num'              => 'الدور',
-  'order_print_shaka_number'          => 'شقة',
+  'order_print_shaka_number'          => 'شقه',
   'order_print_notes'                 => 'ملاحظات',
   'order_print_info'                  => 'وصف الاوردر',
-  'order_print_user_can_open_order_1' => 'السماح للعميل بفتح الشحنة',
-  'order_print_user_can_open_order_0' => 'عدم السماح للعميل بفتح الشحنة',
+  'order_print_user_can_open_order_1' => 'السماح للعميل بفتح الشحنه',
+  'order_print_user_can_open_order_0' => 'عدم السماح للعميل بفتح الشحنه',
   'order_print_charge_on'              => 'مصاريف الشحن',
   'order_print_charge_on_sender'      => 'على الراسل',
-  'order_print_charge_on_reciver'      => ' على المرسل اليه',
+  'order_print_charge_on_reciver'      => 'على المرسل إليه',
   'order_print_finished'      => 'خالص',
   'order_print_get_price'      => 'تحصيل',
   'order_print_other'      => 'اخرى',
@@ -271,6 +271,6 @@ return [
   'order_print_open_charge' => 'فتح الشحنه',
   'order_print_order_weight' => 'وزن الشحنه',
   'order_weight_kg' => 'كيلو جرام',
-  'order_special_marque' => 'ع مميزه',
+  'order_special_marque' => 'علامه مميزه',
 
 ];

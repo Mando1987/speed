@@ -69,9 +69,9 @@
                 <td>
                   <span>{{ $order->customer->address->house_number }}</span>
                   <span>{{ $order->customer->address->address }} - </span>
-                  <span>{{ $order->customer->city }} - </span>
                   <span>@lang('site.order_print_door_num') {{ $order->customer->address->door_number }} - </span>
                   <span>@lang('site.order_print_shaka_number') {{ $order->customer->address->shaka_number }} - </span>
+                  <span>{{ $order->customer->city }} - </span>
                   <span>{{ $order->customer->governorate }} </span>
                 </td>
               </tr>
@@ -101,9 +101,9 @@
                 <td>
                   <span>{{ $order->reciver->address->house_number }}</span>
                   <span>{{ $order->reciver->address->address }} - </span>
-                  <span>{{ $order->reciver->city }} - </span>
                   <span>@lang('site.order_print_door_num') {{ $order->reciver->address->door_number }} - </span>
                   <span>@lang('site.order_print_shaka_number') {{ $order->reciver->address->shaka_number }} - </span>
+                  <span>{{ $order->reciver->city }} - </span>
                   <span>{{ $order->reciver->governorate }} </span>
                 </td>
               </tr>

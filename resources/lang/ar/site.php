@@ -243,7 +243,7 @@ return [
   'order_print_price'                 => 'القيمه',
   'order_print_charge_price'          => 'قيمة الشحن',
   'order_print_notes'                 => 'ملاحظات',
-  'order_print_danger_msg'            => 'الشركة غير مسؤوله عن محتوى الشحنه وعلى العميل التأكد من بيانات البوليصه قبل طباعتها',
+  'order_print_danger_msg'            => 'الشركة غير مسؤوله عن محتويات الشحنات وتنتهي مسئوليتها بمجرد تسليمها للمرسل إليه',
   'order_print_contact_msg'           => 'فى حالة الأستفسار أو الأستعلام يرجى التواصل مع خدمة العملاء على 01148630107 - 01098026159',
 
   //06/10/2020
@@ -268,9 +268,9 @@ return [
   'order_print_website_name_en'  => 'SPEED',
   'order_print_true'  => '✔',
   'order_print_false'  => '❌',
-  'order_print_open_charge' => 'فتح الشحنة',
-  'order_print_order_weight' => 'وزن الشحنة',
+  'order_print_open_charge' => 'فتح الشحنه',
+  'order_print_order_weight' => 'وزن الشحنه',
   'order_weight_kg' => 'كيلو جرام',
-  'order_special_marque' => 'ع مميزة',
+  'order_special_marque' => 'ع مميزه',
 
 ];

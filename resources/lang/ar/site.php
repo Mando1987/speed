@@ -258,9 +258,9 @@ return [
   'order_print_info'                  => 'وصف الاوردر',
   'order_print_user_can_open_order_1' => 'السماح للعميل بفتح الشحنة',
   'order_print_user_can_open_order_0' => 'عدم السماح للعميل بفتح الشحنة',
-  'order_print_charge_on'              => 'الشحن ذهاب وعودة على ',
-  'order_print_charge_on_sender'      => 'الراسل',
-  'order_print_charge_on_reciver'      => 'المرسل اليه',
+  'order_print_charge_on'              => 'مصاريف الشحن',
+  'order_print_charge_on_sender'      => 'على الراسل',
+  'order_print_charge_on_reciver'      => ' على المرسل اليه',
   'order_print_finished'      => 'خالص',
   'order_print_get_price'      => 'تحصيل',
   'order_print_other'      => 'اخرى',
@@ -268,5 +268,9 @@ return [
   'order_print_website_name_en'  => 'SPEED',
   'order_print_true'  => '✔',
   'order_print_false'  => '❌',
+  'order_print_open_charge' => 'فتح الشحنة',
+  'order_print_order_weight' => 'وزن الشحنة',
+  'order_weight_kg' => 'كيلو جرام',
+  'order_special_marque' => 'ع مميزة',
 
 ];

@@ -80,8 +80,7 @@ class OrdersFetshDataService extends BaseService
         $tables = [
             'customer' => ['id', 'fullname', 'phone', 'city_name', 'city_name_en', 'governorate_name', 'governorate_name_en'],
             'reciver' => ['id', 'fullname', 'phone', 'city_name', 'city_name_en', 'governorate_name', 'governorate_name_en'],
-            'shipping' => ['order_id', 'total_price', 'charge_on', 'order_num']
-
+            'shipping' => ['order_id', 'total_price', 'charge_on', 'order_num', 'total_weight']
         ];
         if ($request->adminType == 'manager')
             $order = Order::select('orders.*')
@@ -94,7 +93,7 @@ class OrdersFetshDataService extends BaseService
                 ->join('governorates as g_r', 'g_r.id', '=', 'r.governorate_id')
                 ->selectRaw('CONCAT_WS(",",c.id,c.fullname,c.phone,c_c.city_name,c_c.city_name_en,g_c.governorate_name,g_c.governorate_name_en) as customer')
                 ->selectRaw('CONCAT_WS(",",r.id,r.fullname,r.phone,c_r.city_name,c_r.city_name_en,g_r.governorate_name,g_r.governorate_name_en) as reciver')
-                ->selectRaw('CONCAT_WS(",",s.order_id,s.total_price,s.charge_on,s.order_num) as shipping')
+                ->selectRaw('CONCAT_WS(",",s.order_id,s.total_price,s.charge_on,s.order_num,s.total_weight) as shipping')
                 ->where('orders.id', $request->orderId)->first();
 
             $order->date = $order->created_at->format('Y-m-d');
@@ -121,10 +120,9 @@ class OrdersFetshDataService extends BaseService
             });
 
             $order->userCanOpenOrder  = trans('site.order_print_user_can_open_order_'. $order->user_can_open_order);
-            $order->charge_on_customer= $order->shipping->charge_on == 'customer' ? trans('site.order_print_true'):trans('site.order_print_false');
-            $order->charge_on_reciver = $order->shipping->charge_on == 'reciver' ? trans('site.order_print_true'):trans('site.order_print_false');
-            $order->get_price = $order->shipping->total_price != 0 ? trans('site.order_print_true'):trans('site.order_print_false');
-            $order->get_price_viza = $order->shipping->total_price == 0 ? trans('site.order_print_true'):trans('site.order_print_false');
+            $order->charge_on =trans('site.order_print_charge_on_'. $order->shipping->charge_on);
+            // $order->get_price = $order->shipping->total_price != 0 ? trans('site.order_print_true'):trans('site.order_print_false');
+            // $order->get_price_viza = $order->shipping->total_price == 0 ? trans('site.order_print_true'):trans('site.order_print_false');
 
 
             // return $order;

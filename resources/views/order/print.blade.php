@@ -73,8 +73,12 @@
                   <span>@lang('site.order_print_door_num') {{ $order->customer->address->door_number }} - </span>
                   <span>@lang('site.order_print_shaka_number') {{ $order->customer->address->shaka_number }} - </span>
                   <span>{{ $order->customer->governorate }} </span>
-                  <span class="d-block">@lang('site.order_print_shaka_number')
-                    {{ $order->customer->address->special_marque }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">@lang('site.order_special_marque')</td>
+                <td>
+                  {{ $order->customer->address->special_marque }}
                 </td>
               </tr>
             </tbody>
@@ -101,9 +105,12 @@
                   <span>@lang('site.order_print_door_num') {{ $order->reciver->address->door_number }} - </span>
                   <span>@lang('site.order_print_shaka_number') {{ $order->reciver->address->shaka_number }} - </span>
                   <span>{{ $order->reciver->governorate }} </span>
-                  <span class="d-block">@lang('site.order_print_shaka_number')
-                    {{ $order->reciver->address->special_marque }}</span>
-
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">@lang('site.order_special_marque')</td>
+                <td>
+                  {{ $order->reciver->address->special_marque }}
                 </td>
               </tr>
             </tbody>
@@ -113,18 +120,29 @@
       </div>
     </div>
     <div class="container-fluid border-bottom border-left border-right border-dark">
-
       <div class="row">
         <div class="col-6 p-1 border-right border-dark">
           <table class="table table-sm table-bordered mb-0 mb-0">
             <tbody>
               <tr>
-                <td class="font-weight-bold">@lang('site.order_print_notes')</td>
+                <td class="font-weight-bold">@lang('site.order_print_open_charge')</td>
                 <td>
                   <span>{{ $order->userCanOpenOrder }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">@lang('site.order_print_charge_on')</td>
+                <td>
+                  <span>{{ $order->charge_on }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">@lang('site.order_print_notes')</td>
+                <td>
                   <span class="d-block">{{ $order->notes }}</span>
                 </td>
               </tr>
+
             </tbody>
           </table>
         </div><!-- /.left reciver -->
@@ -135,76 +153,26 @@
                 <td class="font-weight-bold">@lang('site.order_print_info')</td>
                 <td>
                   <span>{{ $order->info }}</span>
-
+                </td>
+              </tr>
+              <tr>
+                <td class="font-weight-bold">@lang('site.order_print_order_weight')</td>
+                <td>
+                  <span>{{ $order->shipping->total_weight }} @lang('site.order_weight_kg')</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="font-weight-bold">@lang('site.order_print_price')</span>
+                </td>
+                <td>
+                  <span class="font-weight-bold text-center"
+                    style="font-size: 19px">{{ $order->shipping->total_price }}</span>
                 </td>
               </tr>
             </tbody>
           </table>
         </div><!-- /.left reciver -->
-
-      </div>
-    </div>
-    <div class="container-fluid border-bottom border-left border-right border-dark">
-
-      <div class="row">
-        <div class="col-3 p-1 border-right border-dark">
-
-          <table class="table-sm w-100 h-100 m-auto">
-            <tbody>
-              <tr>
-                <td>
-                  <span class="font-weight-bold mr-3">@lang('site.order_print_price')</span>
-                  <span
-                    class="font-weight-bold border border-dark text-center px-2" style="font-size: 19px">{{ $order->shipping->total_price }}</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-5 p-1 border-right border-dark">
-          <table class="table-sm w-100 h-100 m-auto">
-            <tbody>
-              <tr>
-                <td>
-                  <span class="font-weight-bold mr-1"> @lang('site.order_print_finished')</span>
-                <span class="border border-dark text-center px-2" style="font-size: 23px">{{ $order->get_price_viza }}</span>
-                </td>
-                <td>
-                  <span class="font-weight-bold mr-1"> @lang('site.order_print_get_price')</span>
-                <span class="border border-dark text-center px-2" style="font-size: 23px">{{ $order->get_price }}</span>
-                </td>
-
-                <td>
-                  <span class="font-weight-bold mr-1"> @lang('site.order_print_other')</span>
-                  <span class="border border-dark text-center px-2" style="font-size: 23px">❌</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-4 p-1">
-          <div class="text-center">
-            <table class="table-sm w-100">
-              <tbody>
-                <tr class="text-center font-weight-bold">
-                  <td colspan="4">@lang('site.order_print_charge_on')</td>
-                </tr>
-                <tr>
-                  <td>
-                    <span class="border border-dark px-2 mr-1">@lang('site.order_print_charge_on_sender')</span>
-                  <span style="font-size: 23px">{{ $order->charge_on_customer }}</span>
-                  </td>
-                  <td>
-                    <span class="border border-dark px-2 mr-1">@lang('site.order_print_charge_on_reciver')</span>
-                  <span style="font-size: 23px"> {{ $order->charge_on_reciver }}</span>
-                  </td>
-
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
 
       </div>
     </div>
@@ -215,9 +183,7 @@
           <span class="d-block">@lang('site.order_print_contact_msg')</span>
         </div>
       </div>
-    </div>
-
-
+    </div><!-- contact_msg-->
   </section>
   <!-- /.content -->
 </div>

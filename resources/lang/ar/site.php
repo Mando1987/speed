@@ -271,6 +271,6 @@ return [
   'order_print_open_charge' => 'فتح الشحنه',
   'order_print_order_weight' => 'وزن الشحنه',
   'order_weight_kg' => 'كيلو جرام',
-  'order_special_marque' => 'علامه مميزه',
+  'order_special_marque' => 'ع مميزه',
 
 ];

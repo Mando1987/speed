@@ -23,15 +23,7 @@
           </table>
         </div>
         <div class="col-4 text-center border-right border-dark p-1 mb-0">
-          <div class="user-block m-auto">
-            <img src="{{asset('assets/dist/img/logo.png')}}" alt="SPEED" class="img-circle img-fluid float-right">
-            <span class="username float-right">
-              <div>@lang('site.order_print_website_name_en')</div>
-              <div>@lang('site.order_print_website_name')</div>
-            </span>
-
-          </div>
-
+            <img src="{{asset('assets/dist/img/logo.png')}}" alt="SPEED" class="img-fluid">
         </div>
         <div class="col-4 p-1 mb-0">
           <table class="table table-sm table-bordered mb-0">

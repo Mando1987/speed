@@ -93,10 +93,26 @@ $languages= config('languages');
             </div>
             <!-- /.modal-dialog -->
         </div>
+        <div class="modal fade" id="modal-print" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog p-0 modal-xl">
+                <div class="modal-content p-0">
+                    <div class="modal-body p-0">
+
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button class="btn btn-default ml-1 button-print">
+                            <i class="fas fa-print"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 
     <div id="print">
-
     </div>
 
 

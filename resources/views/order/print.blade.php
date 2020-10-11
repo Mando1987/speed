@@ -1,11 +1,10 @@
-{{-- @extends('layouts.dashboard') --}}
-
-{{-- @section('content') --}}
+{{-- @extends('layouts.dashboard')
+@section('content') --}}
 
 
 <div class="wrapper">
   <!-- Main content -->
-  <section class="invoice p-1">
+  <section class="p-1">
     <div class="container-fluid border border-dark">
       <div class="row mb-0">
         <div class="col-4 border-right border-dark p-1 mb-0">
@@ -23,7 +22,7 @@
           </table>
         </div>
         <div class="col-4 text-center border-right border-dark p-1 mb-0">
-            <img src="{{asset('assets/dist/img/logo.png')}}" alt="SPEED" class="img-fluid">
+          <img src="{{asset('assets/dist/img/logo.png')}}" alt="SPEED" class="img-fluid print-logo-img">
         </div>
         <div class="col-4 p-1 mb-0">
           <table class="table table-sm table-bordered mb-0">
@@ -178,11 +177,11 @@
     </div><!-- contact_msg-->
   </section>
   <!-- /.content -->
+
 </div>
 <!-- ./wrapper -->
-
-<script type="text/javascript">
-  window.addEventListener("load", window.print());
+<script>
+ // window.addEventListener("load", window.print());
 </script>
 
 

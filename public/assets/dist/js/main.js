@@ -38,11 +38,11 @@ $(document).ready(function () {
     });
 
     $("#orderStatus").change(function () {
-        $('#changeStatus').submit();
+        $("#changeStatus").submit();
     });
 
     $("#customer_type").change(function () {
-        $('#customer').submit();
+        $("#customer").submit();
     });
 
     $("#governorate_id").change(function () {
@@ -76,23 +76,29 @@ $(document).ready(function () {
     $("#getCitiesPriceSelect").change(function () {
         $("#getCitiesPrice").submit();
     });
-    $(document).on('click' , '.showSingleModel' , function(){
-
-        $.get(this.href,{} , function(data){
-            $('.modal-body').html('');
-            $('.modal-body').html(data);
-            $('#modal-default').modal('show');
-        })
-        return false;
-       });
-    /// print order num
-    $(document).on('click' , '.print' , function(){
-
-        $.get(this.href,{} , function(data){
-            $('#print').html(data);
+    $(document).on("click", ".showSingleModel", function () {
+        $.get(this.href, {}, function (data) {
+            newFunction(data);
         });
         return false;
-       });
+    });
+    /// print order num
+    $(document).on("click", ".print", function () {
+        $.get(this.href, {}, function (data) {
+            $("#print").html(data);
+            $("#modal-print .modal-body").html("");
+            $("#modal-print .modal-body").html(data);
+            $("#modal-print").modal("show");
+        });
+        return false;
+    });
+    $(document).on("click", ".button-print", function () {
+        $('#modal-print').modal('hide');
+        $('#modal-print').on('hidden.bs.modal', function (e) {
+            window.print();
+        });
+        return false;
+    });
 });
 
 $(
@@ -104,6 +110,12 @@ $(
 $('[name="shipping[charge_on]"]').on("change", function () {
     getOrderChargePrice();
 });
+
+function newFunction(data) {
+    $(".modal-body").html("");
+    $(".modal-body").html(data);
+    $("#modal-default").modal("show");
+}
 
 /*** get order charge price  */
 function getOrderChargePrice() {

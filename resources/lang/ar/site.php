@@ -272,5 +272,6 @@ return [
   'order_print_order_weight' => 'وزن الشحنه',
   'order_weight_kg' => 'كيلو جرام',
   'order_special_marque' => 'ع مميزه',
+  'modal_print' => 'اطبع',
 
 ];

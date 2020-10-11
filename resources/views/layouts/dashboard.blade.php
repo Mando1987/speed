@@ -12,7 +12,6 @@ $languages= config('languages');
     <title>{{ siteTitle() }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
@@ -43,7 +42,6 @@ $languages= config('languages');
         h6 {
             font-family: 'Cairo', sans-serif !important;
         }
-
     </style>
     @endif
 </head>
@@ -100,9 +98,10 @@ $languages= config('languages');
 
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button class="btn btn-default ml-1 button-print">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@lang('site.cancel')</button>
+                        <button class="btn btn-success ml-1 button-print">
                             <i class="fas fa-print"></i>
+                            @lang('site.modal_print')
                         </button>
                     </div>
                 </div>
@@ -114,9 +113,6 @@ $languages= config('languages');
 
     <div id="print">
     </div>
-
-
-
     <!-- jQuery -->
     <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
@@ -130,7 +126,6 @@ $languages= config('languages');
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('assets/dist/js/demo.js')}}"></script>
     <script src="{{asset('assets/dist/js/main.js')}}"></script>
-
     @stack('datatable')
     @include('includes.notify.message')
     @stack('scripts')

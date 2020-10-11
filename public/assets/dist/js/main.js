@@ -95,6 +95,7 @@ $(document).ready(function () {
     $(document).on("click", ".button-print", function () {
         $('#modal-print').modal('hide');
         $('#modal-print').on('hidden.bs.modal', function (e) {
+            $("#modal-print").off("hidden.bs.modal");
             window.print();
         });
         return false;

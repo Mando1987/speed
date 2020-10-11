@@ -1,8 +1,6 @@
-{{-- @extends('layouts.dashboard')
-@section('content') --}}
 
+<div class="wrapper" id="print-wrapper">
 
-<div class="wrapper">
   <!-- Main content -->
   <section class="p-1">
     <div class="container-fluid border border-dark">
@@ -180,9 +178,3 @@
 
 </div>
 <!-- ./wrapper -->
-<script>
- // window.addEventListener("load", window.print());
-</script>
-
-
-{{-- @endsection --}}

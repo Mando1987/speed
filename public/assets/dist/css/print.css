@@ -9,8 +9,8 @@
     }
 
     @page {
-        size: auto;
-        margin: 5px;
+        size: A4;
+        margin: 0mm;
     }
     .hide-in-print {
         display: none;

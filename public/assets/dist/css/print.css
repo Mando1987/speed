@@ -8,20 +8,23 @@
         font-family: "Cairo", sans-serif;
     }
 
-    @page {
-        size: A4;
+    @page vertical {
+        size: A4 portrait;
         margin: 0mm;
-    }
+        }
+      @page horizontal {
+        size: A4 landscape;
+        margin: 0mm;
+        }
+
     .hide-in-print {
         display: none;
-        z-index: -1;
     }
 
-    #print,
-    #print .wrapper {
+    #print {
         display: block;
         font-size: 16px;
-        padding: 1px;
+        padding: 5px;
     }
     #print .tdBlack {
         background-color: black;

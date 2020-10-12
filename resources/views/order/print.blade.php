@@ -1,7 +1,7 @@
 
 <div class="wrapper" id="print-wrapper">
   <!-- Main content -->
-  <section class="p-1">
+  <section class="">
     <div class="container-fluid border border-dark">
       <div class="row mb-0">
         <div class="col-4 border-right border-dark p-1 mb-0">

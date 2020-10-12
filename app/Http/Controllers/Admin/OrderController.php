@@ -28,6 +28,7 @@ class OrderController extends Controller
 
     public function store(OrderStoreFormRequest $request)
     {
+        dd($request);
         return app(OrdersCreateStoreDataService::class)->store($request);
     }
 

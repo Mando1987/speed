@@ -100,6 +100,14 @@ $(document).ready(function () {
         });
         return false;
     });
+
+    $(document).on("change", "[name=chooseCustomer]", function(){
+        var chooseCustomer = $(this).val();
+        $('.existingCustomerContent').hide();
+        $('.newCustomerContent').hide();
+        $('.'+chooseCustomer+'Content').show();
+        return false;
+    });
 });
 
 $(

@@ -9,6 +9,12 @@
                 </strong>
             </div>
         </div>
+        <div class="order-progress mx-auto d-flex justify-content-between mb-2">
+            <div class="order-line"></div>
+            <button class="btn btn-success rounded-circle">1</button>
+            <button class="btn btn-default rounded-circle">2</button>
+            <button class="btn btn-default rounded-circle">3</button>
+        </div>
         <div class="row">
             <div class="col-md">
                 <div class="form-group row">

@@ -273,5 +273,8 @@ return [
   'order_weight_kg' => 'كيلو جرام',
   'order_special_marque' => 'ع مميزه',
   'modal_print' => 'اطبع',
+  'order_create_new_sender' => 'عميل جديد',
+  'order_create_existing_sender' => 'عميل موجود بالفعل',
+  'order_create_choose_customer' => 'اختر العميل',
 
 ];

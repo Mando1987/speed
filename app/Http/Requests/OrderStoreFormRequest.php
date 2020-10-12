@@ -7,13 +7,14 @@ class OrderStoreFormRequest extends FormRequest
 
     public function rules()
     {
+        return [];
         return $this->identify($this)->rules();
     }
 
-    public function validated()
-    {
-        return $this->identify($this)->validated($this->order, $this->validator->validated());
-    }
+    // public function validated()
+    // {
+    //     return $this->identify($this)->validated($this->order, $this->validator->validated());
+    // }
 
 
 }

@@ -1,9 +1,15 @@
 <div class="order-info">
     <div class="mb-3 br-1 text-center">
         <strong class="badge bg-purple p-3">
-
-            @lang('site.order_info_title')</strong>
+            @lang('site.order_info_title')
+        </strong>
     </div>
+    <div class="order-progress mx-auto d-flex justify-content-between mb-2">
+        <div class="order-line"></div>
+        <button class="btn btn-success rounded-circle">1</button>
+        <button class="btn btn-default rounded-circle">2</button>
+    </div>
+
     <div class="row">
         <div class="col-md">
             <div class="col-md">

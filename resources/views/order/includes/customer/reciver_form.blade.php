@@ -8,6 +8,11 @@
                     @lang('site.reciver_info_title')
                 </strong>
             </div>
+            <div class="order-progress mx-auto d-flex justify-content-between mb-2">
+                <div class="order-line"></div>
+                <button class="btn btn-success rounded-circle">1</button>
+                <button class="btn btn-default rounded-circle">2</button>
+            </div>
         </div>
         <div class="row">
             <div class="col-md">

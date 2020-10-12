@@ -9,10 +9,10 @@
         font-family: "Cairo", sans-serif;
     }
 
-    /* @page {
+    @page {
         size: auto;
-        margin: 0mm;
-    } */
+        margin: 1mm;
+    }
     .hide-in-print {
         display: none;
         z-index: -1;

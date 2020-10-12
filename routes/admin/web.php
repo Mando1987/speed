@@ -44,18 +44,17 @@ Route::fallback(function () {
     return abort(404);
 });
 
-Route::get('create-admin',function(){
-    App\Models\Admin::create(
-
-        [
-            'fullname'   => 'admin',
-            'phone'      => '01098026159',
-            'email'      => 'a.wahba2019@gmail.com',
-            'user_name'  => 'admin',
-            'password'   => bcrypt('3266901'),
-            'is_active'  => 1,
-            'type'       => 'manager',
-        ]
-);
-});
+// Route::get('create-admin',function(){
+//     App\Models\Admin::create(
+//         [
+//             'fullname'   => 'admin',
+//             'phone'      => '01098026159',
+//             'email'      => 'a.wahba2019@gmail.com',
+//             'user_name'  => 'admin',
+//             'password'   => bcrypt('3266901'),
+//             'is_active'  => 1,
+//             'type'       => 'manager',
+//         ]
+// );
+// });
 

@@ -1,6 +1,5 @@
 #print {
     display: none;
-    position: relative;
 }
 
 @media print {
@@ -11,21 +10,18 @@
 
     @page {
         size: auto;
-        margin: 1mm;
+        margin: 5px;
     }
     .hide-in-print {
         display: none;
         z-index: -1;
     }
-    .modal {
-        display: none;
-        z-index: -1;
-    }
+
     #print,
     #print .wrapper {
         display: block;
         font-size: 16px;
-        padding: 5px;
+        padding: 1px;
     }
     #print .tdBlack {
         background-color: black;

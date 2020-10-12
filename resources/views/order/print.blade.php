@@ -1,6 +1,5 @@
 
 <div class="wrapper" id="print-wrapper">
-
   <!-- Main content -->
   <section class="p-1">
     <div class="container-fluid border border-dark">

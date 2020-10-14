@@ -276,5 +276,13 @@ return [
   'order_create_new_sender'           => 'عميل جديد',
   'order_create_existing_sender'      => 'عميل موجود بالفعل',
   'order_create_choose_customer'      => 'اختر العميل',
+  'order_create_new_reciver_manager'           => 'مرسل اليه جديد',
+  'order_create_existing_reciver_manager'      => 'مرسل اليه موجود بالفعل',
+  'order_create_choose_reciver_manager'      => 'اختر المرسل اليه',
+
+  'order_create_new_reciver_customer'        => 'عميل جديد',
+  'order_create_existing_reciver_customer'   => 'عميل موجود بالفعل',
+  'order_create_choose_reciver_customer'     => 'اختر العميل',
+  'no_record' => 'لا يوجد',
 
 ];

@@ -180,7 +180,7 @@ return [
          * user defined
         */
 
-
+        App\Providers\RepositoriesProvider::class,
     ],
 
     /*

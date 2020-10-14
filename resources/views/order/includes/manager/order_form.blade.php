@@ -1,14 +1,39 @@
 <div class="order-info">
-    <div class="mb-3 br-1 text-center">
-        <strong class="badge bg-purple p-3">
-            @lang('site.order_info_title')</strong>
+    <div class="row">
+
+        <div class="col-md text-center">
+            <strong class="badge bg-purple p-md-3 p-2 mb-3">
+                @lang('site.order_info_title')
+            </strong>
+        </div>
+
+        <div class="col-12">
+            <div class="order-progress mx-auto">
+                <div class="order-line">
+                    <div class="progress" style="height: 4px">
+                        <div class="progress-bar bg-success" role="progressbar"
+                            style="width: 100%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <span class="badge badge-success rounded-circle">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span class="badge badge-success rounded-circle">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    @if($userData->adminType =='manager')
+                    <span class="badge badge-success rounded-circle">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="order-progress mx-auto d-flex justify-content-between mb-2">
-        <div class="order-line"></div>
-        <button class="btn btn-success rounded-circle">1</button>
-        <button class="btn btn-success rounded-circle">2</button>
-        <button class="btn btn-default rounded-circle">3</button>
-    </div>
+
     <div class="row">
         <div class="col-md">
             <div class="col-md">
@@ -34,6 +59,7 @@
                     </div>
                 </div>
             </div>
+            @if($userData->adminType =='manager')
             <div class="col-md">
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">
@@ -51,6 +77,8 @@
                     </div>
                 </div>
             </div>
+            @endif
+
             <div class="col-md">
                 <div class="form-group row">
                     <label class="col-sm-4 col-form-label">
@@ -297,7 +325,3 @@
         </div>
     </div>
 </div>
-
-{{-- <div class="row">
-
-</div> --}}

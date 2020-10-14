@@ -16,6 +16,7 @@ class OrdersFetshDataServiceByManager extends OrdersFetshDataService
         'customers.phone',
     ];
 
+
     public function index($request)
     {
         $orders = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')

@@ -6,16 +6,16 @@ use Closure;
 
 class InjectAdminIfAuthinticated
 {
-
     public function handle($request, Closure $next)
     {
         $admin = auth('admin');
         if ($admin->check()) {
-
+            $type = $admin->user()->type;
+            $currentAdmin = $admin->user()->$type;
             $request->merge(
                 [
-                    'adminId' => $admin->id(),
-                    'adminType' => $admin->user()->type,
+                    'adminType' => $type,
+                    'adminId' => $currentAdmin->id ?? $admin->id()
                 ]
             );
         }

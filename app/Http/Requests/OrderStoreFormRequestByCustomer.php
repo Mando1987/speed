@@ -34,8 +34,6 @@ class OrderStoreFormRequestByCustomer
                 'shipping.total_weight'            => ['required', 'string', 'max:6'],
                 'shipping.total_over_weight'       => ['required', 'string', 'max:6'],
                 'shipping.total_over_weight_price' => ['required', 'string', 'max:6'],
-                // 'shipping.discount'                => ['nullable', 'string', 'max:6'],
-
             ];
         }
     }

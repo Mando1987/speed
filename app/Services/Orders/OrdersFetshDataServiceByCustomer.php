@@ -12,12 +12,15 @@ class OrdersFetshDataServiceByCustomer extends OrdersFetshDataService
     public function index($request)
     {
         $customer = Admin::find($request->adminId)->customer;
+
         $orders = Order::join('shippings', 'shippings.order_id', '=', 'orders.id')
             ->join('recivers', 'recivers.id', '=', 'orders.reciver_id')
             ->join('cities', 'cities.id', '=', 'recivers.city_id')
             ->select('cities.*', 'orders.id', 'orders.reciver_id', 'orders.customer_id', 'orders.created_at', 'orders.status')
             ->addSelect('recivers.id', 'recivers.fullname', 'recivers.phone')
             ->selectRaw('shippings.id,shippings.order_id,shippings.charge_on,shippings.charge_price,shippings.order_num,shippings.customer_price')
+
+
             ->where(function ($query) use ($request, $customer) {
                 return $query->where('orders.customer_id', $customer->id)
                     ->when($request->search, function ($qsearch) use ($request) {

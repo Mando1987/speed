@@ -12,7 +12,7 @@ class OrdersCreateStoreDataServiceByManager extends OrdersCreateStoreDataService
 
     public function store($request)
     {
-
+        dd($request);
         if (session('page') == 1) {
 
             return $this->orderPath($request, 2);
@@ -48,7 +48,7 @@ class OrdersCreateStoreDataServiceByManager extends OrdersCreateStoreDataService
 
                 $this->forgetOrderData();
                 $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
-                return $this->path($this->route);
+                return $this->path('order.index');
             } catch (\Exception $ex) {
 
                 DB::rollback();

@@ -101,11 +101,11 @@ $(document).ready(function () {
         return false;
     });
 
-    $(document).on("change", "[name=chooseCustomer]", function(){
-        var chooseCustomer = $(this).val();
-        $('.existingCustomerContent').hide();
-        $('.newCustomerContent').hide();
-        $('.'+chooseCustomer+'Content').show();
+    $(document).on("change", "[name=chooseType]", function(){
+        var chooseType = $(this).val();
+        $('.existsContent').hide();
+        $('.newContent').hide();
+        $('.'+chooseType+'Content').show();
         return false;
     });
 });
@@ -146,6 +146,7 @@ function getOrderChargePrice() {
         $(".is-invalid").removeClass("is-invalid");
         $(".invalid-feedback").remove();
         $.get(url, data, function (data) {
+
             if (data.showModelAddPlacePrice == 1) {
                 Swal.fire({
                     title: data.title,
@@ -168,6 +169,7 @@ function getOrderChargePrice() {
                 $('[name="shipping[' + key + ']"]').val(val);
             });
         }).fail(function (errors) {
+
             $.each(errors.responseJSON.errors, function (key, val) {
                 $('[name="shipping[' + key + ']"]').addClass("is-invalid");
                 $(`[name="shipping[${key}]"]`).after(

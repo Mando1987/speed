@@ -54,6 +54,7 @@ class OrdersFetshDataService extends BaseService
             ]
         );
     }
+
     private function setView($value = null)
     {
         if ($value == null && session('view')) {

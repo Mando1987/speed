@@ -2,6 +2,11 @@
     @csrf
     @method('POST')
     <div class="sender-info">
+        @php
+        if(session()->has('chooseType') && $userData->chooseType != session('chooseType')) {
+        $userData->chooseType = session('chooseType');
+        }
+        @endphp
         <div class="row">
             <div class="col-md text-center">
                 <strong class="badge bg-purple p-md-3 p-2 mb-3">
@@ -9,11 +14,25 @@
                 </strong>
             </div>
             <div class="col-12">
-                <div class="order-progress mx-auto d-flex justify-content-between">
-                    <div class="order-line"></div>
-                    <button class="btn btn-default rounded-circle">1</button>
-                    <button class="btn btn-default rounded-circle">2</button>
-                    <button class="btn btn-default rounded-circle">3</button>
+                <div class="order-progress mx-auto">
+                    <div class="order-line">
+                        <div class="progress" style="height: 4px">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="25"
+                                aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="badge badge-success rounded-circle">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="badge badge-danger rounded-circle">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span class="badge badge-danger rounded-circle">
+                            <i class="fas fa-times"></i>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -21,33 +40,34 @@
             <div class="col-6">
                 <div class="form-group">
                     <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="newCustomer" name="chooseCustomer"
-                            value="newCustomer">
-                        <label for="newCustomer"
-                            class="custom-control-label">@lang('site.order_create_new_sender')</label>
+                        <input class="custom-control-input" type="radio" id="new" name="chooseType" value="new"
+                            @if($userData->chooseType == 'new') checked @endif>
+                        <label for="new" class="custom-control-label">@lang('site.order_create_new_sender')</label>
                     </div>
                 </div>
             </div>
             <div class="col-6 border-left">
                 <div class="form-group">
                     <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="existingCustomer" name="chooseCustomer"
-                            checked="" value="existingCustomer">
-                        <label for="existingCustomer"
+                        <input class="custom-control-input" type="radio" id="exists" name="chooseType" value="exists"
+                            @if($userData->chooseType == 'exists') checked @endif>
+                        <label for="exists"
                             class="custom-control-label font-weight-bold">@lang('site.order_create_existing_sender')</label>
                     </div>
-                    <div class="form-group row existingCustomerContent">
+                    <div class="form-group row existsContent" @if($userData->chooseType == 'new') style="display: none"
+                        @endif>
                         <div class="col-sm-4">
                             <x-label title="{{__('site.order_create_choose_customer')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <x-Customers name="customer_id" />
+                            <x-Customers name="customer_id" selected="{{ $userData->existingId }}" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="newCustomerContent" style="display: none">
+
+        <div class="newContent" @if($userData->chooseType == 'exists') style="display: none" @endif>
             <div class="row">
                 <div class="col-md">
                     <div class="form-group row">

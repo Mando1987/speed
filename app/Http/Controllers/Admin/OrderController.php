@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\OrderStoreFormRequest;
-use App\Services\Orders\OrderCountChargePrice;
-use App\Services\Orders\OrdersCreateStoreDataService;
-use App\Services\Orders\OrdersFetshDataService;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Services\Orders\OrderCountChargePrice;
+use App\Http\Interfaces\OrderRepositoryInterface;
+use App\Http\Interfaces\OrderStoreFormRequestInterface;
 
 class OrderController extends Controller
 {
+    protected $OrderRepositoryInterface;
+
+    public function __construct(OrderRepositoryInterface $OrderRepositoryInterface)
+    {
+        $this->OrderRepositoryInterface = $OrderRepositoryInterface;
+    }
     public function index(Request $request)
     {
-        return app(OrdersFetshDataService::class)->index($request);
+        return $this->OrderRepositoryInterface->getAll($request);
     }
 
     public function show(Request $request, $id)
@@ -23,13 +28,13 @@ class OrderController extends Controller
 
     public function create(Request $request)
     {
-        return app(OrdersCreateStoreDataService::class)->create($request);
+        return $this->OrderRepositoryInterface->create($request);
     }
 
-    public function store(OrderStoreFormRequest $request)
+    public function store(OrderStoreFormRequestInterface $request)
     {
-        dd($request);
-        return app(OrdersCreateStoreDataService::class)->store($request);
+        return $this->OrderRepositoryInterface->store($request);
+
     }
 
     public function getOrderChargePrice(Request $request)
@@ -38,7 +43,7 @@ class OrderController extends Controller
     }
 
     function print(Request $request) {
-        return app(OrdersFetshDataService::class)->print($request);
+        return $this->OrderRepositoryInterface->print($request);
     }
 
 }

@@ -1,27 +1,15 @@
 <?php
+namespace App\Http\Traits;
 
-namespace App\Services\Orders;
-
-use App\Services\BaseService;
 use App\Services\Orders\OrderSaveUserDataToSession;
+use Illuminate\Http\Request;
 
-class OrdersCreateStoreDataService extends BaseService
+trait OrderTrait
 {
-
-    const IMAGE_PATH = 'orders/';
-
-    public $route = 'order.index';
-
-
-    public function create($request)
+    public function create(Request $request)
     {
-        $userData = app(OrderSaveUserDataToSession::class)->handle(request('page'));
-        return view('order.create.' . $request->adminType, ['userData' => $userData]);
-    }
-
-    public function store($request)
-    {
-        return $this->identify($request)->store($request);
+        $userData = app(OrderSaveUserDataToSession::class)->handle($request);
+        return view('order.create.manager', ['userData' => $userData]);
     }
 
     protected function orderPath($request, $page)
@@ -40,9 +28,8 @@ class OrdersCreateStoreDataService extends BaseService
 
         }
         session(['page' =>  $page]);
-        // dd(session('customer'));
 
-        return redirect()->route('order.create', ['page' => $page]);
+        return redirect()->route('order.create', ['page' => $page ]);
     }
 
     protected function setOrderNumberUnique($orderId)

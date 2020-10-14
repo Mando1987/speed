@@ -14,6 +14,8 @@ return [
     'customer.company_name'            => 'أسم الشركه / ستور',
     'customer.facebook_page'           => 'لينك صفحة الفيس',
     'customer.activity'                => 'النشاط',
+    'customer.fullname'                 => 'اسم العميل',
+    'customer.phone'                    => 'رقم التليفون',
     'reciver.fullname'                 => 'اسم المرسل إليه ',
     'reciver.phone'                    => 'رقم التليفون',
     'reciver.other_phone'              => 'رقم تليفون إضافى',

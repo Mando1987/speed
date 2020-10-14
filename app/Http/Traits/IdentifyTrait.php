@@ -12,10 +12,5 @@ trait IdentifyTrait
         return  class_exists($className) ? (new $className) : abort(404);
     }
 
-    public function forgetOrderData()
-    {
-       return  session()->forget([
-            'customer', 'reciver', 'page', 'customerAddress' , 'reciverAddress'
-        ]);
-    }
+
 }

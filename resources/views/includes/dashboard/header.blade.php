@@ -6,9 +6,7 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
-      </li>
+
     </ul>
 
     <!-- Right navbar links -->
@@ -102,12 +100,12 @@
       <li class="nav-item dropdown">
 
         <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="flag-icon {{defaultLangFlag()}}"></i>
+          <i class="flag-icon {{$defaultLang['flag']}}"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right p-0">
             @foreach ($languages as  $lang)
                 <a href="{{ route('lang.change', $lang['abbr']) }}"
-                   class="dropdown-item @if($lang['abbr'] == defaultLangAbbr()) active @endif">
+                   class="dropdown-item @if($lang['abbr'] == $defaultLang['abbr']) active @endif">
                    <i class="flag-icon  mr-2 {{$lang['flag']}}"></i> {{ __($lang['name'])  }}
                 </a>
             @endforeach

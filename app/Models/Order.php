@@ -2,28 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    /**
-        المالية مغلقة
-        تسليم النقديه - الأموال المحولة إلى العميل
-        المحصلة - الأموال المحصلة
-        الشحنه فى الطريق للمخزن
-        الشحنه فى طريق العوده الى للمخزن
-        الشحنه فى الطريق للعميل
-        خارج للتوصيل
-        شحنه تم تسليمها
-        العميل غير متوفر
-        تأجيل موعد التسليم
-        عنوان جديد
-        العميل رفض الأستلام
-        في الانتظار
-        عنوان خاطئ
-     *
-     *
-     */
     protected $guarded = [];
 
     protected $casts = [
@@ -60,14 +43,29 @@ class Order extends Model
         return trans('site.order_status_' . $this->status);
     }
 
-    public function getDate()
-    {
-       return $this->created_at->format('Y-m-d');
-    }
-
     public function getOpenOrder()
     {
         return trans('site.order_user_can_open_order_'. $this->user_can_open_order);
+    }
+
+    public function scopeWithRealtionsTables(Builder $builder)
+    {
+        $query = $builder->select('id', 'reciver_id', 'customer_id', 'created_at', 'status')
+               ->with(['reciver:id,fullname,phone,city_id', 'shipping' => function($q){
+                 $q->select('id','order_id','charge_on','charge_price','order_num','customer_price', 'total_price');
+            }]);
+         (request()->adminType == 'manager') ?
+           $query->with(['customer:id,fullname,phone,city_id', 'customer.city']) :
+           $query->with(['reciver.city']);
+           return $query;
+
+    }
+
+    public function scopeWhereAdminIsCustomer(Builder $builder)
+    {
+        return $builder->when(request()->adminType == 'customer' , function($query){
+            $query->where('orders.customer_id',request()->adminId);
+        });
     }
 
 

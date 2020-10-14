@@ -20,7 +20,6 @@ class OrdersFetshDataServiceByCustomer extends OrdersFetshDataService
             ->addSelect('recivers.id', 'recivers.fullname', 'recivers.phone')
             ->selectRaw('shippings.id,shippings.order_id,shippings.charge_on,shippings.charge_price,shippings.order_num,shippings.customer_price')
 
-
             ->where(function ($query) use ($request, $customer) {
                 return $query->where('orders.customer_id', $customer->id)
                     ->when($request->search, function ($qsearch) use ($request) {

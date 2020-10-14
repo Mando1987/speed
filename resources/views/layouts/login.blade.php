@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-@php
-$languages= config('languages');
-@endphp
-<html dir="{{defaultLangDirection()}}" lang="{{defaultLangAbbr()}}">
+
+<html dir="{{$defaultLang['dir']}}" lang="{{$defaultLang['abbr']}}">
 
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,11 +15,11 @@ $languages= config('languages');
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 
-    <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.'.defaultLangDirection().'min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.'.$defaultLang['dir'].'min.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/dist/css/main.css')}}">
     <!-- Google Font: Source Sans Pro -->
-    @if(defaultLangAbbr() == 'ar')
+    @if($defaultLang['abbr'] == 'ar')
     <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
     <style>
         html,

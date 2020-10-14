@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 @inject('admin', 'App\Services\CurrentAdminService')
-@php
-$languages= config('languages');
-@endphp
-<html dir="{{defaultLangDirection()}}" lang="{{defaultLangAbbr()}}">
 
+<html dir="{{$defaultLang['dir']}}" lang="{{$defaultLang['abbr']}}">
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
@@ -21,16 +18,16 @@ $languages= config('languages');
 
     <!-- DataTables -->
     <link rel="stylesheet"
-        href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.'.defaultLangDirection().'min.css') }}">
+        href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.'.$defaultLang['dir'].'min.css') }}">
     <link rel="stylesheet"
-        href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.'.defaultLangDirection().'min.css') }}">
+        href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.'.$defaultLang['dir'].'min.css') }}">
 
-    <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.'.defaultLangDirection().'min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.'.$defaultLang['dir'].'min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/notify.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/print.css')}}">
     <!-- Google Font: Source Sans Pro -->
-    @if(defaultLangAbbr() == 'ar')
+    @if($defaultLang['abbr'] == 'ar')
     <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
     <style>
         html,

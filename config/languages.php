@@ -9,7 +9,7 @@ return [
             'name' => 'languages.ar.name',
             'country' => 'languages.ar.country',
         ],
-    'en' => 
+    'en' =>
         [
             'abbr' => 'en',
             'dir'  => '',

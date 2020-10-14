@@ -56,7 +56,7 @@
                   <td class="border-top-0">@lang('datatable.order.customer.created_at')</td>
                   <td class="border-top-0">
                     <strong>
-                      {{ $order->getDate() }}
+                      {{ $order->created_at->format('Y-m-d') }}
                     </strong>
                   </td>
                 </tr>
@@ -64,7 +64,7 @@
                   <td>@lang('datatable.order.customer.reciver')</td>
                   <td>
                     <strong>
-                      {{ $order->fullname ?? '' }}
+                      {{ $order->reciver->fullname ?? '' }}
                     </strong>
                   </td>
                 </tr>
@@ -72,7 +72,7 @@
                   <td>@lang('datatable.order.customer.phone')</td>
                   <td>
                     <strong>
-                      {{ $order->phone ?? ''  }}
+                      {{ $order->reciver->phone ?? ''  }}
                     </strong>
                   </td>
                 </tr>
@@ -80,7 +80,7 @@
                   <td>@lang('datatable.order.customer.city')</td>
                   <td>
                     <strong>
-                      {{$order->city ?? ''}}
+                      {{$order->reciver->city->name ?? ''}}
                     </strong>
                   </td>
                 </tr>
@@ -88,7 +88,7 @@
                   <td>@lang('datatable.order.customer.status')</td>
                   <td>
                     <span class="badge p-2 bg-{{ __('site.color_' . $order->status)}}">
-                      {{ $order->getStatus ?? '' }}
+                      {{ $order->getStatus() ?? '' }}
                     </span>
 
                   </td>
@@ -97,7 +97,7 @@
                   <td>@lang('datatable.order.customer.total_price')</td>
                   <td>
                     <strong>
-                      {{$order->customer_price ?? 0}}
+                      {{$order->shipping->customer_price ?? 0}}
                     </strong>
                   </td>
                 </tr>
@@ -105,7 +105,7 @@
                   <td>@lang('datatable.order.customer.order_num')</td>
                   <td>
                     <strong>
-                      {{ $order->order_num ?? 0 }}
+                      {{ $order->shipping->order_num ?? 0 }}
                     </strong>
                   </td>
                 </tr>
@@ -177,17 +177,17 @@
           @foreach($orders as $index => $order)
           <tr>
             <td class="sorting_1" tabindex="0">{{ $orders->firstItem()+$index }}</td>
-            <td> {{ $order->fullname??'' }} </td>
-            <td> {{ $order->date}} </td>
-            <td> {{ $order->city }} </td>
-            <td> {{ $order->phone??'' }} </td>
-            <td class="font-weight-bold"> {{ $order->customer_price??''  }}</td>
+            <td> {{ $order->reciver->fullname??'' }} </td>
+            <td> {{ $order->created_at->format('Y-m-d')}} </td>
+            <td> {{ $order->reciver->city->name }} </td>
+            <td> {{ $order->reciver->phone??'' }} </td>
+            <td class="font-weight-bold"> {{ $order->shipping->customer_price??''  }}</td>
             <td>
               <span class="badge w-100 p-2 bg-{{ __('site.color_' . $order->status)}}">
-                {{ $order->getStatus ?? '' }}
+                {{ $order->getStatus() ?? '' }}
               </span>
             </td>
-            <td class="font-weight-bold"> {{ $order->order_num ??0 }}</td>
+            <td class="font-weight-bold"> {{ $order->shipping->order_num ??0 }}</td>
             <td>
               <div class="btn-group btn-group-sm">
                 <x-show-button ability="admin_show" route="order.show" id="{{ $order->id }}" />

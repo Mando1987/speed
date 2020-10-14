@@ -181,6 +181,8 @@ return [
         */
 
         App\Providers\RepositoriesProvider::class,
+        App\Providers\ComposerServiceProvider::class,
+
     ],
 
     /*

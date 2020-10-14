@@ -20,9 +20,6 @@ class OrderStoreFormRequestRepository extends FormRequest implements OrderStoreF
         if($this->adminType == 'customer' && $this->order){
             $this->merge(['order' => array_merge($this->order, ['status' => 'under_review'])]);
         }
-        //if($this->customer_id|| $this->reciver_id){
-            session(['chooseType' => 'new']);
-        //}
     }
     public function rules()
     {
@@ -46,7 +43,7 @@ class OrderStoreFormRequestRepository extends FormRequest implements OrderStoreF
                     return $this->validateReciverInputs();
                 } else {
                     return [
-                        'reciver_id' => ['required', 'exists:customers,id'],
+                        'reciver_id' => ['required', 'exists:recivers,id'],
                         'chooseType' => ['required', 'in:new,exists'],
                     ];
                 }
@@ -65,7 +62,7 @@ class OrderStoreFormRequestRepository extends FormRequest implements OrderStoreF
                     return $this->validateReciverInputs();
                 } else {
                     return [
-                        'reciver_id' => ['required', 'exists:customers,id'],
+                        'reciver_id' => ['required', 'exists:recivers,id'],
                         'chooseType' => ['required', 'in:new,exists'],
                     ];
                 }

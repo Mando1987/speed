@@ -64,7 +64,7 @@
                   <td>@lang('datatable.order.manager.customer')</td>
                   <td>
                     <strong>
-                      {{ $order->customer_fullname }}
+                      {{ $order->customer->fullname }}
                     </strong>
                   </td>
                 </tr>
@@ -72,7 +72,7 @@
                   <td>@lang('datatable.order.manager.phone')</td>
                   <td>
                     <strong>
-                      {{ $order->customer_phone }}
+                      {{ $order->customer->phone }}
                     </strong>
                   </td>
                 </tr>
@@ -88,7 +88,7 @@
                   <td>@lang('datatable.order.manager.reciver')</td>
                   <td>
                     <strong>
-                      {{ $order->reciver_fullname ?? ''}}
+                      {{ $order->reciver->fullname ?? ''}}
                     </strong>
                   </td>
                 </tr>
@@ -185,70 +185,20 @@
           @foreach($orders as $index => $order)
           <tr>
             <td class="sorting_1" tabindex="0">{{ $orders->firstItem()+$index }}</td>
-            <td> {{ $order->customer_fullname}} </td>
-            <td> {{ $order->date}} </td>
-            <td> {{ $order->city }} </td>
-            <td> {{ $order->customer_phone }} </td>
-            <td> {{ $order->reciver_fullname }} </td>
-            <td class="font-weight-bold"> {{ $order->total_price??''  }}</td>
+            <td> {{ $order->customer->fullname}} </td>
+            <td> {{ $order->created_at->format('Y-m-d')}} </td>
+            <td> {{ $order->customer->city->name }} </td>
+            <td> {{ $order->customer->phone }} </td>
+            <td> {{ $order->reciver->fullname }} </td>
+            <td class="font-weight-bold"> {{ $order->shipping->total_price??''  }}</td>
             <td>
               <span class="badge w-100 p-2 bg-{{ __('site.color_' . $order->status)}}">
-                {{ $order->getStatus ?? '' }}
+                {{ $order->getStatus() ?? '' }}
               </span>
             </td>
-            <td class="font-weight-bold"> {{ $order->order_num ??0 }}</td>
+            <td class="font-weight-bold"> {{ $order->shipping->order_num ??0 }}</td>
             <td>
-              <div class="btn-group btn-group-sm">
-                <x-show-button ability="admin_show" route="order.show" id="{{ $order->id }}" />
-
-                @if($order->status == 'under_review ' || $order->status == 'under_preparation')
-                <a class="btn btn-info btn-sm mr-2" href="{{ route('order.edit' , $order->id) }}">
-                  <span class="d-none d-md-block">
-                    <i class="fas fa-pencil-alt"></i>
-                    @lang('site.edit')
-                  </span>
-                  <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
-                </a>
-
-                <button class="btn btn-danger btn-sm" onclick="deletedMethod({{ $order->id }})">
-                  <span class="d-none d-md-block">
-                    <i class="far fa-trash-alt"></i>
-                    @lang('site.delete')
-                  </span>
-                  <span class="d-block d-md-none">
-                    <i class="far fa-trash-alt"></i>
-                  </span>
-                </button>
-
-                <form id="deletedForm{{ $order->id }}" action="{{ route('order.destroy', $order->id) }}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                </form>
-
-                @else
-                <a class="btn btn-info btn-sm mr-2 disabled" href="#">
-                  <span class="d-none d-md-block">
-                    <i class="fas fa-pencil-alt"></i>
-                    @lang('site.edit')
-                  </span>
-                  <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
-                </a>
-                <button class="btn btn-danger btn-sm disabled">
-                  <span class="d-none d-md-block">
-                    <i class="far fa-trash-alt"></i>
-                    @lang('site.delete')
-                  </span>
-                  <span class="d-block d-md-none">
-                    <i class="far fa-trash-alt"></i>
-                  </span>
-                </button>
-                @endif
-
-              <a href="{{ route('order.print' ,['orderId' =>$order->id]) }}" class="print btn btn-default ml-1">
-                <i class="fas fa-print"></i>
-                @lang('site.print')
-              </a>
-              </div>
+              @include('includes.orders.action_buttons')
             </td>
           </tr>
           @endforeach

@@ -120,25 +120,3 @@ if(!function_exists('siteTitle') ){
 }
 
 
-if(!function_exists('defaultLangDirection') ){
-
-    function defaultLangDirection()
-    {
-        return config('languages.'. app()->getLocale())['dir'];
-    }
-}
-if(!function_exists('defaultLangAbbr') ){
-
-    function defaultLangAbbr()
-    {
-        return config('languages.'. app()->getLocale())['abbr'];
-    }
-}
-if(!function_exists('defaultLangFlag') ){
-
-    function defaultLangFlag()
-    {
-        return config('languages.'. app()->getLocale())['flag'];
-    }
-}
-

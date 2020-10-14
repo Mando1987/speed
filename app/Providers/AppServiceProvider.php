@@ -2,20 +2,12 @@
 
 namespace App\Providers;
 
-use App\Http\Requests\OrderStoreFormRequestByManager;
-use App\Repositories\OrderFormRequestInterface;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
+
     public function register()
     {
         //load manully this package
@@ -23,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
 
+    }
+
+    public function boot()
+    {
+        //View::share('gover', Order::all());
     }
 
 }

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 trait OrderTrait
 {
-    public function create(Request $request)
+    public function create()
     {
-        $userData = app(OrderSaveUserDataToSession::class)->handle($request);
+        $userData = app(OrderSaveUserDataToSession::class)->handle($this->request);
         return view('order.create.manager', ['userData' => $userData]);
     }
 

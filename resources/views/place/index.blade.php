@@ -44,12 +44,17 @@
       <div class="row">
         <div class="col-12">
           <div>
+            <a href="{{ route('place.create') }}"  class="btn btn-success btn-sm ml-1">
+              <i class="fas fa-plus"></i>
+              @lang('site.add')
+            </a>
             <button type="button" class="btn btn-info btn-sm placeEditMultiCitiesButton disabled" cities_ids="">
               <span class="d-none d-md-block">
                 <i class="fas fa-pencil-alt"></i>
                 @lang('site.edit')
               </span>
             </button>
+
           </div>
         </div>
       </div>

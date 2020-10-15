@@ -55,6 +55,7 @@
                     <!-- /.card-body -->
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success">@lang('site.edit')</button>
+                       <a href="{{ route('place.index') }}"  class="btn btn-danger float-right">@lang('site.cancel')</a>
                     </div>
                 </form>
             </div>

@@ -80,7 +80,6 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
 
     public function updateMultiCites(PlaceUpdateFormRequest $placeUpdateFormRequest)
     {
-         dd($placeUpdateFormRequest);
         try {
 
             DB::beginTransaction();

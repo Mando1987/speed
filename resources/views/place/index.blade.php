@@ -2,248 +2,114 @@
 
 @section('content')
 <div class="card card-solid">
-
-  {{-- <div class="card-header p-1 border-bottom-0">
-    <form class="w-100" id="changeStatus" action="{{ route('order.index') }}" method="GET">
-  <div class="row d-flex align-items-stretch">
-    <div class="col-12 col-sm-5 col-md-5  d-flex align-items-stretch mb-1">
-      <select class="custom-select custom-select-sm" id="orderStatus" name="status">
-        <option value="all">@lang('site.dashboard_all_orders')</option>
-        @foreach (config('orderStatus') as $orderStatus)
-        <option value="{{ $orderStatus }}" "@if ($orderStatus == $status) selected @endif">
-          @lang('site.order_status_'
-          . $orderStatus)</option>
-        @endforeach
-      </select>
-    </div>
-    <div class="col-8 col-sm-5 col-md-5">
-      <div class="input-group input-group-sm">
-        <input type="text" name="search" value="" placeholder="@lang('site.search_placeholder')" class="form-control">
-        <span class="input-group-append">
-          <button type="submit" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-          </button>
-        </span>
+  <div class="card-header p-1 border-bottom-0">
+    <form class="w-100" id="placeIndexForm" action="{{ route('place.index') }}" method="GET">
+      <input type="hidden" name="page" value="{{ $cities->currentPage() }}">
+      <input type="hidden" name="paginate" value="{{ $cities->perPage() }}">
+      <div class="row d-flex align-items-stretch">
+        <div class="col-12 col-sm-4 col-md-2  d-flex align-items-stretch mb-1">
+          <select class="custom-select custom-select-sm font-weight-bold" name="governorate_id" id="getAllCityForPlace">
+            @foreach($governorates as $governorate)
+            <option class="font-weight-bold" value="{{ $governorate->id }}" @if($governorate->id == $governorate_id) selected
+              @endif>{{ $governorate->name }}</option>
+            @endforeach
+          </select>
+        </div>
+        <div class="col-12 col-sm-4 col-md-4">
+          <div class="input-group input-group-sm">
+          <input type="text" name="search" value="" placeholder="@lang('site.search_placeholder')"
+              class="form-control">
+            <span class="input-group-append">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="col-12 col-md-2">
+          <div class="form-group row">
+              <div class="col-4 col-sm-4">
+                  <x-label title="{{__('site.show_records')}}" />
+              </div>
+              <div class="col-8 col-sm-8">
+                <select class="custom-select custom-select-sm font-weight-bold" name="paginate">
+                  @foreach(range(5,50,5) as $number)
+                  <option class="font-weight-bold" value="{{ $number }}" @if($number == $cities->perPage()) selected @endif>{{ $number }}</option>
+                  @endforeach
+                </select>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="col-4 col-sm-2 col-md-2">
-      <div class="float-right">
-        <a href="{{ route('order.index' , ['view' => 'list' ,'status'=>$status??'all' , 'search'=> $search]) }}"
-          class="btn btn-sm @if($view =='list') btn-primary @endif">
-          <i class="fas fa-bars"></i>
-        </a>
-        <a href="{{ route('order.index' , ['view' => 'grid' ,'status'=>$status??'all' , 'search'=> $search]) }}"
-          class="btn btn-sm @if($view =='grid') btn-primary @endif">
-          <i class="fas fa-th"></i>
-        </a>
-      </div>
-    </div>
-  </div>
-  </form>
-</div> --}}
-<!--card-header-->
-@if($cities->count())
-<div class="card-body p-1">
-  @if($view =='grid')
-  <div class="row d-flex align-items-stretch">
-
-    {{-- @foreach($cities as $index => $order)
-      <div class="col-12 col-sm-6 col-md-4  d-flex align-items-stretch">
-        <div class="card bg-light w-100 card-outline card-{{ __('site.color_' . $order->status) }}">
-    <div class="card-body pt-0 mb-0 pb-1 p-0">
-      <table class="table text-nowrap align-items-stretch table-sm">
-        <tbody>
-          <tr>
-            <td class="border-top-0">@lang('datatable.order.manager.created_at')</td>
-            <td class="border-top-0">
-              <strong>
-                {{ $order->date }}
-              </strong>
-            </td>
-          </tr>
-          <tr>
-            <td>@lang('datatable.order.manager.customer')</td>
-            <td>
-              <strong>
-                {{ $order->customer->fullname }}
-              </strong>
-            </td>
-          </tr>
-          <tr>
-            <td>@lang('datatable.order.manager.phone')</td>
-            <td>
-              <strong>
-                {{ $order->customer->phone }}
-              </strong>
-            </td>
-          </tr>
-          <tr>
-            <td>@lang('datatable.order.manager.city')</td>
-            <td>
-              <strong>
-                {{ $order->city ?? ''}}
-              </strong>
-            </td>
-          </tr>
-          <tr>
-            <td>@lang('datatable.order.manager.reciver')</td>
-            <td>
-              <strong>
-                {{ $order->reciver->fullname ?? ''}}
-              </strong>
-            </td>
-          </tr>
-          <tr>
-            <td>@lang('datatable.order.manager.status')</td>
-            <td>
-              <span class="badge p-2 bg-{{ __('site.color_' . $order->status)}}">
-                {{ $order->getStatus ?? '' }}
+      </div><!-- end of search row -->
+      <div class="row">
+        <div class="col-12">
+          <div>
+            <button type="button" class="btn btn-info btn-sm placeEditMultiCitiesButton disabled" cities_ids="">
+              <span class="d-none d-md-block">
+                <i class="fas fa-pencil-alt"></i>
+                @lang('site.edit')
               </span>
-
-            </td>
-          </tr>
-          <tr>
-            <td>@lang('datatable.order.manager.total_price')</td>
-            <td>
-              <strong>
-                {{$order->total_price ?? 0}}
-              </strong>
-            </td>
-          </tr>
-          <tr>
-            <td>@lang('datatable.order.manager.order_num')</td>
-            <td>
-              <strong>
-                {{ $order->order_num ?? 0 }}
-              </strong>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="text-center mt-3 mb-0">
-        <div class="btn-group btn-group-sm">
-          <x-show-button ability="admin_show" route="order.show" id="{{ $order->id  }}" />
-          @if($order->status == 'under_review ' || $order->status == 'under_preparation')
-          <a class="btn btn-info btn-sm mr-2" href="{{ route('order.edit' , $order->id) }}">
-            <span class="d-none d-md-block">
-              <i class="fas fa-pencil-alt"></i>
-              @lang('site.edit')
-            </span>
-            <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
-          </a>
-          <button class="btn btn-danger btn-sm" onclick="deletedMethod({{ $order->id }})">
-            <span class="d-none d-md-block">
-              <i class="far fa-trash-alt"></i>
-              @lang('site.delete')
-            </span>
-            <span class="d-block d-md-none">
-              <i class="far fa-trash-alt"></i>
-            </span>
-          </button>
-          <form id="deletedForm{{ $order->id }}" action="{{ route('order.destroy', $order->id) }}" method="POST">
-            @csrf
-            @method('DELETE')
-          </form>
-          @else
-          <a class="btn btn-info btn-sm mr-2 disabled" href="#">
-            <span class="d-none d-md-block">
-              <i class="fas fa-pencil-alt"></i>
-              @lang('site.edit')
-            </span>
-            <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
-          </a>
-          <button class="btn btn-danger btn-sm disabled">
-            <span class="d-none d-md-block">
-              <i class="far fa-trash-alt"></i>
-              @lang('site.delete')
-            </span>
-            <span class="d-block d-md-none">
-              <i class="far fa-trash-alt"></i>
-            </span>
-          </button>
-          @endif
-          <a href="" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </div><!-- end of card-->
-</div>
-@endforeach --}}
-</div>
-@else
-<form action="{{ route('place.editMultiCites') }}" method="GET">
-  @csrf
-  <div class="row mb-1">
-    <div class="col-12">
-      <div class="form-group">
-        <select class="custom-select" name="governorate_id" id="getCitiesPriceSelect">
-          @foreach($governorates as $governorate)
-          <option value="{{ $governorate->id }}" @if($governorate->id == $selectedGovId) selected @endif>{{ $governorate->name }}</option>
-          @endforeach
-      </select>
-
-      <button type="submit" class="btn btn-info btn-sm">
-        <span class="d-none d-md-block">
-          <i class="fas fa-pencil-alt"></i>
-          @lang('site.edit')
-        </span>
-      </button>
-    </div>
-
-    </div>
+    </form>
   </div>
-  <div class="table-responsive p-0">
-    <table class="table table-head-fixed table-bordered text-nowrap text-center table-sm placeIndex">
-      <thead>
-        <tr>
-          <td style="width:25px">
-            <div class="icheck-success">
-              <input type="checkbox" value="" id="selectAllPlaces">
-              <label for="selectAllPlaces"></label>
-            </div>
-          </td>
-          <th> # </th>
-          @foreach (trans('datatable.place') as $key =>$val)
-          <th>{{ $val }}</th>
-          @endforeach
-          <th>@lang('site.actions')</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($cities as $index => $city)
-        <tr>
-          <td>
-            <div class="icheck-success">
-              <input type="checkbox" name="cities[]" value="{{ $city->id }}" id="check{{ $index }}">
-              <label for="check{{ $index }}"></label>
-            </div>
-          </td>
-          <td class="sorting_1" tabindex="0">{{ $cities->firstItem()+$index }}</td>
-          <td> {{ $city->name}} </td>
-          <td>
-            {{-- @include('includes.orders.action_buttons') --}}
-          </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+  <!--card-header-->
+  @if($cities->count())
+  <div class="card-body p-1">
+    <form action="{{ route('place.editMultiCites') }}" method="GET">
+      <div class="table-responsive p-0">
+        <table class="table table-head-fixed table-bordered text-nowrap text-center table-sm">
+          <thead>
+            <tr>
+              <td style="width:25px">
+                <div class="icheck-success">
+                  <input type="checkbox" value="" id="selectAllPlaces">
+                  <label for="selectAllPlaces"></label>
+                </div>
+              </td>
+              <th> # </th>
+              @foreach (trans('datatable.place') as $key =>$val)
+              <th>{{ $val }}</th>
+              @endforeach
+              <th>@lang('site.actions')</th>
+            </tr>
+          </thead>
+          <tbody class="placeIndex">
+            @foreach($cities as $index => $city)
+            <tr>
+              <td>
+                <div class="icheck-success">
+                  <input type="checkbox" name="cities[]" value="{{ $city->id }}" id="check{{ $index }}">
+                  <label for="check{{ $index }}"></label>
+                </div>
+              </td>
+              <td class="sorting_1" tabindex="0">{{ $cities->firstItem()+$index }}</td>
+              <td> {{ $city->name}} </td>
+              <td>
+                {{-- @include('includes.orders.action_buttons') --}}
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+    </form>
   </div>
-</form>
-@endif
-</div>
-<!-- /.card-body -->
-<div class="card-footer">
-  <nav aria-label="Contacts Page Navigation">
-    <ul class="pagination justify-content-center m-0">
-      {{ $cities->appends(['view' => $view ,'status'=>$status??'all' , 'search'=> $search??''])->links() }}
-    </ul>
-  </nav>
-</div>
-<!-- /.card-footer -->
-@else
-<div class="m-3">
-  <x-empty-records-button-add route="place.create" />
-</div>
-@endif
+  <!-- /.card-body -->
+  <div class="card-footer">
+    <nav aria-label="Contacts Page Navigation">
+      <ul class="pagination justify-content-center m-0">
+        {{ $cities->appends(['governorate_id'=> $governorate_id , 'search'=> $search , 'paginate' => $cities->perPage()])->links() }}
+      </ul>
+    </nav>
+  </div>
+  <!-- /.card-footer -->
+  @else
+  <div class="m-3">
+    <x-empty-records-button-add route="place.create" />
+  </div>
+  @endif
 </div>
 @endsection

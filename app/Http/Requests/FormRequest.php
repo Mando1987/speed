@@ -19,4 +19,9 @@ class FormRequest extends BaseFormRequest
         return  trans('custom-attributes');
     }
 
+    public function checkAdminIsManagerOnly()
+    {
+        return $this->adminType == 'manager' ? true: abort(404);
+    }
+
 }

@@ -10,6 +10,8 @@ class City extends Model
     protected $appends = ['name'];
     protected $hidden  = ['city_name', 'city_name_en'];
 
+    public $timestamps = false;
+
     public function governorate()
     {
         return $this->belongsTo(Governorate::class);

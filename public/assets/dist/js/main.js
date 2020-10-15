@@ -111,17 +111,53 @@ $(document).ready(function () {
    });
   ////////////////////////////////////////////////////////////////////////////
     $('#selectAllPlaces').click(function () {
-        var clicks = $(this).data('clicks')
+        var clicks = $(this).data('clicks');
         if (clicks) {
-        //Uncheck all checkboxes
         $('.placeIndex input[type=checkbox]').prop('checked', false)
         } else {
-        //Check all checkboxes
         $('.placeIndex input[type=checkbox]').prop('checked', true)
         }
         $(this).data('clicks', !clicks);
-    })
+        placeEditMultiCitiesButtonToggle();
 
+    });
+    $('.placeIndex input[type=checkbox]').change(function(){
+        placeEditMultiCitiesButtonToggle();
+    });
+
+    function placeEditMultiCitiesButtonToggle() {
+
+        const newLocal = $('.placeEditMultiCitiesButton');
+        var cities_ids = [], checkedCount = 0
+        newLocal.addClass('disabled');
+
+        $('.placeIndex input[type=checkbox]:checked').each(function(){
+            checkedCount += 1;
+            cities_ids.push($(this).val());
+        });
+        if(checkedCount > 0){
+            newLocal.removeClass('disabled');
+        }
+        newLocal.attr('cities_ids' , cities_ids);
+    };
+
+    $('#getAllCityForPlace').change(function(){
+        $('#placeIndexForm').submit();
+       //window.location.assign(`/place?governorate_id=${$(this).val()}`);
+    });
+
+
+    $('.placeEditMultiCitiesButton').click(function(){
+        var cities_ids = $(this).attr('cities_ids');
+        if(cities_ids !=""){
+
+            window.location.assign(`/place/edit-multi-cities?cities=${cities_ids}&governorate_id=${$('[name=governorate_id]').val()}`);
+        }
+    });
+
+    $('select[name=paginate]').change(function(){
+        $('#placeIndexForm').submit();
+    });
   ////////////////////////////////////////////////////////////////////////////
 
 $(

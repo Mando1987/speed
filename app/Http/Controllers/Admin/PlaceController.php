@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\PlaceRepositoryInterface;
+use App\Http\Requests\PlaceStoreFormRequest;
+use App\Http\Requests\PlaceUpdateFormRequest;
 use App\Http\Traits\GovernorateTrait;
 
 class PlaceController extends Controller
@@ -22,8 +24,23 @@ class PlaceController extends Controller
        return $this->placeRepositoryInterface->getAll();
     }
 
+    public function create()
+    {
+        return $this->placeRepositoryInterface->create();
+    }
+
+    public function store(PlaceStoreFormRequest $placeStoreFormRequest)
+    {
+        return $this->placeRepositoryInterface->store($placeStoreFormRequest);
+
+    }
+
     public function editMultiCites()
     {
         return $this->placeRepositoryInterface->editMultiCites();
+    }
+    public function updateMultiCites(PlaceUpdateFormRequest $placeUpdateFormRequest)
+    {
+        return $this->placeRepositoryInterface->updateMultiCites($placeUpdateFormRequest);
     }
 }

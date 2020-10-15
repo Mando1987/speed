@@ -284,5 +284,9 @@ return [
   'order_create_existing_reciver_customer'   => 'عميل موجود بالفعل',
   'order_create_choose_reciver_customer'     => 'اختر العميل',
   'no_record' => 'لا يوجد',
+  'city_name_ar'  => 'اسم المدينة بالعربى',
+  'city_name_en'  => 'اسم المدينة بالانجليزى',
+  'show_records' => 'عرض',
+  'city_add' => 'اضافة مدينة جديدة',
 
 ];

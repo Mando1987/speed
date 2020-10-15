@@ -28,6 +28,7 @@ Route::get('customer/order/create', [CustomerController::class, 'createOrder'] )
 Route::post('customer/order', [CustomerController::class, 'storeOrder'] )->name('customer.order.store');
 
 Route::get('place/edit-multi-cities', [PlaceController::class, 'editMultiCites'] )->name('place.editMultiCites');
+Route::post('place/update-multi-cities', [PlaceController::class, 'updateMultiCites'] )->name('place.updateMultiCites');
 Route::resources([
     'admin'        => AdminController::class,
     'role'         => RoleController::class,

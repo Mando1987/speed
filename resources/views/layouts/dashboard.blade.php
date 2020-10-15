@@ -2,6 +2,7 @@
 @inject('admin', 'App\Services\CurrentAdminService')
 
 <html dir="{{$defaultLang['dir']}}" lang="{{$defaultLang['abbr']}}">
+
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
@@ -11,18 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
-    <!-- DataTables -->
-    <link rel="stylesheet"
-        href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.'.$defaultLang['dir'].'min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.'.$defaultLang['dir'].'min.css') }}">
-
     <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.'.$defaultLang['dir'].'min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/notify.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('assets/dist/css/print.css')}}">
@@ -39,6 +34,10 @@
         h5,
         h6 {
             font-family: 'Cairo', sans-serif !important;
+        }
+
+        [class*=icheck-]>label {
+            padding-left: 23px !important;
         }
     </style>
     @endif

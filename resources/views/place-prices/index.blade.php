@@ -15,6 +15,7 @@
                 </span>
             </div>
             <form role="form" id="getCitiesPrice" action="{{ route('price.index') }}" method="GET" >
+
                 <select class="custom-select" name="governorate_id" id="getCitiesPriceSelect">
                     @foreach($governorates as $governorate)
                     <option value="{{ $governorate->id }}" @if($governorate->id == $selectedGovId) selected @endif>{{ $governorate->name }}</option>

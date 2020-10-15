@@ -36,7 +36,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         'customers.phone',
     ];
 
-    protected $paginate = 6;
+    protected $paginate = 12;
     protected $view = 'list';
     private $order;
     private $request;

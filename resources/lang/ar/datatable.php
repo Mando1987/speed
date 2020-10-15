@@ -51,6 +51,8 @@ return [
             'activity'          => 'النشاط',
         ]
 
-    ]
+        ],'place' => [
+            'city_name' => 'اسم المدينة'
+        ]
 
 ];

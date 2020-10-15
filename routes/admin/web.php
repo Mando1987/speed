@@ -27,6 +27,7 @@ Route::get('/delegate/changeActive/{id}',[DelegateController::class, 'changeActi
 Route::get('customer/order/create', [CustomerController::class, 'createOrder'] )->name('customer.order.create');
 Route::post('customer/order', [CustomerController::class, 'storeOrder'] )->name('customer.order.store');
 
+Route::get('place/edit-multi-cities', [PlaceController::class, 'editMultiCites'] )->name('place.editMultiCites');
 Route::resources([
     'admin'        => AdminController::class,
     'role'         => RoleController::class,

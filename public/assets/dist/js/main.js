@@ -108,7 +108,21 @@ $(document).ready(function () {
         $('.'+chooseType+'Content').show();
         return false;
     });
-});
+   });
+  ////////////////////////////////////////////////////////////////////////////
+    $('#selectAllPlaces').click(function () {
+        var clicks = $(this).data('clicks')
+        if (clicks) {
+        //Uncheck all checkboxes
+        $('.placeIndex input[type=checkbox]').prop('checked', false)
+        } else {
+        //Check all checkboxes
+        $('.placeIndex input[type=checkbox]').prop('checked', true)
+        }
+        $(this).data('clicks', !clicks);
+    })
+
+  ////////////////////////////////////////////////////////////////////////////
 
 $(
     '[name="shipping[weight]"],[name="shipping[quantity]"],[name="shipping[price]"],[name="shipping[discount]"]'

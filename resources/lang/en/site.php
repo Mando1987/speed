@@ -227,7 +227,7 @@ return [
   'order_print_reciver'               => 'Consignee Data',
   'order_print_name'                  => 'The name',
   'order_print_address'               => 'Address',
-  'order_print_phone'                 => 'Telephone',
+  'order_print_phone'                 => 'phone',
   'order_print_price'                 => 'Required amount',
   'order_print_charge_price'          => 'Shipping value',
   'order_print_notes'                 => 'Notes',

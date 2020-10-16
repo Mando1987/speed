@@ -71,11 +71,11 @@ return [
     'sellersouq.*.order_info'           => 'وصف الشحنه',
     'sellersouq.*.order_quantity'       => 'عدد محتويات الشحنه',
     'sellersouq.*.order_weight'         => 'وزن الشحنه',
-    'cities.*.city_name'                => 'اسم المدينة بالعربى',
-    'cities.*.city_name_en'             => 'اسم المدينة بالانجليزى',
+    'cities.*.city_name'                => 'اسم المدينه بالعربى',
+    'cities.*.city_name_en'             => 'اسم المدينه بالانجليزى',
     'cities' => [
-        'city_name'                     => 'اسم المدينة بالعربى',
-        'city_name_en'                  => 'اسم المدينة بالانجليزى'
+        'city_name'                     => 'اسم المدينه بالعربى',
+        'city_name_en'                  => 'اسم المدينه بالانجليزى'
     ],
 
 ];

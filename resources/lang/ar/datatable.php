@@ -45,9 +45,9 @@ return [
         'manager'               => [
             'fullname'          => 'الأسم بالكامل',
             'phone'             => 'التليفون',
-            'city'              => 'المنطقة',
+            'city'              => 'المنطقه',
             'address'           => 'العنوان',
-            'company_name'      => 'اسم الشركة',
+            'company_name'      => 'اسم الشركه',
             'activity'          => 'النشاط',
         ]
 

@@ -20,7 +20,7 @@ return [
   //'type'              => 'Shipping type',
  // 'price'             => 'The value of the shipment',
  // 'charge_price'      => 'Shipping costs',
-    'order_num'         => 'Policy number',
+    'order_num'         => 'Policy Number',
 
     ],
     'manager' => [
@@ -45,6 +45,19 @@ return [
     'driveColor'        => 'Vehicle color',
     'drivePlate_number' => 'Plate Number',
     'delegate_active'   => 'Delegate status',
-    ]
+    ],
+    'customer'                  => [
+        'manager'               => [
+            'fullname'          => 'Full Name',
+            'phone'             => 'Phone',
+            'city'              => 'Zone',
+            'address'           => 'Address',
+            'company_name'      => 'The Company\'s Name',
+            'activity'          => 'Activity',
+        ]
 
+        ],'place' => [
+            'governorate_name'  => 'Governorate Name',
+            'city_name'         => 'city Name',
+        ]
 ];

@@ -82,13 +82,13 @@ return [
     'delegateDrive.color'               => 'Vehicle color',
     'delegateDrive.plate_number'        => 'Plate Number',
 
-    'sellersouq.*.order_num'            => 'Policy number ',
+    'sellersouq.*.order_num'            => 'Policy Number ',
     'sellersouq.*.order_info'           => 'Description of the shipment',
     'sellersouq.*.order_quantity'       => 'Number of contents of the shipment',
     'sellersouq.*.order_weight'         => 'Shipment weight',
     'cities.*.city_name'                => 'The name of the city in Arabic',
     'cities.*.city_name_en'             => 'The name of the city in English',
-    'cities' => [
+    'cities'                            => [
         'city_name'                     => 'The name of the city in Arabic',
         'city_name_en'                  => 'The name of the city in English'
     ],

@@ -45,19 +45,42 @@
         <div class="col-12">
           <div>
             <a href="{{ route('place.create') }}"  class="btn btn-success btn-sm ml-1">
-              <i class="fas fa-plus"></i>
-              @lang('site.add')
+               <span class="d-none d-md-block">
+                <i class="fas fa-plus"></i>
+                @lang('site.add')
+              </span>
+              <span class="d-block d-md-none">
+                <i class="fas fa-plus"></i>
+              </span>
             </a>
             <button type="button" class="btn btn-info btn-sm placeEditMultiCitiesButton disabled" cities_ids="">
               <span class="d-none d-md-block">
                 <i class="fas fa-pencil-alt"></i>
                 @lang('site.edit')
               </span>
+              <span class="d-block d-md-none">
+                <i class="fas fa-pencil-alt"></i>
+              </span>
             </button>
+            <a href="#" class="btn btn-danger btn-sm disabled placeDeleteMultiCitiesButton" onclick="deletedMethod(1)">
+              <span class="d-none d-md-block">
+                  <i class="far fa-trash-alt"></i>
+                  @lang('site.delete')
+              </span>
+              <span class="d-block d-md-none">
+                  <i class="far fa-trash-alt"></i>
+              </span>
+            </a>
+
 
           </div>
         </div>
       </div>
+    </form>
+    <form id="deletedForm1" action="{{ route('place.destroyMultiCities') }}" method="POST">
+        @csrf
+        @method('POST')
+        <input type="hidden" name="cities_ids">
     </form>
   </div>
   <!--card-header-->
@@ -74,11 +97,10 @@
                   <label for="selectAllPlaces"></label>
                 </div>
               </td>
-              <th> # </th>
+              <th style="width:35px"> # </th>
               @foreach (trans('datatable.place') as $key =>$val)
               <th>{{ $val }}</th>
               @endforeach
-              <th>@lang('site.actions')</th>
             </tr>
           </thead>
           <tbody class="placeIndex">
@@ -86,15 +108,13 @@
             <tr>
               <td>
                 <div class="icheck-success">
-                  <input type="checkbox" name="cities[]" value="{{ $city->id }}" id="check{{ $index }}">
+                  <input type="checkbox" name="cities_ids[]" value="{{ $city->id }}" id="check{{ $index }}">
                   <label for="check{{ $index }}"></label>
                 </div>
               </td>
               <td class="sorting_1" tabindex="0">{{ $cities->firstItem()+$index }}</td>
+              <td> {{ $city->governorate->name}} </td>
               <td> {{ $city->name}} </td>
-              <td>
-                {{-- @include('includes.orders.action_buttons') --}}
-              </td>
             </tr>
             @endforeach
           </tbody>
@@ -118,3 +138,7 @@
   @endif
 </div>
 @endsection
+
+@push('scripts')
+     @include('includes.scripts.delete')
+@endpush

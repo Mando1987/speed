@@ -11,6 +11,7 @@ class BaseRepository
     const ICON_ERROR = 'error';
     const TITLE_ADDED = 'added';
     const TITLE_EDITED = 'edited';
+    const TITLE_DELETED= 'deleted';
     const TITLE_FAILED = 'filed';
     const FOLDER_UPLOAD = '/uploads/images/';
     const DEFAULT_IMAGE = 'default.png';

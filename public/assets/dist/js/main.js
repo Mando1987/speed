@@ -118,27 +118,31 @@ $(document).ready(function () {
         $('.placeIndex input[type=checkbox]').prop('checked', true)
         }
         $(this).data('clicks', !clicks);
-        placeEditMultiCitiesButtonToggle();
+        placeEditAndDeleteMultiCitiesButtonToggle();
 
     });
     $('.placeIndex input[type=checkbox]').change(function(){
-        placeEditMultiCitiesButtonToggle();
+        placeEditAndDeleteMultiCitiesButtonToggle();
     });
 
-    function placeEditMultiCitiesButtonToggle() {
+    function placeEditAndDeleteMultiCitiesButtonToggle() {
 
-        const newLocal = $('.placeEditMultiCitiesButton');
+        const placeEditMultiCitiesButton = $('.placeEditMultiCitiesButton');
+        const placeDeleteMultiCitiesButton = $('.placeDeleteMultiCitiesButton');
         var cities_ids = [], checkedCount = 0
-        newLocal.addClass('disabled');
+        placeEditMultiCitiesButton.addClass('disabled');
+        placeDeleteMultiCitiesButton.addClass('disabled');
 
         $('.placeIndex input[type=checkbox]:checked').each(function(){
             checkedCount += 1;
             cities_ids.push($(this).val());
         });
         if(checkedCount > 0){
-            newLocal.removeClass('disabled');
+            placeEditMultiCitiesButton.removeClass('disabled');
+            placeDeleteMultiCitiesButton.removeClass('disabled');
         }
-        newLocal.attr('cities_ids' , cities_ids);
+        placeEditMultiCitiesButton.attr('cities_ids' , cities_ids);
+        $('input[name=cities_ids]').val(cities_ids);
     };
 
     $('#getAllCityForPlace').change(function(){
@@ -150,10 +154,10 @@ $(document).ready(function () {
     $('.placeEditMultiCitiesButton').click(function(){
         var cities_ids = $(this).attr('cities_ids');
         if(cities_ids !=""){
-
-            window.location.assign(`/place/edit-multi-cities?cities=${cities_ids}&governorate_id=${$('[name=governorate_id]').val()}`);
+            window.location.assign(`/place/edit-multi-cities?cities_ids=${cities_ids}&governorate_id=${$('[name=governorate_id]').val()}`);
         }
     });
+
 
     $('select[name=paginate]').change(function(){
         $('#placeIndexForm').submit();

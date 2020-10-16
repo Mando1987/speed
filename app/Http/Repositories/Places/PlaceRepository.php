@@ -35,11 +35,13 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
         $this->paginate = $this->request->paginate ?? static::DEFAULT_PAGINATE;
         $this->search = $this->request->search ?? false;
 
-        $cities = $this->city::where(function ($query) {
-            $query->where('governorate_id', $this->governorate_id)->where(function ($q) {
+        $cities = $this->city::with('governorate')->where(function ($query) {
+            $query->where(function ($q) {
                 return $q->when($this->search, function ($qsearsh) {
                     return $qsearsh->where('city_name', 'LIKE', "%{$this->search}%")
                         ->orWhere('city_name_en', 'LIKE', "%{$this->search}%");
+                })->when(!$this->search,function($qWithGovernorate){
+                   return $qWithGovernorate->where('governorate_id', $this->governorate_id);
                 });
             });
         })->paginate($this->paginate);
@@ -58,9 +60,7 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
     {
         $governorate_id = $this->request->governorate_id ?? 1;
 
-        $cities_ids = Arr::where(explode(',', $this->request->cities), function ($value, $key) {
-            return (int) $value;
-        });
+        $cities_ids = $this->getCitiesIdFromString();
 
         $cities = $this->city::where(function ($query) use ($governorate_id, $cities_ids) {
             $query->where('governorate_id', $governorate_id)
@@ -128,5 +128,38 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
             dd($ex->getMessage());
             return back();
         }
+    }
+
+    public function destroyMultiCities()
+    {
+        try {
+            DB::beginTransaction();
+            $cities_ids = $this->getCitiesIdFromString();
+
+            $citiesAreSaveDeleted = $this->city->whereIn('id', $cities_ids)
+                ->whereDoesntHave('customers')
+                ->whereDoesntHave('recivers')->get();
+            $citiesAreSaveDeleted->map(function ($city) {
+                $city->delete();
+            });
+
+            DB::commit();
+
+            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_DELETED]);
+            return $this->path($this->route);
+        } catch (\Exception $ex) {
+            DB::rollback();
+            $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
+
+            dd($ex->getMessage());
+            return back();
+        }
+    }
+
+    private function getCitiesIdFromString()
+    {
+        return Arr::where(explode(',', $this->request->cities_ids), function ($value, $key) {
+            return (int) $value;
+        });
     }
 }

@@ -29,6 +29,7 @@ Route::post('customer/order', [CustomerController::class, 'storeOrder'] )->name(
 
 Route::get('place/edit-multi-cities', [PlaceController::class, 'editMultiCites'] )->name('place.editMultiCites');
 Route::post('place/update-multi-cities', [PlaceController::class, 'updateMultiCites'] )->name('place.updateMultiCites');
+Route::post('place/destroy-multi-cities', [PlaceController::class, 'destroyMultiCities'] )->name('place.destroyMultiCities');
 Route::resources([
     'admin'        => AdminController::class,
     'role'         => RoleController::class,
@@ -46,17 +47,4 @@ Route::fallback(function () {
     return abort(404);
 });
 
-// Route::get('create-admin',function(){
-//     App\Models\Admin::create(
-//         [
-//             'fullname'   => 'admin',
-//             'phone'      => '01098026159',
-//             'email'      => 'a.wahba2019@gmail.com',
-//             'user_name'  => 'admin',
-//             'password'   => bcrypt('3266901'),
-//             'is_active'  => 1,
-//             'type'       => 'manager',
-//         ]
-// );
-// });
 

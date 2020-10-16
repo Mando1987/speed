@@ -7,6 +7,7 @@ use App\Http\Interfaces\PlaceRepositoryInterface;
 use App\Http\Requests\PlaceStoreFormRequest;
 use App\Http\Requests\PlaceUpdateFormRequest;
 use App\Http\Traits\GovernorateTrait;
+use Illuminate\Http\Request;
 
 class PlaceController extends Controller
 {
@@ -32,7 +33,6 @@ class PlaceController extends Controller
     public function store(PlaceStoreFormRequest $placeStoreFormRequest)
     {
         return $this->placeRepositoryInterface->store($placeStoreFormRequest);
-
     }
 
     public function editMultiCites()
@@ -42,5 +42,10 @@ class PlaceController extends Controller
     public function updateMultiCites(PlaceUpdateFormRequest $placeUpdateFormRequest)
     {
         return $this->placeRepositoryInterface->updateMultiCites($placeUpdateFormRequest);
+    }
+
+    public function destroyMultiCities()
+    {
+       return $this->placeRepositoryInterface->destroyMultiCities();
     }
 }

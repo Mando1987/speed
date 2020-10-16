@@ -233,7 +233,7 @@ return [
   'order_print_num'                   => 'رقم البوليصه',
   'order_print_siteName'              => 'SPEED',
   'order_print_city'                  => 'المنطقه',
-  'order_print_governorate'           => 'المدينة',
+  'order_print_governorate'           => 'المدينه',
   'order_print_date'                  => 'التاريخ',
   'order_print_employee'              => 'بيانات الراسل',
   'order_print_reciver'               => 'بيانات المرسل إليه',

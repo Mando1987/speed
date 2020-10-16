@@ -231,7 +231,7 @@ return [
   'order_print_price'                 => 'Required amount',
   'order_print_charge_price'          => 'Shipping value',
   'order_print_notes'                 => 'Notes',
-  'order_print_danger_msg'            => 'The company is not responsible for the contents of the shipment and its responsibility ends once it is delivered to the consignee',
+  'order_print_danger_msg'            => 'The company is Not responsible for the contents of the shipment and its responsibility ends once it is delivered to the consignee',
   'order_print_contact_msg'           => 'In case of inquiries or inquiries, please contact customer service on 01148630107 - 01098026159',
     
    //06/10/2020

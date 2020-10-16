@@ -218,7 +218,7 @@ return [
   'order_user_can_open_order_0'       => 'No',
   'order_user_can_open_order_1'       => 'Yes',
   'order_show_discount'               => 'Discount value',
-  'order_print_num'                   => 'number',
+  'order_print_num'                   => 'number2',
   'order_print_siteName'              => 'SPEED',
   'order_print_city'                  => 'Region',
   'order_print_governate'             => 'City',

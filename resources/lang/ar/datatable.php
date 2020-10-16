@@ -52,8 +52,8 @@ return [
         ]
 
         ],'place' => [
-            'governorate_name' => 'اسم المحافظة',
-            'city_name' => 'اسم المدينة',
+            'governorate_name'  => 'اسم المحافظه',
+            'city_name'         => 'اسم المدينه',
         ]
 
 ];

@@ -43,9 +43,8 @@ class LoginController extends Controller
 
     protected function attemptLogin(Request $request)
     {
-
         try {
-
+            $remmber_me = $request->remmber_me ? true:false;
             $admin = Admin::where(function ($query) use ($request) {
                 $query->where('user_name', $request->identify)
                     ->orWhere('phone', $request->identify)
@@ -56,7 +55,7 @@ class LoginController extends Controller
 
                 if (Hash::check($request->password, $admin->getPassword())) {
                     // login this admin
-                    return Auth::guard('admin')->login($admin ,1);
+                    return Auth::guard('admin')->login($admin ,$remmber_me);
                 } else {
                     $this->passwordError = true;
                 }
@@ -86,7 +85,7 @@ class LoginController extends Controller
             ? new Response('', 204)
             : redirect('/admin/login');
     }
-    protected function sendFailedLoginResponse(Request $request)
+    protected function sendFailedLoginResponse()
     {
         $errors = [];
         $this->identifyError === true ? $errors['identify'] = trans('auth.failed') : false;

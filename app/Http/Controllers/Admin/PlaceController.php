@@ -20,14 +20,14 @@ class PlaceController extends Controller
         $this->placeRepositoryInterface = $placeRepositoryInterface;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-       return $this->placeRepositoryInterface->getAll();
+       return $this->placeRepositoryInterface->getAll($request);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return $this->placeRepositoryInterface->create();
+        return $this->placeRepositoryInterface->create($request);
     }
 
     public function store(PlaceStoreFormRequest $placeStoreFormRequest)
@@ -35,17 +35,17 @@ class PlaceController extends Controller
         return $this->placeRepositoryInterface->store($placeStoreFormRequest);
     }
 
-    public function editMultiCites()
+    public function editMultiCites(Request $request)
     {
-        return $this->placeRepositoryInterface->editMultiCites();
+        return $this->placeRepositoryInterface->editMultiCites($request);
     }
     public function updateMultiCites(PlaceUpdateFormRequest $placeUpdateFormRequest)
     {
         return $this->placeRepositoryInterface->updateMultiCites($placeUpdateFormRequest);
     }
 
-    public function destroyMultiCities()
+    public function destroyMultiCities(Request $request)
     {
-       return $this->placeRepositoryInterface->destroyMultiCities();
+       return $this->placeRepositoryInterface->destroyMultiCities($request);
     }
 }

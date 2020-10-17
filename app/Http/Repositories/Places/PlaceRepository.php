@@ -15,25 +15,23 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
 {
     const DEFAULT_PAGINATE = 10;
     protected $city;
-    protected $request;
     protected $governorate;
     private $paginate;
     private $search;
     private $governorate_id;
     protected $route = 'place.index';
 
-    public function __construct(City $city, Request $request, Governorate $governorate)
+    public function __construct(City $city, Governorate $governorate)
     {
         $this->city = $city;
-        $this->request = $request;
         $this->governorate = $governorate;
     }
 
-    public function getAll()
+    public function getAll(Request $request)
     {
-        $this->governorate_id = $this->request->governorate_id ?? 1;
-        $this->paginate = $this->request->paginate ?? static::DEFAULT_PAGINATE;
-        $this->search = $this->request->search ?? false;
+        $this->governorate_id = $request->governorate_id ?? 1;
+        $this->paginate = $request->paginate ?? static::DEFAULT_PAGINATE;
+        $this->search = $request->search ?? false;
 
         $cities = $this->city::with('governorate')->where(function ($query) {
             $query->where(function ($q) {
@@ -56,11 +54,11 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
             ]);
     }
 
-    public function editMultiCites()
+    public function editMultiCites(Request $request)
     {
-        $governorate_id = $this->request->governorate_id ?? 1;
+        $governorate_id = $request->governorate_id ?? 1;
 
-        $cities_ids = $this->getCitiesIdFromString();
+        $cities_ids = $this->getCitiesIdFromString($request);
 
         $cities = $this->city::where(function ($query) use ($governorate_id, $cities_ids) {
             $query->where('governorate_id', $governorate_id)
@@ -103,9 +101,9 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
         }
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $city_count = ($this->request->city_count && $this->request->city_count > 0) ? $this->request->city_count : 1;
+        $city_count = ($request->city_count && $request->city_count > 0) ? $request->city_count : 1;
         return view('place.create', ['city_count' => $city_count]);
     }
 
@@ -130,11 +128,11 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
         }
     }
 
-    public function destroyMultiCities()
+    public function destroyMultiCities(Request $request)
     {
         try {
             DB::beginTransaction();
-            $cities_ids = $this->getCitiesIdFromString();
+            $cities_ids = $this->getCitiesIdFromString($request);
 
             $citiesAreSaveDeleted = $this->city->whereIn('id', $cities_ids)
                 ->whereDoesntHave('customers')
@@ -156,9 +154,9 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
         }
     }
 
-    private function getCitiesIdFromString()
+    private function getCitiesIdFromString(Request $request)
     {
-        return Arr::where(explode(',', $this->request->cities_ids), function ($value, $key) {
+        return Arr::where(explode(',', $request->cities_ids), function ($value, $key) {
             return (int) $value;
         });
     }

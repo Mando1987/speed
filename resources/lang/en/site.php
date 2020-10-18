@@ -285,4 +285,6 @@ return [
   'nothing'                                => 'none',
   'id_not_found_title'                     => '👀👀',
   'id_not_found'                           => 'Didn\'t find what you want to display, try again at a later time',
-  'order_print_price_contain_charge_price' => 'EGP including shipping fees',];
+  'order_print_price_contain_charge_price' => 'EGP including shipping fees',
+
+];

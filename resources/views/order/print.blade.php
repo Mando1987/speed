@@ -156,6 +156,7 @@
                 <td>
                   <span class="font-weight-bold text-center"
                     style="font-size: 19px">{{ $order->shipping->total_price }}</span>
+                  <span>@lang('site.order_print_price_contain_charge_price')</span>
                 </td>
               </tr>
             </tbody>

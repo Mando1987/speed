@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <td>@lang('site.phone')</td>
-                        <td>{{ $order->customer->phone .' - ' .($order->customer->other_phone??'') }}</td>
+                        <td>{{ $order->customer->phone }} {{$order->customer->other_phone !='' ? '-'.$order->customer->other_phone:false}} </td>
                     </tr>
                     <tr>
                         <td>@lang('site.governorate')</td>
@@ -161,47 +161,47 @@
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.order_weight')</td>
-                        <td>
+                        <td dir="ltr">
                             {{$order->shipping->weight}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr dir="ltr">
                         <td>@lang('site.order_quantity')</td>
                         <td>
                             {{$order->shipping->quantity}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr dir="ltr">
                         <td>@lang('site.order_total_weight')</td>
                         <td>
                             {{$order->shipping->total_weight}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr dir="ltr">
                         <td>@lang('site.order_total_over_weight')</td>
                         <td>
                             {{$order->shipping->total_over_weight}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr dir="ltr">
                         <td>@lang('site.order_total_over_weight_price')</td>
                         <td>
                             {{$order->shipping->total_over_weight_price}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr dir="ltr">
                         <td>@lang('site.order_show_discount')</td>
                         <td>
                             {{$order->shipping->discount}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr dir="ltr">
                         <td>@lang('site.order_price')</td>
                         <td>
                             {{$order->shipping->price}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr dir="ltr">
                         <td>@lang('site.order_charge_price')</td>
                         <td>
                             {{$order->shipping->charge_price}}
@@ -213,7 +213,7 @@
                             {{__('site.order_charge_' . $order->shipping->charge_on)}}
                         </td>
                     </tr>
-                    <tr>
+                    <tr dir="ltr">
                         <td>@lang('site.order_total_price')</td>
                         <td>
                             {{$order->shipping->final_price}}

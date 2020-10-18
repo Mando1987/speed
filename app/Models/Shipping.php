@@ -26,8 +26,6 @@ class Shipping extends Model
        return  trans('site.order_print_charge_on_' . $this->charge_on);
     }
 
-
-
     // public function setOrderNumAttribute($value = null)
     // {
     //     return $this->attributes['order_num'] = $this->order;

@@ -154,6 +154,10 @@
                   </span>
                 </button>
                 @endif
+                <a href="{{ route('order.print' ,['orderId' =>$order->id]) }}" class="print btn btn-default ml-1">
+                  <i class="fas fa-print"></i>
+                  {{-- @lang('site.print') --}}
+              </a>
               </div>
             </div>
           </div>
@@ -235,6 +239,10 @@
                 </button>
                 @endif
               </div>
+              <a href="{{ route('order.print' ,['orderId' =>$order->id]) }}" class="print btn btn-default ml-1">
+                <i class="fas fa-print"></i>
+                {{-- @lang('site.print') --}}
+            </a>
             </td>
           </tr>
           @endforeach

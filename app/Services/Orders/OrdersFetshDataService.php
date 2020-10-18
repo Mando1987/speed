@@ -36,6 +36,7 @@ class OrdersFetshDataService extends BaseService
     }
     public function show($request, $id)
     {
+
         $relationsLoded = ['reciver', 'reciver.city', 'reciver.address', 'shipping'];
         if ($request->adminType == 'manager') {
             $relationsLoded = array_merge($relationsLoded, ['customer', 'customer.city', 'customer.address']);

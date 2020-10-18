@@ -6,8 +6,10 @@ use App\Http\Interfaces\OrderStoreFormRequestInterface;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Traits\Orders\OrderGetAll;
 use App\Http\Traits\OrderTrait;
+use App\Models\Address;
 use App\Models\City;
 use App\Models\Customer;
+use App\Models\Governorate;
 use App\Models\Order;
 use App\Models\Reciver;
 use Illuminate\Http\Request;
@@ -36,35 +38,63 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         'customers.phone',
     ];
 
-    protected $paginate = 12;
-    protected $view = 'list';
+    protected $paginate;
+    protected $view;
     private $order;
-    private $request;
-    public function __construct(Order $order, Request $request)
+    private $city;
+    private $governorate;
+    private $address;
+    private $cities_id = [];
+    private $governorates_id = [];
+    public function __construct(Order $order)
     {
         $this->order = $order;
-        $this->request = $request;
     }
 
-    public function getAll()
+    public function getAll(Request $request)
     {
+        $this->setViewSetting($request);
+
         $orders = $this->order::withRealtionsTables()
-            ->whereAdminIsCustomer()->latest()->paginate($this->request->paginate ?? $this->paginate);
+            ->whereAdminIsCustomer()->latest()->paginate($this->paginate);
 
         return view(
-            'order.index.' . $this->request->adminType,
+            'order.index.' . $request->adminType,
             [
                 'orders' => $orders,
-                'view'   => $this->request->view,
-                'status' => $this->request->status ?? 'all',
-                'search' => $this->request->search,
+                'view' => $this->view,
+                'status' => $request->status ?? 'all',
+                'search' => $request->search,
             ]
         );
 
     }
-    public function getById()
+    public function showById(Request $request, $id)
     {
+        $query = $this->order::with(['reciver', 'shipping']);
+        $query = $request->adminIsManager ? $query->with(['customer']) : $query;
+        $orderData = $query->whereId($id)->where(function ($query) use ($request) {
+            return $query->when($request->adminIsCustomer, function ($q) use ($request) {
+                return $q->whereCustomerId($request->adminId);
+            });
+        })->first();
 
+        if ($orderData) {
+            $this->cities_id[] = $orderData->reciver->city_id;
+            $this->governorates_id[] = $orderData->reciver->governorate_id;
+            $request->adminIsManager ?
+            ($this->cities_id[] = $orderData->customer->city_id)
+            && ($this->governorates_id[] = $orderData->customer->governorate_id)
+            && $this->setCityRelationship($orderData, 'customer')
+            && $this->setAddressRelationship($orderData, 'customer')
+            && $this->setGovernorateRelationship($orderData, 'customer')
+            : false;
+            $this->setCityRelationship($orderData, 'reciver');
+            $this->setAddressRelationship($orderData, 'reciver');
+            $this->setGovernorateRelationship($orderData, 'reciver');
+        }
+
+        return view('order.show.' . $request->adminType, ['order' => $orderData]);
     }
     public function store(OrderStoreFormRequestInterface $request)
     {
@@ -134,72 +164,73 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     {
 
     }
-    function print() {
-        $tables = [
-            'customer' => ['id', 'fullname', 'phone', 'city_name', 'city_name_en', 'governorate_name', 'governorate_name_en'],
-            'reciver' => ['id', 'fullname', 'phone', 'city_name', 'city_name_en', 'governorate_name', 'governorate_name_en'],
-            'shipping' => ['order_id', 'total_price', 'charge_on', 'order_num', 'total_weight'],
-        ];
-        if ($this->request->adminType == 'manager') {
-            $order = Order::select('orders.*')
-                ->join('shippings as s', 's.order_id', '=', 'orders.id')
-                ->join('customers as c', 'c.id', '=', 'orders.customer_id')
-                ->join('recivers as r', 'r.id', '=', 'orders.reciver_id')
-                ->join('cities as c_c', 'c_c.id', '=', 'c.city_id')
-                ->join('cities as c_r', 'c_r.id', '=', 'r.city_id')
-                ->join('governorates as g_c', 'g_c.id', '=', 'c.governorate_id')
-                ->join('governorates as g_r', 'g_r.id', '=', 'r.governorate_id')
-                ->selectRaw('CONCAT_WS(",",c.id,c.fullname,c.phone,c_c.city_name,c_c.city_name_en,g_c.governorate_name,g_c.governorate_name_en) as customer')
-                ->selectRaw('CONCAT_WS(",",r.id,r.fullname,r.phone,c_r.city_name,c_r.city_name_en,g_r.governorate_name,g_r.governorate_name_en) as reciver')
-                ->selectRaw('CONCAT_WS(",",s.order_id,s.total_price,s.charge_on,s.order_num,s.total_weight) as shipping')
-                ->where('orders.id', $this->request->orderId)->first();
+    function print(Request $request) {
+
+        $orderData = $this->order::with(['reciver', 'shipping', 'customer'])
+            ->whereId($request->orderId)->where(function ($query) use ($request) {
+            return $query->when($request->adminIsCustomer, function ($q) use ($request) {
+                return $q->whereCustomerId($request->adminId);
+            });
+        })->first();
+
+        if ($orderData) {
+            $this->cities_id[] = $orderData->reciver->city_id;
+            $this->governorates_id[] = $orderData->reciver->governorate_id;
+            $request->adminIsManager ?
+            ($this->cities_id[] = $orderData->customer->city_id)
+            && ($this->governorates_id[] = $orderData->customer->governorate_id)
+            && $this->setCityRelationship($orderData, 'customer')
+            && $this->setAddressRelationship($orderData, 'customer')
+            && $this->setGovernorateRelationship($orderData, 'customer') : false;
+            $this->setCityRelationship($orderData, 'reciver');
+            $this->setAddressRelationship($orderData, 'reciver');
+            $this->setGovernorateRelationship($orderData, 'reciver');
         }
+        return view('order.print', ['order' => $orderData]);
 
-        $order->date = $order->created_at->format('Y-m-d');
+    }
 
-        foreach ($tables as $table => $colmuns) {
-            $order->$table = (object) (array_combine($colmuns, explode(',', $order->$table)));
-        }
+    private function setViewSetting(Request $request)
+    {
+        $viewSetting = session('viewSetting');
+        $this->view = $request->view ?? $viewSetting['view'] ?? 'list';
+        $this->paginate = $request->paginate ?? $viewSetting['paginate'] ?? 10;
+        session(['viewSetting' => ['view' => $this->view, 'paginate' => $this->paginate]]);
+    }
 
-        $localeIsAr = app()->getLocale() == 'ar';
-        $order->customer->city = $localeIsAr ? $order->customer->city_name : $order->customer->city_name_en;
-        $order->customer->governorate = $localeIsAr ? $order->customer->governorate_name : $order->customer->governorate_name_en;
-        $order->reciver->city = $localeIsAr ? $order->reciver->city_name : $order->reciver->city_name_en;
-        $order->reciver->governorate = $localeIsAr ? $order->reciver->governorate_name : $order->reciver->governorate_name_en;
+    public function setAddressRelationship($model, $relation)
+    {
+        $relations = ['reciver' => 'App\\Models\\Reciver', 'customer' => 'App\\Models\\Customer'];
+        $this->address = $this->address ?? Address::get();
 
-        $addresses = \App\Models\Address::get();
-
-        $addresses->map(function ($address) use ($order) {
-            if ($address->addressable_type == "App\\Models\\Customer" && $address->addressable_id == $order->customer->id) {
-                $order->customer->address = $address;
-            }
-            if ($address->addressable_type == "App\\Models\\Reciver" && $address->addressable_id == $order->reciver->id) {
-                $order->reciver->address = $address;
+        $this->address->map(function ($address) use ($model, $relation, $relations) {
+            if ($address->addressable_type == $relations[$relation] && $address->addressable_id == $model->$relation->id) {
+                $model->$relation->address = $address;
             }
         });
 
-        $order->userCanOpenOrder = trans('site.order_print_user_can_open_order_' . $order->user_can_open_order);
-        $order->charge_on = trans('site.order_print_charge_on_' . $order->shipping->charge_on);
-        // $order->get_price = $order->shipping->total_price != 0 ? trans('site.order_print_true'):trans('site.order_print_false');
-        // $order->get_price_viza = $order->shipping->total_price == 0 ? trans('site.order_print_true'):trans('site.order_print_false');
-
-        // return $order;
-        return view('order.print', ['order' => $order]);
-        return abort(404);
+        return $model;
     }
 
-    private function setView($value = null)
+    public function setCityRelationship($model, $relation)
     {
-        if ($value == null && session('view')) {
-            $this->view = session('view');
-        } else {
-            if ($value == 'grid' || $value == 'list') {
-                $this->view = $value;
-                session(['view' => $this->view]);
+        $this->city = $this->city ?? City::whereIn('id', $this->cities_id)->get();
+        $this->city->map(function ($city) use ($model, $relation) {
+            if ($city->id == $model->$relation->city_id) {
+                return $model->$relation->city = $city;
             }
-        }
-        //$this->setPaginate();
-        // return $this;
+        });
+        return $model;
+    }
+    public function setGovernorateRelationship($model, $relation)
+    {
+        $this->governorate = $this->governorate ?? Governorate::whereIn('id', $this->governorates_id)->get();
+        $this->governorate->map(function ($governorate) use ($model, $relation) {
+            if ($governorate->id == $model->$relation->governorate_id) {
+                return $model->$relation->governorate = $governorate;
+            }
+        });
+        return $model;
     }
 
 }

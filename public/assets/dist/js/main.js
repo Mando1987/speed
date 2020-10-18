@@ -92,6 +92,10 @@ $(document).ready(function () {
         });
         return false;
     });
+    $(document).on("click", ".show-view-setting", function () {
+            $("#option-modal").modal("show");
+        return false;
+    });
     $(document).on("click", ".button-print", function () {
         $('#modal-print').modal('hide');
         $('#modal-print').on('hidden.bs.modal', function (e) {
@@ -175,8 +179,8 @@ $('[name="shipping[charge_on]"]').on("change", function () {
 });
 
 function newFunction(data) {
-    $(".modal-body").html("");
-    $(".modal-body").html(data);
+    $("#modal-default .modal-body").html("");
+    $("#modal-default .modal-body").html(data);
     $("#modal-default").modal("show");
 }
 

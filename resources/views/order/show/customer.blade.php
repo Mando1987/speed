@@ -1,3 +1,4 @@
+@if ($order)
 <div class="card">
     <div class="card-header ui-sortable-handle">
         <h3 class="card-title">
@@ -74,7 +75,7 @@
                     <tr>
                         <td>@lang('site.order_show_date')</td>
                         <td>
-                            {{$order->getDate()}}
+                            {{$order->created_at->format('Y-m-d')}}
                         </td>
                     </tr>
                     <tr>
@@ -172,3 +173,6 @@
         </div>
     </div><!-- /.card-body -->
 </div>
+@else
+@include('includes.not_found_id')
+@endif

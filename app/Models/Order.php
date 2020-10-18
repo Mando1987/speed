@@ -12,7 +12,6 @@ class Order extends Model
     protected $casts = [
         'created_at' => 'date:Y-m-d',
     ];
-
     public function customer()
     {
         return $this->belongsTo(Customer::class);
@@ -47,6 +46,10 @@ class Order extends Model
     {
         return trans('site.order_user_can_open_order_'. $this->user_can_open_order);
     }
+    public function getUserCanOpenOrder()
+    {
+        return  trans('site.order_print_user_can_open_order_' . $this->user_can_open_order);
+    }
 
     public function scopeWithRealtionsTables(Builder $builder)
     {
@@ -54,7 +57,7 @@ class Order extends Model
                ->with(['reciver:id,fullname,phone,city_id', 'shipping' => function($q){
                  $q->select('id','order_id','charge_on','charge_price','order_num','customer_price', 'total_price');
             }]);
-         (request()->adminType == 'manager') ?
+         (request()->adminIsManager) ?
            $query->with(['customer:id,fullname,phone,city_id', 'customer.city']) :
            $query->with(['reciver.city']);
            return $query;
@@ -63,7 +66,7 @@ class Order extends Model
 
     public function scopeWhereAdminIsCustomer(Builder $builder)
     {
-        return $builder->when(request()->adminType == 'customer' , function($query){
+        return $builder->when(request()->adminIsCustomer , function($query){
             $query->where('orders.customer_id',request()->adminId);
         });
     }

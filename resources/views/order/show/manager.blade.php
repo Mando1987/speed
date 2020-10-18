@@ -1,3 +1,4 @@
+@if($order)
 <div class="card">
     <div class="card-header ui-sortable-handle">
         <h3 class="card-title">
@@ -6,24 +7,33 @@
         <div class="card-tools">
             <ul class="nav nav-pills ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#customer" data-toggle="tab">@lang('site.customer_show_title')</a>
+                    <a class="nav-link active" href="#customerDeitails" data-toggle="tab">
+                        @lang('site.customer_show_title')
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#reciver" data-toggle="tab">@lang('site.manager_reciver_title')</a>
+                    <a class="nav-link" href="#reciverDeitails" data-toggle="tab">
+                        @lang('site.manager_reciver_title')
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#order" data-toggle="tab">@lang('site.order_show_title')</a>
+                    <a class="nav-link" href="#orderDeitails" data-toggle="tab">
+                        @lang('site.order_show_title')
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#shipping" data-toggle="tab">@lang('site.order_show_shipping')</a>
+                    <a class="nav-link" href="#shippingDeitails" data-toggle="tab">
+                        @lang('site.order_show_shipping')
+                    </a>
                 </li>
             </ul>
         </div>
+
     </div><!-- /.card-header -->
     <div class="card-body p-0">
         <div class="tab-content p-0">
             <!-- Morris chart - Sales -->
-            <div class="tab-pane active" id="customer">
+            <div class="tab-pane active" id="customerDeitails">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.fullname')</td>
@@ -63,7 +73,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="tab-pane" id="reciver">
+            <div class="tab-pane" id="reciverDeitails">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.fullname')</td>
@@ -103,7 +113,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="tab-pane" id="order">
+            <div class="tab-pane" id="orderDeitails">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.order_status')</td>
@@ -116,7 +126,7 @@
                     <tr>
                         <td>@lang('site.order_show_date')</td>
                         <td>
-                            {{$order->getDate()}}
+                            {{$order->created_at->format('Y-m-d')}}
                         </td>
                     </tr>
                     <tr>
@@ -147,7 +157,7 @@
                 </table>
 
             </div>
-            <div class="tab-pane" id="shipping">
+            <div class="tab-pane" id="shippingDeitails">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.order_weight')</td>
@@ -214,3 +224,6 @@
         </div>
     </div><!-- /.card-body -->
 </div>
+@else
+@include('includes.not_found_id')
+@endif

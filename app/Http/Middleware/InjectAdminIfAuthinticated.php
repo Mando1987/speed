@@ -15,7 +15,10 @@ class InjectAdminIfAuthinticated
             $request->merge(
                 [
                     'adminType' => $type,
-                    'adminId' => $currentAdmin->id ?? $admin->id()
+                    'adminId' => $currentAdmin->id ?? $admin->id(),
+                    'adminIsManager' => $type == 'manager' ? true:false,
+                    'adminIsCustomer' => $type == 'customer' ? true:false,
+                    'adminIsDelegate' => $type == 'delegate' ? true:false,
                 ]
             );
         }

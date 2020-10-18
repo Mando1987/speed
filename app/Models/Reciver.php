@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Http\Traits\AddressMorph;
 use Illuminate\Database\Eloquent\Model;
 
 class Reciver extends Model
 {
+    use AddressMorph;
     protected $guarded = [];
     public $timestamps = false;
 
@@ -17,10 +19,7 @@ class Reciver extends Model
     {
         return $this->belongsTo(Customer::class);
     }
-    public function address()
-    {
-        return $this->morphOne(Address::class, 'addressable');
-    }
+
     public function city()
     {
         return $this->belongsTo(City::class);

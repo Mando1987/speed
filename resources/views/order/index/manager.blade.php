@@ -27,16 +27,13 @@
           </div>
         </div>
         <div class="col-4 col-sm-2 col-md-2">
+
           <div class="float-right">
-            <a href="{{ route('order.index' , ['view' => 'list' ,'status'=>$status??'all' , 'search'=> $search]) }}"
-              class="btn btn-sm @if($view =='list') btn-primary @endif">
-              <i class="fas fa-bars"></i>
-            </a>
-            <a href="{{ route('order.index' , ['view' => 'grid' ,'status'=>$status??'all' , 'search'=> $search]) }}"
-              class="btn btn-sm @if($view =='grid') btn-primary @endif">
-              <i class="fas fa-th"></i>
-            </a>
+            <button type="button" class="btn btn-sm btn-info show-view-setting">
+              <i class="fas fa-wrench"></i>
+            </button>
           </div>
+
         </div>
       </div>
     </form>
@@ -56,7 +53,7 @@
                   <td class="border-top-0">@lang('datatable.order.manager.created_at')</td>
                   <td class="border-top-0">
                     <strong>
-                      {{ $order->date }}
+                      {{ $order->created_at->format('Y-m-d') }}
                     </strong>
                   </td>
                 </tr>
@@ -80,7 +77,7 @@
                   <td>@lang('datatable.order.manager.city')</td>
                   <td>
                     <strong>
-                      {{ $order->city ?? ''}}
+                      {{ $order->customer->city->name ?? ''}}
                     </strong>
                   </td>
                 </tr>
@@ -96,7 +93,7 @@
                   <td>@lang('datatable.order.manager.status')</td>
                   <td>
                     <span class="badge p-2 bg-{{ __('site.color_' . $order->status)}}">
-                      {{ $order->getStatus ?? '' }}
+                      {{ $order->getStatus() ?? '' }}
                     </span>
 
                   </td>
@@ -105,7 +102,7 @@
                   <td>@lang('datatable.order.manager.total_price')</td>
                   <td>
                     <strong>
-                      {{$order->total_price ?? 0}}
+                      {{$order->shipping->total_price ?? 0}}
                     </strong>
                   </td>
                 </tr>
@@ -113,7 +110,7 @@
                   <td>@lang('datatable.order.manager.order_num')</td>
                   <td>
                     <strong>
-                      {{ $order->order_num ?? 0 }}
+                      {{ $order->shipping->order_num ?? 0 }}
                     </strong>
                   </td>
                 </tr>
@@ -161,7 +158,10 @@
                   </span>
                 </button>
                 @endif
-                <a href="" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                <a href="{{ route('order.print' ,['orderId' =>$order->id]) }}" class="print btn btn-default ml-1">
+                  <i class="fas fa-print"></i>
+                  @lang('site.print')
+              </a>
               </div>
             </div>
           </div>
@@ -221,5 +221,73 @@
     <x-empty-records-button-add route="order.create" />
   </div>
   @endif
+
+  <div class="modal fade" id="option-modal" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div id="view_setting">
+            <form action="{{ route('order.index') }}" method="GET">
+            <div class="callout callout-info p-1">
+              <h4>
+                <i class="fas fa-eye"></i>
+                @lang('site.view_setting')
+              </h4>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <span class="font-weight-bold">@lang('site.option_view_style')</span>
+              </div>
+              <div class="col-9">
+                <div class="form-group clearfix">
+                  <div class="custom-control custom-radio d-inline">
+                    <input class="custom-control-input" type="radio" id="view1" name="view" value="list" @if($view =='list') checked="" @endif>
+                    <label for="view1" class="custom-control-label">
+                      <i class="fas fa-bars"></i>
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio d-inline ml-3">
+                    <input class="custom-control-input" type="radio" id="view2" name="view" @if($view =='grid') checked="" @endif  value="grid">
+                    <label for="view2" class="custom-control-label">
+                      <i class="fas fa-th"></i>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end of row-->
+            <div class="row">
+              <div class="col-3">
+                <span class="font-weight-bold">{{__('site.show_records_number')}}</span>
+              </div>
+              <div class="col-9">
+                <div class="form-group row">
+                  <select class="custom-select custom-select-sm font-weight-bold" name="paginate">
+                    @foreach(range(5,50,5) as $number)
+                    <option class="font-weight-bold" value="{{ $number }}" @if($number==$orders->perPage()) selected
+                      @endif>{{ $number }}
+                    </option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!--end of row-->
+            <div class="row">
+              <div class="col">
+                <button type="submit" class="btn btn-success btn-sm">@lang('site.save')</button>
+              </div>
+            </div>
+          </form><!-- end of form -->
+          </div> <!-- end of view_setting-->
+        </div><!-- end of card-body-->
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 </div>
 @endsection

@@ -6,10 +6,10 @@ use App\Http\Interfaces\OrderStoreFormRequestInterface;
 
 interface OrderRepositoryInterface
 {
-    public function getAll();
-    public function getById();
+    public function getAll(Request $request);
+    public function showById(Request $request, $id);
     public function create();
     public function store(OrderStoreFormRequestInterface $request);
     public function update();
-    public function print();
+    public function print(Request $request);
 }

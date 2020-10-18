@@ -1,4 +1,4 @@
-
+@if($order)
 <div class="wrapper" id="print-wrapper">
   <!-- Main content -->
   <section class="p-1">
@@ -9,7 +9,7 @@
             <tbody>
               <tr>
                 <td><strong>@lang('site.order_print_date')</strong></td>
-                <td>{{ $order->date }}</td>
+                <td>{{ $order->created_at->format('Y-m-d') }}</td>
               </tr>
               <tr>
                 <td><strong> @lang('site.order_print_num')</strong></td>
@@ -26,11 +26,11 @@
             <tbody>
               <tr>
                 <td><strong>@lang('site.order_print_city')</strong></td>
-                <td>{{ $order->reciver->city }}</td>
+                <td>{{ $order->reciver->city->name }}</td>
               </tr>
               <tr>
                 <td><strong>@lang('site.order_print_governorate')</strong></td>
-                <td>{{ $order->reciver->governorate }}</td>
+                <td>{{ $order->reciver->governorate->name }}</td>
               </tr>
             </tbody>
           </table>
@@ -59,8 +59,8 @@
                   <span>{{ $order->customer->address->address }} - </span>
                   <span>@lang('site.order_print_door_num') {{ $order->customer->address->door_number }} - </span>
                   <span>@lang('site.order_print_shaka_number') {{ $order->customer->address->shaka_number }} - </span>
-                  <span>{{ $order->customer->city }} - </span>
-                  <span>{{ $order->customer->governorate }} </span>
+                  <span>{{ $order->customer->city->name }} - </span>
+                  <span>{{ $order->customer->governorate->name }} </span>
                 </td>
               </tr>
               <tr>
@@ -91,8 +91,8 @@
                   <span>{{ $order->reciver->address->address }} - </span>
                   <span>@lang('site.order_print_door_num') {{ $order->reciver->address->door_number }} - </span>
                   <span>@lang('site.order_print_shaka_number') {{ $order->reciver->address->shaka_number }} - </span>
-                  <span>{{ $order->reciver->city }} - </span>
-                  <span>{{ $order->reciver->governorate }} </span>
+                  <span>{{ $order->reciver->city->name }} - </span>
+                  <span>{{ $order->reciver->governorate->name }} </span>
                 </td>
               </tr>
               <tr>
@@ -115,13 +115,13 @@
               <tr>
                 <td class="font-weight-bold">@lang('site.order_print_open_charge')</td>
                 <td>
-                  <span>{{ $order->userCanOpenOrder }}</span>
+                  <span>{{ $order->getUserCanOpenOrder() }}</span>
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">@lang('site.order_print_charge_on')</td>
                 <td>
-                  <span>{{ $order->charge_on }}</span>
+                  <span>{{ $order->shipping->getChargeOn() }}</span>
                 </td>
               </tr>
               <tr>
@@ -174,6 +174,8 @@
     </div><!-- contact_msg-->
   </section>
   <!-- /.content -->
-
 </div>
 <!-- ./wrapper -->
+@else
+@include('includes.not_found_id')
+@endif

@@ -23,7 +23,7 @@ class OrderController extends Controller
 
     public function show(Request $request, $id)
     {
-        return app(OrdersFetshDataService::class)->show($request, $id);
+        return $this->OrderRepositoryInterface->showById($request,$id);
     }
 
     public function create(Request $request)

@@ -302,5 +302,8 @@ return [
   'order_edit_order' => 'تعديل بيانات  الشحنة',
   'order_edit_title' => 'الشحنة',
   'order_edit_delegate_title' => 'المنتدوب',
+  'edit_reciver_not_found_customer' => 'بيانات العميل غير موجودة لدينا جرب واحد صحيح من فضلك',
+  'edit_reciver_not_for_curent_customer' => 'هذا العميل لا يوجد ضمن قائمة العملاء الخاصة بك',
+  'edit_reciver_not_found_manager' => 'بيانات المرسل اليه غير موجودة لدينا جرب واحد صحيح من فضلك',
 
 ];

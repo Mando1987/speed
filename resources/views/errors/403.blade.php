@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="alert alert-warning alert-dismissible">
 
-                <h5><i class="icon fas fa-exclamation-triangle"></i> @lang('errors.ability_title') 404!</h5>
+                <h5><i class="icon fas fa-exclamation-triangle"></i> @lang('errors.ability_title') 403!</h5>
                 @lang('errors.ability_content')
               </div>
 

@@ -36,18 +36,13 @@ class DelegateCreateStoreService extends BaseService
             );
 
             $createDelegate->delegateDrive()->create($request->validated()['delegateDrive']);
-
             DB::commit();
-
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
             return response()->json(['urlRedirect' => route('delegate.index'),'status' => 200 , 'message' => 'ok']);
 
         } catch (\Exception $ex) {
 
             DB::rollback();
-           // $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
-           // dd($ex->getMessage());
-           // return back();
            return response()->json(['status' => 500 , 'message' => $ex->getMessage()]);
         }
     }

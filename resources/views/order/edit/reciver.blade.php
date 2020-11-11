@@ -1,12 +1,14 @@
+@extends('layouts/dashboard')
+
+@section('content')
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <div class="card card-purple card-outline">
                 <div class="card-body">
-                    <form action="{{ route('order.update') }}" method="POST">
+                    <form id="FormSubmit" action="{{ route('reciver.update' , $userData->id) }}" method="POST">
                         @csrf
-                        @method('POST')
-
+                        @method('PUT')
                         <div class="reciver-info">
                             <div class="row">
                                 <div class="col-md">
@@ -135,9 +137,14 @@
                             </div><!-- end of row-->
                         </div>
                 </div>
-                <button type="submit" class="btn btn-secondary">@lang('site.next')</button>
+
+                <div class="card-footer">
+                    <input type="hidden" name="id" value="{{ $userData->id }}" />
+                    <button type="submit" class="btn btn-success">@lang('site.edit')</button>
+                </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+@endsection

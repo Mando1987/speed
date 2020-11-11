@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Orders\OrderCountChargePrice;
 use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Interfaces\OrderStoreFormRequestInterface;
+use App\Http\Requests\OrderEditFormRequest;
 
 class OrderController extends Controller
 {
@@ -53,6 +54,11 @@ class OrderController extends Controller
     public function editOrder(Request $request)
     {
         return $this->OrderRepositoryInterface->editOrder($request);
+    }
+    public function update(OrderEditFormRequest $orderEditFormRequest , $id)
+    {
+        return $this->OrderRepositoryInterface->update($orderEditFormRequest, $id);
+
     }
 
     public function viewDeleteDaialog($id)

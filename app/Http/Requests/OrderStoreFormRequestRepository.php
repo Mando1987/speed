@@ -12,7 +12,7 @@ class OrderStoreFormRequestRepository extends FormRequest implements OrderStoreF
 
     public function authorize()
     {
-        return ($this->adminType == 'manager' || $this->adminType == 'customer') ? true : abort(404);
+        return !$this->adminIsDelegate;
     }
 
     public function prepareForValidation()

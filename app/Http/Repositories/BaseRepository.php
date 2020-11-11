@@ -64,4 +64,8 @@ class BaseRepository
         ]);
     }
 
+    protected function responseJson($message, $status = 500, $urlRedirect = null)
+    {
+        return response()->json(['urlRedirect' => $urlRedirect, 'message' => $message], $status);
+    }
 }

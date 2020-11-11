@@ -4,8 +4,6 @@ namespace App\Http\Requests;
 
 class CustomerUpdateFormRequest extends FormRequest
 {
-
-
     protected function prepareForValidation()
     {
         $this->merge([

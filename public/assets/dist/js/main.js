@@ -125,7 +125,6 @@ $(document).ready(function () {
         e.preventDefault();
         var form = this;
         var formdata = new FormData(form);
-        var urlRedirect = $(this).attr("urlRedirect");
         $.ajax({
             url: form.action,
             type: "POST",
@@ -134,33 +133,39 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (data) {
-                if (data.status == 200) {
-                    // redirct if success add
-                    console.log(data.status);
-                    window.location.assign(data.urlRedirect);
-                }
+                console.log(data)
+                window.location.assign(data.urlRedirect);
             },
             error: function (reject) {
-                console.log(reject);
-                $(".invalid-feedback").remove();
-                $("input").removeClass("is-invalid");
-                var response = $.parseJSON(reject.responseText);
-                var name = undefined;
-                console.log(response);
-                $.each(response.errors, function (key, val) {
-                    name = `[name=${key}]`;
-                    //check if key is array
-                    if (key.indexOf(".") != -1) {
-                        name = key.split(".");
-                        name = '[name="' + name[0] + "[" + name[1] + ']"]';
-                    }
-                    $(name).addClass("is-invalid");
-                    $(name).after(
-                        '<span class="error invalid-feedback">' +
-                            val[0] +
-                            "</span>"
-                    );
-                });
+                console.log(reject)
+                if (reject.status == 500) {
+                    Swal.fire({
+                        title: reject.responseJSON.message,
+                        icon: "warning",
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                    });
+                } else {
+                    $(".invalid-feedback").remove();
+                    $("input").removeClass("is-invalid");
+                    var response = $.parseJSON(reject.responseText);
+                    var name = undefined;
+                    console.log(response);
+                    $.each(response.errors, function (key, val) {
+                        name = `[name=${key}]`;
+                        //check if key is array
+                        if (key.indexOf(".") != -1) {
+                            name = key.split(".");
+                            name = '[name="' + name[0] + "[" + name[1] + ']"]';
+                        }
+                        $(name).addClass("is-invalid");
+                        $(name).after(
+                            '<span class="error invalid-feedback">' +
+                                val[0] +
+                                "</span>"
+                        );
+                    });
+                }
             },
         });
         return false;

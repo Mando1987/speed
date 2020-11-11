@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DelegateController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PlacePricesController;
+use App\Http\Controllers\Admin\ReciverController;
 use App\Http\Controllers\Admin\SellersouqController;
 
 // // ############################################################################
@@ -34,6 +35,9 @@ Route::get('order/view-edit-panel', [OrderController::class, 'viewEditPanel'] )-
 Route::get('order/edit-order', [OrderController::class, 'editOrder'])->name('order.edit_order');
 Route::get('order/view-delete-daialog/{id}', [OrderController::class, 'viewDeleteDaialog'] )->name('order.view_Delete_Daialog');
 
+Route::put('reciver/update/{id}', [ReciverController::class, 'update'] )->name('reciver.update');
+Route::put('customer/updateByOrder/{id}', [CustomerController::class, 'updateByOrder'] )->name('customer.updateByOrder');
+
 Route::resources([
     'admin'        => AdminController::class,
     'role'         => RoleController::class,
@@ -47,7 +51,6 @@ Route::resources([
 ]);
 
 Route::fallback(function () {
-
     return abort(404);
 });
 

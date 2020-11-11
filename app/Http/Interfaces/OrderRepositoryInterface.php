@@ -3,6 +3,7 @@ namespace App\Http\Interfaces;
 
 use Illuminate\Http\Request;
 use App\Http\Interfaces\OrderStoreFormRequestInterface;
+use App\Http\Requests\OrderEditFormRequest;
 
 interface OrderRepositoryInterface
 {
@@ -11,6 +12,6 @@ interface OrderRepositoryInterface
     public function create(Request $request);
     public function editOrder(Request $request);
     public function store(OrderStoreFormRequestInterface $request);
-    public function update();
+    public function update(OrderEditFormRequest $orderEditFormRequest , $id);
     public function print(Request $request);
 }

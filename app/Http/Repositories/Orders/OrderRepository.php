@@ -4,6 +4,7 @@ namespace App\Http\Repositories\Orders;
 use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Interfaces\OrderStoreFormRequestInterface;
 use App\Http\Repositories\BaseRepository;
+use App\Http\Requests\OrderEditFormRequest;
 use App\Http\Traits\Orders\OrderGetAll;
 use App\Http\Traits\OrderTrait;
 use App\Models\Address;
@@ -98,9 +99,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     }
     public function store(OrderStoreFormRequestInterface $request)
     {
-
         if (session('page') == 1) {
-
             return $this->orderPath($request, 2);
         }
 
@@ -160,10 +159,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             }
         }
     }
-    public function update()
-    {
 
-    }
     function print(Request $request) {
 
         $orderData = $this->order::with(['reciver', 'shipping', 'customer'])
@@ -235,9 +231,61 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     }
     public function editOrder(Request $request)
     {
-       $order = $this->order::find($request->order_id);
-       if($order){
-          return view('order.edit.reciver',['userData' => $order->reciver]);
-       }
+        $editType = [
+            'edit_customer' => 'customer',
+            'edit_reciver' => 'reciver',
+            'edit_order' => 'order',
+        ];
+
+        $order = $this->order::find($request->order_id);
+        if ($order) {
+            if (array_key_exists($request->edit_type, $editType)) {
+                $type = $editType[$request->edit_type];
+                if ($type == 'order') {
+
+                    session(
+                        ['reciver' => [
+                            'chooseType' => 'exists',
+                            'existingId' => $order->reciver->id],
+                        ]
+                    );
+
+                    return view('order.edit.' . $type, [
+                        'userData' => [
+                            'order' => $order,
+                            'shipping' => $order->shipping,
+                        ],'adminIsManager' => $request->adminIsManager,
+                    ]);
+                }
+                return view('order.edit.' . $type, ['userData' => $order->$type]);
+            }
+        }
+        return abort(404);
+
+    }
+
+    public function update(OrderEditFormRequest $request, $id)
+    {
+        try {
+            DB::beginTransaction();
+            $data = $request->validated();
+
+            $order = Order::find($id);
+
+            if($order){
+               $order->update($data['order']);
+               $order->shipping()->update($data['shipping']);
+            }
+            DB::commit();
+
+            $this->forgetOrderData();
+            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
+            return $this->responseJson('ok', 200 , route('order.index'));
+
+        } catch (\Exception $ex) {
+
+            DB::rollback();
+            return $this->responseJson('failed');
+        }
     }
 }

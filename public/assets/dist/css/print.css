@@ -3,19 +3,22 @@
 }
 
 @media print {
+
     *,
     body {
         font-family: "Cairo", sans-serif;
+        break-inside: avoid;
     }
 
     @page vertical {
-        size: A4 portrait;
+        size: A4;
         margin: 0mm;
         }
       @page horizontal {
-        size: A4 landscape;
+        size: A4;
         margin: 0mm;
         }
+
 
     .hide-in-print {
         display: none;
@@ -25,6 +28,8 @@
         display: block;
         font-size: 16px;
         padding: 5px;
+        position: relative;
+        overflow: hidden !important;
     }
     #print .tdBlack {
         background-color: black;

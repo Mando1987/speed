@@ -6,7 +6,6 @@ $(document).ready(function () {
         e.preventDefault();
         form = this;
         formdata = new FormData(form);
-
         $.ajax({
             url: form.action,
             type: "POST",
@@ -65,10 +64,11 @@ $(document).ready(function () {
                     "json"
                 );
 
-                if ($("#city_id").attr("data")) {
-                    $("#city_id").val($("#city_id").attr("data"));
+                if ($("#city_id").attr("dataVal")) {
+                    $("#city_id").val($("#city_id").attr("dataVal"));
+                    // $("#city_id").attr("dataVal", $("#city_id").val() );
                 }
-                $("#city_id").removeAttr("data");
+                // $("#city_id").removeAttr("dataVal");
             }
         );
     });
@@ -79,6 +79,14 @@ $(document).ready(function () {
     $(document).on("click", ".showSingleModel", function () {
         $.get(this.href, {}, function (data) {
             newFunction(data);
+        });
+        return false;
+    });
+
+    $(document).on("click", ".showInOpenModal", function () {
+        $.get(this.href, {}, function (data) {
+            $("#modal-default .modal-body").html("");
+            $("#modal-default .modal-body").html(data);
         });
         return false;
     });
@@ -93,80 +101,126 @@ $(document).ready(function () {
         return false;
     });
     $(document).on("click", ".show-view-setting", function () {
-            $("#option-modal").modal("show");
+        $("#option-modal").modal("show");
         return false;
     });
     $(document).on("click", ".button-print", function () {
-        $('#modal-print').modal('hide');
-        $('#modal-print').on('hidden.bs.modal', function (e) {
+        $("#modal-print").modal("hide");
+        $("#modal-print").on("hidden.bs.modal", function (e) {
             $("#modal-print").off("hidden.bs.modal");
             window.print();
         });
         return false;
     });
 
-    $(document).on("change", "[name=chooseType]", function(){
+    $(document).on("change", "[name=chooseType]", function () {
         var chooseType = $(this).val();
-        $('.existsContent').hide();
-        $('.newContent').hide();
-        $('.'+chooseType+'Content').show();
+        $(".existsContent").hide();
+        $(".newContent").hide();
+        $("." + chooseType + "Content").show();
         return false;
     });
-   });
-  ////////////////////////////////////////////////////////////////////////////
-    $('#selectAllPlaces').click(function () {
-        var clicks = $(this).data('clicks');
-        if (clicks) {
-        $('.placeIndex input[type=checkbox]').prop('checked', false)
-        } else {
-        $('.placeIndex input[type=checkbox]').prop('checked', true)
-        }
-        $(this).data('clicks', !clicks);
-        placeEditAndDeleteMultiCitiesButtonToggle();
-
-    });
-    $('.placeIndex input[type=checkbox]').change(function(){
-        placeEditAndDeleteMultiCitiesButtonToggle();
-    });
-
-    function placeEditAndDeleteMultiCitiesButtonToggle() {
-
-        const placeEditMultiCitiesButton = $('.placeEditMultiCitiesButton');
-        const placeDeleteMultiCitiesButton = $('.placeDeleteMultiCitiesButton');
-        var cities_ids = [], checkedCount = 0
-        placeEditMultiCitiesButton.addClass('disabled');
-        placeDeleteMultiCitiesButton.addClass('disabled');
-
-        $('.placeIndex input[type=checkbox]:checked').each(function(){
-            checkedCount += 1;
-            cities_ids.push($(this).val());
+    ////////////////////////////////////////////////////////////////////////////////
+    $(document).on("submit", "#FormSubmit", function (e) {
+        e.preventDefault();
+        var form = this;
+        var formdata = new FormData(form);
+        var urlRedirect = $(this).attr("urlRedirect");
+        $.ajax({
+            url: form.action,
+            type: "POST",
+            data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                if (data.status == 200) {
+                    // redirct if success add
+                    console.log(data.status);
+                    window.location.assign(data.urlRedirect);
+                }
+            },
+            error: function (reject) {
+                console.log(reject);
+                $(".invalid-feedback").remove();
+                $("input").removeClass("is-invalid");
+                var response = $.parseJSON(reject.responseText);
+                var name = undefined;
+                console.log(response);
+                $.each(response.errors, function (key, val) {
+                    name = `[name=${key}]`;
+                    //check if key is array
+                    if (key.indexOf(".") != -1) {
+                        name = key.split(".");
+                        name = '[name="' + name[0] + "[" + name[1] + ']"]';
+                    }
+                    $(name).addClass("is-invalid");
+                    $(name).after(
+                        '<span class="error invalid-feedback">' +
+                            val[0] +
+                            "</span>"
+                    );
+                });
+            },
         });
-        if(checkedCount > 0){
-            placeEditMultiCitiesButton.removeClass('disabled');
-            placeDeleteMultiCitiesButton.removeClass('disabled');
-        }
-        placeEditMultiCitiesButton.attr('cities_ids' , cities_ids);
-        $('input[name=cities_ids]').val(cities_ids);
-    };
-
-    $('#getAllCityForPlace').change(function(){
-        $('#placeIndexForm').submit();
-       //window.location.assign(`/place?governorate_id=${$(this).val()}`);
+        return false;
     });
+});
+////////////////////////////////////////////////////////////////////////////
+$("#selectAllPlaces").click(function () {
+    var clicks = $(this).data("clicks");
+    if (clicks) {
+        $(".placeIndex input[type=checkbox]").prop("checked", false);
+    } else {
+        $(".placeIndex input[type=checkbox]").prop("checked", true);
+    }
+    $(this).data("clicks", !clicks);
+    placeEditAndDeleteMultiCitiesButtonToggle();
+});
+$(".placeIndex input[type=checkbox]").change(function () {
+    placeEditAndDeleteMultiCitiesButtonToggle();
+});
 
+function placeEditAndDeleteMultiCitiesButtonToggle() {
+    const placeEditMultiCitiesButton = $(".placeEditMultiCitiesButton");
+    const placeDeleteMultiCitiesButton = $(".placeDeleteMultiCitiesButton");
+    var cities_ids = [],
+        checkedCount = 0;
+    placeEditMultiCitiesButton.addClass("disabled");
+    placeDeleteMultiCitiesButton.addClass("disabled");
 
-    $('.placeEditMultiCitiesButton').click(function(){
-        var cities_ids = $(this).attr('cities_ids');
-        if(cities_ids !=""){
-            window.location.assign(`/place/edit-multi-cities?cities_ids=${cities_ids}&governorate_id=${$('[name=governorate_id]').val()}`);
-        }
+    $(".placeIndex input[type=checkbox]:checked").each(function () {
+        checkedCount += 1;
+        cities_ids.push($(this).val());
     });
+    if (checkedCount > 0) {
+        placeEditMultiCitiesButton.removeClass("disabled");
+        placeDeleteMultiCitiesButton.removeClass("disabled");
+    }
+    placeEditMultiCitiesButton.attr("cities_ids", cities_ids);
+    $("input[name=cities_ids]").val(cities_ids);
+}
 
+$("#getAllCityForPlace").change(function () {
+    $("#placeIndexForm").submit();
+    //window.location.assign(`/place?governorate_id=${$(this).val()}`);
+});
 
-    $('select[name=paginate]').change(function(){
-        $('#placeIndexForm').submit();
-    });
-  ////////////////////////////////////////////////////////////////////////////
+$(".placeEditMultiCitiesButton").click(function () {
+    var cities_ids = $(this).attr("cities_ids");
+    if (cities_ids != "") {
+        window.location.assign(
+            `/place/edit-multi-cities?cities_ids=${cities_ids}&governorate_id=${$(
+                "[name=governorate_id]"
+            ).val()}`
+        );
+    }
+});
+
+$("select[name=paginate]").change(function () {
+    $("#placeIndexForm").submit();
+});
+////////////////////////////////////////////////////////////////////////////
 
 $(
     '[name="shipping[weight]"],[name="shipping[quantity]"],[name="shipping[price]"],[name="shipping[discount]"]'
@@ -204,7 +258,6 @@ function getOrderChargePrice() {
         $(".is-invalid").removeClass("is-invalid");
         $(".invalid-feedback").remove();
         $.get(url, data, function (data) {
-
             if (data.showModelAddPlacePrice == 1) {
                 Swal.fire({
                     title: data.title,
@@ -227,7 +280,6 @@ function getOrderChargePrice() {
                 $('[name="shipping[' + key + ']"]').val(val);
             });
         }).fail(function (errors) {
-
             $.each(errors.responseJSON.errors, function (key, val) {
                 $('[name="shipping[' + key + ']"]').addClass("is-invalid");
                 $(`[name="shipping[${key}]"]`).after(

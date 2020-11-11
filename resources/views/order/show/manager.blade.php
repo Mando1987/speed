@@ -7,22 +7,22 @@
         <div class="card-tools">
             <ul class="nav nav-pills ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#customerDeitails" data-toggle="tab">
+                    <a class="nav-link active" href="#customer" data-toggle="tab">
                         @lang('site.customer_show_title')
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#reciverDeitails" data-toggle="tab">
+                    <a class="nav-link" href="#reciver" data-toggle="tab">
                         @lang('site.manager_reciver_title')
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#orderDeitails" data-toggle="tab">
+                    <a class="nav-link" href="#order" data-toggle="tab">
                         @lang('site.order_show_title')
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#shippingDeitails" data-toggle="tab">
+                    <a class="nav-link" href="#shipping" data-toggle="tab">
                         @lang('site.order_show_shipping')
                     </a>
                 </li>
@@ -33,7 +33,7 @@
     <div class="card-body p-0">
         <div class="tab-content p-0">
             <!-- Morris chart - Sales -->
-            <div class="tab-pane active" id="customerDeitails">
+            <div class="tab-pane active" id="customer">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.fullname')</td>
@@ -41,7 +41,7 @@
                     </tr>
                     <tr>
                         <td>@lang('site.phone')</td>
-                        <td>{{ $order->customer->phone }} {{$order->customer->other_phone !='' ? '-'.$order->customer->other_phone:false}} </td>
+                        <td>{{ $order->customer->phone }} {{$order->customer->other_phone ? ' - '.$order->customer->other_phone:false}} </td>
                     </tr>
                     <tr>
                         <td>@lang('site.governorate')</td>
@@ -73,7 +73,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="tab-pane" id="reciverDeitails">
+            <div class="tab-pane" id="reciver">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.fullname')</td>
@@ -81,7 +81,7 @@
                     </tr>
                     <tr>
                         <td>@lang('site.phone')</td>
-                        <td>{{ $order->reciver->phone .' - ' .($order->reciver->other_phone??'') }}</td>
+                        <td>{{ $order->reciver->phone . ($order->reciver->other_phone?' - ' .$order->reciver->other_phone:false) }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.governorate')</td>
@@ -113,7 +113,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="tab-pane" id="orderDeitails">
+            <div class="tab-pane" id="order">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.order_status')</td>
@@ -157,7 +157,7 @@
                 </table>
 
             </div>
-            <div class="tab-pane" id="shippingDeitails">
+            <div class="tab-pane" id="shipping">
                 <table class="table text-nowrap align-items-stretch table-bordered table-sm">
                     <tr>
                         <td>@lang('site.order_weight')</td>

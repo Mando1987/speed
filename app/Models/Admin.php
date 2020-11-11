@@ -23,6 +23,10 @@ class Admin extends Authenticatable
     {
         return $this->hasOne(Customer::class);
     }
+    public function delegate()
+    {
+        return $this->hasOne(Delegate::class);
+    }
 
 
    //  public function profile()

@@ -1,9 +1,10 @@
 <?php
 
+use App\DryClasses\GovernorateClass;
 use App\Models\City;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\RegisterController;
 
+use App\Http\Controllers\Admin\RegisterController;
+use App\TestFolder\TestClass;
 
 Route::get('/', function () {
     return view('front.index');
@@ -19,5 +20,13 @@ Route::post('/facebook/register' , [RegisterController::class , 'FacebookRegiste
 
 
 Route::get('/test', function(){
+
+//   $p = app(GovernorateClass::class);
+//   $p->getAllGovernorates();
+//   $p->getFirstGovernorateWithCities();
+ return view('test.index', ['name' => 'mando']);
+//\Cache::put('key', 'value', now()->addMinutes(10));
+
+ //return Cache::get('key');
 
 });

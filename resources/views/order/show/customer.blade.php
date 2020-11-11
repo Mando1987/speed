@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <td>@lang('site.phone')</td>
-                        <td>{{ $order->reciver->phone .' - ' .($order->reciver->other_phone??'') }}</td>
+                        <td>{{ $order->reciver->phone . ($order->reciver->other_phone?' - ' .$order->reciver->other_phone:false) }}</td>
                     </tr>
                     <tr>
                         <td>@lang('site.governorate')</td>

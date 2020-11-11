@@ -25,7 +25,7 @@ class OrderStoreFormRequestByCustomer
                 'order.notes'                      => ['nullable', 'string', 'max:150'],
                 'order.user_can_open_order'        => ['required', 'in:1,0'],
 
-                'shipping.weight'                  => ['required', 'string', 'max:6'],
+                'shipping.weight'                  => ['required', 'numeric', 'max:6'],
                 'shipping.quantity'                => ['required', 'integer'],
                 'shipping.price'                   => ['required', 'string', 'max:6'],
                 'shipping.charge_price'            => ['required', 'string', 'max:6'],

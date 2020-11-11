@@ -176,12 +176,13 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         if ($orderData) {
             $this->cities_id[] = $orderData->reciver->city_id;
             $this->governorates_id[] = $orderData->reciver->governorate_id;
-            $request->adminIsManager ?
-            ($this->cities_id[] = $orderData->customer->city_id)
-            && ($this->governorates_id[] = $orderData->customer->governorate_id)
-            && $this->setCityRelationship($orderData, 'customer')
-            && $this->setAddressRelationship($orderData, 'customer')
-            && $this->setGovernorateRelationship($orderData, 'customer') : false;
+            if ($request->adminIsManager) {
+                $this->cities_id[] = $orderData->customer->city_id;
+                $this->governorates_id[] = $orderData->customer->governorate_id;
+                $this->setCityRelationship($orderData, 'customer');
+                $this->setAddressRelationship($orderData, 'customer');
+                $this->setGovernorateRelationship($orderData, 'customer');
+            }
             $this->setCityRelationship($orderData, 'reciver');
             $this->setAddressRelationship($orderData, 'reciver');
             $this->setGovernorateRelationship($orderData, 'reciver');
@@ -232,5 +233,11 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         });
         return $model;
     }
-
+    public function editOrder(Request $request)
+    {
+       $order = $this->order::find($request->order_id);
+       if($order){
+          return view('order.edit.reciver',['userData' => $order->reciver]);
+       }
+    }
 }

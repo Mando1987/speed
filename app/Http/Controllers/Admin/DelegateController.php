@@ -21,7 +21,7 @@ class DelegateController extends Controller
     }
     public function create()
     {
-        return app(DelegateCreateStoreService::class)->create();
+        return view('delegate.create');
     }
 
     public function store(DelegateStoreFormRequest $request)

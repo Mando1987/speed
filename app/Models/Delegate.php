@@ -10,20 +10,8 @@ class Delegate extends Model
     const IMAGES_FOLDER = self::DEFAULT_IMAGE_PATH . 'delegates/';
     const IMAGES_FOLDER_PROFILE = self::IMAGES_FOLDER . 'profile/';
     const IMAGES_FOLDER_NATIONAL = self::IMAGES_FOLDER . 'national/';
-    /**
-    fullname
-    national_id
-    phone
-    governorate_id
-    address
-    qualification
-    social_status
-    other_phone
-    city_id
-    image
-    national_image
-     */
-    protected $guarded = [];
+
+    protected $guarded = ['is_active'];
 
     public function governorate()
     {

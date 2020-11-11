@@ -71,8 +71,6 @@ class OrderStoreFormRequestRepository extends FormRequest implements OrderStoreF
                 return $this->orderAttributes();
             }
         }
-
-
     }
 
     private function validateSenderInputs()

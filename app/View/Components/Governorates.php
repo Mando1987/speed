@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\DryClasses\GovernorateClass;
 use App\Models\Governorate;
 use Illuminate\Support\Str;
 
@@ -12,12 +13,11 @@ class Governorates extends Component
     public $name;
     public $selected;
     public $governorates;
-    public function __construct($name = 'governorate_id', $selected = 1)
+    public function __construct($name = 'governorate_id', $selected = 1, GovernorateClass $governorateClass)
     {
         $this->name = Str::contains($name, '[]')? Str::replaceFirst('[', '[governorate_id', $name) : $name;
         $this->selected = $selected;
-
-        $this->governorates =Governorate::all();
+        $this->governorates = $governorateClass->getAllGovernorates();
     }
 
     public function render()

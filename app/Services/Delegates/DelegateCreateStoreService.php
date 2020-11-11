@@ -2,6 +2,7 @@
 
 namespace App\Services\Delegates;
 
+use App\Models\Admin;
 use App\Models\Delegate;
 use App\Services\BaseService;
 use Illuminate\Support\Facades\DB;
@@ -14,17 +15,20 @@ class DelegateCreateStoreService extends BaseService
     public $route = 'delegate.index';
     private $delegate;
 
-    public function __construct(Delegate $delegate)
+    protected $admin;
+
+    public function __construct(Delegate $delegate , Admin $admin)
     {
         $this->delegate = $delegate;
+        $this->admin = $admin;
     }
 
     public function store($request)
     {
         try {
             DB::beginTransaction();
-
-            $createDelegate = $this->delegate::create(
+            $admin = $this->admin->create($request->validated()['admin']);
+            $createDelegate = $admin->delegate()->create(
                 array_merge($request->validated()['delegate'], [
                     'image' => $this->handeImageUploadUsingIntervention($request->validated()['image'], self::IMAGE_PATH),
                     'national_image' => $this->handeImageUploadUsingIntervention($request->validated()['national_image'], self::IMAGE_PATH_NATIONAL_ID)
@@ -36,19 +40,17 @@ class DelegateCreateStoreService extends BaseService
             DB::commit();
 
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
-            return $this->path($this->route);
+            return response()->json(['urlRedirect' => route('delegate.index'),'status' => 200 , 'message' => 'ok']);
 
         } catch (\Exception $ex) {
 
             DB::rollback();
-            $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
-            dd($ex->getMessage());
-            return back();
+           // $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
+           // dd($ex->getMessage());
+           // return back();
+           return response()->json(['status' => 500 , 'message' => $ex->getMessage()]);
         }
     }
 
-    public function create()
-    {
-        return $this->viewWithGovernorates('delegate.create');
-    }
+
 }

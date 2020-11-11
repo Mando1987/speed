@@ -297,4 +297,10 @@ return [
   'id_not_found' => 'لم نجد ما تريد عرضه حاول مرة اخرى فى وقت لاحق',
   'order_print_price_contain_charge_price' => 'جنيهٱ شامل مصاريف الشحن',
 
+  'order_edit_customer' => 'تعديل بيانات العميل',
+  'order_edit_reciver' => 'تعديل بيانات المرسل اليه',
+  'order_edit_order' => 'تعديل بيانات  الشحنة',
+  'order_edit_title' => 'الشحنة',
+  'order_edit_delegate_title' => 'المنتدوب',
+
 ];

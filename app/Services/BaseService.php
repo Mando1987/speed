@@ -9,7 +9,6 @@ use Intervention\Image\Facades\Image;
 class BaseService
 {
     use IdentifyTrait;
-
     const ICON_SUCCESS = 'success';
     const ICON_ERROR = 'error';
     const TITLE_ADDED = 'added';
@@ -21,6 +20,7 @@ class BaseService
 
     protected $route = 'price.index';
     protected $identify;
+    protected $governorate;
 
     protected function path($route)
     {
@@ -58,19 +58,19 @@ class BaseService
     }
     public function getAllGovernorates()
     {
+
         return Governorate::all();
 
     }
     public function getAllGovernoratesAndCities()
     {
-
         $firstGovernoratesCities = $this->getAllGovernorates()->first()->cities;
         return ['governorates' => $this->getAllGovernorates(), 'cities' => $firstGovernoratesCities];
     }
 
     public function getCities()
     {
-        return Governorate::findOrFail(request('governorate_id'))->cities()->get();
+        return $this->governorate::findOrFail(request('governorate_id'))->cities()->get();
     }
 
     public function viewWithGovernorates($route, array $data = [])

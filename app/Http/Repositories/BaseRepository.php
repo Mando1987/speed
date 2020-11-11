@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Repositories;
 
-use App\Http\Traits\IdentifyTrait;
 use App\Models\Governorate;
 use Intervention\Image\Facades\Image;
 
@@ -11,7 +10,7 @@ class BaseRepository
     const ICON_ERROR = 'error';
     const TITLE_ADDED = 'added';
     const TITLE_EDITED = 'edited';
-    const TITLE_DELETED= 'deleted';
+    const TITLE_DELETED = 'deleted';
     const TITLE_FAILED = 'filed';
     const FOLDER_UPLOAD = '/uploads/images/';
     const DEFAULT_IMAGE = 'default.png';
@@ -52,31 +51,16 @@ class BaseRepository
         return self::DEFAULT_IMAGE;
 
     }
-    public function getAllGovernorates()
-    {
-        return Governorate::all();
-
-    }
-    public function getAllGovernoratesAndCities()
-    {
-
-        $firstGovernoratesCities = $this->getAllGovernorates()->first()->cities;
-        return ['governorates' => $this->getAllGovernorates(), 'cities' => $firstGovernoratesCities];
-    }
 
     public function getCities()
     {
         return Governorate::findOrFail(request('governorate_id'))->cities()->get();
     }
 
-    public function viewWithGovernorates($route, array $data = [])
-    {
-        return view($route, array_merge($this->getAllGovernoratesAndCities(), $data));
-    }
     public function forgetOrderData()
     {
-       return  session()->forget([
-            'customer', 'reciver', 'page', 'customerAddress' , 'reciverAddress','chooseType'
+        return session()->forget([
+            'customer', 'reciver', 'page', 'customerAddress', 'reciverAddress', 'chooseType',
         ]);
     }
 

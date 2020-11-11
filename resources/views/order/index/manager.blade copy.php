@@ -1,26 +1,6 @@
 @extends('layouts.dashboard')
 
 @section('content')
-{{-- <x-card>
-  <x-slot name="grid">
-    @foreach($orders as $index => $order)
-    <x-grid :card-color="__('site.color_' . $order->status)">
-      <x-slot name="tbody">
-        <x-grid-table-tr :key="__('datatable.order.manager.created_at')" :value="$order->created_at->format('Y-m-d')" />
-        <x-grid-table-tr :key="__('datatable.order.manager.customer')" :value="$order->customer->fullname" />
-        <x-grid-table-tr :key="__('datatable.order.manager.phone')" :value="$order->customer->phone" />
-        <x-grid-table-tr :key="__('datatable.order.manager.city')" :value="$order->customer->city->name" />
-        <x-grid-table-tr :key="__('datatable.order.manager.status')" :value="$order->getStatus()"
-          last-td-class="badge p-2 bg-{{ __('site.color_' . $order->status)}}" />
-        <x-grid-table-tr :key="__('datatable.order.manager.total_price')" :value="$order->shipping->total_price" />
-        <x-grid-table-tr :key="__('datatable.order.manager.order_num')" :value="$order->shipping->order_num" />
-      </x-slot>
-    </x-grid>
-    @endforeach
-  </x-slot>
-</x-card> --}}
-
-
 <div class="card card-solid">
   <div class="card-header p-1 border-bottom-0">
 
@@ -48,11 +28,13 @@
           </div>
         </div>
         <div class="col-4 col-sm-2 col-md-2">
+
           <div class="float-right">
             <button type="button" class="btn btn-sm btn-info show-view-setting">
               <i class="fas fa-wrench"></i>
             </button>
           </div>
+
         </div>
       </div>
     </form>
@@ -140,10 +122,15 @@
 
             <div class="text-center mt-3 mb-0">
               <div class="btn-group btn-group-sm">
-                <x-button  :route="route('order.show', $order->id)" type="view" class="showSingleModel"/>
-                <x-button  :route="route('order.show', $order->id)" type="edit" />
-
+                <x-show-button ability="admin_show" route="order.show" id="{{ $order->id  }}" />
                 @if($order->status == 'under_review ' || $order->status == 'under_preparation')
+                <a class="btn btn-info btn-sm mr-2" href="{{ route('order.edit' , $order->id) }}">
+                  <span class="d-none d-md-block">
+                    <i class="fas fa-pencil-alt"></i>
+                    @lang('site.edit')
+                  </span>
+                  <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
+                </a>
                 <button class="btn btn-danger btn-sm" onclick="deletedMethod({{ $order->id }})">
                   <span class="d-none d-md-block">
                     <i class="far fa-trash-alt"></i>
@@ -158,7 +145,13 @@
                   @method('DELETE')
                 </form>
                 @else
-
+                <a class="btn btn-info btn-sm mr-2 disabled" href="#">
+                  <span class="d-none d-md-block">
+                    <i class="fas fa-pencil-alt"></i>
+                    @lang('site.edit')
+                  </span>
+                  <span class="d-block d-md-none"><i class="fas fa-pencil-alt"></i></span>
+                </a>
                 <button class="btn btn-danger btn-sm disabled">
                   <span class="d-none d-md-block">
                     <i class="far fa-trash-alt"></i>
@@ -172,7 +165,7 @@
                 <a href="{{ route('order.print' ,['orderId' =>$order->id]) }}" class="print btn btn-default ml-1">
                   <i class="fas fa-print"></i>
                   @lang('site.print')
-                </a>
+              </a>
               </div>
             </div>
 
@@ -210,10 +203,7 @@
             </td>
             <td class="font-weight-bold"> {{ $order->shipping->order_num ??0 }}</td>
             <td>
-              <x-button  :route="route('order.show', $order->id)" type="view" class="showSingleModel"/>
-              <x-button  :route="route('order.view_Edit_Panel', ['order_id' => $order->id])" type="edit" class="showSingleModel"/>
-              <x-button  :route="route('order.view_Delete_Daialog', $order->id)" type="delete" class="showSingleModel" />
-              <x-button  :route="route('order.print' ,['orderId' =>$order->id])" type="print" class="print" />
+              @include('includes.orders.action_buttons')
             </td>
           </tr>
           @endforeach
@@ -243,59 +233,57 @@
         <div class="modal-body">
           <div id="view_setting">
             <form action="{{ route('order.index') }}" method="GET">
-              <div class="callout callout-info p-1">
-                <h4>
-                  <i class="fas fa-eye"></i>
-                  @lang('site.view_setting')
-                </h4>
+            <div class="callout callout-info p-1">
+              <h4>
+                <i class="fas fa-eye"></i>
+                @lang('site.view_setting')
+              </h4>
+            </div>
+            <div class="row">
+              <div class="col-3">
+                <span class="font-weight-bold">@lang('site.option_view_style')</span>
               </div>
-              <div class="row">
-                <div class="col-3">
-                  <span class="font-weight-bold">@lang('site.option_view_style')</span>
-                </div>
-                <div class="col-9">
-                  <div class="form-group clearfix">
-                    <div class="custom-control custom-radio d-inline">
-                      <input class="custom-control-input" type="radio" id="view1" name="view" value="list"
-                        @if($view=='list' ) checked="" @endif>
-                      <label for="view1" class="custom-control-label">
-                        <i class="fas fa-bars"></i>
-                      </label>
-                    </div>
-                    <div class="custom-control custom-radio d-inline ml-3">
-                      <input class="custom-control-input" type="radio" id="view2" name="view" @if($view=='grid' )
-                        checked="" @endif value="grid">
-                      <label for="view2" class="custom-control-label">
-                        <i class="fas fa-th"></i>
-                      </label>
-                    </div>
+              <div class="col-9">
+                <div class="form-group clearfix">
+                  <div class="custom-control custom-radio d-inline">
+                    <input class="custom-control-input" type="radio" id="view1" name="view" value="list" @if($view =='list') checked="" @endif>
+                    <label for="view1" class="custom-control-label">
+                      <i class="fas fa-bars"></i>
+                    </label>
+                  </div>
+                  <div class="custom-control custom-radio d-inline ml-3">
+                    <input class="custom-control-input" type="radio" id="view2" name="view" @if($view =='grid') checked="" @endif  value="grid">
+                    <label for="view2" class="custom-control-label">
+                      <i class="fas fa-th"></i>
+                    </label>
                   </div>
                 </div>
               </div>
-              <!--end of row-->
-              <div class="row">
-                <div class="col-3">
-                  <span class="font-weight-bold">{{__('site.show_records_number')}}</span>
-                </div>
-                <div class="col-9">
-                  <div class="form-group row">
-                    <select class="custom-select custom-select-sm font-weight-bold" name="paginate">
-                      @foreach(range(5,50,5) as $number)
-                      <option class="font-weight-bold" value="{{ $number }}" @if($number==$orders->perPage()) selected
-                        @endif>{{ $number }}
-                      </option>
-                      @endforeach
-                    </select>
-                  </div>
+            </div>
+            <!--end of row-->
+            <div class="row">
+              <div class="col-3">
+                <span class="font-weight-bold">{{__('site.show_records_number')}}</span>
+              </div>
+              <div class="col-9">
+                <div class="form-group row">
+                  <select class="custom-select custom-select-sm font-weight-bold" name="paginate">
+                    @foreach(range(5,50,5) as $number)
+                    <option class="font-weight-bold" value="{{ $number }}" @if($number==$orders->perPage()) selected
+                      @endif>{{ $number }}
+                    </option>
+                    @endforeach
+                  </select>
                 </div>
               </div>
-              <!--end of row-->
-              <div class="row">
-                <div class="col">
-                  <button type="submit" class="btn btn-success btn-sm">@lang('site.save')</button>
-                </div>
+            </div>
+            <!--end of row-->
+            <div class="row">
+              <div class="col">
+                <button type="submit" class="btn btn-success btn-sm">@lang('site.save')</button>
               </div>
-            </form><!-- end of form -->
+            </div>
+          </form><!-- end of form -->
           </div> <!-- end of view_setting-->
         </div><!-- end of card-body-->
         <div class="modal-footer justify-content-between">

@@ -6,15 +6,15 @@ use Illuminate\View\Component;
 
 class eidtButton extends Component
 {
-     public $route;
-     public $id;
-     public $ability;
+    public $route;
+    public $class;
+    public $disabled;
 
-    public function __construct($route ,$id ,$ability)
+    public function __construct($route, $class ='', $disabled = false)
     {
-      $this->route   = $route ;  
-      $this->id      = $id ;  
-      $this->ability = $ability ;  
+        $this->route = $route;
+        $this->class = $class;
+        $this->disabled = $disabled;
     }
 
     public function render()

@@ -63,15 +63,14 @@
             @include('includes.dashboard.footer')
         </footer>
         <aside class="control-sidebar control-sidebar-dark"></aside>
-        <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog p-0">
+
+        <div class="modal fade " id="modal-default" style="display: none;" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered p-0 modal-lg modal-dialog-scrollable">
                 <div class="modal-content p-0">
                     <div class="modal-body p-0">
 
                     </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+
                 </div>
                 <!-- /.modal-content -->
             </div>

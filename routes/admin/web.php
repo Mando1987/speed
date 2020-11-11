@@ -30,6 +30,10 @@ Route::post('customer/order', [CustomerController::class, 'storeOrder'] )->name(
 Route::get('place/edit-multi-cities', [PlaceController::class, 'editMultiCites'] )->name('place.editMultiCites');
 Route::post('place/update-multi-cities', [PlaceController::class, 'updateMultiCites'] )->name('place.updateMultiCites');
 Route::post('place/destroy-multi-cities', [PlaceController::class, 'destroyMultiCities'] )->name('place.destroyMultiCities');
+Route::get('order/view-edit-panel', [OrderController::class, 'viewEditPanel'] )->name('order.view_Edit_Panel');
+Route::get('order/edit-order', [OrderController::class, 'editOrder'])->name('order.edit_order');
+Route::get('order/view-delete-daialog/{id}', [OrderController::class, 'viewDeleteDaialog'] )->name('order.view_Delete_Daialog');
+
 Route::resources([
     'admin'        => AdminController::class,
     'role'         => RoleController::class,

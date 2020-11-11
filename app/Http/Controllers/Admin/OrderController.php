@@ -46,4 +46,18 @@ class OrderController extends Controller
         return $this->OrderRepositoryInterface->print($request);
     }
 
+    public function viewEditPanel(Request $request)
+    {
+       return view('order.view_edit_panel', ['request' => $request]);
+    }
+    public function editOrder(Request $request)
+    {
+        return $this->OrderRepositoryInterface->editOrder($request);
+    }
+
+    public function viewDeleteDaialog($id)
+    {
+       return view('includes.delete');
+    }
+
 }

@@ -277,4 +277,14 @@ return [
   'city_name_en'                           => 'The name of the city in English',
   'show_records'                           => 'Show',
   'city_add'                               => 'Add a New city',    
+    
+  'option_view_style'                      => 'show style',
+  'show_records_number'                    => 'Number of results',
+  'save'                                   => 'save  ',
+  'view_setting'                           => 'Display settings',
+  'nothing'                                => 'none',
+  'id_not_found_title'                     => '👀👀',
+  'id_not_found'                           => 'Didn\'t find what you want to display, try again at a later time',
+  'order_print_price_contain_charge_price' => 'EGP including shipping fees',
+
 ];

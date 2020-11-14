@@ -296,15 +296,4 @@
     </div>
 </div>
 @stop
-@push('scripts')
-<script>
-    $(function () {
-            var data = @json($userData);
-            $.each(data, function (parentKey, array) {
-                $.each(array, function (key, val) {
-                    $('[name="' + parentKey + '[' + key + ']"]').val(val);
-                });
-            });
-        });
-</script>
-@endpush
+@include('includes.scripts.set-values-to-inputs')

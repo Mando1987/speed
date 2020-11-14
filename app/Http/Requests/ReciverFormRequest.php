@@ -6,6 +6,7 @@ class ReciverFormRequest extends FormRequest
 {
     public function rules()
     {
+
         return [
             'reciver.fullname' => 'required|string|max:50',
             'reciver.phone' => 'required|unique:recivers,phone,' . $this->id,

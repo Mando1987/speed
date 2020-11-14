@@ -254,10 +254,16 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
                         'userData' => [
                             'order' => $order,
                             'shipping' => $order->shipping,
-                        ],'adminIsManager' => $request->adminIsManager,
+                        ], 'adminIsManager' => $request->adminIsManager,
                     ]);
                 }
-                return view('order.edit.' . $type, ['userData' => $order->$type]);
+                return view('order.edit.' . $type, [
+                    'userData' => [
+                        $type => $order->$type,
+                       'address' => $order->$type->address,
+                    ],'city_id' => $order->$type->city_id,
+                ]
+                );
             }
         }
         return abort(404);
@@ -272,15 +278,15 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
             $order = Order::find($id);
 
-            if($order){
-               $order->update($data['order']);
-               $order->shipping()->update($data['shipping']);
+            if ($order) {
+                $order->update($data['order']);
+                $order->shipping()->update($data['shipping']);
             }
             DB::commit();
 
             $this->forgetOrderData();
             $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
-            return $this->responseJson('ok', 200 , route('order.index'));
+            return $this->responseJson('ok', 200, route('order.index'));
 
         } catch (\Exception $ex) {
 

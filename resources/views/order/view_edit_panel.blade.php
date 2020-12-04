@@ -22,15 +22,6 @@
                     class="btn-danger" text="site.order_edit_order" />
             </li>
         </ul>
-        {{-- <p class="text-center font-weight-bold">@lang('site.order_edit_delegate_title')</p>
-        <ul class="list-group list-group-unbordered mb-2">
-            <li class="list-group-item">
-                <x-button class="btn-info " text="site.order_edit_customer" />
-                <x-button class=" btn-primary" text="site.order_edit_reciver" />
-                <x-button class=" btn-danger" text="site.order_edit_order" />
-            </li>
-        </ul> --}}
-
     </div>
 
     <div class="card-footer">

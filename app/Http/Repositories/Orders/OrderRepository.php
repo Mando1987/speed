@@ -160,7 +160,8 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         }
     }
 
-    function print(Request $request) {
+    function print(Request $request)
+    {
 
         $orderData = $this->order::with(['reciver', 'shipping', 'customer'])
             ->whereId($request->orderId)->where(function ($query) use ($request) {

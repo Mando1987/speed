@@ -8,6 +8,7 @@ use App\Services\Orders\OrderCountChargePrice;
 use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Interfaces\OrderStoreFormRequestInterface;
 use App\Http\Requests\OrderEditFormRequest;
+use App\Models\Reciver;
 
 class OrderController extends Controller
 {
@@ -40,7 +41,12 @@ class OrderController extends Controller
 
     public function getOrderChargePrice(Request $request)
     {
-        return app(OrderCountChargePrice::class)->getOrderChargePrice($request, true);
+        if (session('reciver')['existingId']){
+            $city_id = Reciver::find(session('reciver')['existingId'])->city_id;
+         }else{
+             $city_id = session('reciver')['city_id'];
+         }
+        return app(OrderCountChargePrice::class)->getOrderChargePrice($request, $city_id, true);
     }
 
     function print(Request $request) {

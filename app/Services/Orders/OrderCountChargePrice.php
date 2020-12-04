@@ -3,14 +3,13 @@
 namespace App\Services\Orders;
 
 use App\Models\PlacePrice;
-use App\Models\Reciver;
 use App\Models\Setting;
 
 class OrderCountChargePrice
 {
     public $request;
-    private $reciver;
     private $chargeprice;
+    private $city_id;
 
     public $discount;
     public $total_weight;
@@ -22,16 +21,15 @@ class OrderCountChargePrice
     public $charge_on;
     public $customer_price;
 
-    public function getOrderChargePrice($request, $validation = false)
+    public function getOrderChargePrice($request, $city_id, $validateValues = false)
     {
-        $this->reciver = session('reciver');
+        $this->city_id = $city_id;
         $this->request = (object) $request;
-        $validation ? $this->Validation() : false;
-        $this->setPlacePrice();
+        $validateValues ? $this->validateValues() : false;
         return $this->countChargePrice();
     }
 
-    private function Validation()
+    private function validateValues()
     {
         $this->request->validate(
             [
@@ -54,14 +52,14 @@ class OrderCountChargePrice
 
     private function countChargePrice()
     {
+        $this->setPlacePrice();
+
         $this->total_weight = ceil($this->request->weight * $this->request->quantity);
         $this->total_over_weight = $this->total_weight > $this->chargeprice->send_weight ? $this->total_weight - $this->chargeprice->send_weight : 0;
         $this->total_over_weight_price = ($this->total_over_weight / $this->chargeprice->weight_addtion) * $this->chargeprice->price_addtion;
         $this->discount = $this->request->discount ?? 0;
         $this->charge_price = ($this->total_over_weight_price + $this->chargeprice->send_price) - $this->discount;
-
         $this->addtion_price = $this->request->charge_on == 'reciver' ? $this->charge_price : 0;
-
         $this->customer_price = $this->request->charge_on == 'sender' ? $this->request->price - $this->charge_price : $this->request->price;
         $this->total_price = $this->request->price + $this->addtion_price;
 
@@ -82,18 +80,8 @@ class OrderCountChargePrice
 
     private function setPlacePrice()
     {
-        if (array_key_exists('chooseType', $this->reciver)) {
-            $reciver = Reciver::find($this->reciver['existingId']);
-            $governorate_id = $reciver->governorate_id;
-            $city_id = $reciver->city_id;
-        } else {
-            $governorate_id = $this->reciver['governorate_id'];
-            $city_id = $this->reciver['city_id'];
-        }
-
-        $charge_price = PlacePrice::where(function ($query) use ($governorate_id, $city_id) {
-            $query->where('governorate_id', $governorate_id)
-                ->where('city_id', $city_id);
+        $charge_price = PlacePrice::where(function ($query) {
+            $query->where('city_id', $this->city_id);
         })->first();
         if ($charge_price) {
             $this->chargeprice = $charge_price;
@@ -101,7 +89,6 @@ class OrderCountChargePrice
             $default_price = Setting::where('event', 'default_charge_price')->first();
             $this->chargeprice = $default_price->data;
         }
-
         return $this->chargeprice;
     }
 

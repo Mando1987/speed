@@ -22,7 +22,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md">
                                     <div class="form-group row">
                                         <div class="col-sm-4">

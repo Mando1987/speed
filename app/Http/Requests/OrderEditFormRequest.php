@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Reciver;
 use Illuminate\Validation\Rule;
 use App\Services\Orders\OrderCountChargePrice;
 use App\Services\Orders\OrderFormRequestTrait;
@@ -37,7 +38,12 @@ class OrderEditFormRequest extends FormRequest
     }
     public function validated()
     {
-        $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($this->validator->validated()['shipping']);
+        if (session('reciver')['existingId']){
+            $city_id = Reciver::find(session('reciver')['existingId'])->city_id;
+         }else{
+             $city_id = session('reciver')['city_id'];
+         }
+        $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($this->validator->validated()['shipping'] , $city_id);
         $data = array_merge(
             $this->validator->validated(),
             [

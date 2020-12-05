@@ -107,7 +107,6 @@ if(!function_exists('adminIsManager') ){
 if(!function_exists('siteTitle') ){
 
     function siteTitle()
-
     {
         $routeName = Route::currentRouteName();
         if (array_key_exists($routeName , trans('sidebar')))

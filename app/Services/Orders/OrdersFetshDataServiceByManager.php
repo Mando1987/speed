@@ -44,11 +44,11 @@ class OrdersFetshDataServiceByManager extends OrdersFetshDataService
             ->latest()
             ->paginate($request->paginate);
 
-            foreach ($orders as $index => &$order) {
-                $order->city = app()->getLocale() == 'ar' ? $order->city_name:$order->city_name_en;
-                $order->date = $order->created_at->format('Y-m-d');
-                $order->getStatus = trans('site.order_status_' . $order->status);
-            }
+        foreach ($orders as $index => &$order) {
+            $order->city = app()->getLocale() == 'ar' ? $order->city_name : $order->city_name_en;
+            $order->date = $order->created_at->format('Y-m-d');
+            $order->getStatus = trans('site.order_status_' . $order->status);
+        }
         return view(
             'order.index.manager',
             [
@@ -61,12 +61,12 @@ class OrdersFetshDataServiceByManager extends OrdersFetshDataService
     }
     public function show($request, $id)
     {
-        $order = Order::with(['shipping', 'reciver','reciver.city' , 'customer' ,'customer.city'])
+        $order = Order::with(['shipping', 'reciver', 'reciver.city', 'customer', 'customer.city'])
             ->where('id', $id)
             ->first();
 
         return view(
-            'order.show.' .$request->adminType,
+            'order.show.' . $request->adminType,
             [
                 'order' => $order,
             ]

@@ -37,15 +37,13 @@ class OrdersFetshDataServiceByCustomer extends OrdersFetshDataService
             ->latest()
             ->paginate($request->paginate);
 
-            foreach ($orders as $index => &$order) {
-                $order->city = app()->getLocale() == 'ar' ? $order->city_name:$order->city_name_en;
-                $order->date = $order->created_at->format('Y-m-d');
-                $order->getStatus = trans('site.order_status_' . $order->status);
-            }
+        foreach ($orders as $index => &$order) {
+            $order->city = app()->getLocale() == 'ar' ? $order->city_name : $order->city_name_en;
+            $order->date = $order->created_at->format('Y-m-d');
+            $order->getStatus = trans('site.order_status_' . $order->status);
+        }
 
-
-            // return $orders;
-
+        // return $orders;
 
         return view(
             'order.index.customer',

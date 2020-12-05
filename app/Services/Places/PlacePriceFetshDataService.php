@@ -5,7 +5,6 @@ use App\Models\City;
 use App\Models\Governorate;
 use App\Services\BaseService;
 
-
 class PlacePriceFetshDataService extends BaseService
 {
 
@@ -26,11 +25,10 @@ class PlacePriceFetshDataService extends BaseService
         $governorateCitiesPrice = $this->city::where('governorate_id', $gov_id)->with('placePrices')->paginate(12);
         return view('place-prices.index', [
             'governorateCitiesPrice' => $governorateCitiesPrice,
-            'governorates'           => $this->getAllGovernorates(),
-            'selectedGovId'          => $gov_id
+            'governorates' => $this->getAllGovernorates(),
+            'selectedGovId' => $gov_id,
         ]);
     }
-
 
     public function getAllGovernorates()
     {
@@ -40,11 +38,11 @@ class PlacePriceFetshDataService extends BaseService
     {
 
         $firstGovernoratesCities = $this->getAllGovernorates()->first()->cities;
-        return  ['governorates' => $this->getAllGovernorates(), 'cities' => $firstGovernoratesCities];
+        return ['governorates' => $this->getAllGovernorates(), 'cities' => $firstGovernoratesCities];
     }
 
     public function getCities()
     {
-        return  $this->governorate::findOrFail(request('governorate_id'))->cities()->get();
+        return $this->governorate::findOrFail(request('governorate_id'))->cities()->get();
     }
 }

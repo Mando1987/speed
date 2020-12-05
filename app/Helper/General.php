@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
  * if like admin.create explode this and get parenet url and
  */
 
-if(!function_exists('breadcrumb') ){
+if (!function_exists('breadcrumb')) {
 
     function breadcrumb()
     {
@@ -16,26 +16,26 @@ if(!function_exists('breadcrumb') ){
         $routeName = Route::currentRouteName();
         $routeLang = 'sidebar.' . currentAdminType();
 
-        $breadcrumbUrl[] = [ 'route' =>route('dashboard.index') ,'class'=> 'active' , 'lang' => trans($routeLang .'.dashboard.index')];
+        $breadcrumbUrl[] = ['route' => route('dashboard.index'), 'class' => 'active', 'lang' => trans($routeLang . '.dashboard.index')];
 
         // dd($routeLang);
 
-        if (array_key_exists($routeName , trans('sidebar' ))):
+        if (array_key_exists($routeName, trans('sidebar'))):
 
-            if($routeName != 'dashboard.index'):
+            if ($routeName != 'dashboard.index'):
 
-                    list($parent , $child) = explode('.' , $routeName);
-                    $parent .='.index';
+                list($parent, $child) = explode('.', $routeName);
+                $parent .= '.index';
 
-                    if($child != 'index'):
+                if ($child != 'index'):
 
-                        $breadcrumbUrl[] = ['route' => route($parent) , 'class'=> 'active' ,'lang' => trans($routeLang .'.' .  $parent)];
-                    endif;
+                    $breadcrumbUrl[] = ['route' => route($parent), 'class' => 'active', 'lang' => trans($routeLang . '.' . $parent)];
+                endif;
 
-                    $breadcrumbUrl[] = ['route' => '' , 'class'=> '' ,'lang' => trans($routeLang .'.' . $routeName)];
+                $breadcrumbUrl[] = ['route' => '', 'class' => '', 'lang' => trans($routeLang . '.' . $routeName)];
             endif;
         else:
-            $breadcrumbUrl[] = ['route' => '' , 'class'=> '' ,'lang' => trans($routeLang .'.' . $routeName)];
+            $breadcrumbUrl[] = ['route' => '', 'class' => '', 'lang' => trans($routeLang . '.' . $routeName)];
         endif;
         return $breadcrumbUrl;
     }
@@ -43,79 +43,65 @@ if(!function_exists('breadcrumb') ){
 /**
  * get active breadcrumbName
  */
-if(!function_exists('breadcrumbName') ){
+if (!function_exists('breadcrumbName')) {
 
     function breadcrumbName()
-
     {
-      return (trans('sidebar.' . currentAdminType() .'.' . Route::currentRouteName()));
+        return (trans('sidebar.' . currentAdminType() . '.' . Route::currentRouteName()));
     }
 }
 
-if(!function_exists('currentRouteName') ){
+if (!function_exists('currentRouteName')) {
 
     function currentRouteName()
     {
-       return str_replace('.' , '_' , Route::currentRouteName());
+        return str_replace('.', '_', Route::currentRouteName());
     }
 }
 
-if(!function_exists('currentAdmin') ){
+if (!function_exists('currentAdmin')) {
 
     function currentAdmin()
     {
-       return auth('admin')->user();
+        return auth('admin')->user();
     }
 }
 
-if(!function_exists('currentAdminId') ){
+if (!function_exists('currentAdminId')) {
 
     function currentAdminId()
     {
-       return auth('admin')->id();
+        return auth('admin')->id();
     }
 }
 
-if(!function_exists('currentAdminType') ){
+if (!function_exists('currentAdminType')) {
 
     function currentAdminType()
     {
-       return currentAdmin()->type;
+        return currentAdmin()->type;
     }
 }
 
-
-
-
-if(!function_exists('adminName') ){
+if (!function_exists('adminName')) {
 
     function adminName()
-
     {
-      return auth('admin')->user()->fullname;
+        return auth('admin')->user()->fullname;
     }
 }
-if(!function_exists('adminIsManager') ){
+if (!function_exists('adminIsManager')) {
 
     function adminIsManager()
-
     {
-      return auth('admin')->user()->type == 'manager';
+        return auth('admin')->user()->type == 'manager';
     }
 }
-
-if(!function_exists('siteTitle') ){
-
-    function siteTitle()
-    {
-        $routeName = Route::currentRouteName();
-        if (array_key_exists($routeName , trans('sidebar')))
-
-        {
-            return trans('sidebar.' . $routeName);
-        }
-        return 'Alpha';
+function siteTitle()
+{
+    $routeName = Route::currentRouteName();
+    if (array_key_exists($routeName, trans('sidebar'))) {
+        return trans('sidebar.' . $routeName);
     }
+    return 'Alpha';
 }
-
-

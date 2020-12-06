@@ -41,7 +41,7 @@ class OrderController extends Controller
 
     public function getOrderChargePrice(Request $request)
     {
-        if (session('reciver')['existingId']){
+        if (isset(session('reciver')['existingId'])){
             $city_id = Reciver::find(session('reciver')['existingId'])->city_id;
          }else{
              $city_id = session('reciver')['city_id'];

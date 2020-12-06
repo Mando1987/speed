@@ -6,10 +6,10 @@ use Illuminate\Support\ServiceProvider;
 
 class NotifyServiceProvider extends ServiceProvider
 {
-    
+
     public function register()
     {
-        
+
     }
     public function boot()
     {
@@ -20,9 +20,13 @@ class NotifyServiceProvider extends ServiceProvider
         define('DS' , DIRECTORY_SEPARATOR);
 
         if (file_exists($file = __DIR__ . DS . '..' . DS . 'Helper' . DS . 'Notify.php')) {
-            
+
             require $file;
         }
-        
+        if (file_exists($file = __DIR__ . DS . '..' . DS . 'Helper' . DS . 'General.php')) {
+
+            require $file;
+        }
+
     }
 }

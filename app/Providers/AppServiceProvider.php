@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\DryClasses\GovernorateClass;
+use App\Models\Admin;
 use App\Models\City;
 use App\Models\Governorate;
 use Illuminate\Support\Facades\App;

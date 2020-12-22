@@ -173,15 +173,15 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         /**
          * user defined
         */
 
-        App\Providers\RepositoriesProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        App\Providers\RepositoriesProvider::class,
 
     ],
 

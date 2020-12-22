@@ -11,12 +11,10 @@ use Illuminate\View\Component;
 class Governorates extends Component
 {
     public $name;
-    public $selected;
     public $governorates;
-    public function __construct($name = 'governorate_id', $selected = 1, GovernorateClass $governorateClass)
+    public function __construct($name = 'governorate_id', GovernorateClass $governorateClass)
     {
         $this->name = Str::contains($name, '[]')? Str::replaceFirst('[', '[governorate_id', $name) : $name;
-        $this->selected = $selected;
         $this->governorates = $governorateClass->getAllGovernorates();
     }
 

@@ -97,11 +97,13 @@ if (!function_exists('adminIsManager')) {
         return auth('admin')->user()->type == 'manager';
     }
 }
-function siteTitle()
-{
-    $routeName = Route::currentRouteName();
-    if (array_key_exists($routeName, trans('sidebar'))) {
-        return trans('sidebar.' . $routeName);
+if (!function_exists('siteTitle')) {
+    function siteTitle()
+    {
+        $routeName = Route::currentRouteName();
+        if (array_key_exists($routeName, trans('sidebar'))) {
+            return trans('sidebar.' . $routeName);
+        }
+        return 'Alpha';
     }
-    return 'Alpha';
 }

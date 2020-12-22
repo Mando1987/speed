@@ -20,11 +20,17 @@ return [
     'reciver.phone'          => 'رقم التليفون',
     'reciver.other_phone'    => 'رقم تليفون إضافى',
 
-    'address.address'        => 'العنوان',
-    'address.special_marque' => 'علامة مميزه',
-    'address.house_number'   => 'رقم البيت / العقار',
-    'address.door_number'    => 'رقم الدور',
-    'address.shaka_number'   => 'رقم الشقة',
+    'reciverAddress.address'        => 'العنوان',
+    'reciverAddress.special_marque' => 'علامة مميزه',
+    'reciverAddress.house_number'   => 'رقم البيت / العقار',
+    'reciverAddress.door_number'    => 'رقم الدور',
+    'reciverAddress.shaka_number'   => 'رقم الشقة',
+
+    'customerAddress.address'        => 'العنوان',
+    'customerAddress.special_marque' => 'علامة مميزه',
+    'customerAddress.house_number'   => 'رقم البيت / العقار',
+    'customerAddress.door_number'    => 'رقم الدور',
+    'customerAddress.shaka_number'   => 'رقم الشقة',
 
     'role.name'              => 'اسم المجموعه',
 

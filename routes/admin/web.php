@@ -34,6 +34,8 @@ Route::post('place/destroy-multi-cities', [PlaceController::class, 'destroyMulti
 Route::get('order/view-edit-panel', [OrderController::class, 'viewEditPanel'] )->name('order.view_Edit_Panel');
 Route::get('order/edit-order', [OrderController::class, 'editOrder'])->name('order.edit_order');
 Route::get('order/view-delete-daialog/{id}', [OrderController::class, 'viewDeleteDaialog'] )->name('order.view_Delete_Daialog');
+Route::post('order/validate-customer', [OrderController::class, 'validateCustomer'] )->name('order.validate_customer');
+Route::post('order/validate-reciver', [OrderController::class, 'validateReciver'] )->name('order.validate_reciver');
 
 Route::put('reciver/update/{id}', [ReciverController::class, 'update'] )->name('reciver.update');
 Route::put('customer/updateByOrder/{id}', [CustomerController::class, 'updateByOrder'] )->name('customer.updateByOrder');

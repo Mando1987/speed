@@ -1,6 +1,6 @@
-<select class="custom-select" name="{{ $name }}"
-    id="governorate_id">
+<select class="custom-select governorate_id" name="{{ $name }}" {{$attributes}}>
+
         @foreach($governorates as $governorate)
-           <option value="{{ $governorate->id }}" @if($governorate->id == $selected) selected @endif >{{ $governorate->name }}</option>
+           <option value="{{ $governorate->id }}">{{ $governorate->name }}</option>
         @endforeach
 </select>

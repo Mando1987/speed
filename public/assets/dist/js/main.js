@@ -1,6 +1,27 @@
 $(document).ready(function () {
     bsCustomFileInput.init();
     $("[data-mask]").inputmask();
+    /**
+     * get all cities for any governorate
+    */
+    $(".governorate_id").change(function () {
+        var governorate_id = $(this).val();
+        var citySelectBox = $('[name="'+ $(this).data('name') +'"]');
+        citySelectBox.html("");
+        $.get(
+            "/get-cities",{ governorate_id: governorate_id},
+            (data) => {
+                $.each(
+                    data,(_index, city) => {
+                        citySelectBox.append(
+                            $("<option></option>").val(city.id).html(city.name)
+                        );
+                    },
+                    "json"
+                );
+            }
+        );
+    });// end of $(".governorate_id")
 
     $(document).on("submit", ".addPlacePrice", function (e) {
         e.preventDefault();
@@ -44,34 +65,7 @@ $(document).ready(function () {
         $("#customer").submit();
     });
 
-    $("#governorate_id").change(function () {
-        var id = $(this).val();
 
-        $("#city_id").html("");
-        $.get(
-            "/get-cities",
-            {
-                governorate_id: id,
-            },
-            function (data) {
-                $.each(
-                    data,
-                    function (_index, city) {
-                        $("#city_id").append(
-                            $("<option></option>").val(city.id).html(city.name)
-                        );
-                    },
-                    "json"
-                );
-
-                if ($("#city_id").attr("dataVal")) {
-                    $("#city_id").val($("#city_id").attr("dataVal"));
-                    // $("#city_id").attr("dataVal", $("#city_id").val() );
-                }
-                // $("#city_id").removeAttr("dataVal");
-            }
-        );
-    });
 
     $("#getCitiesPriceSelect").change(function () {
         $("#getCitiesPrice").submit();
@@ -113,13 +107,6 @@ $(document).ready(function () {
         return false;
     });
 
-    $(document).on("change", "[name=chooseType]", function () {
-        var chooseType = $(this).val();
-        $(".existsContent").hide();
-        $(".newContent").hide();
-        $("." + chooseType + "Content").show();
-        return false;
-    });
     ////////////////////////////////////////////////////////////////////////////////
     $(document).on("submit", "#FormSubmit", function (e) {
         e.preventDefault();
@@ -170,6 +157,9 @@ $(document).ready(function () {
         });
         return false;
     });
+    /**
+     *  order add
+    */
 });
 ////////////////////////////////////////////////////////////////////////////
 $("#selectAllPlaces").click(function () {
@@ -246,49 +236,46 @@ function newFunction(data) {
 /*** get order charge price  */
 function getOrderChargePrice() {
     var url = "/order/get-order-charge-price",
-        weight = $('[name="shipping[weight]"]'),
-        quantity = $('[name="shipping[quantity]"]'),
-        price = $('[name="shipping[price]"]'),
-        charge_on = $('[name="shipping[charge_on]"]');
-    discount = $('[name="shipping[discount]"]');
+        weight = $('[name="shipping[weight]"]').val(),
+        quantity = $('[name="shipping[quantity]"]').val(),
+        price = $('[name="shipping[price]"]').val(),
+        charge_on = $('[name="shipping[charge_on]"]').val(),
+        city_id = $('[name=reciver_city_id]').val(),
+        discount = $('[name="shipping[discount]"]').val();
 
     var data = {
-        weight: weight.val(),
-        quantity: quantity.val(),
-        price: price.val(),
-        charge_on: charge_on.val(),
-        discount: discount.val(),
+        shipping : {
+        weight: weight,
+        quantity: quantity,
+        price: price,
+        charge_on: charge_on,
+        discount: discount,
+        },
+        reciver_city_id: city_id
     };
-    if (weight.val() > 0 && quantity.val() > 0) {
+    if (weight > 0 && quantity > 0) {
         $(".is-invalid").removeClass("is-invalid");
         $(".invalid-feedback").remove();
-        $.get(url, data, function (data) {
-            if (data.showModelAddPlacePrice == 1) {
-                Swal.fire({
-                    title: data.title,
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    cancelButtonText: data.cancelButtonText,
-                    confirmButtonText: data.confirmButtonText,
-                }).then((result) => {
-                    if (result.value) {
-                        $.get(data.url, { showInModel: true }, function (data) {
-                            $(".modal-body").html(data);
-                            $("#modal-default").modal("show");
-                        });
-                    }
-                });
-            }
+        $.get(url,data, function (data) {
             $.each(data, function (key, val) {
                 $('[name="shipping[' + key + ']"]').val(val);
             });
-        }).fail(function (errors) {
-            $.each(errors.responseJSON.errors, function (key, val) {
-                $('[name="shipping[' + key + ']"]').addClass("is-invalid");
-                $(`[name="shipping[${key}]"]`).after(
-                    '<span class="error invalid-feedback">' + val + "</span>"
+        }).fail(function (reject) {
+            var response = $.parseJSON(reject.responseText);
+            var name = undefined;
+            console.log(response);
+            $.each(response.errors, function (key, val) {
+                name = `[name=${key}]`;
+                //check if key is array
+                if (key.indexOf(".") != -1) {
+                    name = key.split(".");
+                    name = '[name="' + name[0] + "[" + name[1] + ']"]';
+                }
+                $(name).addClass("is-invalid");
+                $(name).after(
+                    '<span class="error invalid-feedback">' +
+                        val[0] +
+                        "</span>"
                 );
             });
         });

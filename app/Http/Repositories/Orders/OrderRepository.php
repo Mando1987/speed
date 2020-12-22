@@ -1,10 +1,13 @@
 <?php
 namespace App\Http\Repositories\Orders;
 
+use App\Http\Interfaces\CreateOrderInterface;
+use App\Http\Interfaces\OrderRepositoryAbstract;
 use App\Http\Interfaces\OrderRepositoryInterface;
-use App\Http\Interfaces\OrderStoreFormRequestInterface;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Requests\OrderEditFormRequest;
+use App\Http\Requests\OrderStoreFormRequest;
+use App\Http\Services\ProviderClass;
 use App\Http\Traits\Orders\OrderGetAll;
 use App\Http\Traits\OrderTrait;
 use App\Models\Address;
@@ -47,11 +50,11 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     private $address;
     private $cities_id = [];
     private $governorates_id = [];
-    public function __construct(Order $order)
+
+    public function __construct(Order $order, Request $request)
     {
         $this->order = $order;
     }
-
     public function getAll(Request $request)
     {
         $this->setViewSetting($request);
@@ -97,8 +100,9 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
         return view('order.show.' . $request->adminType, ['order' => $orderData]);
     }
-    public function store(OrderStoreFormRequestInterface $request)
+    public function store(OrderStoreFormRequest $request)
     {
+        dd($request->validated());
         if (session('page') == 1) {
             return $this->orderPath($request, 2);
         }
@@ -160,8 +164,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         }
     }
 
-    function print(Request $request)
-    {
+    function print(Request $request) {
 
         $orderData = $this->order::with(['reciver', 'shipping', 'customer'])
             ->whereId($request->orderId)->where(function ($query) use ($request) {
@@ -261,8 +264,8 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
                 return view('order.edit.' . $type, [
                     'userData' => [
                         $type => $order->$type,
-                       'address' => $order->$type->address,
-                    ],'city_id' => $order->$type->city_id,
+                        'address' => $order->$type->address,
+                    ], 'city_id' => $order->$type->city_id,
                 ]
                 );
             }
@@ -294,5 +297,14 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             DB::rollback();
             return $this->responseJson('failed');
         }
+    }
+    /**
+     * create new order depend on admin type if manager or customer
+     * @param Request $request
+     * @return void
+     */
+    public function create()
+    {
+        return OrderRepositoryAbstract::create();
     }
 }

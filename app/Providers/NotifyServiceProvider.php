@@ -6,7 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 class NotifyServiceProvider extends ServiceProvider
 {
-
     public function register()
     {
 
@@ -17,16 +16,15 @@ class NotifyServiceProvider extends ServiceProvider
     }
     public function registerHelpers()
     {
-        define('DS' , DIRECTORY_SEPARATOR);
+        $helperFilesDirectory = app_path() . DIRECTORY_SEPARATOR . 'Helper';
+        $ignoredFiles = ['.', '..'];
+        $helperFiles = array_diff(scandir($helperFilesDirectory), $ignoredFiles);
 
-        if (file_exists($file = __DIR__ . DS . '..' . DS . 'Helper' . DS . 'Notify.php')) {
+        foreach ($helperFiles as $file) {
 
-            require $file;
+            if (file_exists($file = $helperFilesDirectory . DIRECTORY_SEPARATOR . $file)) {
+                require $file;
+            }
         }
-        if (file_exists($file = __DIR__ . DS . '..' . DS . 'Helper' . DS . 'General.php')) {
-
-            require $file;
-        }
-
     }
 }

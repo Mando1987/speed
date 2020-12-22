@@ -306,4 +306,10 @@ return [
   'edit_reciver_not_for_curent_customer' => 'هذا العميل لا يوجد ضمن قائمة العملاء الخاصة بك',
   'edit_reciver_not_found_manager' => 'بيانات المرسل اليه غير موجودة لدينا جرب واحد صحيح من فضلك',
 
+  'alert_add_order' => 'اضافة طلب جديد',
+  'alert_view_order' => 'عرض كافة الطلبات',
+  'no_recivers_for_customer' => 'لا يوجد عملاء لهذا العميل',
+  'no_recivers_for_customer_message' => 'لا يوجد عملاء لهذا العميل قم باختيار مرسل اليه جديد',
+  'close' => 'اغلاق',
+
 ];

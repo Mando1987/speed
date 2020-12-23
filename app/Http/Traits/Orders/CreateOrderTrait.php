@@ -50,14 +50,14 @@ trait CreateOrderTrait
      * @param integer $reciverId
      * @return integer orderId
      */
-    private function storeOrderData(array $data, int $customerId, int $reciverId): int
+    private function storeOrderData(array $data, int $customerId, int $reciverId): Order
     {
         $order = Order::make($data);
         $order->customer()->associate($customerId);
         $order->reciver()->associate($reciverId);
         $order->save();
 
-        return $order->id;
+        return $order;
     }
     /**
      * store order shipping in shippings table

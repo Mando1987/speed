@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\AddNewAdmin;
+use App\Events\CreateNewOrder;
 use App\Listeners\LogAddNewAdmin;
+use App\Listeners\SendNotificationToTelegram;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -20,9 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        AddNewAdmin::class => [
-            LogAddNewAdmin::class,
-        ],
+        CreateNewOrder::class =>[
+            SendNotificationToTelegram::class,
+        ]
     ];
 
     /**

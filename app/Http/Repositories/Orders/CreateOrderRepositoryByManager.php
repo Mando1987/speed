@@ -9,11 +9,19 @@ use App\Http\Traits\FormatedResponseData;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Traits\Orders\CreateOrderTrait;
 use App\Http\Interfaces\CreateOrderRepositoryInterface;
+use Illuminate\View\View;
 
 class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
 {
     use CreateOrderTrait, FormatedResponseData;
-    public function create(Request $request)
+    /**
+     * show create page
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create(Request $request) :View
     {
         $customersCount = Customer::all()->count();
         return view('order.create.createByManager', [

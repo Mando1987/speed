@@ -3,40 +3,38 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Interfaces\CreateOrderRepositoryInterface;
 use App\Http\Interfaces\OrderRepositoryInterface;
-use App\Http\Repositories\Factories\MainFactory;
+use App\Http\Repositories\Factories\CreateOrderFactory;
+use App\Http\Repositories\Factories\OrderFactory;
 use App\Http\Repositories\Orders\ValidateCustomer;
 use App\Http\Repositories\Orders\ValidateReciver;
 use App\Http\Requests\OrderEditFormRequest;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Requests\ValidateOrderCustomerFormRequest;
 use App\Http\Requests\ValidateOrderReciverFormRequest;
-use App\Http\Traits\FormatedResponseData;
 use App\Services\Orders\OrderCountChargePrice;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    private $orderFactory;
 
-    public function __construct(MainFactory $orderFactory)
-    {
-        $this->orderFactory = $orderFactory->getInstance(OrderRepositoryInterface::class);
-    }
     public function index(Request $request)
     {
-        return $this->orderFactory->getAll($request);
+        return OrderFactory::getInstance()->getAll($request);
     }
 
     public function show(Request $request, $id)
     {
-        return $this->OrderRepositoryInterface->showById($request, $id);
+        return OrderFactory::getInstance()->showById($request, $id);
     }
 
     public function create(Request $request)
     {
-        return $this->orderFactory->getInstance(CreateOrderRepositoryInterface::class)->create($request);
+        return CreateOrderFactory::getInstance()->create($request);
+    }
+    public function store(OrderStoreFormRequest $request)
+    {
+        return CreateOrderFactory::getInstance()->store($request);
     }
 
     public function validateCustomer(ValidateOrderCustomerFormRequest $request)
@@ -47,12 +45,6 @@ class OrderController extends Controller
     {
         return ValidateReciver::handle($request);
     }
-
-    public function store(OrderStoreFormRequest $request)
-    {
-        return $this->orderFactory->getInstance(CreateOrderRepositoryInterface::class)->store($request);
-    }
-
     public function getOrderChargePrice(Request $request)
     {
         return app(OrderCountChargePrice::class)->getOrderChargePrice($request, true);

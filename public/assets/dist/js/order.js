@@ -1,6 +1,6 @@
 /*******************************[ start ready function ]*********** **************************** */
 $(document).ready(function () {
-    console.log(__token);
+    console.log(`token : ${__token}`);
     /**
      * OrderFormSubmit to add new order
      */
@@ -179,27 +179,12 @@ function getOrderChargePrice() {
             headers: {'X-CSRF-TOKEN': __token},
         });
         $.post(url, data, function (data) {
-            console.log(data);
             $.each(data, function (key, val) {
                 $('[name="shipping[' + key + ']"]').val(val);
             });
         }).fail(function (reject) {
-            console.log(reject);
             var response = $.parseJSON(reject.responseText);
-            var name = undefined;
-            console.log(response);
-            $.each(response.errors, function (key, val) {
-                name = `[name=${key}]`;
-                //check if key is array
-                if (key.indexOf(".") != -1) {
-                    name = key.split(".");
-                    name = '[name="' + name[0] + "[" + name[1] + ']"]';
-                }
-                $(name).addClass("is-invalid");
-                $(name).after(
-                    '<span class="error invalid-feedback">' + val[0] + "</span>"
-                );
-            });
+            setErrorsClassToInputsFildes(response.errors);
         });
     }
 }

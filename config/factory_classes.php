@@ -6,7 +6,9 @@ use App\Http\Repositories\Orders\CreateOrderRepositoryByCustomer;
 use App\Http\Repositories\Orders\CreateOrderRepositoryByManager;
 use App\Http\Repositories\Orders\OrderRepositoryByCustomer;
 use App\Http\Repositories\Orders\OrderRepositoryByManager;
-
+/**
+ *  @return array
+ */
 return [
     OrderRepositoryInterface::class =>
     [

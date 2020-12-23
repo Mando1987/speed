@@ -9,5 +9,5 @@ class Setting extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    protected $casts = ['data' => 'object'];
+    // protected $casts = ['data' => 'object'];
 }

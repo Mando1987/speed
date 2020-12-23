@@ -73,7 +73,7 @@ class OrderCountChargePrice
         return $this->getShippingData();
     }
 
-    private function setPlacePrice() :void
+    private function setPlacePrice()
     {
         $charge_price = PlacePrice::where(function ($query) {
             $query->where('city_id', $this->city_id);

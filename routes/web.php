@@ -40,16 +40,18 @@ Route::get('/test', function(){
  //return Cache::get('key');
 
 //   dd(Telegram::class);
-  //  $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
-  //  $tele->sendMessage( [
-  //   'chat_id'                  => '-1001175803813',
-  //   'text'=> 'Test',
-  //     'parse_mode'               => 'HTML',
-  //     'disable_web_page_preview' => '',
-  //     'disable_notification'     => '',
-  //     'reply_to_message_id'      => '{info:mando}',
-  //     'reply_markup'             => '',
-  //   ]);
+//    $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
+//         $tele->sendMessage([
+//             'chat_id' => '-1001175803813',
+//             'text' => 'test #error',
+//             'parse_mode' => 'HTML',
+//             'disable_web_page_preview' => '',
+//             'disable_notification' => '',
+//             'reply_to_message_id' => '{info:mando}',
+//             'reply_markup' => '',
+//             'caption' => 'caption',
+//             'entities' => '#error'
+//         ]);
   //   Nexmo::message()->send([
   //     'to'   => '+2001279728519',
   //     'from' => '+2001270142656',
@@ -61,6 +63,11 @@ Route::get('/test', function(){
     [
     auth('admin')->user(),
     Admin::find(2)
-    ] , new AddedNewOrder());
+    ] , new AddedNewOrder(
+        [
+            'user'=>1,
+            'name' =>'admin'
+        ]
+    ));
 
 });

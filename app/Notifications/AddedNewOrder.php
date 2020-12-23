@@ -11,14 +11,16 @@ class AddedNewOrder extends Notification
 {
     use Queueable;
 
+    public $data;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
     /**
      * Get the notification's delivery channels.
@@ -33,7 +35,7 @@ class AddedNewOrder extends Notification
 
     public function toDatabase($notifiable)
     {
-       return ['notifiable_id' =>1];
+       return $this->data;
     }
 
 }

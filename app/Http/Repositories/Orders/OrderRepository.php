@@ -100,71 +100,9 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
         return view('order.show.' . $request->adminType, ['order' => $orderData]);
     }
-    public function store(OrderStoreFormRequest $request)
+
+    function print(Request $request)
     {
-        dd($request->validated());
-        if (session('page') == 1) {
-            return $this->orderPath($request, 2);
-        }
-
-        if ($request->adminType == 'manager' && session('page') == 2 && session('customer')) {
-            return $this->orderPath($request, 3);
-        }
-
-        if (session('page') == 2 && session('reciver') ||
-            session('page') == 3 && session('customer') && session('reciver')) {
-
-            try {
-
-                DB::beginTransaction();
-                $data = $request->validated();
-
-                if ($request->adminType == 'customer') {
-                    $customer = $request->adminId;
-                } else {
-                    if (!array_key_exists('chooseType', $data['customer'])) {
-                        $customer = Customer::create($data['customer']);
-                        $customer->address()->create($data['customerAddress']);
-                    } else {
-                        $customer = $data['customer']['existingId'];
-                    }
-                }
-
-                if (!array_key_exists('chooseType', $data['reciver'])) {
-
-                    $reciver = Reciver::make($data['reciver']);
-                    $reciver->customer()->associate($customer)->save();
-                    $reciver->address()->create($data['reciverAddress']);
-                } else {
-                    $reciver = $data['reciver']['existingId'];
-                }
-
-                $order = Order::make($data['order']);
-                $order->customer()->associate($customer);
-                $order->reciver()->associate($reciver);
-                $order->save();
-
-                $order->shipping()->create(array_merge(
-                    $request->validated()['shipping'],
-                    ['order_num' => $this->setOrderNumberUnique($order->id)]
-                ));
-                DB::commit();
-
-                $this->forgetOrderData();
-                $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
-                return $this->path($this->route);
-            } catch (\Exception $ex) {
-
-                DB::rollback();
-                $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
-
-                dd($ex->getMessage());
-                return back();
-            }
-        }
-    }
-
-    function print(Request $request) {
 
         $orderData = $this->order::with(['reciver', 'shipping', 'customer'])
             ->whereId($request->orderId)->where(function ($query) use ($request) {
@@ -298,13 +236,6 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
             return $this->responseJson('failed');
         }
     }
-    /**
-     * create new order depend on admin type if manager or customer
-     * @param Request $request
-     * @return void
-     */
-    public function create()
-    {
-        return OrderRepositoryAbstract::create();
-    }
+
+
 }

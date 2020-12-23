@@ -10,7 +10,7 @@ trait FormatedResponseData
      * @param array $alert => must be ['title' => '','icon'=> '','html']
      * @return array
      */
-    protected function formatData(string $target, array $data = [], array $alert = []) :array
+    protected static function formatData(string $target, array $data = [], array $alert = []) :array
     {
         return [
             'target' => $target,

@@ -1,3 +1,5 @@
+// __token value
+const __token = $('[name="csrf-token"]').attr("content");
 $(document).ready(function () {
     bsCustomFileInput.init();
     $("[data-mask]").inputmask();
@@ -64,8 +66,6 @@ $(document).ready(function () {
     $("#customer_type").change(function () {
         $("#customer").submit();
     });
-
-
 
     $("#getCitiesPriceSelect").change(function () {
         $("#getCitiesPrice").submit();
@@ -217,15 +217,6 @@ $("select[name=paginate]").change(function () {
 });
 ////////////////////////////////////////////////////////////////////////////
 
-$(
-    '[name="shipping[weight]"],[name="shipping[quantity]"],[name="shipping[price]"],[name="shipping[discount]"]'
-).on("keyup touchend", function () {
-    getOrderChargePrice();
-});
-
-$('[name="shipping[charge_on]"]').on("change", function () {
-    getOrderChargePrice();
-});
 
 function newFunction(data) {
     $("#modal-default .modal-body").html("");
@@ -233,54 +224,6 @@ function newFunction(data) {
     $("#modal-default").modal("show");
 }
 
-/*** get order charge price  */
-function getOrderChargePrice() {
-    var url = "/order/get-order-charge-price",
-        weight = $('[name="shipping[weight]"]').val(),
-        quantity = $('[name="shipping[quantity]"]').val(),
-        price = $('[name="shipping[price]"]').val(),
-        charge_on = $('[name="shipping[charge_on]"]').val(),
-        city_id = $('[name=reciver_city_id]').val(),
-        discount = $('[name="shipping[discount]"]').val();
-
-    var data = {
-        shipping : {
-        weight: weight,
-        quantity: quantity,
-        price: price,
-        charge_on: charge_on,
-        discount: discount,
-        },
-        reciver_city_id: city_id
-    };
-    if (weight > 0 && quantity > 0) {
-        $(".is-invalid").removeClass("is-invalid");
-        $(".invalid-feedback").remove();
-        $.get(url,data, function (data) {
-            $.each(data, function (key, val) {
-                $('[name="shipping[' + key + ']"]').val(val);
-            });
-        }).fail(function (reject) {
-            var response = $.parseJSON(reject.responseText);
-            var name = undefined;
-            console.log(response);
-            $.each(response.errors, function (key, val) {
-                name = `[name=${key}]`;
-                //check if key is array
-                if (key.indexOf(".") != -1) {
-                    name = key.split(".");
-                    name = '[name="' + name[0] + "[" + name[1] + ']"]';
-                }
-                $(name).addClass("is-invalid");
-                $(name).after(
-                    '<span class="error invalid-feedback">' +
-                        val[0] +
-                        "</span>"
-                );
-            });
-        });
-    }
-}
 /*** get order charge price  */
 var loadFile = function (event) {
     var output = document.getElementById("image-privew");

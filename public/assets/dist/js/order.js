@@ -1,4 +1,9 @@
+/*******************************[ start ready function ]*********** **************************** */
 $(document).ready(function () {
+    console.log(__token);
+    /**
+     * OrderFormSubmit to add new order
+     */
     $(document).on("submit", ".OrderFormSubmit", function (e) {
         e.preventDefault();
         var form = this;
@@ -20,16 +25,7 @@ $(document).ready(function () {
             },
         });
         return false;
-    });
-
-    function resetErorrClasses(MainForm) {
-        MainForm.find(".invalid-feedback").each(function () {
-            $(this).remove();
-        });
-        MainForm.find(":input").each(function () {
-            $(this).removeClass("is-invalid");
-        });
-    }
+    }); // end of OrderFormSubmit
     /**
      * set back button in create order
      */
@@ -38,9 +34,25 @@ $(document).ready(function () {
         $(".tab-pane").removeClass("active");
         $("#tab-pane-" + paneDiv).addClass("active");
         return false;
+    }); // end of createOrderFormBack
+    /**
+     * getOrderChargePrice
+     */
+    var getOrderChargePriceSelectors =
+        '[name="shipping[weight]"],[name="shipping[quantity]"],';
+    getOrderChargePriceSelectors +=
+        '[name="shipping[price]"],[name="shipping[discount]"],';
+    getOrderChargePriceSelectors +=
+        '[name="shipping[price]"],[name="shipping[discount]"],';
+    getOrderChargePriceSelectors += '[name="shipping[charge_on]"]';
+    $(getOrderChargePriceSelectors).on("keyup touchend", function () {
+        getOrderChargePrice();
     });
-}); // end of ready function
-
+    $('[name="shipping[charge_on]"]').on("change", function () {
+        getOrderChargePrice();
+    }); //end of getOrderChargePrice
+});
+/*******************************[ end ready function ]*********** **************************** */
 var orderFunctions = {
     validateCustomer: function (responseData) {
         toggleTabPaneClass(responseData.data.showClass);
@@ -66,7 +78,7 @@ var orderFunctions = {
     },
     validateReciverErrorNew: function (responseData) {
         console.log(responseData.errors);
-        $("input[name='reciverType'][value='new']").prop('checked', true);
+        $("input[name='reciverType'][value='new']").prop("checked", true);
         // $("#ReciverNew").click();
         // $("#ReciverNew").trigger("change");
         setErrorsClassToInputsFildes(responseData.errors);
@@ -94,7 +106,7 @@ function toggleTabPaneClass(showClass) {
  */
 function alertBody(alert) {
     Swal.fire({
-        title: alert.title,
+        titleText: alert.title,
         icon: alert.icon,
         html: alert.html,
         showConfirmButton: false,
@@ -121,16 +133,73 @@ function setErrorsClassToInputsFildes(errors) {
  * select between new and exists for customer or reciver
  */
 $(document).on("change", ".chooseType", function () {
-    chooseTypeToggle($(this));
-});
-$(document).on("change", "#ReciverNew", function () {
-    chooseTypeToggle($(this));
-});
-
-function chooseTypeToggle(input) {
-    var name = input.attr("name");
-    var className = name + input.val();
+    var name = $(this).attr("name");
+    var className = name + $(this).val();
     $("." + name).hide();
     $("." + className).show();
     return false;
+});
+/**
+ * reset Erorr Classes
+ *
+ */
+function resetErorrClasses(MainForm) {
+    MainForm.find(".invalid-feedback").each(function () {
+        $(this).remove();
+    });
+    MainForm.find(":input").each(function () {
+        $(this).removeClass("is-invalid");
+    });
+}
+
+/*** get order charge price  */
+function getOrderChargePrice() {
+    var url = "/order/get-order-charge-price",
+        weight = $('[name="shipping[weight]"]').val(),
+        quantity = $('[name="shipping[quantity]"]').val(),
+        price = $('[name="shipping[price]"]').val(),
+        charge_on = $('[name="shipping[charge_on]"]').val(),
+        city_id = $("[name=reciver_city_id]").val(),
+        discount = $('[name="shipping[discount]"]').val();
+
+    var data = {
+        shipping: {
+            weight: weight,
+            quantity: quantity,
+            price: price,
+            charge_on: charge_on,
+            discount: discount,
+        },
+        reciver_city_id: city_id,
+    };
+    if (weight > 0 && quantity > 0) {
+        $(".is-invalid").removeClass("is-invalid");
+        $(".invalid-feedback").remove();
+        $.ajaxSetup({
+            headers: {'X-CSRF-TOKEN': __token},
+        });
+        $.post(url, data, function (data) {
+            console.log(data);
+            $.each(data, function (key, val) {
+                $('[name="shipping[' + key + ']"]').val(val);
+            });
+        }).fail(function (reject) {
+            console.log(reject);
+            var response = $.parseJSON(reject.responseText);
+            var name = undefined;
+            console.log(response);
+            $.each(response.errors, function (key, val) {
+                name = `[name=${key}]`;
+                //check if key is array
+                if (key.indexOf(".") != -1) {
+                    name = key.split(".");
+                    name = '[name="' + name[0] + "[" + name[1] + ']"]';
+                }
+                $(name).addClass("is-invalid");
+                $(name).after(
+                    '<span class="error invalid-feedback">' + val[0] + "</span>"
+                );
+            });
+        });
+    }
 }

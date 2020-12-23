@@ -1,5 +1,4 @@
 @extends('layouts.dashboard')
-
 @section('content')
 <div class="card card-solid">
   <div class="card-header p-1 border-bottom-0">

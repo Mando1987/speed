@@ -20,13 +20,6 @@
                        <i class="fas @if($i == $selected OR $selected > $i - 1) fa-check @else fa-times @endif"></i>
                     </span>
                     @endfor
-                    {{-- <span class="badge badge-success rounded-circle">
-                    <i class="fas fa-check"></i>
-                </span>
-                <span class="badge badge-danger rounded-circle">
-                    <i class="fas fa-times"></i>
-                </span> --}}
-
             </div>
         </div>
     </div>

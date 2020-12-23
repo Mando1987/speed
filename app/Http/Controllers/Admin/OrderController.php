@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Interfaces\CreateOrderRepositoryInterface;
 use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Repositories\Factories\MainFactory;
+use App\Http\Repositories\Orders\ValidateCustomer;
+use App\Http\Repositories\Orders\ValidateReciver;
 use App\Http\Requests\OrderEditFormRequest;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Requests\ValidateOrderCustomerFormRequest;
 use App\Http\Requests\ValidateOrderReciverFormRequest;
-use App\Http\Services\ProviderClass;
 use App\Http\Traits\FormatedResponseData;
-use App\Models\Reciver;
 use App\Services\Orders\OrderCountChargePrice;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    use FormatedResponseData;
     private $orderFactory;
 
     public function __construct(MainFactory $orderFactory)
@@ -26,7 +26,7 @@ class OrderController extends Controller
     }
     public function index(Request $request)
     {
-        return $this->OrderRepositoryInterface->getAll($request);
+        return $this->orderFactory->getAll($request);
     }
 
     public function show(Request $request, $id)
@@ -36,68 +36,21 @@ class OrderController extends Controller
 
     public function create(Request $request)
     {
-        return $this->orderFactory->create($request);
+        return $this->orderFactory->getInstance(CreateOrderRepositoryInterface::class)->create($request);
     }
 
     public function validateCustomer(ValidateOrderCustomerFormRequest $request)
     {
-        $data = $request->validated();
-        $customerData = [
-            'page' => 'reciver',
-            'customer' => ['data' => $data['customer'], 'type' => $data['customerType']],
-        ];
-        if ($data['customerType'] == 'new') {
-            $customerId = 0;
-            $customerData['customer']['address'] = $data['customerAddress'];
-        } else {
-            $customerId = $data['customer']['id'];
-        }
-        session(['orderData' => $customerData]);
-
-        $data = $this->formatData('validateCustomer', [
-            'showClass' => 'reciver', 'allRecivers' => $this->getRecivers($customerId),
-        ]);
-        return response()->json($data);
+        return ValidateCustomer::handle($request);
     }
-
-    public function getRecivers(int $customerId)
-    {
-        if ($customerId > 0) {
-            $recivers = Reciver::select('id', 'fullname')->where('customer_id', $customerId)->get();
-            if ($recivers->count() > 0) {
-                return $recivers;
-            }
-        }
-        return [['id' => null, 'fullname' => trans('site.no_recivers_for_customer')]];
-    }
-
     public function validateReciver(ValidateOrderReciverFormRequest $request)
     {
-        $data = $request->validated();
-        // session()->push('user.teams', 'developers');
-        $reciverData = [
-            'page' => 'order',
-            'reciver' => ['data' => $data['reciver'], 'type' => $data['reciverType']],
-        ];
-        if ($data['reciverType'] == 'new') {
-            $city_id = $data['reciver']['city_id'];
-            $reciverData['reciver']['address'] = $data['reciverAddress'];
-        } else {
-            $city_id = Reciver::find($data['reciver']['id'])->city->id;
-        }
-        session([
-            'orderData' => array_merge(session('orderData'),array_merge($reciverData, ['reciver_city_id' => $city_id]))
-        ]);
-        $data = $this->formatData('validateReciver', [
-            'showClass' => 'order',
-        ]);
-        return response()->json($data);
-
+        return ValidateReciver::handle($request);
     }
 
     public function store(OrderStoreFormRequest $request)
     {
-        return $this->orderFactory->store($request);
+        return $this->orderFactory->getInstance(CreateOrderRepositoryInterface::class)->store($request);
     }
 
     public function getOrderChargePrice(Request $request)
@@ -127,6 +80,5 @@ class OrderController extends Controller
     {
         return view('includes.delete');
     }
-
 
 }

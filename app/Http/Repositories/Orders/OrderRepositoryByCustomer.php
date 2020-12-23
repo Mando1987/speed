@@ -1,23 +1,44 @@
 <?php
 namespace App\Http\Repositories\Orders;
 
-use App\Http\Interfaces\OrderRepositoryInterface;
-use App\Http\Repositories\BaseRepository;
-use App\Http\Requests\OrderEditFormRequest;
-use App\Http\Requests\OrderStoreFormRequest;
-use App\Http\Traits\FormatedResponseData;
-use App\Http\Traits\OrderTrait;
-use App\Models\Customer;
 use App\Models\Reciver;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\Http\Traits\OrderTrait;
 use Illuminate\Support\Facades\DB;
+use App\Http\Repositories\BaseRepository;
+use App\Http\Traits\FormatedResponseData;
+use App\Http\Requests\OrderEditFormRequest;
+use NotificationChannels\Telegram\Telegram;
+use App\Http\Requests\OrderStoreFormRequest;
+use App\Http\Interfaces\OrderRepositoryInterface;
+use App\Http\Traits\Orders\CreateOrderTrait;
+use App\Models\Order;
 
-class OrderRepositoryByManager implements OrderRepositoryInterface
+class OrderRepositoryByCustomer implements OrderRepositoryInterface
 {
-    use OrderTrait, FormatedResponseData;
+    use OrderTrait, FormatedResponseData,CreateOrderTrait;
+
+    private $customerId;
+    private $reciverId;
+    private $orderId;
 
     public function getAll(Request $request)
     {
+        //  $this->setViewSetting($request);
+
+        $orders = Order::withRealtionsTables()
+            ->whereAdminIsCustomer()->latest()->paginate($this->paginate);
+
+        return view(
+            'order.index.' . $request->adminType,
+            [
+                'orders' => $orders,
+                'view' => $this->view,
+                'status' => $request->status ?? 'all',
+                'search' => $request->search,
+            ]
+        );
     }
 
     public function showById(Request $request, $id)
@@ -97,4 +118,27 @@ class OrderRepositoryByManager implements OrderRepositoryInterface
 
     }
 
+
+    public function teleg($message)
+    {
+        $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
+        $tele->sendMessage([
+            'chat_id' => '-1001175803813',
+            'text' => view('includes.telegram.message' , ['a' => $message])->toHtml(),
+            'parse_mode' => 'HTML',
+            'disable_web_page_preview' => false,
+            'disable_notification' => '',
+            'reply_to_message_id' => '{info:mando}',
+            'reply_markup' => '',
+        ]);
+    }
+
+    public function handleErrors($error,$method, $line)
+    {
+        return [
+            'method' => $method,
+            'line' => $line,
+            'error' => $error,
+        ];
+    }
 }

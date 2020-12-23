@@ -23,7 +23,7 @@ class CreateSettingsTable extends Migration
 
         Setting::create([
             'event' => 'default_charge_price',
-            'data'  =>json_encode( [
+            'data'  =>json_encode([
                 'send_weight' => 2,
                 'send_price' => 35,
                 'weight_addtion' => 1,

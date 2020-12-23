@@ -179,10 +179,12 @@ function getOrderChargePrice() {
             headers: {'X-CSRF-TOKEN': __token},
         });
         $.post(url, data, function (data) {
+            console.log(data);
             $.each(data, function (key, val) {
                 $('[name="shipping[' + key + ']"]').val(val);
             });
         }).fail(function (reject) {
+            console.log(reject);
             var response = $.parseJSON(reject.responseText);
             setErrorsClassToInputsFildes(response.errors);
         });

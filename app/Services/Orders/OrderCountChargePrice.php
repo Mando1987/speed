@@ -84,7 +84,7 @@ class OrderCountChargePrice
             $default_price = Setting::where('event', 'default_charge_price')->first();
             $this->chargeprice = $default_price->data;
         }
-        $this->chargeprice = (object) $this->chargeprice;
+        return $this->chargeprice;
     }
 
     private function setTotalWeight()

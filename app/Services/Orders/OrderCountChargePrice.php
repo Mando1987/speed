@@ -6,6 +6,8 @@ use App\Models\Setting;
 use App\Models\PlacePrice;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\type;
+
 class OrderCountChargePrice
 {
     private $request;
@@ -79,12 +81,11 @@ class OrderCountChargePrice
             $query->where('city_id', $this->city_id);
         })->first();
         if ($charge_price) {
-            $this->chargeprice = $charge_price;
+            //  $this->chargeprice = $charge_price;
         } else {
             $default_price = Setting::where('event', 'default_charge_price')->first();
             $this->chargeprice = $default_price->data;
         }
-        // return $this->chargeprice;
     }
 
     private function setTotalWeight()
@@ -93,6 +94,7 @@ class OrderCountChargePrice
     }
     private function setTotalOverWeight() :void
     {
+        \Log::error(getType($this->chargeprice) );
         $this->total_over_weight = $this->total_weight > $this->chargeprice->send_weight ?
                                       $this->total_weight - $this->chargeprice->send_weight : 0;
     }

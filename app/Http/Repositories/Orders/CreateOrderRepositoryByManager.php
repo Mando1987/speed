@@ -14,13 +14,7 @@ use Illuminate\View\View;
 class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
 {
     use CreateOrderTrait, FormatedResponseData;
-    /**
-     * show create page
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function create(Request $request) :View
     {
         $customersCount = Customer::all()->count();
@@ -29,11 +23,7 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
             'userData' => $request->all(),
         ]);
     }
-    /**
-     * store order in database
-     * @param \App\Http\Requests\OrderStoreFormRequest $request
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function store(OrderStoreFormRequest $request) :JsonResponse
     {
         $page = session('orderData')['page'];
@@ -43,14 +33,15 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
                 DB::beginTransaction();
                 $customerId = $this->storeCustomerData($data['customer']);
                 $reciverId = $this->storeReciverData($data['reciver'], $customerId);
-                $orderId = $this->storeOrderData(array_merge($data['order'], ['status' => 'under_preparation']), $customerId, $reciverId);
-                $this->storeOrderShippingData($data['shipping'], $orderId);
+                $order = $this->storeOrderData(array_merge($data['order'], ['status' => 'under_preparation']), $customerId, $reciverId);
+                $this->storeOrderShippingData($data['shipping'], $order->id);
                 DB::commit();
 
                 $this->forgetOrderDataFromSession();
                 return $this->responseDataJson(trans('site.added'));
             } catch (\Exception $ex) {
                 DB::rollback();
+                \Log::error($ex->getMessage());
                 return $this->responseDataJson(trans('site.failed') , 'error');
             }
         } else {

@@ -16,7 +16,7 @@ trait CreateOrderTrait
      */
     private function storeCustomerData(array $data): int
     {
-        if ($data['customerType'] == 'new') {
+        if ($data['type'] == 'new') {
             $customer = Customer::create($data['data']);
             $customer->address()->create($data['address']);
             $customerId = $customer->id;
@@ -48,7 +48,7 @@ trait CreateOrderTrait
      * @param array $data
      * @param integer $customerId
      * @param integer $reciverId
-     * @return integer orderId
+     * @return Order Order
      */
     private function storeOrderData(array $data, int $customerId, int $reciverId): Order
     {

@@ -311,7 +311,7 @@ return [
   'no_recivers_for_customer' => 'لا يوجد عملاء لهذا العميل',
   'no_recivers_for_customer_message' => 'لا يوجد عملاء لهذا العميل قم باختيار مرسل اليه جديد',
   'close' => 'اغلاق',
-  'telegram_add_order' => 'اضافة طلب جديد',
+  'telegram_add_order' => '#اضافة_طلب_جديد',
   'telegram_date' => 'التاريخ',
   'telegram_do' => 'قام',
   'telegram_do_new_order' => 'بأضافة طلب جديد',

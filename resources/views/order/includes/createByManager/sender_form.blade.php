@@ -8,27 +8,32 @@
             <div class="col-6">
                 <div class="form-group">
                     <div class="custom-control custom-radio">
-                        <input class="custom-control-input chooseType" type="radio" name="customerType" value="new" id="customerNew"
-                            checked>
-                        <label for="customerNew" class="custom-control-label">@lang('site.order_create_new_sender')</label>
+                        <input class="custom-control-input chooseType" type="radio" name="customerType" value="new"
+                            id="customerNew" checked>
+                        <label for="customerNew"
+                            class="custom-control-label">@lang('site.order_create_new_sender')</label>
                     </div>
                 </div>
             </div>
-            @if($customersCount > 0)
+            @if($customers)
             <div class="col-6 border-left">
                 <div class="form-group">
                     <div class="custom-control custom-radio">
-                        <input class="custom-control-input chooseType" type="radio" name="customerType"  value="exists" id="customerExists">
+                        <input class="custom-control-input chooseType" type="radio" name="customerType" value="exists"
+                            id="customerExists">
                         <label for="customerExists"
                             class="custom-control-label font-weight-bold">@lang('site.order_create_existing_sender')</label>
                     </div>
-                    <div class="form-group row customerTypeexists customerType" style="display: none"
-                        >
+                    <div class="form-group row customerTypeexists customerType" style="display: none">
                         <div class="col-sm-4">
                             <x-label title="{{__('site.order_create_choose_customer')}}" />
                         </div>
                         <div class="col-sm-8">
-                              <x-Customers name="customer[id]" />
+                            <select class="custom-select" name="customer_id" id="customer_id">
+                                @foreach($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->fullname }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -58,8 +63,7 @@
                         </div>
 
                         <div class="col-sm-8">
-                            <x-input name="customer[phone]" placeholder="{{__('site.phone_placholder')}}"
-                                value="" />
+                            <x-input name="customer[phone]" placeholder="{{__('site.phone_placholder')}}" value="" />
                         </div>
                     </div>
                 </div>
@@ -96,7 +100,7 @@
                             <x-label title="{{__('site.governorate')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <x-Governorates name="customer[]" data-name="customer[city_id]"/>
+                            <x-Governorates name="customer[]" data-name="customer[city_id]" />
                         </div>
                     </div>
                 </div>

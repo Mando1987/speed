@@ -56,7 +56,6 @@ trait CreateOrderTrait
         $order->customer()->associate($customerId);
         $order->reciver()->associate($reciverId);
         $order->save();
-
         return $order;
     }
     /**
@@ -65,7 +64,7 @@ trait CreateOrderTrait
      * @param integer $orderId
      * @return void
      */
-    private function storeOrderShippingData(array $data, int $orderId)
+    private function storeOrderShippingData(array $data, int $orderId) :void
     {
         $shipping = Shipping::make(array_merge(
             $data,

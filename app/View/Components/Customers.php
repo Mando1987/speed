@@ -9,13 +9,10 @@ use Illuminate\View\Component;
 class Customers extends Component
 {
     public $name;
-    public $selected;
     public $customers;
-    public function __construct($name = 'customer_id', $selected = 1)
+    public function __construct($name = 'customer_id')
     {
         $this->name = Str::contains($name, '[]')? Str::replaceFirst('[', '[customer_id', $name) : $name;
-        $this->selected = $selected;
-
         $this->customers =Customer::all();
     }
 

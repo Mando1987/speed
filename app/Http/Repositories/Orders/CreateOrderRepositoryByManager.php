@@ -17,9 +17,9 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
 
     public function create(Request $request) :View
     {
-        $customersCount = Customer::all()->count();
+        $customers = Customer::all();
         return view('order.create.createByManager', [
-            'customersCount' => $customersCount,
+            'customers' => $customers,
             'userData' => $request->all(),
         ]);
     }
@@ -36,7 +36,6 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
                 $order = $this->storeOrderData(array_merge($data['order'], ['status' => 'under_preparation']), $customerId, $reciverId);
                 $this->storeOrderShippingData($data['shipping'], $order->id);
                 DB::commit();
-
                 $this->forgetOrderDataFromSession();
                 return $this->responseDataJson(trans('site.added'));
             } catch (\Exception $ex) {

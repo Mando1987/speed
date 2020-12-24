@@ -52,11 +52,11 @@ Route::get('/test', function(){
             'caption' => 'caption',
             'entities' => '#error'
         ]);
-    Nexmo::message()->send([
-      'to'   => '+2001279728519',
-      'from' => '+2001270142656',
-      'text' => 'Using the facade to send a message.'
-  ]);
+//     Nexmo::message()->send([
+//       'to'   => '+2001279728519',
+//       'from' => '+2001270142656',
+//       'text' => 'Using the facade to send a message.'
+//   ]);
 
   //Admin::find(auth('admin')->id())->notify(new AddedNewOrder());
 //   Notification::send(

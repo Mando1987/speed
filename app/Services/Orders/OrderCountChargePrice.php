@@ -29,7 +29,7 @@ class OrderCountChargePrice
      * @param boolean $validateValues
      * @return array
      */
-    public function getOrderChargePrice(Request $request,bool $validateValues = false) :array
+    public function getOrderChargePrice(Request $request,bool $validateValues = false)
     {
         $this->request = $request;
         $this->city_id = $request->reciver_city_id;
@@ -59,7 +59,7 @@ class OrderCountChargePrice
         );
     }
 
-    private function countChargePrice() :array
+    private function countChargePrice()
     {
         $this->setPlacePrice();
         $this->setTotalWeight();
@@ -84,7 +84,7 @@ class OrderCountChargePrice
             $default_price = Setting::where('event', 'default_charge_price')->first();
             $this->chargeprice = $default_price->data;
         }
-        return $this->chargeprice;
+        // return $this->chargeprice;
     }
 
     private function setTotalWeight()

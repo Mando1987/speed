@@ -51,17 +51,22 @@ class Order extends Model
         return  trans('site.order_print_user_can_open_order_' . $this->user_can_open_order);
     }
 
-    public function scopeWithRealtionsTables(Builder $builder)
+    public function scopeWithDefaultRealtions(Builder $builder)
     {
-        $query = $builder->select('id', 'reciver_id', 'customer_id', 'created_at', 'status')
+        $query =  $builder->select('id', 'reciver_id', 'customer_id', 'created_at', 'status')
                ->with(['reciver:id,fullname,phone,city_id', 'shipping' => function($q){
                  $q->select('id','order_id','charge_on','charge_price','order_num','customer_price', 'total_price');
             }]);
-         (request()->adminIsManager) ?
-           $query->with(['customer:id,fullname,phone,city_id', 'customer.city']) :
-           $query->with(['reciver.city']);
-           return $query;
+        return $query;
+    }
 
+    public function scopeWithCustomerRelationship(Builder $builder)
+    {
+        return $builder->with(['customer:id,fullname,phone,city_id', 'customer.city']);
+    }
+    public function scopeWithReciverCityRelationship(Builder $builder)
+    {
+        return $builder->with(['reciver.city']);
     }
 
     public function scopeWhereAdminIsCustomer(Builder $builder)

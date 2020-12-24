@@ -57,20 +57,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     }
     public function getAll(Request $request)
     {
-        $this->setViewSetting($request);
 
-        $orders = $this->order::withRealtionsTables()
-            ->whereAdminIsCustomer()->latest()->paginate($this->paginate);
-
-        return view(
-            'order.index.' . $request->adminType,
-            [
-                'orders' => $orders,
-                'view' => $this->view,
-                'status' => $request->status ?? 'all',
-                'search' => $request->search,
-            ]
-        );
 
     }
     public function showById(Request $request, $id)
@@ -129,48 +116,9 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 
     }
 
-    private function setViewSetting(Request $request)
-    {
-        $viewSetting = session('viewSetting');
-        $this->view = $request->view ?? $viewSetting['view'] ?? 'list';
-        $this->paginate = $request->paginate ?? $viewSetting['paginate'] ?? 10;
-        session(['viewSetting' => ['view' => $this->view, 'paginate' => $this->paginate]]);
-    }
 
-    public function setAddressRelationship($model, $relation)
-    {
-        $relations = ['reciver' => 'App\\Models\\Reciver', 'customer' => 'App\\Models\\Customer'];
-        $this->address = $this->address ?? Address::get();
 
-        $this->address->map(function ($address) use ($model, $relation, $relations) {
-            if ($address->addressable_type == $relations[$relation] && $address->addressable_id == $model->$relation->id) {
-                $model->$relation->address = $address;
-            }
-        });
 
-        return $model;
-    }
-
-    public function setCityRelationship($model, $relation)
-    {
-        $this->city = $this->city ?? City::whereIn('id', $this->cities_id)->get();
-        $this->city->map(function ($city) use ($model, $relation) {
-            if ($city->id == $model->$relation->city_id) {
-                return $model->$relation->city = $city;
-            }
-        });
-        return $model;
-    }
-    public function setGovernorateRelationship($model, $relation)
-    {
-        $this->governorate = $this->governorate ?? Governorate::whereIn('id', $this->governorates_id)->get();
-        $this->governorate->map(function ($governorate) use ($model, $relation) {
-            if ($governorate->id == $model->$relation->governorate_id) {
-                return $model->$relation->governorate = $governorate;
-            }
-        });
-        return $model;
-    }
     public function editOrder(Request $request)
     {
         $editType = [

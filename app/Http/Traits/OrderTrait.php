@@ -1,6 +1,9 @@
 <?php
 namespace App\Http\Traits;
 
+use App\Models\Order;
+use Illuminate\Database\Eloquent\Builder;
+
 trait OrderTrait
 {
     protected $orderStatuses = [
@@ -30,7 +33,7 @@ trait OrderTrait
     private $cities_id = [];
     private $governorates_id = [];
 
-
+    private $orderQueryBuilder;
 
 
 }

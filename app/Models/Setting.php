@@ -12,6 +12,6 @@ class Setting extends Model
     // protected $casts = ['data' => 'object'];
     public function getDataAttribute($value)
     {
-       return json_decode($value);
+       return unserialize($value);
     }
 }

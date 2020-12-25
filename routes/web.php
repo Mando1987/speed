@@ -31,6 +31,7 @@ Route::post('/facebook/register' , [RegisterController::class , 'FacebookRegiste
 
 Route::get('/test', function(){
 
+   Artisan::call('backup:run');
 //   $p = app(GovernorateClass::class);
 //   $p->getAllGovernorates();
 //   $p->getFirstGovernorateWithCities();
@@ -40,18 +41,18 @@ Route::get('/test', function(){
  //return Cache::get('key');
 
 //   dd(Telegram::class);
-   $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
-        $tele->sendMessage([
-            'chat_id' => '-1001175803813',
-            'text' => 'test #error',
-            'parse_mode' => 'HTML',
-            'disable_web_page_preview' => '',
-            'disable_notification' => '',
-            'reply_to_message_id' => '{info:mando}',
-            'reply_markup' => '',
-            'caption' => 'caption',
-            'entities' => '#error'
-        ]);
+  //  $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
+  //       $tele->sendMessage([
+  //           'chat_id' => '-1001175803813',
+  //           'text' => 'test #error',
+  //           'parse_mode' => 'HTML',
+  //           'disable_web_page_preview' => '',
+  //           'disable_notification' => '',
+  //           'reply_to_message_id' => '{info:mando}',
+  //           'reply_markup' => '',
+  //           'caption' => 'caption',
+  //           'entities' => '#error'
+  //       ]);
 //     Nexmo::message()->send([
 //       'to'   => '+2001279728519',
 //       'from' => '+2001270142656',

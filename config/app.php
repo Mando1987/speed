@@ -182,6 +182,9 @@ return [
 
         App\Providers\ComposerServiceProvider::class,
         App\Providers\RepositoriesProvider::class,
+        App\Providers\GoogleDriveServiceProvider::class,
+        App\Providers\DropboxServiceProvider::class,
+
 
     ],
 

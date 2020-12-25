@@ -61,6 +61,13 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
+            'dump' => [
+                'dump_binary_path' => 'D:\wamp64\bin\mysql\mysql5.7.31\bin',
+                        'excludeTables' => [
+                            'customers'
+                         ]
+                    ],
+
         ],
 
         'pgsql' => [

@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            @if($customers)
+            @if($customers->count() > 0)
             <div class="col-6 border-left">
                 <div class="form-group">
                     <div class="custom-control custom-radio">
@@ -83,7 +83,6 @@
                         <div class="col-sm-4">
                             <x-label title="{{__('site.other_phone')}}" />
                         </div>
-
                         <div class="col-sm-8">
                             <x-input name="customer[other_phone]" value=""
                                 placeholder="{{__('site.other_phone_placholder')}}" />

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Repositories\Orders;
 
+use App\Events\ServerErrorEvent;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
@@ -9,6 +10,7 @@ use App\Http\Traits\FormatedResponseData;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Traits\Orders\CreateOrderTrait;
 use App\Http\Interfaces\CreateOrderRepositoryInterface;
+use App\Http\Services\AlertFormatedDataJson;
 use Illuminate\View\View;
 
 class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
@@ -37,11 +39,16 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
                 $this->storeOrderShippingData($data['shipping'], $order->id);
                 DB::commit();
                 $this->forgetOrderDataFromSession();
-                return $this->responseDataJson(trans('site.added'));
+
+                return (new AlertFormatedDataJson('validateOrder'))->alertBody(
+                   'includes.alerts.order',
+                   trans('site.added')
+                )->formatedData();
+
             } catch (\Exception $ex) {
                 DB::rollback();
                 \Log::error($ex->getMessage());
-                return $this->responseDataJson(trans('site.failed') , 'error');
+                return AlertFormatedDataJson::alertServerError('order.create');
             }
         } else {
             return response()->json(['showClass' => $page, 'status' => 200]);

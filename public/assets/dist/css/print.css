@@ -3,13 +3,11 @@
 }
 
 @media print {
-
     *,
     body {
         font-family: "Cairo", sans-serif;
-        break-inside: avoid;
+        break-inside: avoid-page;
     }
-
     @page vertical {
         size: A4;
         margin: 0mm;
@@ -18,20 +16,25 @@
         size: A4;
         margin: 0mm;
         }
-
-
     .hide-in-print {
         display: none;
     }
-
     #print {
         display: block;
         font-size: 16px;
-        padding: 5px;
+        padding: 2px;
         position: relative;
         overflow: hidden !important;
     }
     #print .tdBlack {
         background-color: black;
+    }
+    #print .card-outline{
+        border-top: 0 !important;
+    }
+    #print .card{
+       width : 100%;
+       margin: 0 !important;
+       padding: 0 !important;
     }
 }

@@ -8,12 +8,7 @@ use Illuminate\Http\JsonResponse;
 class ValidateCustomer
 {
     use FormatedResponseData, GetAllRecivers;
-    /**
-     *
-     * @param [type] $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public static function handle($request) :JsonResponse
     {
         $data = $request->validated();
@@ -32,6 +27,5 @@ class ValidateCustomer
             'showClass' => 'reciver', 'allRecivers' => static::getRecivers($customerId),
         ]);
         return response()->json($data);
-
     }
 }

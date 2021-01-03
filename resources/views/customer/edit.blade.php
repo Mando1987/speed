@@ -7,7 +7,6 @@
         <div class="col-md-12">
             <!-- jquery validation -->
             <div class="card card-purple card-outline">
-
                 <!-- form start -->
                 <form role="form" id="quickForm" action="{{ route('customer.update' , $data['customer']['id']) }}"
                     method="POST" enctype="multipart/form-data">
@@ -36,7 +35,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md">
                                 <div class="form-group row">
                                     <div class="col-sm-4">
@@ -49,35 +47,27 @@
                                 </div>
                             </div>
                         </div> <!-- end of row-->
-
                         <div class="row">
                             <div class="col-md">
-
                                 <div class="form-group row">
                                     <div class="col-sm-4">
                                         <x-label title="{{__('site.phone')}}" />
                                     </div>
-
                                     <div class="col-sm-8">
                                         <x-input name="admin[phone]" />
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-md">
-
                                 <div class="form-group row">
                                     <div class="col-sm-4">
                                         <x-label title="{{__('site.other_phone')}}" />
                                     </div>
-
                                     <div class="col-sm-8">
                                         <x-input name="admin[other_phone]" />
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                         <div class="row">
                             <div class="col-md">
@@ -100,9 +90,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div> <!-- end of row-->
-
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group row">
@@ -128,7 +116,6 @@
                                 </div>
                             </div>
                         </div><!-- end of row-->
-
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group row">
@@ -136,7 +123,7 @@
                                         <x-label title="{{__('site.governorate')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-Governorates name="customer[]" />
+                                        <x-Governorates name="customer[]" data-name="customer[city_id]"/>
                                     </div>
                                 </div>
                             </div>
@@ -280,8 +267,7 @@
                     $('[name="' + parentKey + '[' + key + ']"]').val(val);
                 });
             });
-            $('#city_id').attr('data', data.customer.city_id);
-            $('#governorate_id').trigger('change');
+            $('.governorate_id').trigger('change',[data.customer.city_id]);
         });
 </script>
 @endpush

@@ -64,13 +64,11 @@
         </footer>
         <aside class="control-sidebar control-sidebar-dark"></aside>
 
-        <div class="modal fade " id="modal-default" style="display: none;" aria-hidden="true">
+        <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered p-0 modal-lg modal-dialog-scrollable">
                 <div class="modal-content p-0">
                     <div class="modal-body p-0">
-
                     </div>
-
                 </div>
                 <!-- /.modal-content -->
             </div>
@@ -79,9 +77,7 @@
         <div class="modal fade" id="modal-print" style="display: none;" aria-hidden="true">
             <div class="modal-dialog p-0 modal-xl">
                 <div class="modal-content p-0">
-                    <div class="modal-body p-0">
-
-                    </div>
+                    <div class="modal-body p-0"></div>
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">@lang('site.cancel')</button>
                         <button class="btn btn-success ml-1 button-print">
@@ -112,8 +108,7 @@
     <script src="{{asset('assets/dist/js/main.js')}}"></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     <script>
-
-      // Enable pusher logging - don't include this in production
+        // Enable pusher logging - don't include this in production
       Pusher.logToConsole = false;
 
       var pusher = new Pusher('2fb676fe72445a3779d6', {

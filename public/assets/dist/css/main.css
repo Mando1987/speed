@@ -27,3 +27,6 @@
     z-index: 1;
     margin-top: 8px;
 }
+.sweet-alert-content{
+    padding: 0 !important;
+}

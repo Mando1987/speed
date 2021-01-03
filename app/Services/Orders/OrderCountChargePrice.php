@@ -6,8 +6,6 @@ use App\Models\Setting;
 use App\Models\PlacePrice;
 use Illuminate\Http\Request;
 
-use function PHPSTORM_META\type;
-
 class OrderCountChargePrice
 {
     private $request;
@@ -30,7 +28,7 @@ class OrderCountChargePrice
      * @param Request $request
      * @param boolean $validateValues
      * @return array
-     */
+    */
     public function getOrderChargePrice(Request $request,bool $validateValues = false)
     {
         $this->request = $request;
@@ -122,12 +120,10 @@ class OrderCountChargePrice
         $this->total_price =  $this->shipping['price'] + $this->setAddtionPrice();
     }
 
-
     private function checkIfChargeOnReciver() :bool
     {
         return $this->shipping['charge_on'] == 'reciver' ? true:false;
     }
-
     private function setDiscount()
     {
         $this->discount =  $this->shipping['discount'] ?? 0;

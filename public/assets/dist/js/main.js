@@ -5,25 +5,27 @@ $(document).ready(function () {
     $("[data-mask]").inputmask();
     /**
      * get all cities for any governorate
-    */
-    $(".governorate_id").change(function () {
+     */
+    $(".governorate_id").change(function (event, cityId = null) {
         var governorate_id = $(this).val();
-        var citySelectBox = $('[name="'+ $(this).data('name') +'"]');
+        var citySelectBox = $('[name="' + $(this).data("name") + '"]');
         citySelectBox.html("");
-        $.get(
-            "/get-cities",{ governorate_id: governorate_id},
-            (data) => {
-                $.each(
-                    data,(_index, city) => {
-                        citySelectBox.append(
-                            $("<option></option>").val(city.id).html(city.name)
-                        );
-                    },
-                    "json"
-                );
+        $.get("/get-cities", { governorate_id: governorate_id }, (data) => {
+            $.each(
+                data,
+                (_index, city) => {
+                    citySelectBox.append(
+                        $("<option></option>").val(city.id).html(city.name)
+                    );
+                },
+                "json"
+            );
+            //change city box value
+            if (cityId) {
+                citySelectBox.val(cityId);
             }
-        );
-    });// end of $(".governorate_id")
+        });
+    }); // end of $(".governorate_id")
 
     $(document).on("submit", ".addPlacePrice", function (e) {
         e.preventDefault();
@@ -85,19 +87,6 @@ $(document).ready(function () {
         return false;
     });
     /// print order num
-    $(document).on("click", ".print", function () {
-        $.get(this.href, {}, function (data) {
-            $("#print").html(data);
-            $("#modal-print .modal-body").html("");
-            $("#modal-print .modal-body").html(data);
-            $("#modal-print").modal("show");
-        });
-        return false;
-    });
-    $(document).on("click", ".show-view-setting", function () {
-        $("#option-modal").modal("show");
-        return false;
-    });
     $(document).on("click", ".button-print", function () {
         $("#modal-print").modal("hide");
         $("#modal-print").on("hidden.bs.modal", function (e) {
@@ -120,11 +109,11 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (data) {
-                console.log(data)
-                window.location.assign(data.urlRedirect);
+                console.log(data);
+                // window.location.assign(data.urlRedirect);
             },
             error: function (reject) {
-                console.log(reject)
+                console.log(reject);
                 if (reject.status == 500) {
                     Swal.fire({
                         title: reject.responseJSON.message,
@@ -159,7 +148,7 @@ $(document).ready(function () {
     });
     /**
      *  order add
-    */
+     */
 });
 ////////////////////////////////////////////////////////////////////////////
 $("#selectAllPlaces").click(function () {
@@ -216,7 +205,6 @@ $("select[name=paginate]").change(function () {
     $("#placeIndexForm").submit();
 });
 ////////////////////////////////////////////////////////////////////////////
-
 
 function newFunction(data) {
     $("#modal-default .modal-body").html("");

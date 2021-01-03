@@ -73,6 +73,7 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
         if ($orderData) {
             $this->cities_id[] = $orderData->reciver->city_id;
             $this->governorates_id[] = $orderData->reciver->governorate_id;
+
             $request->adminIsManager ?
             ($this->cities_id[] = $orderData->customer->city_id)
             && ($this->governorates_id[] = $orderData->customer->governorate_id)

@@ -2,20 +2,18 @@
 
 namespace App\View\Components;
 
-use App\DryClasses\GovernorateClass;
-use App\Models\Governorate;
+use App\Http\Services\GovernorateService;
 use Illuminate\Support\Str;
-
 use Illuminate\View\Component;
 
 class Governorates extends Component
 {
     public $name;
     public $governorates;
-    public function __construct($name = 'governorate_id', GovernorateClass $governorateClass)
+    public function __construct($name = 'governorate_id', GovernorateService $governorateService)
     {
-        $this->name = Str::contains($name, '[]')? Str::replaceFirst('[', '[governorate_id', $name) : $name;
-        $this->governorates = $governorateClass->getAllGovernorates();
+        $this->name = Str::contains($name, '[]') ? Str::replaceFirst('[', '[governorate_id', $name) : $name;
+        $this->governorates = $governorateService->getAllGovernorates();
     }
 
     public function render()

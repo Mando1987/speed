@@ -10,4 +10,5 @@ interface OrderRepositoryInterface
     public function showById(Request $request, $id);
     public function editOrder(Request $request);
     public function update(OrderEditFormRequest $orderEditFormRequest, $id);
+    public function printInvoice(Request $request);
 }

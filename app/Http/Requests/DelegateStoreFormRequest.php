@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Services\Delegates\DelegateSaveUserInputDataService;
 use Illuminate\Validation\Rule;
 
 class DelegateStoreFormRequest extends FormRequest
@@ -15,14 +14,12 @@ class DelegateStoreFormRequest extends FormRequest
         $this->merge([
 
             'admin' => array_merge($this->get('admin'), ['is_active' => isset($this->get('admin')['is_active']) ? 1 : 0]),
-
         ]);
     }
 
     public function rules()
     {
         return [
-
             'admin.fullname' => 'required|string|max:50|unique:delegates,fullname',
             'admin.phone' => 'required|unique:delegates,phone|max:11',
             'admin.other_phone' => 'nullable|unique:delegates,other_phone|max:11',

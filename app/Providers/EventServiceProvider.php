@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Events\AddNewAdmin;
 use App\Events\CreateNewOrder;
-use App\Listeners\LogAddNewAdmin;
+use App\Events\ServerErrorEvent;
+use App\Listeners\AlertServerErrorListener;
 use App\Listeners\SendNotificationToTelegram;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,9 +22,13 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        CreateNewOrder::class =>[
+        CreateNewOrder::class => [
             SendNotificationToTelegram::class,
-        ]
+        ],
+        ServerErrorEvent::class => [
+            AlertServerErrorListener::class,
+        ],
+
     ];
 
     /**

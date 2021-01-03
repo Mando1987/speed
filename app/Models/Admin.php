@@ -12,7 +12,7 @@ class Admin extends Authenticatable
 
     protected $guarded = [];
 
-    protected $hidden = ['password' , 'remember_token' , 'email_verified_at' , 'updated_at' , 'pivot'];
+    protected $hidden = ['password' , 'remember_token' , 'email_verified_at' , 'updated_at' , 'pivot','api_token'];
 
     public function role()
     {
@@ -26,6 +26,10 @@ class Admin extends Authenticatable
     public function delegate()
     {
         return $this->hasOne(Delegate::class);
+    }
+    public function viewSetting()
+    {
+        return $this->hasOne(ViewSetting::class);
     }
 
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Repositories\Factories\CreateOrderFactory;
 use App\Http\Repositories\Factories\OrderFactory;
+use App\Http\Repositories\Orders\OrderViewShowStore;
 use App\Http\Repositories\Orders\ValidateCustomer;
 use App\Http\Repositories\Orders\ValidateReciver;
 use App\Http\Requests\OrderEditFormRequest;
@@ -14,10 +15,10 @@ use App\Http\Requests\ValidateOrderCustomerFormRequest;
 use App\Http\Requests\ValidateOrderReciverFormRequest;
 use App\Services\Orders\OrderCountChargePrice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class OrderController extends Controller
 {
-
     public function index(Request $request)
     {
         return OrderFactory::getInstance()->getAll($request);
@@ -50,8 +51,9 @@ class OrderController extends Controller
         return app(OrderCountChargePrice::class)->getOrderChargePrice($request, true);
     }
 
-    function print(Request $request) {
-        // return $this->OrderRepositoryInterface->print($request);
+    public function printInvoice(Request $request)
+    {
+        return OrderFactory::getInstance()->printInvoice($request);
     }
 
     public function viewEditPanel(Request $request)
@@ -65,12 +67,21 @@ class OrderController extends Controller
     public function update(OrderEditFormRequest $orderEditFormRequest, $id)
     {
         return $this->OrderRepositoryInterface->update($orderEditFormRequest, $id);
-
     }
 
     public function viewDeleteDaialog($id)
     {
         return view('includes.delete');
+    }
+
+    public function showViewSetting(Request $request)
+    {
+        return OrderViewShowStore::show($request);
+    }
+
+    public function storeViewSetting(Request $request)
+    {
+        return OrderViewShowStore::store($request);
     }
 
 }

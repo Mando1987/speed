@@ -4,7 +4,8 @@ $(document).ready(function () {
     /**
      * OrderFormSubmit to add new order
      */
-    $(document).on("submit", ".OrderFormSubmit", function (e) {
+    $(document).on("submit", ".OrderFormSubmit", function (e)
+    {
         e.preventDefault();
         var form = this;
         var formdata = new FormData(form);
@@ -95,6 +96,9 @@ var orderFunctions = {
     validateOrderError: function (responseData) {
         setErrorsClassToInputsFildes(responseData.errors);
     },
+     serverError: function(responseData){
+       alertBody(responseData.alert);
+    }
 };
 
 function toggleTabPaneClass(showClass) {
@@ -128,6 +132,7 @@ function setErrorsClassToInputsFildes(errors) {
             '<span class="error invalid-feedback">' + val[0] + "</span>"
         );
     });
+
 }
 /**
  * select between new and exists for customer or reciver

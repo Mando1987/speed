@@ -76,8 +76,8 @@ class LoginController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
-
-        if ($response = $this->loggedOut($request)) {
+        $response = $this->loggedOut($request);
+        if ($response) {
             return $response;
         }
 

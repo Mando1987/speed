@@ -29,7 +29,7 @@
                             <x-label title="{{__('site.order_create_choose_customer')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <select class="custom-select" name="customer_id" id="customer_id">
+                            <select class="custom-select" name="customer[id]" id="customer_id">
                                 @foreach($customers as $customer)
                                 <option value="{{ $customer->id }}">{{ $customer->fullname }}</option>
                                 @endforeach
@@ -55,13 +55,11 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md">
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <x-label title="{{__('site.phone')}}" />
                         </div>
-
                         <div class="col-sm-8">
                             <x-input name="customer[phone]" placeholder="{{__('site.phone_placholder')}}" value="" />
                         </div>

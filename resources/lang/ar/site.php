@@ -319,5 +319,9 @@ return [
   'telegram_details' =>'التفاصيل',
   'telegram_review_order' =>'لمراجعة الطلب ',
   'telegram_click_here' =>'أضغط هنا',
+  'retry' => 'اعادة المحاولة',
+
+  'alert_add_customer' => 'اضافة عميل جديد',
+  'alert_view_customer' => 'عرض كافة العملاء',
 
 ];

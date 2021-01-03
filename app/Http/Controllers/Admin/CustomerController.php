@@ -2,61 +2,51 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Customer;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Interfaces\CustomerRepositoryInterface;
+use App\Http\Repositories\Factories\CustomerFetshDataFactory;
 use App\Http\Requests\CustomerFormRequest;
-use App\Http\Traits\GovernorateTrait;
 use App\Http\Requests\CustomerStoreFormRequest;
 use App\Http\Requests\CustomerUpdateFormRequest;
+use App\Http\Traits\GovernorateTrait;
+use App\Models\Customer;
 use App\Services\customers\CustomerEditUpdateService;
-use App\Services\Customers\CustomersFetshDataService;
-use App\Services\customers\CustomerCreateStoreService;
+use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    use GovernorateTrait;
+    private $customerRepository;
 
-    private $customerRepositoryInterface;
-
-    public function __construct(CustomerRepositoryInterface  $customerRepositoryInterface)
+    public function __construct(CustomerRepositoryInterface $customerRepository)
     {
-        $this->customerRepositoryInterface = $customerRepositoryInterface;
+        $this->customerRepository = $customerRepository;
     }
-
     public function index(Request $request)
     {
-         return app(CustomersFetshDataService::class)->index($request);
+        return CustomerFetshDataFactory::getInstance()->getAll($request);
     }
-
     public function create()
     {
-        return app(CustomerCreateStoreService::class)->create();
+        return $this->customerRepository->create();
     }
-
     public function store(CustomerStoreFormRequest $request)
     {
-        return app(CustomerCreateStoreService::class)->store($request);
+        return $this->customerRepository->store($request);
     }
-
     public function show($id)
     {
     }
-
     public function edit(Customer $customer)
     {
-        return app(CustomerEditUpdateService::class)->edit($customer);
+        return $this->customerRepository->edit($customer);
     }
-
     public function update(CustomerUpdateFormRequest $request, Customer $customer)
     {
-        return app(CustomerEditUpdateService::class)->update($request, $customer);
+        return $this->customerRepository->update($request, $customer);
     }
-
-    public function updateByOrder(CustomerFormRequest $customerFormRequest , $id)
+    public function updateByOrder(CustomerFormRequest $customerFormRequest, $id)
     {
-      return $this->customerRepositoryInterface->updateByOrder($customerFormRequest , $id);
+        return $this->customerRepository->updateByOrder($customerFormRequest, $id);
     }
 
     public function destroy($id)

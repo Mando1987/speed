@@ -11,7 +11,6 @@ class Shipping extends Model
 
     protected $appends = ['final_price'];
 
-
     public function order()
     {
         return $this->belongsTo(Order::class);
@@ -19,11 +18,11 @@ class Shipping extends Model
 
     public function getFinalPriceAttribute()
     {
-        return request()->adminIsManager? $this->total_price: $this->customer_price;
+        return request()->adminIsManager ? $this->total_price : $this->customer_price;
     }
     public function getChargeOn()
     {
-       return  trans('site.order_print_charge_on_' . $this->charge_on);
+        return trans('site.order_print_charge_on_' . $this->charge_on);
     }
 
     // public function setOrderNumAttribute($value = null)

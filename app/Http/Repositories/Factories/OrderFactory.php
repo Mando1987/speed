@@ -3,22 +3,21 @@ namespace App\Http\Repositories\Factories;
 
 use App\Http\Interfaces\BaseFactoryInterface;
 use App\Http\Interfaces\OrderRepositoryInterface;
-use App\Http\Traits\FactoryTrait;
+use App\Http\Repositories\Orders\OrderRepositoryByCustomer;
+use App\Http\Repositories\Orders\OrderRepositoryByManager;
+use App\Models\Order;
 
 class OrderFactory implements BaseFactoryInterface
 {
-    use FactoryTrait;
-    /**
-     * @var OrderRepositoryInterface
-     */
-    private static $abstract = OrderRepositoryInterface::class;
-    /**
-     * getInstance from concreate class
-     *
-     * @return \App\Http\Interfaces\OrderRepositoryInterface
-     */
     public static function getInstance() : OrderRepositoryInterface
     {
-       return static::buildConcreateClass(static::$abstract);
+        switch(request()->adminType){
+            case 'manager':
+                return new OrderRepositoryByManager(new Order);
+            break;
+            case 'customer':
+                return new OrderRepositoryByCustomer(new Order);
+            break;
+        }
     }
 }

@@ -108,8 +108,8 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                // 'backup',
-                // 'google_backups',
+                 'backup',
+                 'google',
                 'dropbox',
             ],
         ],

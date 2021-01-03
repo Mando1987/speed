@@ -35,7 +35,6 @@ class Button extends Component
 
     public function __construct($type = 'default', $disabled = false, $class = '', $route = '', $text = '')
     {
-        //
         $this->type = $type;
         $this->disabled = $disabled == false ? null : true;
         $this->class = $class;

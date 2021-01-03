@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
 {
-    const DEFAULT_PAGINATE = 10;
+    private $paginateCount = 10;
     protected $city;
     protected $governorate;
     private $paginate;
@@ -30,7 +30,7 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
     public function getAll(Request $request)
     {
         $this->governorate_id = $request->governorate_id ?? 1;
-        $this->paginate = $request->paginate ?? static::DEFAULT_PAGINATE;
+        $this->paginate = $request->paginate ?? $this->paginateCount;
         $this->search = $request->search ?? false;
 
         $cities = $this->city::with('governorate')->where(function ($query) {
@@ -38,8 +38,8 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
                 return $q->when($this->search, function ($qsearsh) {
                     return $qsearsh->where('city_name', 'LIKE', "%{$this->search}%")
                         ->orWhere('city_name_en', 'LIKE', "%{$this->search}%");
-                })->when(!$this->search,function($qWithGovernorate){
-                   return $qWithGovernorate->where('governorate_id', $this->governorate_id);
+                })->when(!$this->search, function ($qWithGovernorate) {
+                    return $qWithGovernorate->where('governorate_id', $this->governorate_id);
                 });
             });
         })->paginate($this->paginate);

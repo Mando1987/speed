@@ -7,9 +7,8 @@
         <div class="col-md-12">
             <!-- jquery validation -->
             <div class="card card-purple card-outline">
-
                 <!-- form start -->
-                <form role="form" id="quickForm" action="{{ route('customer.store') }}" method="POST"
+                <form role="form" id="customerForm" action="{{ route('customer.store') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('POST')
@@ -32,50 +31,39 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md">
                                 <div class="form-group row">
                                     <div class="col-sm-4">
                                         <x-label title="{{__('site.user_name')}}" />
                                     </div>
-
                                     <div class="col-sm-8">
                                         <x-input name="admin[user_name]" />
                                     </div>
                                 </div>
                             </div>
                         </div> <!-- end of row-->
-
                         <div class="row">
                             <div class="col-md">
-
                                 <div class="form-group row">
                                     <div class="col-sm-4">
                                         <x-label title="{{__('site.phone')}}" />
                                     </div>
-
                                     <div class="col-sm-8">
                                         <x-input name="admin[phone]" />
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-md">
-
                                 <div class="form-group row">
                                     <div class="col-sm-4">
                                         <x-label title="{{__('site.other_phone')}}" />
                                     </div>
-
                                     <div class="col-sm-8">
                                         <x-input name="admin[other_phone]" />
                                     </div>
                                 </div>
-
                             </div>
-
                         </div><!-- end of row-->
-
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group row">
@@ -97,7 +85,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div><!-- end of row-->
                         <div class="row">
                             <div class="col-md">
@@ -120,9 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div> <!-- end of row-->
-
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group row">
@@ -156,7 +141,7 @@
                                         <x-label title="{{__('site.governorate')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-Governorates name="customer[]" />
+                                        <x-Governorates name="customer[]" data-name="customer[city_id]" />
                                     </div>
                                 </div>
                             </div>
@@ -294,8 +279,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    // $('#governorate_id').val(14);
-
-</script>
+<script src="{{asset('assets/dist/js/customer.js')}}"></script>
 @endpush

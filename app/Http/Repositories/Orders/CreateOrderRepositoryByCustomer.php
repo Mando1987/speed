@@ -1,17 +1,18 @@
 <?php
 namespace App\Http\Repositories\Orders;
 
-use App\Events\CreateNewOrder;
-use App\Http\Interfaces\CreateOrderRepositoryInterface;
-use App\Http\Requests\OrderStoreFormRequest;
-use App\Http\Traits\FormatedResponseData;
-use App\Http\Traits\Orders\CreateOrderTrait;
-use App\Models\Reciver;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
 use Log;
+use App\Models\Reciver;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Events\CreateNewOrder;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use App\Http\Traits\FormatedResponseData;
+use App\Http\Requests\OrderStoreFormRequest;
+use App\Http\Services\AlertFormatedDataJson;
+use App\Http\Traits\Orders\CreateOrderTrait;
+use App\Http\Interfaces\CreateOrderRepositoryInterface;
 
 class CreateOrderRepositoryByCustomer implements CreateOrderRepositoryInterface
 {
@@ -39,11 +40,15 @@ class CreateOrderRepositoryByCustomer implements CreateOrderRepositoryInterface
                 DB::commit();
                 event(new CreateNewOrder($order->load('customer')));
                 $this->forgetOrderDataFromSession();
-                return $this->responseDataJson(trans('site.added'));
+
+                return (new AlertFormatedDataJson('validateOrder'))->alertBody(
+                   'includes.alerts.order',
+                   trans('site.added')
+                )->formatedData();
             } catch (\Exception $ex) {
                 DB::rollback();
                 Log::error($ex->getMessage());
-                return $this->responseDataJson(trans('site.failed'), 'error');
+                return AlertFormatedDataJson::alertServerError('order.create');
             }
         } else {
             return response()->json(['showClass' => $page, 'status' => 200]);

@@ -55,7 +55,6 @@ class CustomerStoreFormRequest extends FormRequest
 
     public function validated()
     {
-
         return array_merge($this->validator->validated(), [
             'image'  =>  $this->image ?? 'default.png',
         ]);

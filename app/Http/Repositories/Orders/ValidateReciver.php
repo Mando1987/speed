@@ -9,12 +9,7 @@ use App\Http\Traits\Orders\GetAllRecivers;
 class ValidateReciver
 {
     use FormatedResponseData, GetAllRecivers;
-    /**
-     *
-     * @param [type] $request
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public static function handle($request) :JsonResponse
     {
         $data = $request->validated();

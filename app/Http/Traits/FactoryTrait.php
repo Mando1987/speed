@@ -12,9 +12,12 @@ trait FactoryTrait
      */
     private static function buildConcreateClass($abstract)
     {
-        $concreateClass = config(sprintf('factory_classes.%s.%s', $abstract, request()->adminType));
+        $configeFile = sprintf('factory_classes.%s.%s', $abstract, request()->adminType);
+
+        $concreateClass = config($configeFile.'.class');
+        $concreateClassArgs = config($configeFile.'.args') ?? [];
         if ($concreateClass && class_exists($concreateClass)) {
-            return (new $concreateClass);
+            return (new $concreateClass(...$concreateClassArgs));
         }
         return sprintf('concreate class for abstract [%s] not exists check file [%s]',
             $abstract, 'config\\factory_classes.php'

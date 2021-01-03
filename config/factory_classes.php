@@ -6,14 +6,16 @@ use App\Http\Repositories\Orders\CreateOrderRepositoryByCustomer;
 use App\Http\Repositories\Orders\CreateOrderRepositoryByManager;
 use App\Http\Repositories\Orders\OrderRepositoryByCustomer;
 use App\Http\Repositories\Orders\OrderRepositoryByManager;
+use App\Models\Order;
+
 /**
  *  @return array
  */
 return [
     OrderRepositoryInterface::class =>
     [
-        'manager' => OrderRepositoryByManager::class,
-        'customer' => OrderRepositoryByCustomer::class,
+        'manager'  => ['class'=> OrderRepositoryByManager::class, 'args' => [new Order]],
+        'customer' => ['class'=> OrderRepositoryByCustomer::class, 'args' => [new Order]],
     ],
     CreateOrderRepositoryInterface::class =>
     [

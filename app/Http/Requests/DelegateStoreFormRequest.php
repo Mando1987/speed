@@ -13,18 +13,31 @@ class DelegateStoreFormRequest extends FormRequest
     {
         $this->merge([
 
-            'admin' => array_merge($this->get('admin'), ['is_active' => isset($this->get('admin')['is_active']) ? 1 : 0]),
+            'admin' => array_merge(
+                $this->get('admin'),
+                [
+                    'is_active' => isset($this->is_active) ? 1 : 0,
+                    'password'  => bcrypt($this->password),
+                    'type'      => 'delegate',
+                ]
+            ),
         ]);
     }
 
     public function rules()
     {
         return [
-            'admin.fullname' => 'required|string|max:50|unique:delegates,fullname',
-            'admin.phone' => 'required|unique:delegates,phone|max:11',
-            'admin.other_phone' => 'nullable|unique:delegates,other_phone|max:11',
-            'admin.is_active' => 'required',
+            'admin.phone' => 'required|unique:admins,phone|max:11',
+            'admin.other_phone' => 'nullable|unique:admins,other_phone|max:11',
+            'admin.user_name' => 'required|string|unique:admins,user_name|max:20',
+            'admin.email' => 'required|email|unique:admins,email',
+            'admin.password' => 'nullable',
+            'admin.type' => 'nullable',
+            'password' => 'required|confirmed|min:6',
+            'password_confirmation' => 'required|same:password',
+            'is_active' => 'nullable',
 
+            'delegate.fullname' => 'required|string|max:50|unique:delegates,fullname',
             'delegate.qualification' => 'required|string|max:50',
             'delegate.national_id' => 'required|string|unique:delegates,national_id|min:14|max:14',
             'delegate.social_status' => ['required', Rule::in($this->status)],
@@ -52,6 +65,5 @@ class DelegateStoreFormRequest extends FormRequest
             'image' => $this->image ?? 'default.png',
             'national_image' => $this->national_image ?? 'default.png',
         ];
-
     }
 }

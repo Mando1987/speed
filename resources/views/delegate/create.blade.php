@@ -11,7 +11,7 @@
                         <div class="row">
                             <div class="form-group col-md-2">
                                 <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="is_active" name="admin[is_active]" checked>
+                                    <input type="checkbox" class="custom-control-input" id="is_active" name="is_active" checked>
                                     <label class="custom-control-label" for="is_active">@lang('site.delegate_active')</label>
                                 </div>
                             </div>
@@ -23,8 +23,7 @@
                                         <x-label title="{{__('site.fullname')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                    <x-input name="admin[fullname]" value="{{ old('admin.fullname') }}"
-                                            placeholder="" />
+                                    <x-input name="delegate[fullname]" placeholder="" />
                                     </div>
                                 </div>
                             </div>
@@ -34,8 +33,52 @@
                                         <x-label title="{{__('site.qualification')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="delegate[qualification]" value="{{ old('delegate.qualification') }}"
+                                        <x-input name="delegate[qualification]"
                                     placeholder="{{ __('site.qualification_placeholder') }}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end of row-->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.user_name')}}" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <x-input name="admin[user_name]" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.email')}}" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <x-input type="email" name="admin[email]" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end of row-->
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.password')}}" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <x-input type="password" name="password" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.password_confirmation')}}" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <x-input type="password" name="password_confirmation" />
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +90,7 @@
                                         <x-label title="{{__('site.national_id')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="delegate[national_id]" value="{{ old('delegate.national_id') }}"
+                                        <x-input name="delegate[national_id]"
                                     placeholder="{{ __('site.national_id_placeholder') }}" />
                                     </div>
                                 </div>
@@ -75,7 +118,7 @@
                                         <x-label title="{{__('site.phone')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="admin[phone]" value="{{ old('admin.phone') }}"
+                                        <x-input name="admin[phone]"
                                             placeholder="" />
                                     </div>
                                 </div>
@@ -86,7 +129,7 @@
                                         <x-label title="{{__('site.other_phone')}}" />
                                     </div>
                                     <div class="col-sm-8">
-                                        <x-input name="admin[other_phone]" value="{{ old('admin.other_phone') }}"
+                                        <x-input name="admin[other_phone]"
                                     placeholder="" />
                                     </div>
                                 </div>

@@ -37,14 +37,14 @@ class AlertFormatedDataJson
        );
     }
 
-    public static function alertServerError(string $routeName)
+    public static function alertServerError(string $routeName, $routeArgs = '')
     {
        return response()->json(
           [
               'target' => 'serverError',
               'alert' => [
                   'icon' => 'error',
-                  'html' => view('includes.alerts.server_error' ,['routeName' => $routeName])->toHtml(),
+                  'html' => view('includes.alerts.server_error' ,['routeName' => $routeName ,'args' => $routeArgs])->toHtml(),
               ]
           ],
           500

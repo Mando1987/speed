@@ -5,7 +5,6 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Reciver;
 use App\Models\Shipping;
-use Illuminate\Http\JsonResponse;
 
 trait CreateOrderTrait
 {
@@ -83,25 +82,6 @@ trait CreateOrderTrait
         return 3018 . ($orderId + 4);
     }
     /**
-     * response data to ajax
-     *
-     * @param string $message
-     * @param string $icon
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    private function responseDataJson(string $message = '' , string $icon = 'success') :JsonResponse
-    {
-        $data = $this->formatData('validateOrder', [],
-            [
-                'title' => '',
-                'icon' => $icon,
-                'html' => view('includes.alerts.order', ['message' => $message])->toHtml(),
-            ]
-        );
-        return response()->json($data);
-    }
-    /**
      * forget OrderData From Session
      *
      * @return void
@@ -109,6 +89,18 @@ trait CreateOrderTrait
     private function forgetOrderDataFromSession()
     {
        session()->forget('orderData');
+    }
+    /**
+     * create new step status for existing order
+     *
+     * @param \App\Models\Order $order
+     * @param string $status
+     *
+     * @return void
+     */
+    private function createOrderStatusFirstStep(Order $order , $status = 'under_preparation'):void
+    {
+       $order->orderStatuses()->create(['status' => $status , 'step' => 'possibility_of_delivery']);
     }
 
 }

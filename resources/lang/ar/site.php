@@ -323,5 +323,7 @@ return [
 
   'alert_add_customer' => 'اضافة عميل جديد',
   'alert_view_customer' => 'عرض كافة العملاء',
+  'alert_add_delegate' => 'اضافة مندوب جديد',
+  'alert_view_delegate' => 'عرض كافة المناديب',
 
 ];

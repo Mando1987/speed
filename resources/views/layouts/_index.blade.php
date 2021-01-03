@@ -5,16 +5,16 @@
 <div class="card card-solid">
     <!-- start card-header-->
     <div class="card-header p-1 border-bottom-0">
-        {{-- @include('includes.delegates.index.header') --}}
+        @include('includes.orders.index.header')
     </div>
     <!-- end card-header-->
-    @if($delegates->count())
+    @if($orders->count())
     <!-- start card-body -->
     <div class="card-body p-1">
         @if($view =='grid')
         <div class="row d-flex align-items-stretch">
-            @foreach($delegates as $index => $delegate)
-                @include('includes.indexViews.grid.delegate')
+            @foreach($orders as $index => $order)
+            @include('includes.indexViews.grid.'. $viewName)
             @endforeach
         </div>
         @else
@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     @foreach ($delegates as $index=>$delegate)
-                    @include('includes.indexViews.list.delegate')
+                       @include('includes.indexViews.list.delegate')
                     @endforeach
                 </tbody>
             </table>
@@ -43,7 +43,7 @@
     <div class="card-footer">
         <nav aria-label="Contacts Page Navigation">
             <ul class="pagination justify-content-center m-0">
-                {{ $delegates->appends(['search'=> $search])->links() }}
+                {{ $delegates->appends(['status'=>$status??'all' , 'search'=> $search])->links() }}
             </ul>
         </nav>
     </div>

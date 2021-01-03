@@ -16,7 +16,7 @@ use Illuminate\View\View;
 class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
 {
     use CreateOrderTrait, FormatedResponseData;
-    //any
+
     public function create(Request $request) :View
     {
         $customers = Customer::all();
@@ -36,6 +36,7 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
                 $customerId = $this->storeCustomerData($data['customer']);
                 $reciverId = $this->storeReciverData($data['reciver'], $customerId);
                 $order = $this->storeOrderData(array_merge($data['order'], ['status' => 'under_preparation']), $customerId, $reciverId);
+                $this->createOrderStatusFirstStep($order);
                 $this->storeOrderShippingData($data['shipping'], $order->id);
                 DB::commit();
                 $this->forgetOrderDataFromSession();

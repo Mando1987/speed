@@ -22,6 +22,10 @@ class Delegate extends Model
     {
         return $this->belongsTo(City::class);
     }
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 
     public function delegateDrive()
     {

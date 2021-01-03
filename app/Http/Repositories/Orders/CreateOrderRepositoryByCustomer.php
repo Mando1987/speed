@@ -36,6 +36,7 @@ class CreateOrderRepositoryByCustomer implements CreateOrderRepositoryInterface
                 $customerId = $request->adminId;
                 $reciverId = $this->storeReciverData($data['reciver'], $customerId);
                 $order = $this->storeOrderData(array_merge($data['order'], ['status' => 'under_review']), $customerId, $reciverId);
+                $this->createOrderStatusFirstStep($order, 'under_review');
                 $this->storeOrderShippingData($data['shipping'], $order->id);
                 DB::commit();
                 event(new CreateNewOrder($order->load('customer')));

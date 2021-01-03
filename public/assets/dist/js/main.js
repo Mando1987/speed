@@ -101,6 +101,8 @@ $(document).ready(function () {
         e.preventDefault();
         var form = this;
         var formdata = new FormData(form);
+        var MainForm = $(this);
+        resetErorrClasses(MainForm);
         $.ajax({
             url: form.action,
             type: "POST",
@@ -108,39 +110,14 @@ $(document).ready(function () {
             contentType: false,
             cache: false,
             processData: false,
-            success: function (data) {
-                console.log(data);
-                // window.location.assign(data.urlRedirect);
+            success: function (responseData) {
+                mainAlertBody(responseData.alert);
             },
             error: function (reject) {
-                console.log(reject);
-                if (reject.status == 500) {
-                    Swal.fire({
-                        title: reject.responseJSON.message,
-                        icon: "warning",
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                    });
-                } else {
-                    $(".invalid-feedback").remove();
-                    $("input").removeClass("is-invalid");
-                    var response = $.parseJSON(reject.responseText);
-                    var name = undefined;
-                    console.log(response);
-                    $.each(response.errors, function (key, val) {
-                        name = `[name=${key}]`;
-                        //check if key is array
-                        if (key.indexOf(".") != -1) {
-                            name = key.split(".");
-                            name = '[name="' + name[0] + "[" + name[1] + ']"]';
-                        }
-                        $(name).addClass("is-invalid");
-                        $(name).after(
-                            '<span class="error invalid-feedback">' +
-                                val[0] +
-                                "</span>"
-                        );
-                    });
+                if(reject.status == 422){
+                   setErrorsClassToInputsFildes(reject.responseJSON.errors);
+                }else{
+                    mainAlertBody(reject.responseJSON.alert);
                 }
             },
         });
@@ -220,3 +197,44 @@ var loadFile = function (event) {
         URL.revokeObjectURL(output.src); // free memory
     };
 };
+function setErrorsClassToInputsFildes(errors) {
+    var name = undefined;
+    $.each(errors, function (key, val) {
+        name = `[name=${key}]`;
+        //check if key is array
+        if (key.indexOf(".") != -1) {
+            name = key.split(".");
+            name = '[name="' + name[0] + "[" + name[1] + ']"]';
+        }
+        $(name).addClass("is-invalid");
+        $(name).after(
+            '<span class="error invalid-feedback">' + val[0] + "</span>"
+        );
+    });
+}
+
+/**
+ * reset Erorr Classes
+ *
+ */
+function resetErorrClasses(MainForm) {
+    MainForm.find(".invalid-feedback").each(function () {
+        $(this).remove();
+    });
+    MainForm.find(":input").each(function () {
+        $(this).removeClass("is-invalid");
+    });
+}
+/**
+ * set sweet alert box data and fire it
+ */
+function mainAlertBody(alert) {
+    Swal.fire({
+        titleText: alert.title,
+        icon: alert.icon,
+        html: alert.html,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+    });
+}

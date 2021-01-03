@@ -69,12 +69,6 @@ class Order extends Model
         return $builder->with(['reciver.city']);
     }
 
-    public function scopeWhereAdminIsCustomer(Builder $builder)
-    {
-        return $builder->when(request()->adminIsCustomer , function($query){
-            $query->where('orders.customer_id',request()->adminId);
-        });
-    }
 
 
 }

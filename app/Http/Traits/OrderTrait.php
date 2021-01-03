@@ -4,7 +4,6 @@ namespace App\Http\Traits;
 use App\Models\Address;
 use App\Models\City;
 use App\Models\Governorate;
-use Illuminate\Http\Request;
 
 trait OrderTrait
 {
@@ -16,8 +15,6 @@ trait OrderTrait
         'postpond',
         'cancelld',
     ];
-    protected $paginate = 10;
-    protected $view = 'list';
     private $order;
     private $city;
     private $governorate;
@@ -25,12 +22,7 @@ trait OrderTrait
     private $cities_id = [];
     private $governorates_id = [];
 
-    private function setViewSetting(): void
-    {
-        $viewSetting = session('orderViewSetting');
-        $this->view = $viewSetting['view_mode'] ?? $this->view;
-        $this->paginate = $viewSetting['paginate'] ?? $this->paginate;
-    }
+
 
     private function setAddressRelationship($model, $relation): void
     {

@@ -3,6 +3,6 @@
         @lang('site.failed')
     </div>
     <div class="d-flex justify-content-center">
-        <a class="btn btn-secondary" href="{{ route($routeName) }}">@lang('site.retry') </a>
+        <a class="btn btn-secondary" href="{{ route($routeName , $args) }}">@lang('site.retry') </a>
     </div>
 </div>

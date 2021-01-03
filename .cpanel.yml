@@ -1,4 +1,4 @@
 ---
 deployment:
       tasks:
-        - export DEPLOYPATH=/home/<username>/public_html/speedshipping
+        - export DEPLOYPATH=/home/speedsh1/public_html/speedshipping

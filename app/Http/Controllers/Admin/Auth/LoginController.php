@@ -51,6 +51,8 @@ class LoginController extends Controller
                     ->orWhere('email', $request->identify);
             })->first();
 
+            dd($admin);
+
             if ($admin) {
 
                 if (Hash::check($request->password, $admin->getPassword())) {

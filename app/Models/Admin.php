@@ -27,6 +27,11 @@ class Admin extends Authenticatable
     {
         return $this->hasOne(Delegate::class);
     }
+
+    public function manager()
+    {
+        return $this->hasOne(Manager::class);
+    }
     public function viewSetting()
     {
         return $this->hasOne(ViewSetting::class);

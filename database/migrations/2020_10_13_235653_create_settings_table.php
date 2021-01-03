@@ -19,7 +19,6 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('event');
             $table->string('data');
-
         });
 
         Setting::create([

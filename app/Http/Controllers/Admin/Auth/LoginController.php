@@ -40,7 +40,13 @@ class LoginController extends Controller
     {
         return Auth::guard('admin');
     }
-
+/**
+ * Undocumented function
+ *
+ * @param \Illuminate\Http\Request $request
+ *
+ * @return void
+ */
     protected function attemptLogin(Request $request)
     {
         try {

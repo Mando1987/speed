@@ -60,7 +60,7 @@
                     <tr>
                       <td class="font-weight-bold">@lang('site.order_print_phone')</td>
                       <td>
-                        {{ $order->customer->phone . ($order->customer->phone ? ' - ' . $order->customer->phone:false) }}
+                        {{ $order->customer->phone . ($order->customer->other_phone ? ' - ' . $order->customer->other_phone:false) }}
                       </td>
                     </tr>
                     <tr>
@@ -96,7 +96,7 @@
                     </tr>
                     <tr>
                       <td class="font-weight-bold">@lang('site.order_print_phone')</td>
-                      <td>{{ $order->reciver->phone. ($order->reciver->phone ? ' - ' . $order->reciver->phone:false) }}
+                      <td>{{ $order->reciver->phone. ($order->reciver->other_phone ? ' - ' . $order->reciver->other_phone:false) }}
                       </td>
                     </tr>
                     <tr>

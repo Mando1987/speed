@@ -12,6 +12,7 @@ use App\Http\Traits\FormatedResponseData;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Services\AlertFormatedDataJson;
 use App\Http\Traits\Orders\CreateOrderTrait;
+use App\Notifications\Telegram\NotifyAddNewOrder;
 use App\Http\Interfaces\CreateOrderRepositoryInterface;
 
 class CreateOrderRepositoryByCustomer implements CreateOrderRepositoryInterface
@@ -39,7 +40,7 @@ class CreateOrderRepositoryByCustomer implements CreateOrderRepositoryInterface
                 $this->createOrderStatusFirstStep($order, 'under_review');
                 $this->storeOrderShippingData($data['shipping'], $order->id);
                 DB::commit();
-                event(new CreateNewOrder($order->load('customer')));
+                $order->notify(new NotifyAddNewOrder($order->load('customer')));
                 $this->forgetOrderDataFromSession();
 
                 return (new AlertFormatedDataJson('validateOrder'))->alertBody(

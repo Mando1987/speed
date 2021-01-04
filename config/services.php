@@ -35,7 +35,7 @@ return [
         'redirect' => env('FACEBOOK_REDIRECT_URL'),
     ],
     'telegram-bot-api' => [
-        'token' => env('TELEGRAM_BOT_TOKEN', '1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o')
+        'token' => env('TELEGRAM_BOT_TOKEN'),
     ],
     'nexmo' => [
         'sms_from' => '01270142656',

@@ -5,7 +5,7 @@ use App\Models\Order;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 
-trait Indextrait
+trait IndexTrait
 {
     private $orderStatuses = [
         'all' => ['total' => 0],

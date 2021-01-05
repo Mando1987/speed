@@ -13,8 +13,10 @@ use App\Http\Interfaces\CustomerRepositoryInterface;
 use App\Http\Interfaces\DelegateRepositoryInterface;
 use App\Http\Requests\OrderStoreFormRequestRepository;
 use App\Http\Interfaces\OrderStoreFormRequestInterface;
+use App\Http\Interfaces\PlacePricesRepositoryInterface;
 use App\Http\Repositories\Customers\CustomerRepository;
 use App\Http\Repositories\Delegates\DelegateRepository;
+use App\Http\Repositories\Places\PlacePricesRepository;
 
 class RepositoriesProvider extends ServiceProvider
 {
@@ -26,6 +28,7 @@ class RepositoriesProvider extends ServiceProvider
         $this->app->bind(ReciverRepositoryInterface::class, ReciverRepository::class);
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
         $this->app->bind(DelegateRepositoryInterface::class, DelegateRepository::class);
+        $this->app->bind(PlacePricesRepositoryInterface::class, PlacePricesRepository::class);
     }
 
     public function boot()

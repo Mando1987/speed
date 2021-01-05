@@ -2,12 +2,12 @@
 
 namespace App\Http\Repositories\Dashboard;
 
+use App\Http\Traits\Dashboard\IndexTrait;
 use App\Http\Interfaces\DashboardRepositoryInterface;
-use App\Http\Traits\Dashboard\Indextrait;
 
 class CustomerDashboardRepository implements DashboardRepositoryInterface
 {
-    use Indextrait;
+    use IndexTrait;
 
     public function index()
     {

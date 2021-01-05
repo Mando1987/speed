@@ -51,4 +51,5 @@ class PlaceController extends Controller
     {
         return response()->json($governorateService->allCitiesForGovernorate(request('governorate_id')));
     }
+
 }

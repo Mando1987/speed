@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
 class PlacePriceStoreFormRequest extends FormRequest
 {
     public function authorize()
@@ -14,17 +12,12 @@ class PlacePriceStoreFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'governorate_id'        => 'bail|required|exists:governorates,id',
-            'city_id'               => 'bail|required|exists:cities,id',
-            'send_weight'           => 'bail|required|in:1,2,3',
-            'send_price'            => 'bail|required|string|max:7',
-            'weight_addtion'        => 'bail|required|in:.5,1,2,3',
-            'price_addtion'         => 'bail|required|string|max:7',
+            'governorate_id' => 'bail|required|exists:governorates,id',
+            'city_id' => 'bail|required|exists:cities,id',
+            'send_weight' => 'bail|required|in:1,2,3',
+            'send_price' => 'bail|required|string|max:7',
+            'weight_addtion' => 'bail|required|in:.5,1,2,3',
+            'price_addtion' => 'bail|required|string|max:7',
         ];
-    }
-
-    public function attributes()
-    {
-        return  trans('custom-attributes.prices');
     }
 }

@@ -3,11 +3,11 @@
 namespace App\Http\Repositories\Dashboard;
 
 use App\Http\Interfaces\DashboardRepositoryInterface;
-use App\Http\Traits\Dashboard\Indextrait;
+use App\Http\Traits\Dashboard\IndexTrait;
 
 class ManagerDashboardRepository implements DashboardRepositoryInterface
 {
-    use Indextrait;
+    use IndexTrait;
 
     public function index()
     {
@@ -15,5 +15,4 @@ class ManagerDashboardRepository implements DashboardRepositoryInterface
             'data' => $this->formatedData($this->builedQueryOrder('charge_price')->get()),
         ]);
     }
-
 }

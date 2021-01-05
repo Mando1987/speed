@@ -12,114 +12,93 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" id="quickForm" action="{{ route('price.update' , $city_price->city_id) }}" method="POST"
-                    enctype="multipart/form-data">
+                <form role="form" id="FormSubmit" action="{{ route('price.update' , $placePrice->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
+                        {{-- start row  --}}
                         <div class="row">
-
-                            <div class="form-group col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="badge bg-secondary pt-3">
-                                            @lang('site.governorate')
-                                        </span>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.governorate')}}" />
                                     </div>
-                                    <input type="text" value="{{$governorate_name}}" class="form-control">
-                                    <input type="hidden" name="governorate_id" value="{{ $city_price->governorate_id }}">
+                                    <div class="col-sm-8">
+                                        <x-input value="{{ $placePrice->governorate->name }}" disabled />
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-group col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="badge bg-secondary pt-3">
-                                            @lang('site.city')
-                                        </span>
+                            {{-- start col  --}}
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.city')}}" />
                                     </div>
-                                        <input type="text" value="{{$city_name}}" class="form-control" >
-                                        <input type="hidden" name="city_id" value="{{ $city_price->city_id }}">
+                                    <div class="col-sm-8">
+                                        <x-input value="{{ $placePrice->city->name }}" disabled />
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
+                            </div>{{-- end col  --}}
+                        </div>{{-- end row  --}}
                         <div class="row">
-
-                            <div class="form-group col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="badge bg-secondary pt-3">
-                                            @lang('site.price_send_weight')
-                                        </span>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.price_send_weight')}}" />
                                     </div>
-                                    <select class="custom-select" name="send_weight" id="send_weight">
-                                        <option value="1" @if($city_price->send_weight == 1) selected @endif >@lang('site.price_send_weight_1k')</option>
-                                        <option value="2" @if($city_price->send_weight == 2) selected @endif >@lang('site.price_send_weight_2k')</option>
-                                        <option value="3" @if($city_price->send_weight == 3) selected @endif >@lang('site.price_send_weight_3k')</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="badge bg-secondary pt-3">
-                                            @lang('site.price_send_price')
-                                        </span>
+                                    <div class="col-sm-8">
+                                        <select class="custom-select" name="send_weight">
+                                            <option value="1">@lang('site.price_send_weight_1k')</option>
+                                            <option value="2">@lang('site.price_send_weight_2k')</option>
+                                            <option value="3">@lang('site.price_send_weight_3k')</option>
+                                        </select>
                                     </div>
-                                    <input type="text" name="send_price" value="{{$city_price->send_price}}"
-                                        class="form-control @error('send_price') is-invalid @enderror" id="send_price"
-                                        placeholder="@lang('site.price_send_price')">
-                                    @error('send_price')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
                                 </div>
-                            </div>
-
-                        </div>
+                            </div>{{-- end col  --}}
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.price_send_price')}}" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <x-input name="send_price" placeholder="{{__('site.price_send_price')}}" />
+                                    </div>
+                                </div>
+                            </div>{{-- end col  --}}
+                        </div>{{-- end row  --}}
 
                         <div class="row">
-                            <div class="form-group col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="badge bg-secondary pt-3">
-                                            @lang('site.price_weight_addtion')
-                                        </span>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.price_weight_addtion')}}" />
                                     </div>
-                                    <select class="custom-select" name="weight_addtion" id="weight_addtion">
-                                        <option value="0.5" @if($city_price->weight_addtion == 0.5) selected @endif>@lang('site.price_send_weight_.5k')</option>
-                                        <option value="1"   @if($city_price->weight_addtion == 1) selected @endif>@lang('site.price_send_weight_1k')</option>
-                                        <option value="2"   @if($city_price->weight_addtion == 2) selected @endif>@lang('site.price_send_weight_2k')</option>
-                                        <option value="3"   @if($city_price->weight_addtion == 3) selected @endif>@lang('site.price_send_weight_3k')</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="badge bg-secondary pt-3">
-                                            @lang('site.price_price_addtion')
-                                        </span>
+                                    <div class="col-sm-8">
+                                        <select class="custom-select" name="weight_addtion">
+                                            <option value="0.5">@lang('site.price_send_weight_.5k')</option>
+                                            <option value="1">@lang('site.price_send_weight_1k')</option>
+                                            <option value="2">@lang('site.price_send_weight_2k')</option>
+                                            <option value="3">@lang('site.price_send_weight_3k')</option>
+                                        </select>
                                     </div>
-                                    <input type="text" name="price_addtion" value="{{$city_price->price_addtion}}"
-                                        class="form-control @error('price_addtion') is-invalid @enderror"
-                                        id="price_addtion" placeholder="@lang('site.price_price_addtion')">
-                                    @error('price_addtion')
-                                    <span class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
                                 </div>
-                            </div>
-
-                        </div>
-
+                            </div>{{-- end col  --}}
+                            <div class="col-md">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        <x-label title="{{__('site.price_price_addtion')}}" />
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <x-input name="price_addtion"
+                                            placeholder="{{__('site.price_price_addtion')}}" />
+                                    </div>
+                                </div>
+                            </div>{{-- end col  --}}
+                        </div>{{-- end row  --}}
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-
                         <button type="submit" class="btn btn-primary">@lang('site.edit')</button>
-
                     </div>
                 </form>
             </div>
@@ -135,3 +114,13 @@
     <!-- /.row -->
 </div>
 @endsection
+@push('scripts')
+<script>
+    $(function () {
+            var data = @json($placePrice);
+            $.each(data, function (parentKey, value) {
+             $('[name="' + parentKey +'"]').val(value);
+            });
+        });
+</script>
+@endpush

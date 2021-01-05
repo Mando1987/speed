@@ -83,7 +83,29 @@ class OrderRepositoryByManager implements OrderRepositoryInterface
 
     }
     public function update(OrderEditFormRequest $request, $id)
-    {}
+    {
+         try {
+            DB::beginTransaction();
+            $data = $request->validated();
+
+            $order = Order::find($id);
+
+            if ($order) {
+                $order->update($data['order']);
+                $order->shipping()->update($data['shipping']);
+            }
+            DB::commit();
+
+            $this->forgetOrderData();
+            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
+            return $this->responseJson('ok', 200, route('order.index'));
+
+        } catch (\Exception $ex) {
+
+            DB::rollback();
+            return $this->responseJson('failed');
+        }
+    }
     private function getOrderFullDetails(int $orderId, string $view)
     {
         $orderData = $this->order->with(['reciver', 'shipping', 'customer'])

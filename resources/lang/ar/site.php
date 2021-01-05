@@ -317,4 +317,7 @@ return [
   'alert_add_delegate' => 'اضافة مندوب جديد',
   'alert_view_delegate' => 'عرض كافة المناديب',
   'telegram_review_call_reciver' => 'الاتصال بالعميل',
+
+  'alert_add_price' => 'اضافة سعر جديد',
+  'alert_view_price' => 'عرض كافة الاسعار',
 ];

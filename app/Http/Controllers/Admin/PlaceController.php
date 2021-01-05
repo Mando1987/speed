@@ -7,7 +7,6 @@ use App\Http\Interfaces\PlaceRepositoryInterface;
 use App\Http\Requests\PlaceStoreFormRequest;
 use App\Http\Requests\PlaceUpdateFormRequest;
 use App\Http\Services\GovernorateService;
-use App\Http\Traits\GovernorateTrait;
 use Illuminate\Http\Request;
 
 class PlaceController extends Controller
@@ -21,7 +20,7 @@ class PlaceController extends Controller
 
     public function index(Request $request)
     {
-       return $this->placeRepositoryInterface->getAll($request);
+        return $this->placeRepositoryInterface->getAll($request);
     }
 
     public function create(Request $request)
@@ -45,7 +44,7 @@ class PlaceController extends Controller
 
     public function destroyMultiCities(Request $request)
     {
-       return $this->placeRepositoryInterface->destroyMultiCities($request);
+        return $this->placeRepositoryInterface->destroyMultiCities($request);
     }
     public function getCities(GovernorateService $governorateService)
     {

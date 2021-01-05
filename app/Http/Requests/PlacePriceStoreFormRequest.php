@@ -20,4 +20,20 @@ class PlacePriceStoreFormRequest extends FormRequest
             'price_addtion' => 'bail|required|string|max:7',
         ];
     }
+    public function validated()
+    {
+        return [
+            'checkedDate' => [
+                'governorate_id' => $this->governorate_id,
+                'city_id' => $this->city_id,
+            ],
+            'updatedData' => [
+                'send_weight' => $this->send_weight,
+                'send_price' => $this->send_price,
+                'weight_addtion' => $this->weight_addtion,
+                'price_addtion' => $this->price_addtion,
+            ],
+
+        ];
+    }
 }

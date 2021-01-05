@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 interface PlacePricesRepositoryInterface
 {
-   public function getAll();
+   public function getAll(Request $request);
    public function create($showInModel);
    public function store(Request $request);
    public function edit($id);

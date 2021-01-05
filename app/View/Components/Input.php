@@ -11,11 +11,11 @@ class Input extends Component
     public $placeholder;
     public $type ;
     public $key ;
-    public function __construct($name , $value = null ,  $placeholder = '' , $type = 'text')
+    public function __construct($name = '', $value = '' ,  $placeholder = '' , $type = 'text')
     {
         $this->name        = $name;
         $this->key         = \str_replace('[' , '.' ,\str_replace(']' , '' ,$name));
-        $this->value       = $value ?? null;
+        $this->value       = $value ?? '';
         $this->placeholder = $placeholder;
         $this->type        = $type ?? 'text';
     }
@@ -23,11 +23,8 @@ class Input extends Component
     public function render()
     {
         return <<<'blade'
-        <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" class="form-control @error($key) is-invalid @enderror"
-        placeholder="{{ $placeholder }}">
-        @error($key)
-        <span class="error invalid-feedback">{{ $message }}</span>
-        @enderror
+        <input type="{{ $type }}" name="{{ $name }}" value="{{ $value }}" class="form-control"
+        placeholder="{{ $placeholder }}" {{ $attributes }}>
        blade;
     }
 }

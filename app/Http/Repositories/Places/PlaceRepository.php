@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
-class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
+class PlaceRepository implements PlaceRepositoryInterface
 {
     private $paginateCount = 10;
     protected $city;
@@ -89,12 +89,10 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
             }
             DB::commit();
 
-            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
-            return $this->path($this->route);
+
         } catch (\Exception $ex) {
 
             DB::rollback();
-            $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
 
             dd($ex->getMessage());
             return back();
@@ -116,15 +114,9 @@ class PlaceRepository extends BaseRepository implements PlaceRepositoryInterface
             $this->city::insert($placeStoreFormRequest->validated()['cities']);
             DB::commit();
 
-            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_ADDED]);
-            return $this->path($this->route);
+
         } catch (\Exception $ex) {
-
             DB::rollback();
-            $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
-
-            dd($ex->getMessage());
-            return back();
         }
     }
 

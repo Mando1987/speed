@@ -21,6 +21,19 @@ class AlertFormatedDataJson
         ];
         return $this;
     }
+    public static function alertBodyDefault($RouteName, $message = 'site.added')
+    {
+        return response()->json(
+          [
+              'target' => '',
+              'alert' => [
+                  'icon' => 'success',
+                  'title' => '',
+                  'html' => view( 'includes.alerts.default', ['message' => trans($message),'routeName' => $RouteName])->toHtml(),
+              ]
+          ]
+       );
+    }
     public function dataContent(array $data)
     {
         $this->data = $data;

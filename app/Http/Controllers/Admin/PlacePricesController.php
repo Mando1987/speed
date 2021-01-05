@@ -3,27 +3,24 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\PlacePrice;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Interfaces\PlacePricesRepositoryInterface;
-use App\Services\PlacePriceEditService;
 use App\Http\Requests\PlacePriceEditFormRequest;
 use App\Http\Requests\PlacePriceStoreFormRequest;
-use App\Models\City;
-use App\Services\Places\PlacePriceFetshDataService;
-use App\Services\Places\PlacePriceCreateStoreService;
-use App\Services\Places\PlacePriceEditUpdateService;
+use App\Http\Interfaces\PlacePricesRepositoryInterface;
+
 
 class PlacePricesController extends Controller
 {
-  private $placePricesRepository;
+    private $placePricesRepository;
 
-   public function __construct(PlacePricesRepositoryInterface $placePricesRepository)
-   {
-      $this->placePricesRepository = $placePricesRepository;
-   }
-    public function index()
+    public function __construct(PlacePricesRepositoryInterface $placePricesRepository)
     {
-        return (request('governorate_id'));
+        $this->placePricesRepository = $placePricesRepository;
+    }
+    public function index(Request $request)
+    {
+        return $this->placePricesRepository->getAll($request);
     }
 
     public function create()
@@ -36,23 +33,20 @@ class PlacePricesController extends Controller
         return $this->placePricesRepository->store($request);
     }
 
-
     public function edit($id)
     {
         return $this->placePricesRepository->edit($id);
-
     }
 
-    public function update(PlacePriceEditFormRequest $request ,$cityId)
+    public function update(PlacePriceEditFormRequest $request, $cityId)
     {
         return $this->placePricesRepository->update($request, $cityId);
-
     }
 
     public function destroy($id)
     {
         PlacePrice::destroy($id);
         notify('success', 'deleted');
-        return  redirect()->route('price.index');
+        return redirect()->route('price.index');
     }
 }

@@ -12,7 +12,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" id="quickForm" action="{{ route('price.store') }}" method="POST">
+                <form role="form" id="FormSubmit" action="{{ route('price.store') }}" method="POST">
                     @csrf
                     @method('POST')
                     <div class="card-body">
@@ -99,9 +99,7 @@
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-
                         <button type="submit" class="btn btn-primary">@lang('site.add')</button>
-
                     </div>
                 </form>
             </div>

@@ -22,8 +22,6 @@ trait OrderTrait
     private $cities_id = [];
     private $governorates_id = [];
 
-
-
     private function setAddressRelationship($model, $relation): void
     {
         $relations = ['reciver' => 'App\\Models\\Reciver', 'customer' => 'App\\Models\\Customer'];

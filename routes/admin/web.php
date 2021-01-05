@@ -23,11 +23,11 @@ Route::get('place/edit-multi-cities', [PlaceController::class, 'editMultiCites']
 Route::post('place/update-multi-cities', [PlaceController::class, 'updateMultiCites'])->name('place.updateMultiCites');
 Route::post('place/destroy-multi-cities', [PlaceController::class, 'destroyMultiCities'])->name('place.destroyMultiCities');
 Route::put('reciver/update/{id}', [ReciverController::class, 'update'])->name('reciver.update');
+Route::get('/dashboard',DashboardController::class)->name('dashboard.index');
 
 Route::resources([
     'admin' => AdminController::class,
     'role' => RoleController::class,
-    'dashboard' => DashboardController::class,
     'customer' => CustomerController::class,
     'place' => PlaceController::class,
     'price' => PlacePricesController::class,

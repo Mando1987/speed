@@ -196,14 +196,6 @@ return [
   'facebook_register'                 => 'التسجيل بواسطة حساب فيس بوك',
   'register'  => 'تسجيل',
   // 23/9/2020
-  'dashboard_all_orders'              => 'كل الشحنات',
-  'dashboard_under_review_count'      => 'قيد المراجعه',
-  'dashboard_under_preparation_count' => 'تحت الاعداد',
-  'dashboard_my_balance_count'        => 'رصيدى',
-  'dashboard_ready_to_chip_count'     => 'جاهز للشحن',
-  'dashboard_delivered_count'         => 'تم التوصيل',
-  'dashboard_postpond_count'          => 'تم التاجيل',
-  'dashboard_cancelld_count'          => 'تم الالغاء',
 
   'order_status_all_orders'           => 'كل الشحنات',
   'order_status_under_review'         => 'قيد المراجعه',
@@ -325,5 +317,6 @@ return [
   'alert_view_customer' => 'عرض كافة العملاء',
   'alert_add_delegate' => 'اضافة مندوب جديد',
   'alert_view_delegate' => 'عرض كافة المناديب',
+  'telegram_review_call_reciver' => 'الاتصال بالعميل',
 
 ];

@@ -43,7 +43,7 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
                 $this->createOrderStatusFirstStep($order);
                 $this->storeOrderShippingData($data['shipping'], $order->id);
                 DB::commit();
-                $order->notify(new NotifyAddNewOrder($order->load('customer')));
+                $order->notify(new NotifyAddNewOrder($order));
                 $this->forgetOrderDataFromSession();
 
                 return (new AlertFormatedDataJson('validateOrder'))->alertBody(

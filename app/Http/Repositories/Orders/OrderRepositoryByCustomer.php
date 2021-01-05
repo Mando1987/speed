@@ -5,13 +5,14 @@ use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Requests\OrderEditFormRequest;
 use App\Http\Traits\FormatedResponseData;
 use App\Http\Traits\OrderTrait;
+use App\Http\Traits\ViewSettingTrait;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use NotificationChannels\Telegram\Telegram;
 
 class OrderRepositoryByCustomer implements OrderRepositoryInterface
 {
-    use OrderTrait, FormatedResponseData;
+    use OrderTrait, FormatedResponseData,ViewSettingTrait;
 
     public function __construct(Order $order)
     {

@@ -43,35 +43,12 @@ Route::get('/test', function () {
 //   dd(Telegram::class);
     //  var_dump(openssl_get_cert_locations());
 
-    //  $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
-    //       $tele->sendMessage([
-    //           'chat_id' => '-1001175803813',
-    //           'text' => 'test #error',
-    //           'parse_mode' => 'HTML',
-    //           'disable_web_page_preview' => '',
-    //           'disable_notification' => '',
-    //           'reply_to_message_id' => '{info:mando}',
-    //           'reply_markup' => '',
-    //           'caption' => 'caption',
-    //           'entities' => '#error'
-    //       ]);
-    //     Nexmo::message()->send([
-    //       'to'   => '+2001279728519',
-    //       'from' => '+2001270142656',
-    //       'text' => 'Using the facade to send a message.'
-    //   ]);
-
-    //Admin::find(auth('admin')->id())->notify(new AddedNewOrder());
-    //   Notification::send(
-    //     [
-    //     auth('admin')->user(),
-    //     Admin::find(2)
-    //     ] , new AddedNewOrder(
-    //         [
-    //             'user'=>1,
-    //             'name' =>'admin'
-    //         ]
-    //     ));
-
+     $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
+     return $tele->getMe();
+          $tele->sendContact([
+              'chat_id' => '-1001175803813',
+              'phone_number' => '+2001270142656',
+              'first_name' => 'mando'
+          ]);
 });
 

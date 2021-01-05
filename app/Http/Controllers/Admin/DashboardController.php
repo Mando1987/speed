@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Services\Dashboard\DashboardFetchDataService;
-use Illuminate\Http\Request;
+use App\Http\Repositories\Factories\DashbordFactory;
 
 class DashboardController extends Controller
 {
-    public function index(Request $request)
+    public function __invoke()
     {
-        return app(DashboardFetchDataService::class)->index($request);
+        return DashbordFactory::getInstance()->index();
     }
 }

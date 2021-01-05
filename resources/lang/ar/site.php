@@ -304,7 +304,7 @@ return [
   'order_edit_delegate_title'              => 'المندوب',
   'edit_reciver_not_found_customer'        => 'بيانات العميل غير موجودة لدينا جرب واحد صحيح من فضلك',
   'edit_reciver_not_for_curent_customer'   => 'هذا العميل لا يوجد ضمن قائمة العملاء الخاصة بك',
-  'edit_reciver_not_found_manager'         => 'بيانات المرسل إليه غير موجوده لدينا تأكد رجاءً من البيانات ثم أعد المحاوله لاحقًا ',
+  'edit_reciver_not_found_manager'         => 'بيانات المرسل إليه غير موجوده لدينا تأكد رجاءاً من البيانات ثم أعد المحاوله لاحقًا ',
 
   'alert_add_order'                        => 'إضافة طلب جديد',
   'alert_view_order'                       => 'عرض كافة الطلبات',

@@ -3,7 +3,6 @@ namespace App\Http\Services;
 
 class AlertFormatedDataJson
 {
-
     private $alertBodyData = [];
     private $data = [];
     private $target;
@@ -61,6 +60,17 @@ class AlertFormatedDataJson
               ]
           ],
           500
+       );
+    }
+    public static function alertMessageOnly(string $message, $icon='success')
+    {
+       return response()->json(
+          [
+              'alert' => [
+                  'icon' => $icon,
+                  'html' => view('includes.alerts.message' ,['message' => $message])->toHtml(),
+              ]
+          ],
        );
     }
 

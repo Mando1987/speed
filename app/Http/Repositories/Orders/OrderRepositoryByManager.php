@@ -96,9 +96,7 @@ class OrderRepositoryByManager implements OrderRepositoryInterface
             }
             DB::commit();
 
-            $this->forgetOrderData();
-            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
-            return $this->responseJson('ok', 200, route('order.index'));
+
 
         } catch (\Exception $ex) {
 

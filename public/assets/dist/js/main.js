@@ -72,12 +72,12 @@ $(document).ready(function () {
     $("#getCitiesPriceSelect").change(function () {
         $("#getCitiesPrice").submit();
     });
-    $(document).on("click", ".showSingleModel", function () {
-        $.get(this.href, {}, function (data) {
-            newFunction(data);
-        });
-        return false;
-    });
+    // $(document).on("click", ".showSingleModel", function () {
+    //     $.get(this.href, {}, function (data) {
+    //         mainAlertBody(data);
+    //     });
+    //     return false;
+    // });
 
     $(document).on("click", ".showInOpenModal", function () {
         $.get(this.href, {}, function (data) {

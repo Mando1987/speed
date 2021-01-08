@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ReciverFormRequest;
 use App\Http\Interfaces\ReciverRepositoryInterface;
 
-class ReciverRepository extends BaseRepository implements ReciverRepositoryInterface
+class ReciverRepository implements ReciverRepositoryInterface
 {
 
     public function update(ReciverFormRequest $request, $id)
@@ -24,13 +24,9 @@ class ReciverRepository extends BaseRepository implements ReciverRepositoryInter
                 $reciver->address()->update($request->validated()['address']);
 
                 DB::commit();
-                $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_EDITED]);
-
-                return $this->responseJson('ok',200 , route('order.index'));
 
             } catch (\Exception $ex) {
-                DB::rollback();
-                return $this->responsejson($ex->getMessage());
+
             }
         }
         return $this->responsejson(trans('site.edit_reciver_not_found_' . $request->adminType));

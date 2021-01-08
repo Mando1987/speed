@@ -2,15 +2,22 @@
 $(document).ready(function () {
     console.log(`token : ${__token}`);
 
-    $(document).on("submit", ".OrderFormSubmit", function (e) {
-        e.preventDefault();
+    $(document).on("submit", ".orderIndexForm", function (e) {
+       e.preventDefault();
+        var form = this;
+        var formdata = new FormData(form);
+        var MainForm = $(this);
         resetErorrClasses(MainForm);
         $.ajax({
-            url: "",
-            type: "GET",
+            url: form.action,
+            type: form.method,
             data: formdata,
+            contentType: false,
+            cache: false,
+            processData: false,
             success: function (responseData) {
-                orderFunctions[responseData.target](responseData);
+                console.log(responseData);
+               // orderFunctions[responseData.target](responseData);
             },
             error: function (reject) {
                 orderFunctions[reject.responseJSON.target](reject.responseJSON);
@@ -19,7 +26,7 @@ $(document).ready(function () {
         return false;
     }); // end of OrderFormSubmit
 
-    $(document).on("click", ".showViewSetting", function (e) {
+    $(document).on("click", ".showViewSetting,.showEditPanel,.showUpdatePanel,.changeOrderStatus", function (e) {
         e.preventDefault();
         $.get(this.href, {}, function (data) {
             alertBody(data);

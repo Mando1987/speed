@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Repositories\Factories\CreateOrderFactory;
 use App\Http\Repositories\Factories\OrderFactory;
+use App\Http\Repositories\Factories\OrderStatusFactory;
 use App\Http\Repositories\Orders\OrderViewShowStore;
 use App\Http\Repositories\Orders\ValidateCustomer;
 use App\Http\Repositories\Orders\ValidateReciver;
@@ -13,9 +14,11 @@ use App\Http\Requests\OrderEditFormRequest;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Requests\ValidateOrderCustomerFormRequest;
 use App\Http\Requests\ValidateOrderReciverFormRequest;
+use App\Models\Order;
 use App\Services\Orders\OrderCountChargePrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Request as GlobalRequest;
 
 class OrderController extends Controller
 {
@@ -58,7 +61,7 @@ class OrderController extends Controller
 
     public function viewEditPanel(Request $request)
     {
-        return view('order.view_edit_panel', ['request' => $request]);
+        return view('order.'.$request->adminType.'_view_edit_panel', ['request' => $request]);
     }
     public function editOrder(Request $request)
     {
@@ -82,6 +85,11 @@ class OrderController extends Controller
     public function storeViewSetting(Request $request)
     {
         return OrderViewShowStore::store($request);
+    }
+
+    public function viewUpdateOrder()
+    {
+       return OrderStatusFactory::getInstance()->viewActions();
     }
 
 }

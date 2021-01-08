@@ -320,4 +320,18 @@ return [
 
   'alert_add_price' => 'اضافة سعر جديد',
   'alert_view_price' => 'عرض كافة الاسعار',
+
+  'order_update_order'=> 'تحديث الشحنة',
+  'order_change_status' => 'تحديث حالة الشحنة',
+  'order_under_preparation_change' => 'تمت مراجعة الشحنة',
+  'order_cancelled_change' => 'الغاء الشحنة وحذفها',
+  'order_status_changed_successfuly' => 'تم تعديل الحالة بنجاح',
+  'order_status_changed_failed' => 'حدث خطا حاول مرة اخرى',
+  'Receipt_from_the_customer' => 'الاستلام من العميل',
+  'Receipt_order' => 'الاستلام',
+  'Receipt_from_the_customer_in_company' => 'الاستلام من العميل ف مقر الشركة',
+  'Receipt_from_the_customer_by_delegate' => 'الاستلام من العميل بواسطة مندوب  ',
+  'choose_delegate' => 'اختر المندوب',
+  'no_delegates' => 'لا يوجد مناديب مسجلة قم بالاضافة من هنا ',
+
 ];

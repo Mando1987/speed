@@ -29,7 +29,7 @@ class Order extends Model
         return $this->hasOne(Shipping::class);
     }
 
-    public function orderStatuses()
+    public function statuses()
     {
        return $this->hasMany(OrderStatus::class);
     }

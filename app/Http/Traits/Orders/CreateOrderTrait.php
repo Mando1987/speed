@@ -100,7 +100,7 @@ trait CreateOrderTrait
      */
     private function createOrderStatusFirstStep(Order $order , $status = 'under_preparation'):void
     {
-       $order->orderStatuses()->create(['status' => $status , 'step' => 'possibility_of_delivery']);
+       $order->statuses()->create(['status' => $status , 'step' => 'possibility_of_delivery']);
     }
 
 }

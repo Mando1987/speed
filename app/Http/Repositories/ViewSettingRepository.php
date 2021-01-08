@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class ViewSettingRepository implements ViewSettingRepositoryInterface
 {
-    private $viewMode = 'list';
-    private $paginate = 10;
+    private static $viewMode = 'list';
+    private static $paginate = 10;
 
     public function show(Request $request)
     {
-        return view('order.index.show_view_setting', ['viewSetting' => $this->viewSetting($request)]);
+        return view('order.index.show_view_setting', ['viewSetting' => static::viewSetting($request)]);
     }
 
     public function store(Request $request)
@@ -34,11 +34,18 @@ class ViewSettingRepository implements ViewSettingRepositoryInterface
         session(['viewSetting' => $setting->data]);
         return redirect(route('order.index'));
     }
-    private function viewSetting(Request $request)
+    /**
+     * get view setting
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return array ['view_mode' => 'list', 'paginate' => 10];
+     */
+    public static function viewSetting(Request $request) :array
     {
         $setting = ViewSetting::whereAdminId($request->adminId)
             ->whereEvent('view_setting')
             ->first();
-        return session('viewSetting') ?? $setting->data ?? ['view_mode' => $this->viewMode, 'paginate' => $this->paginate];
+        return session('viewSetting') ?? $setting->data ?? ['view_mode' => static::$viewMode, 'paginate' => static::$paginate];
     }
 }

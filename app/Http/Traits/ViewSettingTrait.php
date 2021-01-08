@@ -1,16 +1,18 @@
 <?php
 namespace App\Http\Traits;
 
+use App\Http\Repositories\ViewSettingRepository;
+
 trait ViewSettingTrait
 {
-    private $paginate = 10;
-    private $view = 'list';
+    private $paginate ;
+    private $view ;
 
     private function setViewSetting(): void
     {
-        $viewSetting = session('orderViewSetting');
-        $this->view = $viewSetting['view_mode'] ?? $this->view;
-        $this->paginate = $viewSetting['paginate'] ?? $this->paginate;
+        $viewSetting = ViewSettingRepository::viewSetting(request());
+        $this->view = $viewSetting['view_mode'];
+        $this->paginate = $viewSetting['paginate'];
     }
 }
 

@@ -2,7 +2,7 @@
 <div class="card card-purple card-outline m-0">
     <!-- start of card-body -->
     <div class="card-body">
-        <form action="{{ url('order/save-view-setting') }}" method="POST">
+        <form action="{{ url('order/view-setting') }}" method="POST">
           @csrf
           @method('POST')
             <div class="row">
@@ -12,14 +12,14 @@
                 <div class="col-8">
                     <div class="form-group clearfix float-left">
                         <div class="custom-control custom-radio d-inline">
-                            <input class="custom-control-input" type="radio" id="view1" name="orderViewSetting[view_mode]" value="list"
+                            <input class="custom-control-input" type="radio" id="view1" name="viewSetting[view_mode]" value="list"
                                 @if($viewSetting['view_mode']=='list') checked @endif>
                             <label for="view1" class="custom-control-label">
                                 <i class="fas fa-bars"></i>
                             </label>
                         </div>
                         <div class="custom-control custom-radio d-inline ml-3">
-                            <input class="custom-control-input" type="radio" id="view2" name="orderViewSetting[view_mode]" @if($viewSetting['view_mode']=='grid' )
+                            <input class="custom-control-input" type="radio" id="view2" name="viewSetting[view_mode]" @if($viewSetting['view_mode']=='grid' )
                                 checked @endif value="grid">
                             <label for="view2" class="custom-control-label">
                                 <i class="fas fa-th"></i>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-8">
                     <div class="form-group row">
-                        <select class="custom-select custom-select-sm font-weight-bold" name="orderViewSetting[paginate]">
+                        <select class="custom-select custom-select-sm font-weight-bold" name="viewSetting[paginate]">
                             @foreach(range(5,50,5) as $number)
                             <option class="font-weight-bold" value="{{ $number }}" @if($number == $viewSetting['paginate']) selected @endif/>{{ $number }} </option>
                             @endforeach

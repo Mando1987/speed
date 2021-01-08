@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\OrderStatusController;
+use App\Http\Controllers\Admin\ViewSettingController;
 
 // // ############################################################################
 Route::post('order/get-order-charge-price', [OrderController::class, 'getOrderChargePrice']);
@@ -13,8 +14,8 @@ Route::post('customer/order', [CustomerController::class, 'storeOrder'])->name('
 
 Route::get('order/view-edit-panel', [OrderController::class, 'viewEditPanel'])->name('order.view_Edit_Panel');
 
-Route::get('order/show-view-setting',[OrderController::class,'showViewSetting']);
-Route::post('order/save-view-setting',[OrderController::class,'storeViewSetting']);
+Route::get('order/view-setting',[ViewSettingController::class,'show']);
+Route::post('order/view-setting',[ViewSettingController::class,'store']);
 
 Route::get('order/edit-order', [OrderController::class, 'editOrder'])->name('order.edit_order');
 Route::get('order/view-update-order', [OrderController::class, 'viewUpdateOrder'])->name('order.update_order');

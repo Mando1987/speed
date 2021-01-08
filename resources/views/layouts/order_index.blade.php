@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     @foreach ($orders as $index=>$order)
-                       @include('includes.orders.index.'. request()->adminType .'_list_view')
+                    @include('includes.orders.index.'. request()->adminType .'_list_view')
                     @endforeach
                 </tbody>
             </table>
@@ -39,6 +39,8 @@
         @endif
     </div>
     <!-- end card-body -->
+
+    @if ($orders->total() > $orders->count())
     <!-- start of card-footer -->
     <div class="card-footer">
         <nav aria-label="Contacts Page Navigation">
@@ -48,6 +50,7 @@
         </nav>
     </div>
     <!-- end of card-footer -->
+    @endif
     @else
     <div class="m-3">
         <x-empty-records-button-add route="order.create" />
@@ -55,5 +58,5 @@
     @endif
     @endsection
     @push('scripts')
-        <script src="{{asset('assets/dist/js/orderIndex.js')}}"></script>
+    <script src="{{asset('assets/dist/js/orderIndex.js')}}"></script>
     @endpush

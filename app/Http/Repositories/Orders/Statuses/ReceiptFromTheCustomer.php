@@ -6,7 +6,7 @@ use App\Models\Delegate;
 use App\Models\Order;
 use Log;
 
-class PossibilityOfDelivery implements OrderStatusRepositoryInterface
+class ReceiptFromTheCustomer implements OrderStatusRepositoryInterface
 {
     private $order;
     private $viewName;
@@ -21,12 +21,10 @@ class PossibilityOfDelivery implements OrderStatusRepositoryInterface
         Log::info($this->order->status);
 
         switch ($this->order->status) {
-            case 'under_review':
+            case 'ready_to_receipt':
+            return 123;
                 return view($this->viewName, ['orderId' => $this->order->id]);
                 break;
-            /**
-                 * TODO : hide delegate select box when chosse Receipt_in_company in view :under_preparation
-                 */
             case 'under_preparation':
                 return view($this->viewName, ['orderId' => $this->order->id, 'delegates' => Delegate::get()]);
                 break;

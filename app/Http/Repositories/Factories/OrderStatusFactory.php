@@ -1,10 +1,11 @@
 <?php
 namespace App\Http\Repositories\Factories;
 
-use App\Models\Order;
 use App\Http\Interfaces\BaseFactoryInterface;
 use App\Http\Interfaces\OrderStatusRepositoryInterface;
 use App\Http\Repositories\Orders\Statuses\PossibilityOfDelivery;
+use App\Http\Repositories\Orders\Statuses\ReceiptFromTheCustomer;
+use App\Models\Order;
 
 class OrderStatusFactory implements BaseFactoryInterface
 {
@@ -17,6 +18,9 @@ class OrderStatusFactory implements BaseFactoryInterface
         switch ($order->statuses->first()->step) {
             case 'possibility_of_delivery':
                 return new PossibilityOfDelivery($order);
+                break;
+            case 'Receipt_from_the_customer':
+                return new ReceiptFromTheCustomer($order);
                 break;
             default:
                 abort(404);

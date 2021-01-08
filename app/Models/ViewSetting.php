@@ -10,12 +10,12 @@ class ViewSetting extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'content' => 'array',
+        'data' => 'array',
     ];
 
-    public function setContentAttribute($value)
+    public function setDataAttribute($value)
     {
-       $this->attributes['content'] = json_encode($value);
+       $this->attributes['data'] = json_encode($value);
     }
 
     public function admin()

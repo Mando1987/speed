@@ -28,7 +28,7 @@
         <!-- start of view setting panel  -->
         <div class="col-4 col-sm-2 col-md-2">
             <div class="float-right">
-                <a href="{{ url('order/show-view-setting') }}" class="btn btn-sm btn-info showViewSetting">
+                <a href="{{ url('order/view-setting') }}" class="btn btn-sm btn-info showViewSetting">
                     <i class="fas fa-cog"></i>
                 </a>
             </div>

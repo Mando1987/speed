@@ -77,15 +77,6 @@ class OrderController extends Controller
         return view('includes.delete');
     }
 
-    public function showViewSetting(Request $request)
-    {
-        return OrderViewShowStore::show($request);
-    }
-
-    public function storeViewSetting(Request $request)
-    {
-        return OrderViewShowStore::store($request);
-    }
 
     public function viewUpdateOrder()
     {

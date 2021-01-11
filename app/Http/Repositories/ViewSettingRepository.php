@@ -44,7 +44,7 @@ class ViewSettingRepository implements ViewSettingRepositoryInterface
     public static function viewSetting(Request $request) :array
     {
         $setting = ViewSetting::whereAdminId($request->adminId)
-            ->whereEvent('view_setting')
+            ->whereEvent('view_setting1')
             ->first();
         return session('viewSetting') ?? $setting->data ?? ['view_mode' => static::$viewMode, 'paginate' => static::$paginate];
     }

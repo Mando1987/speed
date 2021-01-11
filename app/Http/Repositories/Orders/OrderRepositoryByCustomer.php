@@ -86,19 +86,7 @@ class OrderRepositoryByCustomer implements OrderRepositoryInterface
     public function update(OrderEditFormRequest $request, $id)
     {
     }
-    public function teleg($message)
-    {
-        $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
-        $tele->sendMessage([
-            'chat_id' => '-1001175803813',
-            'text' => view('includes.telegram.message', ['a' => $message])->toHtml(),
-            'parse_mode' => 'HTML',
-            'disable_web_page_preview' => false,
-            'disable_notification' => '',
-            'reply_to_message_id' => '{info:mando}',
-            'reply_markup' => '',
-        ]);
-    }
+
     private function getOrderFullDetails(int $orderId, string $view, array $addRelation = [])
     {
         $orderData = $this->order::with(array_merge(['reciver', 'shipping'], $addRelation))

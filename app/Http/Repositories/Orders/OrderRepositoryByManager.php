@@ -116,4 +116,9 @@ class OrderRepositoryByManager implements OrderRepositoryInterface
         return view('order.' . $view, ['order' => $orderData]);
     }
 
+    public function newMethod()
+    {
+
+    }
+
 }

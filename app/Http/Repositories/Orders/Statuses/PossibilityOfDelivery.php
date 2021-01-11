@@ -24,9 +24,6 @@ class PossibilityOfDelivery implements OrderStatusRepositoryInterface
             case 'under_review':
                 return view($this->viewName, ['orderId' => $this->order->id]);
                 break;
-            /**
-                 * TODO : hide delegate select box when chosse Receipt_in_company in view :under_preparation
-                 */
             case 'under_preparation':
                 return view($this->viewName, ['orderId' => $this->order->id, 'delegates' => Delegate::get()]);
                 break;

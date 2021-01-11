@@ -14,7 +14,7 @@
         @if($view =='grid')
         <div class="row d-flex align-items-stretch">
             @foreach($orders as $index => $order)
-            @include('includes.orders.index.'. request()->adminType .'_grid_view')
+            @include('includes.indexViews.grid.order_'. request()->adminType)
             @endforeach
         </div>
         @else
@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     @foreach ($orders as $index=>$order)
-                    @include('includes.orders.index.'. request()->adminType .'_list_view')
+                    @include('includes.indexViews.list.order_'. request()->adminType)
                     @endforeach
                 </tbody>
             </table>

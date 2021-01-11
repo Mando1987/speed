@@ -12,7 +12,7 @@ use Log;
 class OrderStatusController extends Controller
 {
     private $order;
-    private $steps = ['step1' => 'possibility_of_delivery'];
+    private $steps = ['STEP1' => 'STEP1'];
     public function __construct(Order $order)
     {
         $this->order = $order;
@@ -50,7 +50,7 @@ class OrderStatusController extends Controller
             $order->save();
             $order->statuses()->create(
                 [
-                    'status' => 'ready_to_receipt', 'step' => 'Receipt_from_the_customer', 'delegate_id' => $request->delegate_id ?? null
+                    'status' => 'ready_to_receipt', 'step' => 'STEP2', 'delegate_id' => $request->delegate_id ?? null
                 ]
             );
             DB::commit();

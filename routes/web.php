@@ -1,13 +1,7 @@
 <?php
 
-use App\Events\ServerErrorEvent;
-use GuzzleHttp\Client as GuzzleClient;
-use Illuminate\Support\Facades\Storage;
-use NotificationChannels\Telegram\Telegram;
-use Spatie\Dropbox\Client as DropboxClient;
-use App\Http\Services\AlertFormatedDataJson;
-use GrahamCampbell\GuzzleFactory\GuzzleFactory;
 use App\Http\Controllers\Admin\RegisterController;
+use NotificationChannels\Telegram\Telegram;
 
 Route::get('/', function () {
     return view('front.index');
@@ -30,8 +24,10 @@ Route::get('/test', function () {
     // force user to download file
     //  return Storage::disk('dropbox')->files();
     //  dd($client->upload('/folder/hellow.txt','hellow'));
+    //  dd($client->upload('/folder/hellow.txt','hellow'));
+    //  dd($client->upload('/folder/hellow.txt','hellow'));
 
-      //Artisan::call('backup:run');
+    //Artisan::call('backup:run');
     //   $p = app(GovernorateClass::class);
     //   $p->getAllGovernorates();
     //   $p->getFirstGovernorateWithCities();
@@ -43,12 +39,11 @@ Route::get('/test', function () {
 //   dd(Telegram::class);
     //  var_dump(openssl_get_cert_locations());
 
-     $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
-     return $tele->getMe();
-          $tele->sendContact([
-              'chat_id' => '-1001175803813',
-              'phone_number' => '+2001270142656',
-              'first_name' => 'mando'
-          ]);
+    $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
+    return $tele->getMe();
+    $tele->sendContact([
+        'chat_id' => '-1001175803813',
+        'phone_number' => '+2001270142656',
+        'first_name' => 'mando',
+    ]);
 });
-

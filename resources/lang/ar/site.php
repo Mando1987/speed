@@ -336,5 +336,5 @@ return [
   'color_postpond'                    => 'purple',
   'color_cancelld'                    => 'danger',
   'color_ready_to_receipt'            => 'olive',
-
+  'order_update' => 'تحديث',
 ];

@@ -26,7 +26,7 @@ class OrderRepositoryByCustomer implements OrderRepositoryInterface
             ->latest()
             ->paginate($this->paginate);
         return view(
-            'order.index.customer',
+             $this->indexViewPath,
             [
                 'orders' => $orders,
                 'view' => $this->view,

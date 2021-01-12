@@ -18,15 +18,9 @@ class ReceiptFromTheCustomer implements OrderStatusRepositoryInterface
     }
     public function viewActions()
     {
-        Log::info($this->order->status);
-
         switch ($this->order->status) {
             case 'ready_to_receipt':
-            return 123;
                 return view($this->viewName, ['orderId' => $this->order->id]);
-                break;
-            case 'under_preparation':
-                return view($this->viewName, ['orderId' => $this->order->id, 'delegates' => Delegate::get()]);
                 break;
         }
     }

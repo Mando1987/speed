@@ -7,6 +7,8 @@ use App\Models\Governorate;
 
 trait OrderTrait
 {
+    private $indexViewPath = 'order.index.index';
+
     protected $orderStatuses = [
         'under_review',
         'under_preparation',

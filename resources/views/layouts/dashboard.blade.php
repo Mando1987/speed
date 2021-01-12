@@ -23,27 +23,7 @@
     <link rel="stylesheet" href="{{asset('assets/dist/css/print.css')}}">
     <!-- Google Font: Source Sans Pro -->
     @if($defaultLang['abbr'] == 'ar')
-    <link href="https://fonts.googleapis.com/css?family=Cairo:400,700" rel="stylesheet">
-    <style>
-        html,
-        body,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: 'Cairo', sans-serif !important;
-        }
-
-        [class*=icheck-] {
-            margin: 0 !important;
-        }
-
-        [class*=icheck-]>label {
-            padding-left: 23px !important;
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('assets/dist/css/cairofont.css')}}">
     @endif
 </head>
 

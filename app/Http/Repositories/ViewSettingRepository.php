@@ -31,7 +31,7 @@ class ViewSettingRepository implements ViewSettingRepositoryInterface
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
-        session(['viewSetting' => $setting->data]);
+        self::saveSettingToSession($setting->data);
         return redirect(route('order.index'));
     }
     /**
@@ -41,11 +41,27 @@ class ViewSettingRepository implements ViewSettingRepositoryInterface
      *
      * @return array ['view_mode' => 'list', 'paginate' => 10];
      */
-    public static function viewSetting(Request $request) :array
+    public static function viewSetting(Request $request): array
+    {
+        $data = ['view_mode' => static::$viewMode, 'paginate' => static::$paginate];
+
+        $data = session()->has('viewSetting') ? session('viewSetting') : self::loadSetting($request) ?? $data;
+        return $data;
+
+    }
+    private static function saveSettingToSession($data)
+    {
+        session(['viewSetting' => $data]);
+    }
+
+    private static function loadSetting($request)
     {
         $setting = ViewSetting::whereAdminId($request->adminId)
-            ->whereEvent('view_setting1')
+            ->whereEvent('view_setting')
             ->first();
-        return session('viewSetting') ?? $setting->data ?? ['view_mode' => static::$viewMode, 'paginate' => static::$paginate];
+        if ($setting) {
+            self::saveSettingToSession($setting->data);
+            return $setting->data;
+        }
     }
 }

@@ -25,7 +25,7 @@ class OrderRepositoryByManager implements OrderRepositoryInterface
             ->latest()
             ->paginate($this->paginate);
         return response(view(
-            'order.index.manager',
+            $this->indexViewPath,
             [
                 'orders' => $orders,
                 'view' => $this->view,

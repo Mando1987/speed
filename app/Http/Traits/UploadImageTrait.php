@@ -29,5 +29,6 @@ trait UploadImageTrait
         return $this->defaultImage;
 
     }
+
 }
 

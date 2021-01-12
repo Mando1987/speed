@@ -11,20 +11,26 @@ class OrderStatusFactory implements BaseFactoryInterface
 {
     public static function getInstance(): OrderStatusRepositoryInterface
     {
+        /**
+         * TODO : any thing
+         */
         $order = Order::with(['statuses' => function ($query) {
             $query->orderByDesc('created_at')->first();
         }])->find(request()->order_id);
 
         switch ($order->statuses->first()->step) {
-            case 'possibility_of_delivery':
+            case 'STEP1':
                 return new PossibilityOfDelivery($order);
                 break;
-            case 'Receipt_from_the_customer':
+            case 'STEP2':
                 return new ReceiptFromTheCustomer($order);
                 break;
-            default:
-                abort(404);
-                break;
+            // case 'STEP3':
+            //     return new ReceiptFromTheCustomer($order);
+            //     break;
+            // default:
+            //     abort(404);
+            //     break;
         }
     }
 }

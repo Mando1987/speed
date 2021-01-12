@@ -33,14 +33,9 @@ return [
         ],
         'delegate' => [
             'customer' => 'العميل',
-            'created_at' => 'التاريخ',
             'city' => 'المنطقة',
             'phone' => 'التليفون',
-            'reciver' => 'المرسل اليه',
-            'total_price' => 'إجمالى الشحنة',
-            'status' => 'الحاله',
             'order_num' => 'رقم البوليصه',
-
         ],
     ], 'delegate' => [
         'fullname' => 'الأسم ',

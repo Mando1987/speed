@@ -23,4 +23,8 @@ class OrderStatus extends Model
     {
         return $this->belongsTo(Order::class);
     }
+    public function delegate()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }

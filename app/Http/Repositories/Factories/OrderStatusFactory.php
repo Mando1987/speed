@@ -12,7 +12,7 @@ class OrderStatusFactory implements BaseFactoryInterface
     public static function getInstance(): OrderStatusRepositoryInterface
     {
         /**
-         * TODO : any thing
+         * TODO : any thing for test
          */
         $order = Order::with(['statuses' => function ($query) {
             $query->orderByDesc('created_at')->first();

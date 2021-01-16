@@ -80,8 +80,6 @@ var orderFunctions = {
     validateReciverErrorNew: function (responseData) {
         console.log(responseData.errors);
         $("input[name='reciverType'][value='new']").prop("checked", true);
-        // $("#ReciverNew").click();
-        // $("#ReciverNew").trigger("change");
         setErrorsClassToInputsFildes(responseData.errors);
     },
     validateReciverErrorExists: function (responseData) {
@@ -107,7 +105,7 @@ function toggleTabPaneClass(showClass) {
 }
 /**
  * set sweet alert box data and fire it
- */
+*/
 function alertBody(alert) {
     Swal.fire({
         titleText: alert.title,
@@ -147,7 +145,7 @@ $(document).on("change", ".chooseType", function () {
 /**
  * reset Erorr Classes
  *
- */
+*/
 function resetErorrClasses(MainForm) {
     MainForm.find(".invalid-feedback").each(function () {
         $(this).remove();
@@ -164,7 +162,6 @@ function getOrderChargePrice() {
         quantity = $('[name="shipping[quantity]"]').val(),
         price = $('[name="shipping[price]"]').val(),
         charge_on = $('[name="shipping[charge_on]"]').val(),
-        city_id = $("[name=reciver_city_id]").val(),
         discount = $('[name="shipping[discount]"]').val();
 
     var data = {
@@ -174,8 +171,7 @@ function getOrderChargePrice() {
             price: price,
             charge_on: charge_on,
             discount: discount,
-        },
-        reciver_city_id: city_id,
+        }
     };
     if (weight > 0 && quantity > 0) {
         $(".is-invalid").removeClass("is-invalid");

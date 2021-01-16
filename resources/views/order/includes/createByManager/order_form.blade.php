@@ -221,6 +221,5 @@
     </div>
 </div>
 <a class="createOrderFormBack btn btn-outline-secondary" data-pane="reciver">@lang('site.back')</a>
-<input type="hidden" name="reciver_city_id"  />
 <button type="submit" class="btn btn-success">@lang('site.add')</button>
 </form>

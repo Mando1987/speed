@@ -9,9 +9,12 @@ class Setting extends Model
     protected $guarded = [];
     public $timestamps = false;
 
-    // protected $casts = ['data' => 'object'];
-    public function getDataAttribute($value)
+    protected $casts = [
+        'data' => 'object',
+    ];
+
+    public function setDataAttribute($value)
     {
-       return unserialize($value);
+       $this->attributes['data'] = json_encode($value);
     }
 }

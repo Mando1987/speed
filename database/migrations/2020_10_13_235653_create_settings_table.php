@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Services\SettingPriceDefault;
 use App\Models\Setting;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,13 +17,18 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('event');
-            $table->string('data');
+            $table->json('data');
         });
 
-        Setting::create([
-            'event' => 'default_charge_price',
-            'data'  =>  serialize(new SettingPriceDefault(2, 35, 1, 5))
-        ]);
+        $setting = new Setting;
+        $setting->event = 'default_charge_price';
+        $setting->data = [
+            'send_weight' => 2,
+            'send_price' => 35,
+            'weight_addtion' => 1,
+            'price_addtion' => 5,
+        ];
+        $setting->save();
     }
 
     /**

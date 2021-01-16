@@ -2,16 +2,17 @@
 
 namespace App\Services\Orders;
 
+use Log;
 use App\Models\Setting;
 use App\Models\PlacePrice;
 use Illuminate\Http\Request;
+use App\Services\Orders\FetchReciverPriceFromSession;
 
 class OrderCountChargePrice
 {
     private $request;
     private $shipping;
     private $chargeprice;
-    private $city_id;
 
     public $discount;
     public $total_weight;
@@ -32,10 +33,10 @@ class OrderCountChargePrice
     public function getOrderChargePrice(Request $request,bool $validateValues = false)
     {
         $this->request = $request;
-        $this->city_id = $request->reciver_city_id;
         $this->shipping = $request->shipping;
         $validateValues ? $this->validateValues() : false;
         return $this->countChargePrice();
+
     }
 
     private function validateValues()
@@ -61,7 +62,7 @@ class OrderCountChargePrice
 
     private function countChargePrice()
     {
-        $this->setPlacePrice();
+        $this->chargeprice = FetchReciverPriceFromSession::getPriceCharge();
         $this->setTotalWeight();
         $this->setTotalOVerWeight();
         $this->setTotalOVerWeightPrice();
@@ -73,26 +74,12 @@ class OrderCountChargePrice
         return $this->getShippingData();
     }
 
-    private function setPlacePrice()
-    {
-        $charge_price = PlacePrice::where(function ($query) {
-            $query->where('city_id', $this->city_id);
-        })->first();
-        if ($charge_price) {
-             $this->chargeprice = $charge_price;
-        } else {
-            $default_price = Setting::where('event', 'default_charge_price')->first();
-            $this->chargeprice = $default_price->data;
-        }
-    }
-
     private function setTotalWeight()
     {
        $this->total_weight = ceil($this->shipping['weight'] * $this->shipping['quantity']);
     }
     private function setTotalOverWeight() :void
     {
-        \Log::error(getType($this->chargeprice) );
         $this->total_over_weight = $this->total_weight > $this->chargeprice->send_weight ?
                                       $this->total_weight - $this->chargeprice->send_weight : 0;
     }

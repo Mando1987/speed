@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\RegisterController;
+use App\Services\Orders\FetchReciverPriceFromSession;
 use NotificationChannels\Telegram\Telegram;
 
 Route::get('/', function () {
@@ -16,6 +17,8 @@ Route::get('/facebook/register', [RegisterController::class, 'viewFacebookRegist
 Route::post('/facebook/register', [RegisterController::class, 'FacebookRegisterProccess'])->name('facebook.register_proccess');
 
 Route::get('/test', function () {
+
+    return FetchReciverPriceFromSession::getPriceCharge();
     // return AlertFormatedDataJson::alertServerError('order.create');
     // delete file
     // $client->delete('/h.txt'); // path_display
@@ -39,11 +42,11 @@ Route::get('/test', function () {
 //   dd(Telegram::class);
     //  var_dump(openssl_get_cert_locations());
 
-    $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
-    return $tele->getMe();
-    $tele->sendContact([
-        'chat_id' => '-1001175803813',
-        'phone_number' => '+2001270142656',
-        'first_name' => 'mando',
-    ]);
+    // $tele = new Telegram('1386311778:AAH375FJ6-rc161J4M799pbqrPMW42Eky8o');
+    // return $tele->getMe();
+    // $tele->sendContact([
+    //     'chat_id' => '-1001175803813',
+    //     'phone_number' => '+2001270142656',
+    //     'first_name' => 'mando',
+    // ]);
 });

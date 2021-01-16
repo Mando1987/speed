@@ -2,10 +2,11 @@
 
 namespace App\Exceptions;
 
+use Throwable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
-use Illuminate\Support\Facades\Log;
 
 class Handler extends ExceptionHandler
 {
@@ -39,7 +40,7 @@ class Handler extends ExceptionHandler
     public function report(Throwable $exception)
     {
         parent::report($exception);
-        Log::critical($exception);
+        Log::channel('slack')->critical($exception);
     }
 
     /**
@@ -56,17 +57,17 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 
-    // protected function unauthenticated($request, AuthenticationException $exception)
-    // {
-    //     // if($request->expectsJson()){
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        if($request->expectsJson()){
 
-    //     //     return response()->json(['error' => 'unauthenticated'], 401);
-    //     // }
+            return response()->json(['error' => 'unauthenticated'], 401);
+        }
 
-    //     // if($request->is('admin') || $request->is('admin/*')){
+        if($request->is('admin/*') || $request->is('admin') || $request->is('*')){
 
-    //     //     return redirect('admin/login');
-    //     // }
-    //     //return redirect()->guest(route('login'));
-    // }
+             return redirect()->route('admin.login');
+        }
+        return redirect()->guest(route('admin.login'));
+    }
 }

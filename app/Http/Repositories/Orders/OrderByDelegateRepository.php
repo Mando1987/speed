@@ -21,7 +21,6 @@ class OrderByDelegateRepository implements OrderGetAllRepositoryInterface
     public function getAll(Request $request)
     {
         $this->setViewSetting();
-
         $orders = Delegate::find($request->adminId)->statuses()->with(['order' => function ($query) {
             return $query->select('id', 'status', 'customer_id', 'reciver_id', 'notes', 'info');
         }])->get()->pluck('order');

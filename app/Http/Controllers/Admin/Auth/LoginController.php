@@ -52,7 +52,6 @@ class LoginController extends Controller
             })->first();
 
             if ($admin) {
-
                 if (Hash::check($request->password, $admin->getPassword())) {
                     // login this admin
                     return Auth::guard('admin')->login($admin ,$remmber_me);

@@ -74,6 +74,7 @@
 
     <div id="print">
     </div>
+
     <!-- jQuery -->
     <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
@@ -86,9 +87,9 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('assets/dist/js/demo.js')}}"></script>
     <script src="{{asset('assets/dist/js/main.js')}}"></script>
-    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-    <script>
-        // Enable pusher logging - don't include this in production
+    {{-- <script src="https://js.pusher.com/7.0/pusher.min.js"></script> --}}
+    {{-- <script>
+        Enable pusher logging - don't include this in production
       Pusher.logToConsole = false;
 
       var pusher = new Pusher('2fb676fe72445a3779d6', {
@@ -101,10 +102,8 @@
         alert(JSON.stringify(data));
         console.log(data);
       });
-    </script>
+    </script> --}}
 
-    @stack('datatable')
-    @include('includes.notify.message')
     @stack('scripts')
 </body>
 

@@ -16,6 +16,7 @@
         "laravel-notification-channels/telegram": "^0.5.1",
         "laravel/framework": "^7.0",
         "laravel/nexmo-notification-channel": "^2.5",
+        "laravel/slack-notification-channel": "^2.3",
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.1",

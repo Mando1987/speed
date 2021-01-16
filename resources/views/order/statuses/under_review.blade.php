@@ -1,6 +1,5 @@
 <div class="card card-outline card-purple mb-0">
     <div class="card-body">
-
         <div class="row">
             <div class="col-12 text-center">
                 <strong class="badge bg-light p-md-3 p-2 mb-3">
@@ -15,7 +14,6 @@
                 <x-button class="btn-danger p-2 ml-3" type="delete" text="site.order_cancelled_change" />
             </div>
         </div>
-
     </div><!-- end of card-body -->
     <div class="card-footer">
         <button class="btn btn-danger float-right" onclick="Swal.close()">@lang('site.cancel')</button>

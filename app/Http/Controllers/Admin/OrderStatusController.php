@@ -39,7 +39,7 @@ class OrderStatusController extends Controller
         }
     }
 
-    public function ReceiptFromCustomer(Request $request, Order $order)
+    public function underPreparation(Request $request, Order $order)
     {
         $rules = ['ReceiptType' => ['required','in:Receipt_in_company,Receipt_by_delegate']];
         $request->ReceiptType == 'Receipt_by_delegate' ? $rules['delegate_id'] = ['required','exists:delegates,id'] :false;
@@ -55,6 +55,33 @@ class OrderStatusController extends Controller
             );
             DB::commit();
             return AlertFormatedDataJson::alertMessageOnly(trans('site.order_status_changed_successfuly'));
+            Log::debug($request);
+        } catch (\Exception $ex) {
+            DB::rollback();
+            \Log::error($ex->getMessage());
+            return AlertFormatedDataJson::alertMessageOnly(trans('site.order_status_changed_failed', 'error'));
+        }
+
+    }
+
+    public function ReceiptFromCustomer(Request $request, Order $order)
+    {
+        $rules = ['ReceiptProssess' => ['required','in:done'] , 'ReceiptWay' => ['in:GO_TO_STORAGE,GO_TO_CUSTOMER']];
+        $status= ['GO_TO_STORAGE' => 'pickup_in_storage' , 'GO_TO_CUSTOMER' => 'ready_to_chip'];
+        $request->validate($rules);
+
+        $orderStatus = $status[$request->ReceiptWay];
+        try {
+            DB::beginTransaction();
+            $order->status = $orderStatus;
+            $order->save();
+            $order->statuses()->create(
+                [
+                    'status' => $orderStatus, 'step' => 'STEP2', 'delegate_id' => $request->adminId
+                ]
+            );
+            DB::commit();
+            return AlertFormatedDataJson::alertMessageOnly(trans('site.edited'));
             Log::debug($request);
         } catch (\Exception $ex) {
             DB::rollback();

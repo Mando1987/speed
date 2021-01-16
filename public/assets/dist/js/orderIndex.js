@@ -1,13 +1,12 @@
 /*******************************[ start ready function ]*********** **************************** */
 $(document).ready(function () {
+
     console.log(`token : ${__token}`);
 
     $(document).on("submit", ".orderIndexForm", function (e) {
        e.preventDefault();
         var form = this;
         var formdata = new FormData(form);
-        var MainForm = $(this);
-        resetErorrClasses(MainForm);
         $.ajax({
             url: form.action,
             type: form.method,
@@ -16,11 +15,11 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (responseData) {
-                console.log(responseData);
-               // orderFunctions[responseData.target](responseData);
+                // console.log(responseData);
+                alertBody(responseData.alert.html);
             },
             error: function (reject) {
-                orderFunctions[reject.responseJSON.target](reject.responseJSON);
+                //orderFunctions[reject.responseJSON.target](reject.responseJSON);
             },
         });
         return false;

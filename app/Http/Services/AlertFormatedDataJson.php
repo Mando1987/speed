@@ -62,12 +62,11 @@ class AlertFormatedDataJson
           500
        );
     }
-    public static function alertMessageOnly(string $message, $icon='success')
+    public static function alertMessageOnly(string $message)
     {
        return response()->json(
           [
               'alert' => [
-                  'icon' => $icon,
                   'html' => view('includes.alerts.message' ,['message' => $message])->toHtml(),
               ]
           ],

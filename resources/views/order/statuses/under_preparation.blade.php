@@ -1,4 +1,4 @@
-<form class="orderIndexForm" method="POST" action="{{ route('order.Receipt_from_customer', $orderId) }}">
+<form class="orderIndexForm" method="POST" action="{{ route('order.under_preparation', $orderId) }}">
     <div class="card card-outline card-purple mb-0">
         <div class="card-body">
             @csrf

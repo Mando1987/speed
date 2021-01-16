@@ -337,4 +337,9 @@ return [
   'color_cancelld'                    => 'danger',
   'color_ready_to_receipt'            => 'olive',
   'order_update' => 'تحديث',
+  'Receipt_order_status' => 'حالة الشحنة',
+  'Receipt_from_the_customer_done' => 'تم استلام الشحنة من العميل',
+  'order_after_Receipt' => 'مسار الشحنة',
+  'go_to_storage' => 'العودة الى المخزن',
+  'go_to_customer' => 'الذهاب الى العميل',
 ];

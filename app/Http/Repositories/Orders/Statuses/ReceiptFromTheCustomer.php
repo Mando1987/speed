@@ -22,6 +22,12 @@ class ReceiptFromTheCustomer implements OrderStatusRepositoryInterface
             case 'ready_to_receipt':
                 return view($this->viewName, ['orderId' => $this->order->id]);
                 break;
+            case 'pickup_in_storage':
+                return view($this->viewName, ['orderId' => $this->order->id]);
+                break;
+            case 'ready_to_chip':
+                return view($this->viewName, ['orderId' => $this->order->id]);
+                break;
         }
     }
 }

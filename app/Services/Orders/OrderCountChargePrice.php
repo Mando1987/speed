@@ -79,7 +79,7 @@ class OrderCountChargePrice
             $query->where('city_id', $this->city_id);
         })->first();
         if ($charge_price) {
-            //  $this->chargeprice = $charge_price;
+             $this->chargeprice = $charge_price;
         } else {
             $default_price = Setting::where('event', 'default_charge_price')->first();
             $this->chargeprice = $default_price->data;

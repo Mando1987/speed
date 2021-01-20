@@ -88,6 +88,5 @@ class OrderStatusController extends Controller
             \Log::error($ex->getMessage());
             return AlertFormatedDataJson::alertMessageOnly(trans('site.order_status_changed_failed', 'error'));
         }
-
     }
 }

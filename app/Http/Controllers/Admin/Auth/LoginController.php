@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Auth\Events\Login;
-use PhpParser\Node\Stmt\TryCatch;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -44,7 +43,7 @@ class LoginController extends Controller
     protected function attemptLogin(Request $request)
     {
         try {
-            $remmber_me = $request->remmber_me ? true:false;
+            $remmber_me = $request->remmber_me ? true : false;
             $admin = Admin::where(function ($query) use ($request) {
                 $query->where('user_name', $request->identify)
                     ->orWhere('phone', $request->identify)
@@ -52,9 +51,9 @@ class LoginController extends Controller
             })->first();
 
             if ($admin) {
-                if (Hash::check($request->password, $admin->getPassword())) {
+                if (Hash::check($request->password, $admin->getPassword())) {[]
                     // login this admin
-                    return Auth::guard('admin')->login($admin ,$remmber_me);
+                    return Auth::guard('admin')->login($admin, $remmber_me);
                 } else {
                     $this->passwordError = true;
                 }
@@ -62,11 +61,9 @@ class LoginController extends Controller
                 $this->identifyError = true;
             }
         } catch (\Exception $e) {
-
             return $e->getMessage();
         }
     }
-
 
     public function logout(Request $request)
     {
@@ -81,8 +78,8 @@ class LoginController extends Controller
         }
 
         return $request->wantsJson()
-            ? new Response('', 204)
-            : redirect('/admin/login');
+        ? new Response('', 204)
+        : redirect('/admin/login');
     }
     protected function sendFailedLoginResponse()
     {

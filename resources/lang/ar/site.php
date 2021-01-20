@@ -342,4 +342,11 @@ return [
   'order_after_Receipt' => 'مسار الشحنة',
   'go_to_storage' => 'العودة الى المخزن',
   'go_to_customer' => 'الذهاب الى العميل',
+  'Delivery_to_the_customer' =>  'التوصيل الى العميل',
+  'Delivery_to_the_customer_done' =>  'تم التوصيل الى العميل',
+  'Delivery_to_the_customer_failed' =>  'تم رفض الاستلام',
+  'Delivery_cancelled_reason' =>  'سبب الرفض',
+  'Delivery_cancelled_reason_address_wrong' =>  'عنوان خاطئ',
+  'Delivery_cancelled_reason_customer_address_new' =>  'عنوان جديد',
+  'Delivery_cancelled_reason_customer_not_found' =>  'عميل غير متوفر',
 ];

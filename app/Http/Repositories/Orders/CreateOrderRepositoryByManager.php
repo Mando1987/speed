@@ -1,27 +1,23 @@
 <?php
 namespace App\Http\Repositories\Orders;
 
-use Notification;
-use App\Models\Customer;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
-use App\Events\CreateNewOrder;
-use App\Events\ServerErrorEvent;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
-use App\Http\Traits\FormatedResponseData;
-use NotificationChannels\Telegram\Telegram;
+use App\Http\Interfaces\CreateOrderRepositoryInterface;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Services\AlertFormatedDataJson;
+use App\Http\Traits\FormatedResponseData;
 use App\Http\Traits\Orders\CreateOrderTrait;
+use App\Models\Customer;
 use App\Notifications\Telegram\NotifyAddNewOrder;
-use App\Http\Interfaces\CreateOrderRepositoryInterface;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
 {
     use CreateOrderTrait, FormatedResponseData;
 
-    public function create(Request $request) :View
+    public function create(Request $request): View
     {
         $customers = Customer::all();
         return view('order.create.createByManager', [
@@ -30,7 +26,7 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
         ]);
     }
 
-    public function store(OrderStoreFormRequest $request) :JsonResponse
+    public function store(OrderStoreFormRequest $request): JsonResponse
     {
         $page = session('orderData')['page'];
         if ($page == 'order') {
@@ -47,8 +43,8 @@ class CreateOrderRepositoryByManager implements CreateOrderRepositoryInterface
                 $this->forgetOrderDataFromSession();
 
                 return (new AlertFormatedDataJson('validateOrder'))->alertBody(
-                   'includes.alerts.order',
-                   trans('site.added')
+                    'includes.alerts.order',
+                    trans('site.added')
                 )->formatedData();
 
             } catch (\Exception $ex) {

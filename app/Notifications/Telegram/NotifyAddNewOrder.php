@@ -5,8 +5,6 @@ namespace App\Notifications\Telegram;
 use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Log;
-use Monolog\Handler\TelegramBotHandler;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
@@ -21,8 +19,7 @@ class NotifyAddNewOrder extends Notification
     public function __construct(Order $order)
     {
         $this->order = $order;
-        $this->reciverPhone = sprintf('+20%s',$this->order->reciver->phone);
-        Log::debug($this->reciverPhone);
+        $this->reciverPhone = sprintf('+20%s', $this->order->reciver->phone);
     }
 
     public function via($notifiable)
@@ -33,7 +30,7 @@ class NotifyAddNewOrder extends Notification
     {
         return TelegramMessage::create()
             ->to($this->chaId)
-            ->view('notifications.telegram.add_new_order', ['order' => $this->order , 'reciverPhone' => $this->reciverPhone])
+            ->view('notifications.telegram.add_new_order', ['order' => $this->order, 'reciverPhone' => $this->reciverPhone])
             ->button(trans('site.telegram_review_order'), route('order.show', $this->order->id))
             ->options([
                 'parse_mode' => 'HTML',

@@ -2,11 +2,8 @@
 
 namespace App\Services\Orders;
 
-use Log;
-use App\Models\Setting;
-use App\Models\PlacePrice;
-use Illuminate\Http\Request;
 use App\Services\Orders\FetchReciverPriceFromSession;
+use Illuminate\Http\Request;
 
 class OrderCountChargePrice
 {
@@ -29,8 +26,8 @@ class OrderCountChargePrice
      * @param Request $request
      * @param boolean $validateValues
      * @return array
-    */
-    public function getOrderChargePrice(Request $request,bool $validateValues = false)
+     */
+    public function getOrderChargePrice(Request $request, bool $validateValues = false)
     {
         $this->request = $request;
         $this->shipping = $request->shipping;
@@ -76,12 +73,12 @@ class OrderCountChargePrice
 
     private function setTotalWeight()
     {
-       $this->total_weight = ceil($this->shipping['weight'] * $this->shipping['quantity']);
+        $this->total_weight = ceil($this->shipping['weight'] * $this->shipping['quantity']);
     }
-    private function setTotalOverWeight() :void
+    private function setTotalOverWeight(): void
     {
         $this->total_over_weight = $this->total_weight > $this->chargeprice->send_weight ?
-                                      $this->total_weight - $this->chargeprice->send_weight : 0;
+        $this->total_weight - $this->chargeprice->send_weight : 0;
     }
 
     private function setTotalOverWeightPrice()
@@ -104,21 +101,21 @@ class OrderCountChargePrice
 
     public function setTotlaPrice()
     {
-        $this->total_price =  $this->shipping['price'] + $this->setAddtionPrice();
+        $this->total_price = $this->shipping['price'] + $this->setAddtionPrice();
     }
 
-    private function checkIfChargeOnReciver() :bool
+    private function checkIfChargeOnReciver(): bool
     {
-        return $this->shipping['charge_on'] == 'reciver' ? true:false;
+        return $this->shipping['charge_on'] == 'reciver' ? true : false;
     }
     private function setDiscount()
     {
-        $this->discount =  $this->shipping['discount'] ?? 0;
+        $this->discount = $this->shipping['discount'] ?? 0;
     }
 
-    private function getShippingData() : array
+    private function getShippingData(): array
     {
-        return   [
+        return [
             'total_weight' => $this->total_weight,
             'total_over_weight' => $this->total_over_weight,
             'total_over_weight_price' => $this->total_over_weight_price,
@@ -128,13 +125,5 @@ class OrderCountChargePrice
             'discount' => $this->discount,
         ];
     }
-
-
-
-
-
-
-
-
 
 }

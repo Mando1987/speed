@@ -50,7 +50,7 @@ class OrderStatusController extends Controller
             $order->save();
             $order->statuses()->create(
                 [
-                    'status' => 'ready_to_receipt', 'step' => 'STEP2', 'delegate_id' => $request->delegate_id ?? null
+                    'status' => 'ready_to_receipt', 'step' => 'Receipt_from_the_customer', 'delegate_id' => $request->delegate_id ?? null
                 ]
             );
             DB::commit();
@@ -77,7 +77,7 @@ class OrderStatusController extends Controller
             $order->save();
             $order->statuses()->create(
                 [
-                    'status' => $orderStatus, 'step' => 'STEP2', 'delegate_id' => $request->adminId
+                    'status' => $orderStatus, 'step' => 'Receipt_from_the_customer', 'delegate_id' => $request->adminId
                 ]
             );
             DB::commit();

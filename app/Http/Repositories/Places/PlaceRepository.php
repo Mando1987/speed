@@ -142,14 +142,10 @@ class PlaceRepository implements PlaceRepositoryInterface
 
             DB::commit();
 
-            $this->notify(['icon' => self::ICON_SUCCESS, 'title' => self::TITLE_DELETED]);
-            return $this->path($this->route);
+
         } catch (\Exception $ex) {
             DB::rollback();
-            $this->notify(['icon' => self::ICON_ERROR, 'title' => self::TITLE_FAILED]);
 
-            dd($ex->getMessage());
-            return back();
         }
     }
 
@@ -158,5 +154,6 @@ class PlaceRepository implements PlaceRepositoryInterface
         return Arr::where(explode(',', $request->cities_ids), function ($value, $key) {
             return (int) $value;
         });
+
     }
 }

@@ -19,10 +19,6 @@ $factory->define(Shipping::class, function (Faker $faker) {
         'total_over_weight'       => 1,
         'total_over_weight_price' => 50,
         'discount'                => 0,
-        'order_id'                => factory(Order::class),
-        'order_num'               => function ($order) {
-
-            return 3018 . (Order::find($order['order_id'])->id) + 4;
-        },
+        'order_num'               => rand(4444,9999),
     ];
 });

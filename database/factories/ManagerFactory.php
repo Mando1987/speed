@@ -2,12 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-
-use App\Models\Permission;
+use App\Model;
 use Faker\Generator as Faker;
 
-$factory->define(Permission::class, function (Faker $faker) {
+$factory->define(Model::class, function (Faker $faker) {
     return [
-        'name' =>'admins_edit',
+        //
     ];
 });

@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Traits;
 
+use App\Models\Address;
+
 trait AddressMorph
 {
     public function address()
     {
-        return $this->morphOne(\App\Models\Address::class , 'addressable')->withDefault(
+        return $this->morphOne(Address::class , 'addressable')->withDefault(
             [
                 'address' => trans('site.nothing'),
                 'special_marque' => trans('site.nothing'),

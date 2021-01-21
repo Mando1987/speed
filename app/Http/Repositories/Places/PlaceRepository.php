@@ -1,16 +1,15 @@
 <?php
 namespace App\Http\Repositories\Places;
 
+use App\Http\Interfaces\PlaceRepositoryInterface;
+use App\Http\Requests\PlaceStoreFormRequest;
+use App\Http\Requests\PlaceUpdateFormRequest;
+use App\Http\Services\AlertFormatedDataJson;
 use App\Models\City;
 use App\Models\Governorate;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use App\Http\Repositories\BaseRepository;
-use App\Http\Requests\PlaceStoreFormRequest;
-use App\Http\Services\AlertFormatedDataJson;
-use App\Http\Requests\PlaceUpdateFormRequest;
-use App\Http\Interfaces\PlaceRepositoryInterface;
 
 class PlaceRepository implements PlaceRepositoryInterface
 {
@@ -90,13 +89,16 @@ class PlaceRepository implements PlaceRepositoryInterface
             }
             DB::commit();
 
+            return (new AlertFormatedDataJson('validatePlace'))->alertBody(
+                'includes.alerts.place',
+                trans('site.edited')
+            )->formatedData();
 
         } catch (\Exception $ex) {
 
             DB::rollback();
-
-            dd($ex->getMessage());
-            return back();
+            \Log::error($ex->getMessage());
+            return AlertFormatedDataJson::alertServerError('plcae.create');
         }
     }
 
@@ -114,14 +116,14 @@ class PlaceRepository implements PlaceRepositoryInterface
             DB::commit();
 
             return (new AlertFormatedDataJson('validatePlace'))->alertBody(
-                    'includes.alerts.place',
-                    trans('site.added')
-                )->formatedData();
+                'includes.alerts.place',
+                trans('site.added')
+            )->formatedData();
 
         } catch (\Exception $ex) {
             DB::rollback();
-             \Log::error($ex->getMessage());
-                return AlertFormatedDataJson::alertServerError('plcae.create');
+            \Log::error($ex->getMessage());
+            return AlertFormatedDataJson::alertServerError('plcae.create');
         }
     }
 

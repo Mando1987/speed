@@ -9,7 +9,7 @@
             <div class="card card-purple card-outline">
 
                 <!-- form start -->
-                <form role="form" id="quickForm" action="{{ route('place.updateMultiCites') }}" method="POST"
+                <form role="form" action="{{ route('place.updateMultiCites') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('POST')
@@ -74,3 +74,6 @@
     <!-- /.row -->
 </div>
 @endsection
+@push('scripts')
+<script src="{{asset('assets/dist/js/formProccess.js')}}"></script>
+@endpush

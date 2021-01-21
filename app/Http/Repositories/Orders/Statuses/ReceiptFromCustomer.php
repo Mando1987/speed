@@ -2,11 +2,9 @@
 namespace App\Http\Repositories\Orders\Statuses;
 
 use App\Http\Interfaces\OrderStatusRepositoryInterface;
-use App\Models\Delegate;
 use App\Models\Order;
-use Log;
 
-class ReceiptFromTheCustomer implements OrderStatusRepositoryInterface
+class ReceiptFromCustomer implements OrderStatusRepositoryInterface
 {
     private $order;
     private $viewName;
@@ -22,10 +20,10 @@ class ReceiptFromTheCustomer implements OrderStatusRepositoryInterface
             case 'ready_to_receipt':
                 return view($this->viewName, ['orderId' => $this->order->id]);
                 break;
-            case 'pickup_in_storage':
+            case 'ready_to_chip':
                 return view($this->viewName, ['orderId' => $this->order->id]);
                 break;
-            case 'ready_to_chip':
+            case 'pickup_in_storage':
                 return view($this->viewName, ['orderId' => $this->order->id]);
                 break;
         }

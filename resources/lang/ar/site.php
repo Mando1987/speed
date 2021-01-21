@@ -314,6 +314,8 @@ return [
 
   'alert_add_price' => 'اضافة سعر جديد',
   'alert_view_price' => 'عرض كافة الاسعار',
+  'alert_add_place' => 'اضافة منطقة جديدة',
+  'alert_view_place' => 'كافة المناطق',
 
   'order_update_order'=> 'تحديث الشحنة',
   'order_change_status' => 'تحديث حالة الشحنة',

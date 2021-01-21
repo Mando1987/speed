@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\OrderStatusController;
 use App\Http\Controllers\Admin\ViewSettingController;
-
 // // ############################################################################
 Route::post('order/get-order-charge-price', [OrderController::class, 'getOrderChargePrice']);
 Route::get('order/print-invoice', [OrderController::class, 'printInvoice'])->name('order.print');
@@ -25,8 +24,9 @@ Route::post('order/validate-customer', [OrderController::class, 'validateCustome
 Route::post('order/validate-reciver', [OrderController::class, 'validateReciver'])->name('order.validate_reciver');
 Route::put('customer/updateByOrder/{id}', [CustomerController::class, 'updateByOrder'])->name('customer.updateByOrder');
 Route::prefix('order/status/')->group(function () {
-    Route::get('change', [OrderStatusController::class, 'changeStatus'])->name('order.change_status');
+    Route::get('under-review', [OrderStatusController::class, 'underReview'])->name('order.under_review');
     Route::put('under-preparation/{order}', [OrderStatusController::class, 'underPreparation'])->name('order.under_preparation');
     Route::post('Receipt-from-customer/{order}', [OrderStatusController::class, 'ReceiptFromCustomer'])->name('order.Receipt_from_customer');
+    Route::post('delivery-to-customer/{order}', [OrderStatusController::class, 'DeliveryToCustomer'])->name('order.delivery_to_customer');
 });
 Route::resource('order', OrderController::class);

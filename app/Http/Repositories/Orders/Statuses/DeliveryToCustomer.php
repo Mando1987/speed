@@ -6,7 +6,7 @@ use App\Models\Delegate;
 use App\Models\Order;
 use Log;
 
-class DeliveryToTheCustomer implements OrderStatusRepositoryInterface
+class DeliveryToCustomer implements OrderStatusRepositoryInterface
 {
     private $order;
     private $viewName;
@@ -19,13 +19,10 @@ class DeliveryToTheCustomer implements OrderStatusRepositoryInterface
     public function viewActions()
     {
         switch ($this->order->status) {
-            case 'ready_to_receipt':
+            case 'deliverd':
                 return view($this->viewName, ['orderId' => $this->order->id]);
                 break;
-            case 'pickup_in_storage':
-                return view($this->viewName, ['orderId' => $this->order->id]);
-                break;
-            case 'ready_to_chip':
+            case 'cancelled':
                 return view($this->viewName, ['orderId' => $this->order->id]);
                 break;
         }

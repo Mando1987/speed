@@ -8,7 +8,7 @@
             <!-- jquery validation -->
             <div class="card card-purple card-outline">
                 <!-- form start -->
-                <form role="form" id="quickForm" action="{{ route('place.store') }}" method="POST">
+                <form role="form" action="{{ route('place.store') }}" method="POST">
                     @csrf
                     @method('POST')
                     <div class="card-body parentDiv">
@@ -23,8 +23,8 @@
                             </div>
                         </div>
                         @for($i = 0; $i < $city_count; $i++)
-                        <div class="row border-bottom p-2 cloneDiv">
-                            <div class="col-md ">
+                        <div class="row border-bottom p-2">
+                            <div class="col-md">
                                 <div class="form-group row m-0">
                                     <div class="col-sm-4">
                                         <x-label title="{{__('site.city_name_ar')}}" />
@@ -74,3 +74,6 @@
 <!-- /.row -->
 </div>
 @endsection
+@push('scripts')
+<script src="{{asset('assets/dist/js/formProccess.js')}}"></script>
+@endpush

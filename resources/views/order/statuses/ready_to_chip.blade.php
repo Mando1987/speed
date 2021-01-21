@@ -1,4 +1,4 @@
-<form class="orderIndexForm" method="POST" action="{{ route('order.Receipt_from_customer', $orderId) }}">
+<form class="orderIndexForm" method="POST" action="{{ route('order.delivery_to_customer', $orderId) }}">
     <div class="card card-outline card-purple mb-0">
         <div class="card-body">
             @csrf
@@ -17,7 +17,7 @@
                             <x-label title="{{__('site.Receipt_order_status')}}" />
                         </div>
                         <div class="col-sm-8">
-                            <select class="custom-select" name="ReceiptProssess">
+                            <select class="custom-select" name="deliveryProccess" onchange="deliveryProccess()">
                                 <option value="done">
                                     @lang('site.Delivery_to_the_customer_done')
                                 </option>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div><!-- end of row-->
-            <div class="row mt-1">
+            <div class="row mt-1" id="cancelledReason">
                 <div class="col-md">
                     <div class="form-group row">
                         <div class="col-sm-4">
@@ -53,10 +53,10 @@
             </div><!-- end of row-->
         </div><!-- end of card-body -->
         <div class="card-footer">
-            <button type="button" class="btn btn-danger float-right ml-2" onclick="Swal.close()">@lang('site.cancel')</button>
+            <button type="button" class="btn btn-danger float-right ml-2"
+                onclick="Swal.close()">@lang('site.cancel')</button>
             <button type="submit" class="btn btn-success float-right">@lang('site.save')</button>
         </div>
     </div><!-- end of card-->
 </form>
-
 

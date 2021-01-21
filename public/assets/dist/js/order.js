@@ -4,7 +4,7 @@ $(document).ready(function () {
     /**
      * OrderFormSubmit to add new order
      */
-    $(document).on("submit", ".OrderFormSubmit", function (e)
+    $(document).on("submit", ".OrderFormSubmit,.FormSubmitAjax", function (e)
     {
         e.preventDefault();
         var form = this;
@@ -52,6 +52,7 @@ $(document).ready(function () {
     $('[name="shipping[charge_on]"]').on("change", function () {
         getOrderChargePrice();
     }); //end of getOrderChargePrice
+
 });
 /*******************************[ end ready function ]*********** **************************** */
 var orderFunctions = {
@@ -95,6 +96,9 @@ var orderFunctions = {
         setErrorsClassToInputsFildes(responseData.errors);
     },
      serverError: function(responseData){
+       alertBody(responseData.alert);
+    },
+     validatePlace: function(responseData){
        alertBody(responseData.alert);
     }
 };

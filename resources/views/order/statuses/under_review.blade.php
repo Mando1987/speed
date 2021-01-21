@@ -9,7 +9,7 @@
             <div class="col-12 d-flex justify-content-center">
                 <x-button class="btn-success p-2 changeOrderStatus" type="edit"
                  text="site.order_under_preparation_change"
-                 :route="route('order.change_status',['orderId' => $orderId , 'status' => 'under_preparation','step' => 'possibility_of_delivery'])"
+                 :route="route('order.under_review',['orderId' => $orderId , 'status' => 'under_preparation'])"
                  />
                 <x-button class="btn-danger p-2 ml-3" type="delete" text="site.order_cancelled_change" />
             </div>

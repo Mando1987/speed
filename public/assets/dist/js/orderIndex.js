@@ -39,6 +39,7 @@ $(document).ready(function () {
         });
         return false;
     });
+    /******************* */
 });
 /*******************************[ end ready function ]*********** **************************** */
 var orderFunctions = {
@@ -60,4 +61,8 @@ function alertBody(html, defaultWidth = "32rem") {
             content: "sweet-alert-content",
         },
     });
+}
+
+function deliveryProccess(){
+    alert(123);
 }

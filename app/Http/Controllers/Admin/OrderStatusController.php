@@ -12,12 +12,15 @@ use Log;
 class OrderStatusController extends Controller
 {
     private $order;
-    private $steps = ['STEP1' => 'STEP1'];
+    private $steps = [
+        'possibility_of_delivery',
+        'Receipt_from_the_customer'
+        ];
     public function __construct(Order $order)
     {
         $this->order = $order;
     }
-    public function changeStatus(Request $request)
+    public function underReview(Request $request)
     {
         try {
             DB::beginTransaction();
@@ -26,7 +29,7 @@ class OrderStatusController extends Controller
             $order->save();
             $order->statuses()->create(
                 [
-                    'status' => $request->status, 'step' => $this->steps[$request->step],
+                    'status' => $request->status, 'step' => 'possibility_of_delivery',
                 ]
             );
             DB::commit();
@@ -83,6 +86,32 @@ class OrderStatusController extends Controller
             DB::commit();
             return AlertFormatedDataJson::alertMessageOnly(trans('site.edited'));
             Log::debug($request);
+        } catch (\Exception $ex) {
+            DB::rollback();
+            \Log::error($ex->getMessage());
+            return AlertFormatedDataJson::alertMessageOnly(trans('site.order_status_changed_failed', 'error'));
+        }
+    }
+    public function DeliveryToCustomer(Request $request, Order $order)
+    {
+        $rules = ['deliveryProccess' => ['required','in:done,cancelled']];
+        if ($request->deliveryProccess == 'cancelled'){
+           $rules['cancelledReason'] = ['required','in:ADDRESS_WRONG,ADDRESS_NEW,CUSTOMER_NOT_FOUND'];
+        }
+        $request->validate($rules);
+        $orderStatus = 'delivered';
+        try {
+            DB::beginTransaction();
+            $order->status = $orderStatus;
+            $order->save();
+            $order->statuses()->create(
+                [
+                    'status' => $orderStatus, 'step' => 'delivery_to_customer', 'delegate_id' => $request->adminId
+                ]
+            );
+            DB::commit();
+            return AlertFormatedDataJson::alertMessageOnly(trans('site.edited'));
+             Log::debug($request);
         } catch (\Exception $ex) {
             DB::rollback();
             \Log::error($ex->getMessage());

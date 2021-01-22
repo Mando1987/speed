@@ -4,6 +4,7 @@
 
 use App\Models\Address;
 use App\Models\Customer;
+use App\Models\Reciver;
 use Faker\Generator as Faker;
 
 $factory->define(Customer::class, function (Faker $faker) {
@@ -16,4 +17,4 @@ $factory->define(Customer::class, function (Faker $faker) {
     ];
 })->afterCreating(Customer::class, function($customer){
     $customer->address()->create(factory(Address::class)->make()->toArray());
-});;
+});

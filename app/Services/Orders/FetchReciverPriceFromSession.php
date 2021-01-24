@@ -17,7 +17,6 @@ class FetchReciverPriceFromSession
            case "exists" :
               return self::fetchPriceForExistsReciver($reciverdata);
        }
-
    }
   private static function fetchPriceForNewReciver($reciverdata)
   {

@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Reciver;
+use App\Models\Delegate;
 use Illuminate\Database\Seeder;
 
-class ReciverTableSeeder extends Seeder
+class DelegateTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class ReciverTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Reciver::class,1)->create();
+        factory(Delegate::class,5)->create();
     }
 }

@@ -2,8 +2,9 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Customer;
+use App\Models\Address;
 use App\Models\Reciver;
+use App\Models\Customer;
 use Faker\Generator as Faker;
 
 $factory->define(Reciver::class, function (Faker $faker) {
@@ -15,4 +16,6 @@ $factory->define(Reciver::class, function (Faker $faker) {
         'other_phone'    =>  '0127014' . rand(0000,9999),
         'customer_id'   => factory(Customer::class)
     ];
+})->afterCreating(Reciver::class, function($reciver){
+    $reciver->address()->create(factory(Address::class)->make()->toArray());
 });

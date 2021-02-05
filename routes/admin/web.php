@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DelegateController;
+use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\PlaceController;
 use App\Http\Controllers\Admin\PlacePricesController;
 use App\Http\Controllers\Admin\ReciverController;
@@ -33,6 +34,7 @@ Route::resources([
     'price' => PlacePricesController::class,
     'delegate' => DelegateController::class,
     'sellersouq' => SellersouqController::class,
+    'managers' => ManagerController::class,
 ]);
 
 Route::fallback(function () {

@@ -4,7 +4,7 @@ namespace App\Http\Traits\Tests;
 use App\Models\Admin;
 use App\Models\Manager;
 
-trait actingAs
+trait ActingAs
 {
     private function actingAsManager()
     {

@@ -13,7 +13,7 @@ use App\Http\Requests\OrderEditFormRequest;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Requests\ValidateOrderCustomerFormRequest;
 use App\Http\Requests\ValidateOrderReciverFormRequest;
-use App\Models\Order;
+use App\Http\Services\OrderService;
 use App\Services\Orders\OrderCountChargePrice;
 use Illuminate\Http\Request;
 
@@ -40,11 +40,11 @@ class OrderController extends Controller
 
     public function validateCustomer(ValidateOrderCustomerFormRequest $request)
     {
-        return ValidateCustomer::handle($request);
+        return app(OrderService::class)->saveCustomerDataToSession($request->validated());
     }
     public function validateReciver(ValidateOrderReciverFormRequest $request)
     {
-        return ValidateReciver::handle($request);
+        return app(OrderService::class)->saveReciverDataToSession($request->validated());
     }
     public function getOrderChargePrice(Request $request)
     {

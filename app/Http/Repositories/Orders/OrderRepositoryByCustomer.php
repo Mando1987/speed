@@ -3,16 +3,22 @@ namespace App\Http\Repositories\Orders;
 
 use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Requests\OrderEditFormRequest;
+use App\Http\Requests\OrderStoreFormRequest;
+use App\Http\Services\AlertFormatedDataJson;
 use App\Http\Traits\FormatedResponseData;
+use App\Http\Traits\Orders\CreateOrderTrait;
 use App\Http\Traits\OrderTrait;
 use App\Http\Traits\ViewSettingTrait;
 use App\Models\Order;
+use App\Models\Reciver;
+use App\Notifications\Telegram\NotifyAddNewOrder;
 use Illuminate\Http\Request;
-use NotificationChannels\Telegram\Telegram;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OrderRepositoryByCustomer implements OrderRepositoryInterface
 {
-    use OrderTrait, FormatedResponseData,ViewSettingTrait;
+    use OrderTrait, FormatedResponseData, ViewSettingTrait, CreateOrderTrait;
 
     public function __construct(Order $order)
     {
@@ -26,7 +32,7 @@ class OrderRepositoryByCustomer implements OrderRepositoryInterface
             ->latest()
             ->paginate($this->paginate);
         return view(
-             $this->indexViewPath,
+            $this->indexViewPath,
             [
                 'orders' => $orders,
                 'view' => $this->view,
@@ -97,5 +103,43 @@ class OrderRepositoryByCustomer implements OrderRepositoryInterface
             $this->setOrderRelationship($orderData, 'reciver');
         }
         return view('order.' . $view, ['order' => $orderData]);
+    }
+
+    public function create(Request $request)
+    {
+        $recivers = Reciver::select('id', 'fullname')->whereCustomerId($request->adminId)->get();
+        return view('order.create.createByCustomer', [
+            'recivers' => $recivers,
+            'userData' => $request->all(),
+        ]);
+    }
+    public function store(OrderStoreFormRequest $request)
+    {
+        $page = session('orderData')['page'];
+        if ($page == 'order') {
+            try {
+                $data = $request->validated();
+                DB::beginTransaction();
+                $customerId = $request->adminId;
+                $reciverId = $this->storeReciverData($data['reciver'], $customerId);
+                $order = $this->storeOrderData(array_merge($data['order'], ['status' => 'under_review']), $customerId, $reciverId);
+                $this->createOrderStatusFirstStep($order, 'under_review');
+                $this->storeOrderShippingData($data['shipping'], $order->id);
+                DB::commit();
+                $order->notify(new NotifyAddNewOrder($order));
+                $this->forgetOrderDataFromSession();
+
+                return (new AlertFormatedDataJson('validateOrder'))->alertBody(
+                    'includes.alerts.order',
+                    trans('site.added')
+                )->formatedData();
+            } catch (\Exception $ex) {
+                DB::rollback();
+                Log::error($ex->getMessage());
+                return AlertFormatedDataJson::alertServerError('order.create');
+            }
+        } else {
+            return response()->json(['showClass' => $page, 'status' => 200]);
+        }
     }
 }

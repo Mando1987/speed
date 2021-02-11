@@ -31,11 +31,11 @@ class OrderController extends Controller
 
     public function create(Request $request)
     {
-        return CreateOrderFactory::getInstance()->create($request);
+        return OrderFactory::getInstance()->create($request);
     }
     public function store(OrderStoreFormRequest $request)
     {
-        return CreateOrderFactory::getInstance()->store($request);
+        return OrderFactory::getInstance()->store($request);
     }
 
     public function validateCustomer(ValidateOrderCustomerFormRequest $request)

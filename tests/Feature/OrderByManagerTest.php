@@ -5,8 +5,12 @@ namespace Tests\Feature;
 use App\Http\Traits\Tests\ActingAs;
 use App\Models\Address;
 use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Reciver;
+use App\Models\Shipping;
+use App\Notifications\Telegram\NotifyAddNewOrder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class OrderByManagerTest extends TestCase
@@ -74,8 +78,41 @@ class OrderByManagerTest extends TestCase
             ->assertSessionHas('orderData.page', 'order')
             ->assertSessionHas('orderData.reciver.data', $reciverData);
     }
-    // public function test_manager_can_add_new_order()
-    // {
-    //     // $this->actingAsManager()->with->post(route('order.store'),[])->assertStatus(200);
-    // }
+    public function test_manager_can_add_new_order()
+    {
+        Notification::fake();
+        $customer = [
+            'type' => 'new',
+            'data' => factory(Customer::class)->make()->toArray(),
+            'address' => factory(Address::class)->make()->toArray(),
+        ];
+        $reciver = [
+            'type' => 'new',
+            'data' => factory(Reciver::class)->make()->toArray(),
+            'address' => factory(Address::class)->make()->toArray(),
+        ];
+
+        $orderData = [
+            'customer' => $customer,
+            'reciver' => $reciver,
+            'page' => 'order',
+            'reciver_city_id' => 1,
+        ];
+        $data = [
+            'order' => factory(Order::class)->make()->toArray(),
+            'shipping' => factory(Shipping::class)->make()->toArray(),
+        ];
+        $orders = Order::all()->count();
+        $this->actingAsManager()->withSession(['orderData' => $orderData])
+            ->post(route('order.store'), $data)
+            ->assertStatus(200);
+        $this->assertDatabaseCount('orders', $orders + 1);
+        Notification::shouldReceive(new NotifyAddNewOrder(
+            factory(Order::class)->create([
+                'status' => 'under_review',
+                'customer_id' => 1,
+                'reciver_id' => 1,
+            ])
+        ));
+    }
 }

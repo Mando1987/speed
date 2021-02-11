@@ -3,9 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Validation\ValidationException;
 
 class ValidateOrderCustomerFormRequest extends FormRequest
 {
@@ -26,7 +23,7 @@ class ValidateOrderCustomerFormRequest extends FormRequest
                 'customerAddress.special_marque' => 'required|string|max:100',
                 'customerAddress.house_number' => 'required|string|max:10',
                 'customerAddress.door_number' => 'required|string|max:10',
-                'customerAddress.shaka_number' => 'required|string|max:10',
+                 'customerAddress.shaka_number' => 'required|string|max:10',
                 'customerType' => ['required', 'in:new,exists'],
             ];
         } else {
@@ -40,8 +37,7 @@ class ValidateOrderCustomerFormRequest extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
-        return $this->failedValidationCustom(['target'=> 'validateCustomerError']);
+        return $this->failedValidationCustom(['target' => 'validateCustomerError']);
     }
-
 
 }

@@ -1,4 +1,0 @@
----
-deployment:
-      tasks:
-        - export DEPLOYPATH=/home/speedsh1/public_html/speedshipping

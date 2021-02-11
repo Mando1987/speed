@@ -11,6 +11,7 @@ trait ActingAs
         $manager = factory(Manager::class)->create([
             'admin_id' => factory(Admin::class)->create(['type' => 'manager'])->id,
         ]);
-        return $this->actingAs($manager->admin, 'admin');
+        $this->actingAs($manager->admin, 'admin');
+        return $this;
     }
 }

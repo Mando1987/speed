@@ -2,16 +2,16 @@
 
 namespace Tests\Feature;
 
-use App\Http\Traits\Tests\ActingAs;
-use App\Models\Address;
-use App\Models\Customer;
+use Tests\TestCase;
 use App\Models\Order;
+use App\Models\Address;
 use App\Models\Reciver;
+use App\Models\Customer;
 use App\Models\Shipping;
+use App\Http\Traits\Tests\ActingAs;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\Telegram\NotifyAddNewOrder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Notification;
-use Tests\TestCase;
 
 class OrderByManagerTest extends TestCase
 {

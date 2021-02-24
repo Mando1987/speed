@@ -70,6 +70,14 @@
             </div>
             <!-- /.modal-dialog -->
         </div>
+        {{-- modal for notifcation --}}
+        <div class="modal fade" id="alertPanel" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+        {{-- modal for notifcation --}}
     </div>
 
     <div id="print">

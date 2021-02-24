@@ -7,18 +7,15 @@ use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Repositories\Factories\CreateOrderFactory;
 use App\Http\Repositories\Factories\OrderFactory;
 use App\Http\Repositories\Factories\OrderStatusFactory;
-use App\Http\Repositories\Orders\OrderViewShowStore;
 use App\Http\Repositories\Orders\ValidateCustomer;
 use App\Http\Repositories\Orders\ValidateReciver;
 use App\Http\Requests\OrderEditFormRequest;
 use App\Http\Requests\OrderStoreFormRequest;
 use App\Http\Requests\ValidateOrderCustomerFormRequest;
 use App\Http\Requests\ValidateOrderReciverFormRequest;
-use App\Models\Order;
+use App\Http\Services\OrderService;
 use App\Services\Orders\OrderCountChargePrice;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use Request as GlobalRequest;
 
 class OrderController extends Controller
 {
@@ -34,20 +31,20 @@ class OrderController extends Controller
 
     public function create(Request $request)
     {
-        return CreateOrderFactory::getInstance()->create($request);
+        return OrderFactory::getInstance()->create($request);
     }
     public function store(OrderStoreFormRequest $request)
     {
-        return CreateOrderFactory::getInstance()->store($request);
+        return OrderFactory::getInstance()->store($request);
     }
 
     public function validateCustomer(ValidateOrderCustomerFormRequest $request)
     {
-        return ValidateCustomer::handle($request);
+        return app(OrderService::class)->saveCustomerDataToSession($request->validated());
     }
     public function validateReciver(ValidateOrderReciverFormRequest $request)
     {
-        return ValidateReciver::handle($request);
+        return app(OrderService::class)->saveReciverDataToSession($request->validated());
     }
     public function getOrderChargePrice(Request $request)
     {
@@ -61,7 +58,7 @@ class OrderController extends Controller
 
     public function viewEditPanel(Request $request)
     {
-        return view('order.'.$request->adminType.'_view_edit_panel', ['request' => $request]);
+        return view('order.' . $request->adminType . '_view_edit_panel', ['request' => $request]);
     }
     public function editOrder(Request $request)
     {
@@ -77,10 +74,9 @@ class OrderController extends Controller
         return view('includes.delete');
     }
 
-
     public function viewUpdateOrder()
     {
-       return OrderStatusFactory::getInstance()->viewActions();
+        return OrderStatusFactory::getInstance()->viewActions();
     }
 
 }

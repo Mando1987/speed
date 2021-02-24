@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipping extends Model
 {
-    protected $guarded = [];
+    // protected $appends = ['final_price'];
+    protected $guarded = ['final_price'];
     public $timestamps = false;
 
-    protected $appends = ['final_price'];
 
     public function order()
     {

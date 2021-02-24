@@ -3,15 +3,21 @@ namespace App\Http\Repositories\Orders;
 
 use App\Http\Interfaces\OrderRepositoryInterface;
 use App\Http\Requests\OrderEditFormRequest;
+use App\Http\Requests\OrderStoreFormRequest;
+use App\Http\Services\AlertFormatedDataJson;
 use App\Http\Traits\FormatedResponseData;
+use App\Http\Traits\Orders\CreateOrderTrait;
 use App\Http\Traits\OrderTrait;
 use App\Http\Traits\ViewSettingTrait;
+use App\Models\Customer;
 use App\Models\Order;
+use App\Notifications\Telegram\NotifyAddNewOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class OrderRepositoryByManager implements OrderRepositoryInterface
 {
-    use OrderTrait, FormatedResponseData, ViewSettingTrait;
+    use OrderTrait, FormatedResponseData, ViewSettingTrait, CreateOrderTrait;
 
     public function __construct(Order $order)
     {
@@ -84,7 +90,7 @@ class OrderRepositoryByManager implements OrderRepositoryInterface
     }
     public function update(OrderEditFormRequest $request, $id)
     {
-         try {
+        try {
             DB::beginTransaction();
             $data = $request->validated();
 
@@ -96,12 +102,10 @@ class OrderRepositoryByManager implements OrderRepositoryInterface
             }
             DB::commit();
 
-
-
         } catch (\Exception $ex) {
 
             DB::rollback();
-            return $this->responseJson('failed');
+            // return $this->responseJson('failed');
         }
     }
     private function getOrderFullDetails(int $orderId, string $view)
@@ -115,10 +119,43 @@ class OrderRepositoryByManager implements OrderRepositoryInterface
         }
         return view('order.' . $view, ['order' => $orderData]);
     }
-
-    public function newMethod()
+    public function create(Request $request)
     {
+        $customers = Customer::all();
+        return view('order.create.createByManager', [
+            'customers' => $customers,
+            'userData' => $request->all(),
+        ]);
+    }
 
+    public function store(OrderStoreFormRequest $request)
+    {
+        $page = session('orderData')['page'];
+        if ($page == 'order') {
+            try {
+                $data = $request->validated();
+                DB::beginTransaction();
+                $customerId = $this->storeCustomerData($data['customer']);
+                $reciverId = $this->storeReciverData($data['reciver'], $customerId);
+                $order = $this->storeOrderData(array_merge($data['order'], ['status' => 'under_preparation']), $customerId, $reciverId);
+                $this->createOrderStatusFirstStep($order);
+                $this->storeOrderShippingData($data['shipping'], $order->id);
+                DB::commit();
+                $order->notify(new NotifyAddNewOrder($order));
+                $this->forgetOrderDataFromSession();
+                return (new AlertFormatedDataJson('validateOrder'))->alertBody(
+                    'includes.alerts.order',
+                    trans('site.added')
+                )->formatedData();
+
+            } catch (\Exception $ex) {
+                DB::rollback();
+                \Log::error($ex->getMessage());
+                return AlertFormatedDataJson::alertServerError('order.create');
+            }
+        } else {
+            return response()->json(['showClass' => $page, 'status' => 200]);
+        }
     }
 
 }

@@ -66,7 +66,7 @@ class OrderStoreFormRequest extends FormRequest
         /**
          * calculate order charge price
          * return array
-         */
+        */
         if (session('orderData')['page'] == 'order') {
             $ChargePrice = app(OrderCountChargePrice::class)->getOrderChargePrice($this);
             $data = array_merge(

@@ -8,19 +8,29 @@ use Illuminate\Http\Request;
 
 class ViewSettingController extends Controller
 {
-    private $viewSettingRepository;
+    private $_viewSettingRepository;
 
-    public function __construct(ViewSettingRepositoryInterface $viewSettingRepository)
+    /**
+     * Insert new
+     *
+     * @param $viewSetting ViewSettingRepositoryInterface
+     */
+    public function __construct(ViewSettingRepositoryInterface $viewSetting)
     {
-        $this->viewSettingRepository = $viewSettingRepository;
+        $this->_viewSettingRepository = $viewSetting;
     }
+    /**
+     * Insert new
+     *
+     * @param $request Request
+     */
     public function show(Request $request)
     {
-        return $this->viewSettingRepository->show($request);
+        return $this->_viewSettingRepository->show($request);
     }
 
     public function store(Request $request)
     {
-        return $this->viewSettingRepository->store($request);
+        return $this->_viewSettingRepository->store($request);
     }
 }

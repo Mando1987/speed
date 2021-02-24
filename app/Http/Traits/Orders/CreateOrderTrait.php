@@ -8,6 +8,7 @@ use App\Models\Shipping;
 
 trait CreateOrderTrait
 {
+    protected $personTypeIsNew = 'new';
     /**
      * store customer data in customers table
      * @param array $data
@@ -15,14 +16,12 @@ trait CreateOrderTrait
      */
     private function storeCustomerData(array $data): int
     {
-        if ($data['type'] == 'new') {
+        if ($data['type'] == $this->personTypeIsNew) {
             $customer = Customer::create($data['data']);
             $customer->address()->create($data['address']);
-            $customerId = $customer->id;
-        } else {
-            $customerId = $data['data']['id'];
+            return $customer->id;
         }
-        return $customerId;
+        return $data['data']['id'];
     }
     /**
      * store new reciver in recivers table
@@ -32,15 +31,13 @@ trait CreateOrderTrait
      */
     private function storeReciverData(array $data, int $customerId): int
     {
-        if ($data['type'] == 'new') {
+        if ($data['type'] == $this->personTypeIsNew) {
             $reciver = Reciver::make($data['data']);
             $reciver->customer()->associate($customerId)->save();
             $reciver->address()->create($data['address']);
-            $reciverId = $reciver->id;
-        } else {
-            $reciverId = $data['data']['id'];
+            return $reciver->id;
         }
-        return $reciverId;
+        return $data['data']['id'];
     }
     /**
      * store order data in orders table
@@ -53,8 +50,7 @@ trait CreateOrderTrait
     {
         $order = Order::make($data);
         $order->customer()->associate($customerId);
-        $order->reciver()->associate($reciverId);
-        $order->save();
+        $order->reciver()->associate($reciverId)->save();
         return $order;
     }
     /**
@@ -63,14 +59,13 @@ trait CreateOrderTrait
      * @param integer $orderId
      * @return void
      */
-    private function storeOrderShippingData(array $data, int $orderId) :void
+    private function storeOrderShippingData(array $data, int $orderId): void
     {
         $shipping = Shipping::make(array_merge(
             $data,
             ['order_num' => $this->setOrderNumberUnique($orderId)]
         ));
-        $shipping->order()->associate($orderId);
-        $shipping->save();
+        $shipping->order()->associate($orderId)->save();
     }
     /**
      * set unique order number
@@ -88,7 +83,7 @@ trait CreateOrderTrait
      */
     private function forgetOrderDataFromSession()
     {
-       session()->forget('orderData');
+        session()->forget('orderData');
     }
     /**
      * create new step status for existing order
@@ -98,9 +93,9 @@ trait CreateOrderTrait
      *
      * @return void
      */
-    private function createOrderStatusFirstStep(Order $order , $status = 'under_preparation'):void
+    private function createOrderStatusFirstStep(Order $order, $status = 'under_preparation'): void
     {
-       $order->statuses()->create(['status' => $status , 'step' => 'possibility_of_delivery']);
+        $order->statuses()->create(['status' => $status, 'step' => 'possibility_of_delivery']);
     }
 
 }

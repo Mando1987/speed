@@ -15,7 +15,6 @@ use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
-
     protected $redirectTo;
     protected $passwordError = false;
     protected $identifyError = false;
